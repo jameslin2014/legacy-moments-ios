@@ -10,40 +10,45 @@
 
 @interface LoginViewController ()
 
+@property UIGestureRecognizer *tapper;
+
 @end
 
 @implementation LoginViewController
 @synthesize loginButton, usernameField, passwordField;
+@synthesize tapper, backgroundImage;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
+    tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    tapper.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapper];
     
     // Login Button
     self.loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [loginButton addTarget:self action:@selector(loginButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     // Username Field
-    self.usernameField = [UITextField alloc];
-    usernameField.borderStyle = UITextBorderStyleLine;
+    usernameField.borderStyle = UITextBorderStyleNone;
     usernameField.clearButtonMode = UITextFieldViewModeWhileEditing;
     usernameField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     usernameField.font = [UIFont fontWithName:@"SanFranciscoText-Regular" size:15];
     usernameField.textColor = [UIColor whiteColor];
-    usernameField.keyboardAppearance = UIKeyboardAppearanceDark;
+    usernameField.keyboardAppearance = UIKeyboardAppearanceLight;
     usernameField.keyboardType = UIKeyboardTypeEmailAddress;
     usernameField.autocorrectionType = UITextAutocorrectionTypeNo;
     usernameField.returnKeyType = UIReturnKeyNext;
     [self.view addSubview:usernameField];
     
     // Password Field
-    self.passwordField = [[UITextField alloc] initWithFrame:CGRectMake(20, 250, 280, 45)];
-    passwordField.borderStyle = UITextBorderStyleLine;
+    passwordField.borderStyle = UITextBorderStyleNone;
     passwordField.clearButtonMode = UITextFieldViewModeWhileEditing;
     passwordField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     passwordField.font = [UIFont fontWithName:@"SanFranciscoText-Regular" size:15];
     passwordField.textColor = [UIColor whiteColor];
-    passwordField.keyboardAppearance = UIKeyboardAppearanceDark;
+    passwordField.keyboardAppearance = UIKeyboardAppearanceLight;
     passwordField.keyboardType = UIKeyboardTypeDefault;
     passwordField.autocorrectionType = UITextAutocorrectionTypeNo;
     passwordField.returnKeyType = UIReturnKeyDone;
@@ -54,6 +59,14 @@
 
 - (void)loginButtonAction:(UIButton *)sender {
     NSLog(@"Login button pressed.");
+}
+
+- (void)handleSingleTap:(UITapGestureRecognizer *) sender {
+    [self.view endEditing:YES];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)didReceiveMemoryWarning {
