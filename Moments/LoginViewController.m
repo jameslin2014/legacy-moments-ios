@@ -40,10 +40,12 @@
     usernameField.keyboardType = UIKeyboardTypeEmailAddress;
     usernameField.autocorrectionType = UITextAutocorrectionTypeNo;
     usernameField.returnKeyType = UIReturnKeyNext;
+    usernameField.tintColor = [UIColor whiteColor];
     [self.view addSubview:usernameField];
     
     // Password Field
     passwordField.borderStyle = UITextBorderStyleNone;
+    passwordField.tintColor = [UIColor whiteColor];
     passwordField.clearButtonMode = UITextFieldViewModeWhileEditing;
     passwordField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     passwordField.font = [UIFont fontWithName:@"SanFranciscoText-Regular" size:15];
