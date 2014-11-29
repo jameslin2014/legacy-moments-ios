@@ -19,13 +19,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
-
     currentUserName = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
-    phoneNumberLabel.text = [APIHelper getUserPhoneNumberWithUsername:currentUserName];
-    phoneNumberLabel.text = [APIHelper getUserPhoneNumberWithUsername:currentUserName];
     usernameLabel.text = currentUserName;
-    usernameLabel.text = currentUserName;
+    [APIHelper getUserPhoneNumberWithUsername:@"colton" completion:^(NSString *phoneNumber) {
+        phoneNumberLabel.text = [NSString stringWithFormat:@"%@",phoneNumber];
+    }];
+   
     // Do any additional setup after loading the view.
 }
 

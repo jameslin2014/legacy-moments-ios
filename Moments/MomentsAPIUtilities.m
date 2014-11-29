@@ -11,89 +11,70 @@
     BOOL loginStatus;
 }
 
--(NSDictionary*)getAllUserDataWithUsername:(NSString *)username {
+// Grab all user data from Firebase with a specified username
+-(void)getAllUserDataWithUsername:(NSString *)username completion:(void (^)(NSDictionary *))data {
     Firebase *UserPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@",username]];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-
-    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
-        // Get user data from Firebase
         [UserPath observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-            NSDictionary *data = snapshot.value;
-            [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"tempuserdatall"];
+            NSLog(@"Success");
+            data(snapshot.value);
         } withCancelBlock:^(NSError *error) {
+            NSLog(@"Error: %@",error);
         }];
-    });});
-    
-    NSDictionary *userData = [[NSUserDefaults standardUserDefaults] objectForKey:@"tempuserdataall"];
-    
-    return userData;
 }
 
--(NSString*)getUserPhoneNumberWithUsername:(NSString *)username {
+// Grab the phone number from Firebase with a specified username
+-(void)getUserPhoneNumberWithUsername:(NSString *)username completion:(void (^)(NSString *))data {
     Firebase *UserPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@/phone_number",username]];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-
-    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
         [UserPath observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-            NSString *data = snapshot.value;
-            [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"tempuserdataphonenumber"];
+            NSString *phoneData = snapshot.value;
+            data(phoneData);
         } withCancelBlock:^(NSError *error) {
+            NSLog(@"Error: %@",error);
         }];
-    });
-    });
-    
-    NSString *number = [[NSUserDefaults standardUserDefaults] objectForKey:@"tempuserdataphonenumber"];
-
-    
-    return number;
-        
     
 }
 
--(NSString*)getUserPasswordWithUsername:(NSString *)username {
+// Grab a user password from Firebase with a specified username
+-(void)getUserPasswordWithUsername:(NSString *)username completion:(void (^)(NSString *))data {
     Firebase *UserPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@/password",username]];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
-        [UserPath observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-            NSString *data = snapshot.value;
-            [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"tempuserdatapassword"];
-        } withCancelBlock:^(NSError *error) {
-        }];
-    });});
+    [UserPath observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        NSString *password = snapshot.value;
+        data(password);
+    } withCancelBlock:^(NSError *error) {
+        NSLog(@"Error: %@",error);
+    }];
     
-    NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:@"tempuserdatapassword"];
-    
-    return password;
 }
 
--(BOOL)loginWithUsername:(NSString *)username andPassword:(NSString *)password {
+// Attempt to login with specified credentials (username/pass) and throw a boolean with the result
+-(void)loginWithUsername:(NSString *)username andPassword:(NSString *)password completion:(void (^)(BOOL))data {
     Firebase *userPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@",username]];
-    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
         [userPath observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-            if (snapshot.value == nil) {
+            if (snapshot.value == [NSNull null]) {
+                data(false);
             } else {
                 Firebase *passPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@/password",username]];
                 [passPath observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
                     NSString *pass = snapshot.value;
-                    if ([pass isEqualToString:password]) {
-                        loginStatus = true;
-                        [[NSUserDefaults standardUserDefaults] setBool:loginStatus forKey:@"tempuserdataloginstatus"];
+                    NSLog(@"pass: %@",pass);
+                    if (snapshot.value == [NSNull null]) {
+                        data(false);
                     } else {
-                        loginStatus = false;
-                        [[NSUserDefaults standardUserDefaults] setBool:loginStatus forKey:@"tempuserdataloginstatus"];
+                    if ([pass isEqualToString:password]) {
+                        data(true);
+                    } else {
+                        data(false);
+                    }
                     }
                 } withCancelBlock:^(NSError *error) {
+                    NSLog(@"%@",error);
+                    data(false);
                 }];
-                
             }
         } withCancelBlock:^(NSError *error) {
+            NSLog(@"%@",error);
+            data(false);
         }];
-
-    });
-    BOOL status = [[NSUserDefaults standardUserDefaults] boolForKey:@"tempuserdataloginstatus"];
-
-    return status;
-    
 }
 
 

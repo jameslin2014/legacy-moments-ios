@@ -12,12 +12,13 @@
 
 @interface MomentsAPIUtilities : NSObject {}
 
--(NSDictionary*)getAllUserDataWithUsername:(NSString *)username;
+-(void)getAllUserDataWithUsername:(NSString *)username completion:(void(^)(NSDictionary *userData))data;
 
--(NSString*)getUserPhoneNumberWithUsername:(NSString *)username; // Grab user phone number
+-(void)getUserPhoneNumberWithUsername:(NSString *)username completion:(void(^)(NSString *phoneNumber))data;
+; // Grab user phone number
 
--(NSString*)getUserPasswordWithUsername:(NSString *)username; // Grab user phone number
+-(void)getUserPasswordWithUsername:(NSString *)username completion:(void(^)(NSString *password))data;; // Grab user password
 
--(BOOL)loginWithUsername:(NSString *)username andPassword:(NSString *)password;
+-(void)loginWithUsername:(NSString *)username andPassword:(NSString *)password completion:(void(^)(BOOL loginStatus))data;; ;
 
 @end

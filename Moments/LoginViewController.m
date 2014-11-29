@@ -59,9 +59,6 @@
     passwordField.secureTextEntry = YES;
     [self.view addSubview:passwordField];
     passwordField.text = [SSKeychain passwordForService:@"moments" account:@"password"];
-    
-
-
 }
 
 - (void)loginButtonAction:(UIButton *)sender {
@@ -70,23 +67,24 @@
 
 - (void)handleSingleTap:(UITapGestureRecognizer *) sender {
     [self.view endEditing:YES];
-    MomentsAPIUtilities *LoginAPI = [MomentsAPIUtilities alloc];
-    BOOL login = [LoginAPI loginWithUsername:usernameField.text andPassword:passwordField.text];
     
-    if (login == true) {
-        [SSKeychain setPassword:passwordField.text forService:@"moments" account:@"password"];
-        [SSKeychain setPassword:usernameField.text forService:@"moments" account:@"username"];
+    // Attempt to login
+    MomentsAPIUtilities *LoginAPI = [MomentsAPIUtilities alloc];
+    [LoginAPI loginWithUsername:usernameField.text andPassword:passwordField.text completion:^(BOOL login) {
+        if (login == true) {
+            [SSKeychain setPassword:passwordField.text forService:@"moments" account:@"password"];
+            [SSKeychain setPassword:usernameField.text forService:@"moments" account:@"username"];
+            NSLog(@"Login Succeeded");
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"userinfo"];
+            [self presentViewController:vc animated:YES completion:nil];
+            [[NSUserDefaults standardUserDefaults] setObject:usernameField.text forKey:@"currentUserName"];
+        } else {
+            NSLog(@"Login Failed");
+        }
 
-        
-        NSLog(@"login");
-        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"userinfo"];
-        [self presentViewController:vc animated:YES completion:nil];
-        [[NSUserDefaults standardUserDefaults] setObject:usernameField.text forKey:@"currentUserName"];
-    } else {
-        NSLog(@"nope");
+    }];
     }
-}
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
