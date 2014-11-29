@@ -42,6 +42,10 @@
 		A5B31C401A287F26009734EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B31C3E1A287F26009734EE /* Main.storyboard */; };
 		A5B31C421A287F26009734EE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5B31C411A287F26009734EE /* Images.xcassets */; };
 		A5B31C451A287F26009734EE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5B31C431A287F26009734EE /* LaunchScreen.xib */; };
+		A5C5EB811A2A8358002F1591 /* CaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5EB7A1A2A8358002F1591 /* CaptureViewController.m */; };
+		A5C5EB821A2A8358002F1591 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5EB7C1A2A8358002F1591 /* FriendsViewController.m */; };
+		A5C5EB831A2A8358002F1591 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5EB7E1A2A8358002F1591 /* ListViewController.m */; };
+		A5C5EB841A2A8358002F1591 /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5EB801A2A8358002F1591 /* PageViewController.m */; };
 		A5CAD7511A299B480023F948 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5CAD7501A299B480023F948 /* LoginViewController.m */; };
 		A5CAD77C1A29A0BF0023F948 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD7551A29A0BF0023F948 /* background.png */; };
 		A5CAD77D1A29A0BF0023F948 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD7561A29A0BF0023F948 /* background@2x.png */; };
@@ -144,6 +148,14 @@
 		A5B31C3F1A287F26009734EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A5B31C411A287F26009734EE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A5B31C441A287F26009734EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		A5C5EB791A2A8358002F1591 /* CaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureViewController.h; sourceTree = "<group>"; };
+		A5C5EB7A1A2A8358002F1591 /* CaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureViewController.m; sourceTree = "<group>"; };
+		A5C5EB7B1A2A8358002F1591 /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
+		A5C5EB7C1A2A8358002F1591 /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
+		A5C5EB7D1A2A8358002F1591 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
+		A5C5EB7E1A2A8358002F1591 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		A5C5EB7F1A2A8358002F1591 /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
+		A5C5EB801A2A8358002F1591 /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
 		A5CAD74F1A299B480023F948 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		A5CAD7501A299B480023F948 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		A5CAD7551A29A0BF0023F948 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
@@ -298,6 +310,7 @@
 		A5B31C331A287F25009734EE /* Moments */ = {
 			isa = PBXGroup;
 			children = (
+				A5C5EB851A2A835E002F1591 /* UI */,
 				A5B31C381A287F25009734EE /* AppDelegate.h */,
 				A5B31C391A287F25009734EE /* AppDelegate.m */,
 				A5CAD74F1A299B480023F948 /* LoginViewController.h */,
@@ -323,6 +336,21 @@
 				A5B31C361A287F25009734EE /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A5C5EB851A2A835E002F1591 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				A5C5EB7F1A2A8358002F1591 /* PageViewController.h */,
+				A5C5EB801A2A8358002F1591 /* PageViewController.m */,
+				A5C5EB7D1A2A8358002F1591 /* ListViewController.h */,
+				A5C5EB7E1A2A8358002F1591 /* ListViewController.m */,
+				A5C5EB791A2A8358002F1591 /* CaptureViewController.h */,
+				A5C5EB7A1A2A8358002F1591 /* CaptureViewController.m */,
+				A5C5EB7B1A2A8358002F1591 /* FriendsViewController.h */,
+				A5C5EB7C1A2A8358002F1591 /* FriendsViewController.m */,
+			);
+			name = UI;
 			sourceTree = "<group>";
 		};
 		A5CAD7541A29A0BF0023F948 /* Assets */ = {
@@ -491,9 +519,13 @@
 				02949F0C1A298565001EDD2D /* UIRefreshControl+AFNetworking.m in Sources */,
 				02949F081A298565001EDD2D /* UIAlertView+AFNetworking.m in Sources */,
 				02949EF01A298554001EDD2D /* AFSecurityPolicy.m in Sources */,
+				A5C5EB821A2A8358002F1591 /* FriendsViewController.m in Sources */,
+				A5C5EB811A2A8358002F1591 /* CaptureViewController.m in Sources */,
 				02949ED61A2984EA001EDD2D /* MomentsAPIUtilities.m in Sources */,
 				02949EED1A298554001EDD2D /* AFHTTPRequestOperationManager.m in Sources */,
 				02949EF11A298554001EDD2D /* AFURLConnectionOperation.m in Sources */,
+				A5C5EB831A2A8358002F1591 /* ListViewController.m in Sources */,
+				A5C5EB841A2A8358002F1591 /* PageViewController.m in Sources */,
 				02949F0A1A298565001EDD2D /* UIImageView+AFNetworking.m in Sources */,
 				02949EEC1A298554001EDD2D /* AFHTTPRequestOperation.m in Sources */,
 				02949F071A298565001EDD2D /* UIActivityIndicatorView+AFNetworking.m in Sources */,

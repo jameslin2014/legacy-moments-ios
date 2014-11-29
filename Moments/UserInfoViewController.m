@@ -23,7 +23,7 @@
     MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
     currentUserName = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
     usernameLabel.text = currentUserName;
-    [APIHelper getUserPhoneNumberWithUsername:@"colton" completion:^(NSString *phoneNumber) {
+    [APIHelper getUserPhoneNumberWithUsername:currentUserName completion:^(NSString *phoneNumber) {
         phoneNumberLabel.text = [NSString stringWithFormat:@"%@",phoneNumber];
     }];
    
