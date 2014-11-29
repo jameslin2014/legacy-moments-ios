@@ -19,9 +19,11 @@
 
 -(void)getUserPasswordWithUsername:(NSString *)username completion:(void(^)(NSString *password))data;; // Grab user password
 
--(void)loginWithUsername:(NSString *)username andPassword:(NSString *)password completion:(void(^)(BOOL loginStatus))data;; ;
+-(void)loginWithUsername:(NSString *)username andPassword:(NSString *)password completion:(void(^)(BOOL loginStatus))data;;;
 
--(void)followUserWithUsername:(NSString *)followedUsername fromUsername:(NSString *)followerUsername completion:(void(^)(BOOL followStatus))data;; ; ;
+-(void)followUserWithUsername:(NSString *)followedUsername fromUsername:(NSString *)followerUsername completion:(void(^)(BOOL followStatus))data;;;;
+
+-(void)unfollowUserWithUsername:(NSString *)followedUsername fromUsername:(NSString *)followerUsername completion:(void(^)(BOOL unfollowStatus))data;;;;
 
 @end
 

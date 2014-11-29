@@ -7,7 +7,7 @@
 //
 
 #import "ListViewController.h"
-
+#import "MomentsAPIUtilities.h"
 @interface ListViewController ()
 
 @end
@@ -17,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    MomentsAPIUtilities *APIHelper = [[MomentsAPIUtilities alloc] init];
     // Do any additional setup after loading the view, typically from a nib.
     tableView.delegate = self;
     tableView.dataSource = self;

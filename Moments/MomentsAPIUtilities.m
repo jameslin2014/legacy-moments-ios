@@ -78,6 +78,7 @@
         }];
 }
 
+// Follow a user from a specified username and return a boolean with the follow status
 -(void)followUserWithUsername:(NSString *)followedUsername fromUsername:(NSString *)followerUsername completion:(void (^)(BOOL))data{
     [Firebase goOnline];
     Firebase *userPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@/following",followerUsername]];
@@ -107,10 +108,40 @@
     } withCancelBlock:^(NSError *error) {
         NSLog(@"%@", error.description);
         [Firebase goOffline];
-    }];
-
-    
+    }];    
 }
+
+// Unfollow a user from a specified username and return a boolean with the follow status
+-(void)unfollowUserWithUsername:(NSString *)followedUsername fromUsername:(NSString *)followerUsername completion:(void (^)(BOOL))data{
+    [Firebase goOnline];
+    Firebase *userPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@/following",followerUsername]];
+    [userPath observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        followingArray = snapshot.value;
+        if (snapshot.value == [NSNull null]) {
+            NSLog(@"Error: Not Following User: %@", followedUsername);
+            [Firebase goOffline];
+        } else {
+            if ([followingArray containsObject:followedUsername]) {
+                NSMutableArray *tempArray = [followingArray mutableCopy];
+                [tempArray removeObject:followedUsername];
+                followingArray = [tempArray copy];
+                [userPath setValue:followingArray];
+                NSLog(@"Success: Unfollowed User: %@",followedUsername);
+                [Firebase goOffline];
+            } else {
+                NSLog(@"Error: Not Following User: %@", followedUsername);
+                [Firebase goOffline];
+                data(false);
+            }
+            
+        }
+        
+    } withCancelBlock:^(NSError *error) {
+        NSLog(@"%@", error.description);
+        [Firebase goOffline];
+    }];    
+}
+
 
 
 @end
