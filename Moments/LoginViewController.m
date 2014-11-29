@@ -7,7 +7,7 @@
 //
 
 #import "LoginViewController.h"
-
+#import "MomentsAPIUtilities.h"
 @interface LoginViewController ()
 
 @property UIGestureRecognizer *tapper;
@@ -65,6 +65,18 @@
 
 - (void)handleSingleTap:(UITapGestureRecognizer *) sender {
     [self.view endEditing:YES];
+    MomentsAPIUtilities *LoginAPI = [MomentsAPIUtilities alloc];
+    BOOL login = [LoginAPI loginWithUsername:usernameField.text andPassword:passwordField.text];
+    
+    if (login == true) {
+        NSLog(@"login");
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"userinfo"];
+        [self presentViewController:vc animated:YES completion:nil];
+        [[NSUserDefaults standardUserDefaults] setObject:usernameField.text forKey:@"currentUserName"];
+    } else {
+        NSLog(@"nope");
+    }
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

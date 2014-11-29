@@ -14,7 +14,8 @@
 
 -(NSDictionary*)getAllUserDataWithUsername:(NSString *)username {
     Firebase *UserPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@",username]];
-    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+
     dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
         // Get user data from Firebase
         [UserPath observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
@@ -22,7 +23,7 @@
             [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"tempuserdatall"];
         } withCancelBlock:^(NSError *error) {
         }];
-    });
+    });});
     
     NSDictionary *userData = [[NSUserDefaults standardUserDefaults] objectForKey:@"tempuserdataall"];
     
@@ -31,7 +32,8 @@
 
 -(NSString*)getUserPhoneNumberWithUsername:(NSString *)username {
     Firebase *UserPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@/phone_number",username]];
-    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+
     dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
         [UserPath observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
             NSString *data = snapshot.value;
@@ -39,24 +41,26 @@
         } withCancelBlock:^(NSError *error) {
         }];
     });
+    });
     
     NSString *number = [[NSUserDefaults standardUserDefaults] objectForKey:@"tempuserdataphonenumber"];
-    
+
     
     return number;
+        
     
 }
 
 -(NSString*)getUserPasswordWithUsername:(NSString *)username {
     Firebase *UserPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@/password",username]];
-    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
     dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
         [UserPath observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
             NSString *data = snapshot.value;
             [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"tempuserdatapassword"];
         } withCancelBlock:^(NSError *error) {
         }];
-    });
+    });});
     
     NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:@"tempuserdatapassword"];
     
@@ -75,7 +79,6 @@
                     if ([pass isEqualToString:password]) {
                         loginStatus = true;
                         [[NSUserDefaults standardUserDefaults] setBool:loginStatus forKey:@"tempuserdataloginstatus"];
-                        
                     } else {
                         loginStatus = false;
                         [[NSUserDefaults standardUserDefaults] setBool:loginStatus forKey:@"tempuserdataloginstatus"];
