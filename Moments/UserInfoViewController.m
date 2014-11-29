@@ -21,8 +21,8 @@
     MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
 
     currentUserName = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
-    phoneNumberLabel.text = [APIHelper getUserPhoneNumberWithUsername:@"colton"];
-    phoneNumberLabel.text = [APIHelper getUserPhoneNumberWithUsername:@"colton"];
+    phoneNumberLabel.text = [APIHelper getUserPhoneNumberWithUsername:currentUserName];
+    phoneNumberLabel.text = [APIHelper getUserPhoneNumberWithUsername:currentUserName];
     usernameLabel.text = currentUserName;
     usernameLabel.text = currentUserName;
     // Do any additional setup after loading the view.
