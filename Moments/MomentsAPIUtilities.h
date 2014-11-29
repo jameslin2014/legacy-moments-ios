@@ -18,4 +18,6 @@
 
 -(NSString*)getUserPasswordWithUsername:(NSString *)username; // Grab user phone number
 
+-(BOOL)loginWithUsername:(NSString *)username andPassword:(NSString *)password;
+
 @end

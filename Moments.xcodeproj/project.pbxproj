@@ -42,7 +42,6 @@
 		A5B31C421A287F26009734EE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5B31C411A287F26009734EE /* Images.xcassets */; };
 		A5B31C451A287F26009734EE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5B31C431A287F26009734EE /* LaunchScreen.xib */; };
 		A5CAD7511A299B480023F948 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5CAD7501A299B480023F948 /* LoginViewController.m */; };
-		A5CAD7531A29A0160023F948 /* screen.png in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD7521A29A0160023F948 /* screen.png */; };
 		A5CAD77C1A29A0BF0023F948 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD7551A29A0BF0023F948 /* background.png */; };
 		A5CAD77D1A29A0BF0023F948 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD7561A29A0BF0023F948 /* background@2x.png */; };
 		A5CAD77E1A29A0BF0023F948 /* background@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD7571A29A0BF0023F948 /* background@3x.png */; };
@@ -144,7 +143,6 @@
 		A5B31C441A287F26009734EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		A5CAD74F1A299B480023F948 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		A5CAD7501A299B480023F948 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		A5CAD7521A29A0160023F948 /* screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = screen.png; path = ../../../Desktop/screen.png; sourceTree = "<group>"; };
 		A5CAD7551A29A0BF0023F948 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		A5CAD7561A29A0BF0023F948 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 		A5CAD7571A29A0BF0023F948 /* background@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@3x.png"; sourceTree = "<group>"; };
@@ -304,7 +302,6 @@
 				A5B31C3B1A287F25009734EE /* ViewController.h */,
 				A5B31C3C1A287F25009734EE /* ViewController.m */,
 				A5B31C3E1A287F26009734EE /* Main.storyboard */,
-				A5CAD7521A29A0160023F948 /* screen.png */,
 				A5B31C411A287F26009734EE /* Images.xcassets */,
 				A5B31C431A287F26009734EE /* LaunchScreen.xib */,
 				02949ED71A2984F8001EDD2D /* API */,
@@ -452,7 +449,6 @@
 				A5CAD78D1A29A0BF0023F948 /* SanFranciscoText-LightItalic.otf in Resources */,
 				A5CAD78C1A29A0BF0023F948 /* SanFranciscoText-Light.otf in Resources */,
 				A5CAD7941A29A0BF0023F948 /* SanFranciscoText-Thin.otf in Resources */,
-				A5CAD7531A29A0160023F948 /* screen.png in Resources */,
 				A5CAD7A11A29A0BF0023F948 /* login-lock@3x.png in Resources */,
 				A5CAD7831A29A0BF0023F948 /* SanFranciscoDisplay-Medium.otf in Resources */,
 				A5CAD7901A29A0BF0023F948 /* SanFranciscoText-Regular.otf in Resources */,
