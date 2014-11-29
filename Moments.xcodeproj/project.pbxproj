@@ -11,12 +11,12 @@
 		020418401A296C9B00134216 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0204183F1A296C9B00134216 /* CoreMedia.framework */; };
 		020418421A296CAF00134216 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 020418411A296CAF00134216 /* AVFoundation.framework */; };
 		020418441A296CB600134216 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 020418431A296CB600134216 /* CoreFoundation.framework */; };
+		0232A0631A2A8ABD00ABF2FB /* MomentsAPIUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0232A0621A2A8ABD00ABF2FB /* MomentsAPIUtilities.m */; };
 		02949EC91A298431001EDD2D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949EC81A298431001EDD2D /* libicucore.dylib */; };
 		02949ECB1A29843A001EDD2D /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ECA1A29843A001EDD2D /* libc++.dylib */; };
 		02949ECD1A298441001EDD2D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ECC1A298441001EDD2D /* CFNetwork.framework */; };
 		02949ED11A298458001EDD2D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ED01A298458001EDD2D /* SystemConfiguration.framework */; };
 		02949ED31A2984A0001EDD2D /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ED21A2984A0001EDD2D /* Firebase.framework */; };
-		02949ED61A2984EA001EDD2D /* MomentsAPIUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 02949ED51A2984EA001EDD2D /* MomentsAPIUtilities.m */; };
 		02949EEC1A298554001EDD2D /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 02949EDA1A298554001EDD2D /* AFHTTPRequestOperation.m */; };
 		02949EED1A298554001EDD2D /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 02949EDC1A298554001EDD2D /* AFHTTPRequestOperationManager.m */; };
 		02949EEE1A298554001EDD2D /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 02949EDE1A298554001EDD2D /* AFHTTPSessionManager.m */; };
@@ -34,7 +34,6 @@
 		02949F0B1A298565001EDD2D /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 02949F011A298565001EDD2D /* UIProgressView+AFNetworking.m */; };
 		02949F0C1A298565001EDD2D /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 02949F031A298565001EDD2D /* UIRefreshControl+AFNetworking.m */; };
 		02949F0D1A298565001EDD2D /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 02949F051A298565001EDD2D /* UIWebView+AFNetworking.m */; };
-		02C894461A29B06700B87592 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C894451A29B06700B87592 /* UserInfoViewController.m */; };
 		02C894471A29B89100B87592 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ECE1A298451001EDD2D /* Security.framework */; };
 		02C8944A1A29B94C00B87592 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C894491A29B94C00B87592 /* SSKeychain.m */; };
 		A5B31C371A287F25009734EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B31C361A287F25009734EE /* main.m */; };
@@ -92,14 +91,14 @@
 		0204183F1A296C9B00134216 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		020418411A296CAF00134216 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		020418431A296CB600134216 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		0232A0611A2A8ABD00ABF2FB /* MomentsAPIUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentsAPIUtilities.h; sourceTree = "<group>"; };
+		0232A0621A2A8ABD00ABF2FB /* MomentsAPIUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentsAPIUtilities.m; sourceTree = "<group>"; };
 		02949EC81A298431001EDD2D /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		02949ECA1A29843A001EDD2D /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		02949ECC1A298441001EDD2D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		02949ECE1A298451001EDD2D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		02949ED01A298458001EDD2D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		02949ED21A2984A0001EDD2D /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
-		02949ED41A2984EA001EDD2D /* MomentsAPIUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentsAPIUtilities.h; sourceTree = "<group>"; };
-		02949ED51A2984EA001EDD2D /* MomentsAPIUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentsAPIUtilities.m; sourceTree = "<group>"; };
 		02949ED91A298554001EDD2D /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		02949EDA1A298554001EDD2D /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		02949EDB1A298554001EDD2D /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -136,8 +135,6 @@
 		02949F031A298565001EDD2D /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
 		02949F041A298565001EDD2D /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		02949F051A298565001EDD2D /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
-		02C894441A29B06700B87592 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
-		02C894451A29B06700B87592 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
 		02C894481A29B94C00B87592 /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
 		02C894491A29B94C00B87592 /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
 		A5B31C311A287F25009734EE /* Moments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moments.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -240,8 +237,8 @@
 		02949ED71A2984F8001EDD2D /* API */ = {
 			isa = PBXGroup;
 			children = (
-				02949ED41A2984EA001EDD2D /* MomentsAPIUtilities.h */,
-				02949ED51A2984EA001EDD2D /* MomentsAPIUtilities.m */,
+				0232A0611A2A8ABD00ABF2FB /* MomentsAPIUtilities.h */,
+				0232A0621A2A8ABD00ABF2FB /* MomentsAPIUtilities.m */,
 				02949ED81A298546001EDD2D /* Networking */,
 			);
 			name = API;
@@ -315,8 +312,6 @@
 				A5B31C391A287F25009734EE /* AppDelegate.m */,
 				A5CAD74F1A299B480023F948 /* LoginViewController.h */,
 				A5CAD7501A299B480023F948 /* LoginViewController.m */,
-				02C894441A29B06700B87592 /* UserInfoViewController.h */,
-				02C894451A29B06700B87592 /* UserInfoViewController.m */,
 				A5B31C3E1A287F26009734EE /* Main.storyboard */,
 				A5B31C411A287F26009734EE /* Images.xcassets */,
 				A5B31C431A287F26009734EE /* LaunchScreen.xib */,
@@ -521,10 +516,10 @@
 				02949EF01A298554001EDD2D /* AFSecurityPolicy.m in Sources */,
 				A5C5EB821A2A8358002F1591 /* FriendsViewController.m in Sources */,
 				A5C5EB811A2A8358002F1591 /* CaptureViewController.m in Sources */,
-				02949ED61A2984EA001EDD2D /* MomentsAPIUtilities.m in Sources */,
 				02949EED1A298554001EDD2D /* AFHTTPRequestOperationManager.m in Sources */,
 				02949EF11A298554001EDD2D /* AFURLConnectionOperation.m in Sources */,
 				A5C5EB831A2A8358002F1591 /* ListViewController.m in Sources */,
+				0232A0631A2A8ABD00ABF2FB /* MomentsAPIUtilities.m in Sources */,
 				A5C5EB841A2A8358002F1591 /* PageViewController.m in Sources */,
 				02949F0A1A298565001EDD2D /* UIImageView+AFNetworking.m in Sources */,
 				02949EEC1A298554001EDD2D /* AFHTTPRequestOperation.m in Sources */,
@@ -535,7 +530,6 @@
 				02949EEF1A298554001EDD2D /* AFNetworkReachabilityManager.m in Sources */,
 				02949EF31A298554001EDD2D /* AFURLResponseSerialization.m in Sources */,
 				02949F0D1A298565001EDD2D /* UIWebView+AFNetworking.m in Sources */,
-				02C894461A29B06700B87592 /* UserInfoViewController.m in Sources */,
 				02949EF41A298554001EDD2D /* AFURLSessionManager.m in Sources */,
 				02949F061A298565001EDD2D /* AFNetworkActivityIndicatorManager.m in Sources */,
 				A5CAD7511A299B480023F948 /* LoginViewController.m in Sources */,

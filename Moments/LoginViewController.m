@@ -76,7 +76,7 @@
             [SSKeychain setPassword:usernameField.text forService:@"moments" account:@"username"];
             NSLog(@"Login Succeeded");
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-            UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"userinfo"];
+            UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"pageView"];
             [self presentViewController:vc animated:YES completion:nil];
             [[NSUserDefaults standardUserDefaults] setObject:usernameField.text forKey:@"currentUserName"];
         } else {

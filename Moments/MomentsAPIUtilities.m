@@ -7,8 +7,10 @@
 //
 
 #import "MomentsAPIUtilities.h"
+
 @implementation MomentsAPIUtilities {
     BOOL loginStatus;
+    NSArray *followingArray;
 }
 
 // Grab all user data from Firebase with a specified username
@@ -56,7 +58,6 @@
                 Firebase *passPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@/password",username]];
                 [passPath observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
                     NSString *pass = snapshot.value;
-                    NSLog(@"pass: %@",pass);
                     if (snapshot.value == [NSNull null]) {
                         data(false);
                     } else {
@@ -75,6 +76,40 @@
             NSLog(@"%@",error);
             data(false);
         }];
+}
+
+-(void)followUserWithUsername:(NSString *)followedUsername fromUsername:(NSString *)followerUsername completion:(void (^)(BOOL))data{
+    [Firebase goOnline];
+    Firebase *userPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@/following",followerUsername]];
+    [userPath observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        followingArray = snapshot.value;
+        if (snapshot.value == [NSNull null]) {
+            NSArray *array = @[followedUsername];
+            [userPath setValue:array];
+            NSLog(@"Success: Followed User: %@",followedUsername);
+            [Firebase goOffline];
+        } else {
+
+        if ([followingArray containsObject:followedUsername]) {
+            NSLog(@"Error: Already following user: %@",followedUsername);
+            data(false);
+            [Firebase goOffline];
+        } else {
+            NSMutableArray *editableArray = [followingArray mutableCopy];
+            [editableArray addObject:followedUsername];
+            followingArray = [editableArray copy];
+            NSLog(@"Success: Followed User: %@",followedUsername);
+            [userPath setValue:followingArray];
+            data(true);
+            [Firebase goOffline];
+        }
+        }
+    } withCancelBlock:^(NSError *error) {
+        NSLog(@"%@", error.description);
+        [Firebase goOffline];
+    }];
+
+    
 }
 
 

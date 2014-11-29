@@ -21,4 +21,17 @@
 
 -(void)loginWithUsername:(NSString *)username andPassword:(NSString *)password completion:(void(^)(BOOL loginStatus))data;; ;
 
+-(void)followUserWithUsername:(NSString *)followedUsername fromUsername:(NSString *)followerUsername completion:(void(^)(BOOL followStatus))data;; ; ;
+
 @end
+
+/*
+ Firebase *userPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/colton/following"]];
+ 
+ [userPath observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+ NSLog(@"%@", snapshot.value);
+ } withCancelBlock:^(NSError *error) {
+ NSLog(@"%@", error.description);
+ 
+ }];
+*/
