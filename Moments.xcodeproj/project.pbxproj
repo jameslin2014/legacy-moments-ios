@@ -14,7 +14,6 @@
 		02949EC91A298431001EDD2D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949EC81A298431001EDD2D /* libicucore.dylib */; };
 		02949ECB1A29843A001EDD2D /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ECA1A29843A001EDD2D /* libc++.dylib */; };
 		02949ECD1A298441001EDD2D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ECC1A298441001EDD2D /* CFNetwork.framework */; };
-		02949ECF1A298451001EDD2D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ECE1A298451001EDD2D /* Security.framework */; };
 		02949ED11A298458001EDD2D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ED01A298458001EDD2D /* SystemConfiguration.framework */; };
 		02949ED31A2984A0001EDD2D /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ED21A2984A0001EDD2D /* Firebase.framework */; };
 		02949ED61A2984EA001EDD2D /* MomentsAPIUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 02949ED51A2984EA001EDD2D /* MomentsAPIUtilities.m */; };
@@ -36,6 +35,8 @@
 		02949F0C1A298565001EDD2D /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 02949F031A298565001EDD2D /* UIRefreshControl+AFNetworking.m */; };
 		02949F0D1A298565001EDD2D /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 02949F051A298565001EDD2D /* UIWebView+AFNetworking.m */; };
 		02C894461A29B06700B87592 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C894451A29B06700B87592 /* UserInfoViewController.m */; };
+		02C894471A29B89100B87592 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ECE1A298451001EDD2D /* Security.framework */; };
+		02C8944A1A29B94C00B87592 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C894491A29B94C00B87592 /* SSKeychain.m */; };
 		A5B31C371A287F25009734EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B31C361A287F25009734EE /* main.m */; };
 		A5B31C3A1A287F25009734EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B31C391A287F25009734EE /* AppDelegate.m */; };
 		A5B31C401A287F26009734EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B31C3E1A287F26009734EE /* Main.storyboard */; };
@@ -133,6 +134,8 @@
 		02949F051A298565001EDD2D /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		02C894441A29B06700B87592 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
 		02C894451A29B06700B87592 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
+		02C894481A29B94C00B87592 /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
+		02C894491A29B94C00B87592 /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
 		A5B31C311A287F25009734EE /* Moments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moments.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5B31C351A287F25009734EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5B31C361A287F25009734EE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -188,8 +191,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02C894471A29B89100B87592 /* Security.framework in Frameworks */,
 				02949ED11A298458001EDD2D /* SystemConfiguration.framework in Frameworks */,
-				02949ECF1A298451001EDD2D /* Security.framework in Frameworks */,
 				02949ECD1A298441001EDD2D /* CFNetwork.framework in Frameworks */,
 				02949ECB1A29843A001EDD2D /* libc++.dylib in Frameworks */,
 				02949EC91A298431001EDD2D /* libicucore.dylib in Frameworks */,
@@ -313,6 +316,8 @@
 		A5B31C341A287F25009734EE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				02C894481A29B94C00B87592 /* SSKeychain.h */,
+				02C894491A29B94C00B87592 /* SSKeychain.m */,
 				A5CAD7541A29A0BF0023F948 /* Assets */,
 				A5B31C351A287F25009734EE /* Info.plist */,
 				A5B31C361A287F25009734EE /* main.m */,
@@ -502,6 +507,7 @@
 				02949EF41A298554001EDD2D /* AFURLSessionManager.m in Sources */,
 				02949F061A298565001EDD2D /* AFNetworkActivityIndicatorManager.m in Sources */,
 				A5CAD7511A299B480023F948 /* LoginViewController.m in Sources */,
+				02C8944A1A29B94C00B87592 /* SSKeychain.m in Sources */,
 				A5B31C371A287F25009734EE /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

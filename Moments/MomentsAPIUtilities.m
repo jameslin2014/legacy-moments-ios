@@ -7,7 +7,6 @@
 //
 
 #import "MomentsAPIUtilities.h"
-
 @implementation MomentsAPIUtilities {
     BOOL loginStatus;
 }

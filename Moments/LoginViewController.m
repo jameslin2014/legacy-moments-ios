@@ -8,6 +8,8 @@
 
 #import "LoginViewController.h"
 #import "MomentsAPIUtilities.h"
+#import "SSKeychain.h"
+
 @interface LoginViewController ()
 
 @property UIGestureRecognizer *tapper;
@@ -20,7 +22,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     // Do any additional setup after loading the view.
     tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
     tapper.cancelsTouchesInView = NO;
@@ -42,6 +43,7 @@
     usernameField.returnKeyType = UIReturnKeyNext;
     usernameField.tintColor = [UIColor whiteColor];
     [self.view addSubview:usernameField];
+    usernameField.text = [SSKeychain passwordForService:@"moments" account:@"username"];
     
     // Password Field
     passwordField.borderStyle = UITextBorderStyleNone;
@@ -56,7 +58,10 @@
     passwordField.returnKeyType = UIReturnKeyDone;
     passwordField.secureTextEntry = YES;
     [self.view addSubview:passwordField];
+    passwordField.text = [SSKeychain passwordForService:@"moments" account:@"password"];
     
+
+
 }
 
 - (void)loginButtonAction:(UIButton *)sender {
@@ -69,6 +74,10 @@
     BOOL login = [LoginAPI loginWithUsername:usernameField.text andPassword:passwordField.text];
     
     if (login == true) {
+        [SSKeychain setPassword:passwordField.text forService:@"moments" account:@"password"];
+        [SSKeychain setPassword:usernameField.text forService:@"moments" account:@"username"];
+
+        
         NSLog(@"login");
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"userinfo"];

@@ -8,6 +8,7 @@
 
 #import "UserInfoViewController.h"
 #import "MomentsAPIUtilities.h"
+
 @interface UserInfoViewController ()
 
 @end
