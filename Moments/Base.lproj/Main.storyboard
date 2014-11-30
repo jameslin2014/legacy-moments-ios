@@ -24,17 +24,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background.png" translatesAutoresizingMaskIntoConstraints="NO" id="MrR-fg-GC0">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="MrR-fg-GC0">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login-field-background.png" translatesAutoresizingMaskIntoConstraints="NO" id="vf2-AB-07R">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login-field-background" translatesAutoresizingMaskIntoConstraints="NO" id="vf2-AB-07R">
                                 <rect key="frame" x="52" y="243" width="271.5" height="89.5"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login-key.png" translatesAutoresizingMaskIntoConstraints="NO" id="has-4o-hs4">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login-key" translatesAutoresizingMaskIntoConstraints="NO" id="has-4o-hs4">
                                 <rect key="frame" x="62" y="259" width="12.5" height="16"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login-lock.png" translatesAutoresizingMaskIntoConstraints="NO" id="E8b-Mp-KyR">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login-lock" translatesAutoresizingMaskIntoConstraints="NO" id="E8b-Mp-KyR">
                                 <rect key="frame" x="62" y="303" width="12.5" height="15"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tis-Yl-RlW">
@@ -63,7 +63,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F8U-VE-Ldc">
                                 <rect key="frame" x="52" y="332" width="271.5" height="35.5"/>
-                                <state key="normal" title="Button" image="login-button.png">
+                                <state key="normal" title="Button" image="login-button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -155,12 +155,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="camera-background-bottom.png" translatesAutoresizingMaskIntoConstraints="NO" id="qFj-1t-ahC">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="camera-background-bottom" translatesAutoresizingMaskIntoConstraints="NO" id="qFj-1t-ahC">
                                 <rect key="frame" x="0.0" y="473" width="375" height="194"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fp-Rk-D9Y">
                                 <rect key="frame" x="65" y="563" width="31" height="19"/>
-                                <state key="normal" title="Button" image="flip-camera-button.png">
+                                <state key="normal" title="Button" image="flip-camera-button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -169,7 +169,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7L-6T-xkJ">
                                 <rect key="frame" x="146" y="529" width="82" height="81.5"/>
-                                <state key="normal" title="Button" image="capture-button.png">
+                                <state key="normal" title="Button" image="capture-button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -190,7 +190,7 @@
                                     <action selector="flashButtonAction:" destination="lzj-Vv-tF4" eventType="touchUpInside" id="EbC-KP-ofr"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="camera-background-top.png" translatesAutoresizingMaskIntoConstraints="NO" id="W0P-Zd-asz">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="camera-background-bottom" translatesAutoresizingMaskIntoConstraints="NO" id="W0P-Zd-asz">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                             </imageView>
                         </subviews>
@@ -320,15 +320,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="background.png" width="750" height="1334"/>
+        <image name="background" width="750" height="1334"/>
         <image name="bool-flash-button.png" width="44" height="44"/>
-        <image name="camera-background-bottom.png" width="750" height="389"/>
-        <image name="camera-background-top.png" width="750" height="121"/>
-        <image name="capture-button.png" width="164" height="165"/>
-        <image name="flip-camera-button.png" width="62" height="30"/>
-        <image name="login-button.png" width="543" height="71"/>
-        <image name="login-field-background.png" width="543" height="179"/>
-        <image name="login-key.png" width="25" height="32"/>
-        <image name="login-lock.png" width="25" height="30"/>
+        <image name="camera-background-bottom" width="750" height="389"/>
+        <image name="capture-button" width="164" height="165"/>
+        <image name="flip-camera-button" width="62" height="30"/>
+        <image name="login-button" width="543" height="71"/>
+        <image name="login-field-background" width="543" height="179"/>
+        <image name="login-key" width="25" height="32"/>
+        <image name="login-lock" width="25" height="30"/>
     </resources>
 </document>
