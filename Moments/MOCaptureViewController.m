@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Cosmic. All rights reserved.
 //
 
-#import "CaptureViewController.h"
+#import "MOCaptureViewController.h"
 
-@implementation CaptureViewController
+@implementation MOCaptureViewController
 
 - (BOOL)isSessionRunningAndDeviceAuthorized {
     return [[self session] isRunning] && [self isDeviceAuthorized];
@@ -39,7 +39,7 @@
         
         NSError *error = nil;
         
-        CaptureViewController *videoDevice = [CaptureViewController deviceWithMediaType:AVMediaTypeVideo preferringPosition:AVCaptureDevicePositionBack];
+        MOCaptureViewController *videoDevice = [MOCaptureViewController deviceWithMediaType:AVMediaTypeVideo preferringPosition:AVCaptureDevicePositionBack];
         AVCaptureDeviceInput *videoDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:videoDevice error:&error];
         
         if (error) {
@@ -81,9 +81,9 @@
         [self addObserver:self forKeyPath:@"movieFileOutput.recording" options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew) context:RecordingContext];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(subjectAreaDidChange:) name:AVCaptureDeviceSubjectAreaDidChangeNotification object:[[self videoDeviceInput] device]];
         
-        __weak CaptureViewController *weakSelf = self;
+        __weak MOCaptureViewController *weakSelf = self;
         [self setRuntimeErrorHandlingObserver:[[NSNotificationCenter defaultCenter] addObserverForName:AVCaptureSessionRuntimeErrorNotification object:[self session] queue:nil usingBlock:^(NSNotification *note) {
-            CaptureViewController *strongSelf = weakSelf;
+            MOCaptureViewController *strongSelf = weakSelf;
             dispatch_async([strongSelf sessionQueue], ^{
                 // Manually restarting the session since it must have been stopped due to an error.
                 [[strongSelf session] startRunning];
@@ -107,7 +107,6 @@
 }
 
 - (BOOL)shouldAutorotate {
-    // Disable autorotation of the interface when recording is in progress.
     return ![self lockInterfaceRotation];
 }
 
@@ -153,9 +152,8 @@
                 [[self recordButton] setEnabled:YES];
             }
         });
-    }
-    else if (context == SessionRunningAndDeviceAuthorizedContext)
-    {
+        
+    } else if (context == SessionRunningAndDeviceAuthorizedContext) {
         BOOL isRunning = [change[NSKeyValueChangeNewKey] boolValue];
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -188,13 +186,12 @@
             [[[self movieFileOutput] connectionWithMediaType:AVMediaTypeVideo] setVideoOrientation:[[(AVCaptureVideoPreviewLayer *)[[self previewView] layer] connection] videoOrientation]];
             
             // Turning OFF flash for video recording
-            [CaptureViewController setFlashMode:AVCaptureFlashModeOff forDevice:[[self videoDeviceInput] device]];
+            [MOCaptureViewController setFlashMode:AVCaptureFlashModeOff forDevice:[[self videoDeviceInput] device]];
             
             // Start recording to a temporary file.
             NSString *outputFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[@"movie" stringByAppendingPathExtension:@"mov"]];
             [[self movieFileOutput] startRecordingToOutputFileURL:[NSURL fileURLWithPath:outputFilePath] recordingDelegate:self];
-        }
-        else {
+        } else {
             [[self movieFileOutput] stopRecording];
         }
     });
@@ -221,7 +218,7 @@
                 break;
         }
         
-        AVCaptureDevice *videoDevice = [CaptureViewController deviceWithMediaType:AVMediaTypeVideo preferringPosition:preferredPosition];
+        AVCaptureDevice *videoDevice = [MOCaptureViewController deviceWithMediaType:AVMediaTypeVideo preferringPosition:preferredPosition];
         AVCaptureDeviceInput *videoDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:videoDevice error:nil];
         
         [[self session] beginConfiguration];
@@ -230,7 +227,7 @@
         if ([[self session] canAddInput:videoDeviceInput]) {
             [[NSNotificationCenter defaultCenter] removeObserver:self name:AVCaptureDeviceSubjectAreaDidChangeNotification object:currentVideoDevice];
             
-            [CaptureViewController setFlashMode:AVCaptureFlashModeAuto forDevice:videoDevice];
+            [MOCaptureViewController setFlashMode:AVCaptureFlashModeAuto forDevice:videoDevice];
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(subjectAreaDidChange:) name:AVCaptureDeviceSubjectAreaDidChangeNotification object:videoDevice];
             
             [[self session] addInput:videoDeviceInput];

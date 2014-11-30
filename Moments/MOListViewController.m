@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Cosmic. All rights reserved.
 //
 
-#import "ListViewController.h"
+#import "MOListViewController.h"
 #import "MomentsAPIUtilities.h"
-@interface ListViewController ()
+@interface MOListViewController ()
 
 @end
 
-@implementation ListViewController
+@implementation MOListViewController
 @synthesize tableView;
 
 - (void)viewDidLoad {
@@ -22,6 +22,7 @@
     tableView.delegate = self;
     tableView.dataSource = self;
     
+    // UINavigationBar styling
     self.navigationController.navigationBarHidden = NO;
     self.title = @"Moments";
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.23 green:0.52 blue:0.68 alpha:0.39]];
@@ -30,14 +31,6 @@
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
     self.tableView.separatorColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
     self.tableView.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
-}
-
-
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark —— Table view data source
@@ -76,12 +69,14 @@
 
 - (void)tableView: (UITableView*)tableView willDisplayCell: (UITableViewCell*)cell forRowAtIndexPath: (NSIndexPath*)indexPath {
     if(indexPath.row % 2 == 0)
-        // color for first alternating cell
         cell.contentView.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
     else
-        // color for second alternating cell
         cell.contentView.backgroundColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 @end

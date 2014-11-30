@@ -6,24 +6,25 @@
 //  Copyright (c) 2014 Cosmic. All rights reserved.
 //
 
-#import "PageViewController.h"
+#import "MOPageViewController.h"
 
-@interface PageViewController ()
+@interface MOPageViewController ()
 
 @property NSArray *viewControllers;
 
 @end
 
-@implementation PageViewController
+@implementation MOPageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
     
-    ListViewController *listView = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"listView"];
-    CaptureViewController *captureView = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"captureView"];
-    FollowingViewController *friendsView = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"friendsView"];
+    // Instantiating view controllers with identifiers for IB to interact with.
+    MOListViewController *listView = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"listView"];
+    MOCaptureViewController *captureView = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"captureView"];
+    MOFollowingViewController *friendsView = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"friendsView"];
     
     // Load the ViewControllers in our pages array.
     self.pages = [[NSArray alloc] initWithObjects:listView, captureView, friendsView, nil];
@@ -49,11 +50,6 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
@@ -95,6 +91,11 @@
     }
     
     
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end

@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  FriendsViewController.h
 //  moments-test
 //
 //  Created by Douglas Bumby on 2014-11-29.
@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ListViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
+@interface MOFollowingViewController : UITableViewController
 
 @property IBOutlet UITableView *tableView;
+@property IBOutlet UIBarButtonItem *searchButton;
+
+- (IBAction)showSearch;
 
 @end
-

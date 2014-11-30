@@ -6,17 +6,17 @@
 //  Copyright (c) 2014 Cosmic. All rights reserved.
 //
 
-#import "LoginViewController.h"
+#import "MOLoginViewController.h"
 #import "MomentsAPIUtilities.h"
 #import "SSKeychain.h"
 
-@interface LoginViewController ()
+@interface MOLoginViewController ()
 
 @property UIGestureRecognizer *tapper;
 
 @end
 
-@implementation LoginViewController
+@implementation MOLoginViewController
 @synthesize loginButton, usernameField, passwordField;
 @synthesize tapper, backgroundImage;
 
@@ -87,7 +87,7 @@
     }];
     }
 
--(void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     self.view.alpha = 0.0f;
     MomentsAPIUtilities *LoginAPI = [MomentsAPIUtilities alloc];
     [LoginAPI loginWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] andPassword:[SSKeychain passwordForService:@"moments" account:@"password"] completion:^(BOOL login) {

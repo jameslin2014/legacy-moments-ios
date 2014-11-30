@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : UIViewController
+@interface MOLoginViewController : UIViewController
 
 @property IBOutlet UITextField *usernameField;
 @property IBOutlet UITextField *passwordField;

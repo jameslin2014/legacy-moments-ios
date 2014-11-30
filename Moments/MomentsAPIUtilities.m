@@ -14,7 +14,7 @@
 }
 
 // Grab all user data from Firebase with a specified username
--(void)getAllUserDataWithUsername:(NSString *)username completion:(void (^)(NSDictionary *))data {
+- (void)getAllUserDataWithUsername:(NSString *)username completion:(void (^)(NSDictionary *))data {
     Firebase *UserPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@",username]];
         [UserPath observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
             NSLog(@"Success");
@@ -25,7 +25,7 @@
 }
 
 // Grab the phone number from Firebase with a specified username
--(void)getUserPhoneNumberWithUsername:(NSString *)username completion:(void (^)(NSString *))data {
+- (void)getUserPhoneNumberWithUsername:(NSString *)username completion:(void (^)(NSString *))data {
     [Firebase goOnline];
     Firebase *UserPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@/phone_number",username]];
         [UserPath observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
@@ -40,7 +40,7 @@
 }
 
 // Grab a user password from Firebase with a specified username
--(void)getUserPasswordWithUsername:(NSString *)username completion:(void (^)(NSString *))data {
+- (void)getUserPasswordWithUsername:(NSString *)username completion:(void (^)(NSString *))data {
     /**
      An iOS library for interacting with the Moments API */
     [Firebase goOnline];
@@ -56,7 +56,7 @@
     
 }
 
--(void)getUserFollowingListWithUsername:(NSString *)username completion:(void (^)(NSArray *))data {
+- (void)getUserFollowingListWithUsername:(NSString *)username completion:(void (^)(NSArray *))data {
     [Firebase goOnline];
      Firebase *followingPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@/following",username]];
     [followingPath observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
@@ -78,7 +78,7 @@
     
 }
 
--(void)getUserFollowersListWithUsername:(NSString *)username completion:(void (^)(NSArray *))data {
+- (void)getUserFollowersListWithUsername:(NSString *)username completion:(void (^)(NSArray *))data {
     [Firebase goOnline];
     Firebase *followingPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@/followers",username]];
     [followingPath observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
@@ -104,7 +104,7 @@
 
 
 // Attempt to login with specified credentials (username/pass) and throw a boolean with the result
--(void)loginWithUsername:(NSString *)username andPassword:(NSString *)password completion:(void (^)(BOOL))data {
+- (void)loginWithUsername:(NSString *)username andPassword:(NSString *)password completion:(void (^)(BOOL))data {
     [Firebase goOnline];
     Firebase *userPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@",username]];
         [userPath observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
@@ -141,7 +141,7 @@
 }
 
 // Follow a user from a specified username and return a boolean with the follow status
--(void)followUserWithUsername:(NSString *)followedUsername fromUsername:(NSString *)followerUsername completion:(void (^)(BOOL))data{
+- (void)followUserWithUsername:(NSString *)followedUsername fromUsername:(NSString *)followerUsername completion:(void (^)(BOOL))data{
     [Firebase goOnline];
     Firebase *userPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@/following",followerUsername]];
     [userPath observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
@@ -175,7 +175,7 @@
 }
 
 // Unfollow a user from a specified username and return a boolean with the follow status
--(void)unfollowUserWithUsername:(NSString *)followedUsername fromUsername:(NSString *)followerUsername completion:(void (^)(BOOL))data{
+- (void)unfollowUserWithUsername:(NSString *)followedUsername fromUsername:(NSString *)followerUsername completion:(void (^)(BOOL))data{
     [Firebase goOnline];
     Firebase *userPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@/following",followerUsername]];
     [userPath observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
@@ -208,7 +208,7 @@
 }
 
 // Search through Firebase for a specific user. A boolean returns true if its a valid user, false if not
--(void)searchForUsersWithUserName:(NSString *)searchString completion:(void (^)(BOOL))data {
+- (void)searchForUsersWithUserName:(NSString *)searchString completion:(void (^)(BOOL))data {
     [Firebase goOnline];
     Firebase *userPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@",searchString]];
     [userPath observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {

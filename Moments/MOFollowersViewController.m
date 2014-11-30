@@ -6,38 +6,26 @@
 //  Copyright (c) 2014 Cosmic. All rights reserved.
 //
 
-#import "FollowersViewController.h"
-#import "MomentsAPIUtilities.h"
-#import "AFNetworking.h"
 #import "UIImageView+AFNetworking.h"
-@interface FollowersViewController ()
+#import "AFNetworking.h"
 
-@end
+#import "MOFollowersViewController.h"
+#import "MomentsAPIUtilities.h"
 
-@implementation FollowersViewController {
+@implementation MOFollowersViewController {
     NSUInteger number;
     NSArray *tempArray;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
     self.tableView.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
-    [NSTimer scheduledTimerWithTimeInterval:5.0f
-                                     target:self selector:@selector(reloadTable) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:5.0f target:self selector:@selector(reloadTable) userInfo:nil repeats:YES];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -47,7 +35,7 @@
     return 1;
 }
 
--(void)reloadTable {
+- (void)reloadTable {
     MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
     NSString *currentUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
     [APIHelper getUserFollowersListWithUsername:currentUser completion:^(NSArray *followedUsers) {
@@ -131,7 +119,7 @@
     return cell;
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
 /* Create custom view to display section header... */
 UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 2, tableView.frame.size.width, 18)];
@@ -151,48 +139,9 @@ UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 2, tableView.fram
 return view;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

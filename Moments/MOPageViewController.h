@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ListViewController.h"
-#import "CaptureViewController.h"
-#import "FollowingViewController.h"
 
-@interface PageViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+#import "MOListViewController.h"
+#import "MOCaptureViewController.h"
+#import "MOFollowingViewController.h"
 
+@interface MOPageViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+
+// UIPageViewController properties
 @property (strong, nonatomic) UIPageViewController *pageController;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (retain, nonatomic) NSArray *pages;

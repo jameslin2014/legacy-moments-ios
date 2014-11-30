@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FollowersViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate> {}
-    @property IBOutlet UITableView *tableView;
+@interface MOFollowersViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate> {}
 
+@property IBOutlet UITableView *tableView;
 
 @end

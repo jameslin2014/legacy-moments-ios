@@ -6,24 +6,27 @@
 //  Copyright (c) 2014 Cosmic. All rights reserved.
 //
 
-#import "FollowingViewController.h"
-#import "JKSegmentedControl.h"
-#import "MomentsAPIUtilities.h"
-#import "AFNetworking.h"
 #import "UIImageView+AFNetworking.h"
-@interface FollowingViewController ()
+#import "JKSegmentedControl.h"
+#import "AFNetworking.h"
+
+#import "MOFollowingViewController.h"
+#import "MomentsAPIUtilities.h"
+
+@interface MOFollowingViewController ()
 
 @property JKSegmentedControl *tabSegmentedControl;
 @property UIView *segmentView;
 
 @end
 
-@implementation FollowingViewController {
+@implementation MOFollowingViewController {
     UISearchBar *searchBar;
     NSUInteger number;
     NSArray *tempArray;
     UITableViewController *followersVC;
 }
+
 @synthesize tableView;
 
 - (void)viewDidLoad {
@@ -64,7 +67,6 @@
     self.tabSegmentedControl.layer.zPosition = 1;
     self.segmentView.userInteractionEnabled = YES;
     [self.navigationController.navigationBar addSubview:self.segmentView];
-//    [self.tabSegmentedControl setSelectedSegmentIndex:1];
     searchBar = [[UISearchBar alloc] initWithFrame:self.tabSegmentedControl.frame];
     searchBar.barTintColor = [UIColor whiteColor];
     searchBar.tintColor = [UIColor whiteColor];
@@ -75,17 +77,15 @@
     [self.navigationController.view addSubview:searchBar];
     searchBar.alpha = 0.0f;
     UITextField *searchField = nil;
-    for (UIView *v in searchBar.subviews)
-    {
-        if ([v isKindOfClass:[UITextField class]])
-        {
+    
+    for (UIView *v in searchBar.subviews) {
+        if ([v isKindOfClass:[UITextField class]]) {
             searchField = (UITextField *)v;
             break;
         }
     }
     
-    if (searchField)
-    {
+    if (searchField) {
         searchField.textColor = [UIColor whiteColor];
     }
 
@@ -102,7 +102,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)reloadTable {
+- (void)reloadTable {
     MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
     NSString *currentUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
     [APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *followedUsers) {
@@ -114,7 +114,7 @@
     }];
 }
 
--(void)tabsChanged:(id)sender {
+- (void)tabsChanged:(id)sender {
     if ([self.tabSegmentedControl selectedSegmentIndex] == 0) {
         followersVC.view.alpha = 0.0f;
         NSLog(@"changed");
@@ -127,7 +127,7 @@
     }
 }
 
--(void)showSearch {
+- (void)showSearch {
     [self.searchButton setAction:@selector(showRegular)];
     [UIView animateWithDuration:0.1 animations:^{
         self.tabSegmentedControl.alpha = 0.0f;
@@ -138,7 +138,7 @@
         
 }
 
--(void)showRegular {
+- (void)showRegular {
     [self.searchButton setAction:@selector(showSearch)];
     [UIView animateWithDuration:0.1 animations:^{
         searchBar.alpha = 0.0f;

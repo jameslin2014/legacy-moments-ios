@@ -7,14 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AVFoundation/AVFoundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <AVFoundation/AVFoundation.h>
+
 #import "AVCamPreviewView.h"
 
 static void *RecordingContext = &RecordingContext;
 static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDeviceAuthorizedContext;
 
-@interface CaptureViewController : UIViewController <AVCaptureFileOutputRecordingDelegate>
+@interface MOCaptureViewController : UIViewController <AVCaptureFileOutputRecordingDelegate>
 
 // For use in the storyboards.
 @property (nonatomic, weak) IBOutlet AVCamPreviewView *previewView;
