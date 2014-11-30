@@ -26,55 +26,68 @@
 
 // Grab the phone number from Firebase with a specified username
 -(void)getUserPhoneNumberWithUsername:(NSString *)username completion:(void (^)(NSString *))data {
+    [Firebase goOnline];
     Firebase *UserPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@/phone_number",username]];
         [UserPath observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
             NSString *phoneData = snapshot.value;
             data(phoneData);
+            [Firebase goOffline];
         } withCancelBlock:^(NSError *error) {
             NSLog(@"Error: %@",error);
+            [Firebase goOffline];
         }];
     
 }
 
 // Grab a user password from Firebase with a specified username
 -(void)getUserPasswordWithUsername:(NSString *)username completion:(void (^)(NSString *))data {
+    [Firebase goOnline];
     Firebase *UserPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@/password",username]];
     [UserPath observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         NSString *password = snapshot.value;
         data(password);
+        [Firebase goOffline];
     } withCancelBlock:^(NSError *error) {
         NSLog(@"Error: %@",error);
+        [Firebase goOffline];
     }];
     
 }
 
 // Attempt to login with specified credentials (username/pass) and throw a boolean with the result
 -(void)loginWithUsername:(NSString *)username andPassword:(NSString *)password completion:(void (^)(BOOL))data {
+    [Firebase goOnline];
     Firebase *userPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@",username]];
         [userPath observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
             if (snapshot.value == [NSNull null]) {
                 data(false);
+                [Firebase goOffline];
             } else {
                 Firebase *passPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@/password",username]];
                 [passPath observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
                     NSString *pass = snapshot.value;
                     if (snapshot.value == [NSNull null]) {
                         data(false);
+                        [Firebase goOffline];
                     } else {
                     if ([pass isEqualToString:password]) {
                         data(true);
+                        [Firebase goOffline];
                     } else {
                         data(false);
+                        [Firebase goOffline];
                     }
                     }
                 } withCancelBlock:^(NSError *error) {
                     NSLog(@"%@",error);
                     data(false);
+                    [Firebase goOffline];
                 }];
             }
         } withCancelBlock:^(NSError *error) {
             NSLog(@"%@",error);
             data(false);
+            [Firebase goOffline];
         }];
 }
 
@@ -89,6 +102,7 @@
             [userPath setValue:array];
             NSLog(@"Success: Followed User: %@",followedUsername);
             [Firebase goOffline];
+            data(true);
         } else {
 
         if ([followingArray containsObject:followedUsername]) {
@@ -120,6 +134,7 @@
         if (snapshot.value == [NSNull null]) {
             NSLog(@"Error: Not Following User: %@", followedUsername);
             [Firebase goOffline];
+            data(false);
         } else {
             if ([followingArray containsObject:followedUsername]) {
                 NSMutableArray *tempArray = [followingArray mutableCopy];
@@ -128,6 +143,7 @@
                 [userPath setValue:followingArray];
                 NSLog(@"Success: Unfollowed User: %@",followedUsername);
                 [Firebase goOffline];
+                data(true);
             } else {
                 NSLog(@"Error: Not Following User: %@", followedUsername);
                 [Firebase goOffline];
@@ -142,6 +158,25 @@
     }];    
 }
 
-
+// Search through Firebase for a specific user. A boolean returns true if its a valid user, false if not
+-(void)searchForUsersWithUserName:(NSString *)searchString completion:(void (^)(BOOL))data {
+    [Firebase goOnline];
+    Firebase *userPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@",searchString]];
+    [userPath observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        if (snapshot.value == [NSNull null]) {
+            NSLog(@"User: %@ does not exist",searchString);
+            data(false);
+            [Firebase goOffline];
+        } else {
+            [Firebase goOffline];
+            NSLog(@"User: %@ is a valid user",searchString);
+            data(true);
+        }
+    } withCancelBlock:^(NSError *error) {
+        NSLog(@"Error: %@",error);
+        [Firebase goOffline];
+        data(false);
+    }];
+}
 
 @end

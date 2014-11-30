@@ -25,6 +25,8 @@
 
 -(void)unfollowUserWithUsername:(NSString *)followedUsername fromUsername:(NSString *)followerUsername completion:(void(^)(BOOL unfollowStatus))data;;;;
 
+-(void)searchForUsersWithUserName:(NSString *)searchString completion:(void(^)(BOOL validUser))data;;;;
+
 @end
 
 /*
