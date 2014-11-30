@@ -16,6 +16,7 @@
 @interface MOFollowingViewController ()
 
 @property JKSegmentedControl *tabSegmentedControl;
+@property UIGestureRecognizer *tapper;
 @property UIView *segmentView;
 
 @end
@@ -27,10 +28,16 @@
     UITableViewController *followersVC;
 }
 
-@synthesize tableView;
+@synthesize tableView, tapper;
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    tapper.cancelsTouchesInView = YES;
+    [self.view addGestureRecognizer:tapper];
     
     NSString *currentUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
     MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
@@ -94,6 +101,11 @@
     self.tableView.separatorColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
     self.tableView.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
     [self.tableView setContentInset:UIEdgeInsetsMake(50,0,0,0)];
+
+}
+
+- (void)handleSingleTap:(UITapGestureRecognizer *) sender {
+    [self.view endEditing:YES];
 
 }
 

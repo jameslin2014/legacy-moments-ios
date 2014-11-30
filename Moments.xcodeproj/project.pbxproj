@@ -37,19 +37,12 @@
 		A5CAD7861A29A0BF0023F948 /* SanFranciscoDisplay-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD7601A29A0BF0023F948 /* SanFranciscoDisplay-Thin.otf */; };
 		A5CAD7871A29A0BF0023F948 /* SanFranciscoDisplay-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD7611A29A0BF0023F948 /* SanFranciscoDisplay-Ultralight.otf */; };
 		A5CAD7881A29A0BF0023F948 /* SanFranciscoText-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD7621A29A0BF0023F948 /* SanFranciscoText-Bold.otf */; };
-		A5CAD7891A29A0BF0023F948 /* SanFranciscoText-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD7631A29A0BF0023F948 /* SanFranciscoText-BoldItalic.otf */; };
 		A5CAD78A1A29A0BF0023F948 /* SanFranciscoText-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD7641A29A0BF0023F948 /* SanFranciscoText-Heavy.otf */; };
-		A5CAD78B1A29A0BF0023F948 /* SanFranciscoText-HeavyItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD7651A29A0BF0023F948 /* SanFranciscoText-HeavyItalic.otf */; };
 		A5CAD78C1A29A0BF0023F948 /* SanFranciscoText-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD7661A29A0BF0023F948 /* SanFranciscoText-Light.otf */; };
-		A5CAD78D1A29A0BF0023F948 /* SanFranciscoText-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD7671A29A0BF0023F948 /* SanFranciscoText-LightItalic.otf */; };
 		A5CAD78E1A29A0BF0023F948 /* SanFranciscoText-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD7681A29A0BF0023F948 /* SanFranciscoText-Medium.otf */; };
-		A5CAD78F1A29A0BF0023F948 /* SanFranciscoText-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD7691A29A0BF0023F948 /* SanFranciscoText-MediumItalic.otf */; };
 		A5CAD7901A29A0BF0023F948 /* SanFranciscoText-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD76A1A29A0BF0023F948 /* SanFranciscoText-Regular.otf */; };
-		A5CAD7911A29A0BF0023F948 /* SanFranciscoText-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD76B1A29A0BF0023F948 /* SanFranciscoText-RegularItalic.otf */; };
 		A5CAD7921A29A0BF0023F948 /* SanFranciscoText-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD76C1A29A0BF0023F948 /* SanFranciscoText-Semibold.otf */; };
-		A5CAD7931A29A0BF0023F948 /* SanFranciscoText-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD76D1A29A0BF0023F948 /* SanFranciscoText-SemiboldItalic.otf */; };
 		A5CAD7941A29A0BF0023F948 /* SanFranciscoText-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD76E1A29A0BF0023F948 /* SanFranciscoText-Thin.otf */; };
-		A5CAD7951A29A0BF0023F948 /* SanFranciscoText-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD76F1A29A0BF0023F948 /* SanFranciscoText-ThinItalic.otf */; };
 		A5E01C2A1A2AF811003ED753 /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E01C291A2AF811003ED753 /* AVCamPreviewView.m */; };
 		A5E01C9A1A2B37D7003ED753 /* JKSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E01C971A2B37D7003ED753 /* JKSegmentedControl.m */; };
 		A5E01C9B1A2B37D7003ED753 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E01C991A2B37D7003ED753 /* SSKeychain.m */; };
@@ -118,19 +111,12 @@
 		A5CAD7601A29A0BF0023F948 /* SanFranciscoDisplay-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoDisplay-Thin.otf"; sourceTree = "<group>"; };
 		A5CAD7611A29A0BF0023F948 /* SanFranciscoDisplay-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoDisplay-Ultralight.otf"; sourceTree = "<group>"; };
 		A5CAD7621A29A0BF0023F948 /* SanFranciscoText-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-Bold.otf"; sourceTree = "<group>"; };
-		A5CAD7631A29A0BF0023F948 /* SanFranciscoText-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-BoldItalic.otf"; sourceTree = "<group>"; };
 		A5CAD7641A29A0BF0023F948 /* SanFranciscoText-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-Heavy.otf"; sourceTree = "<group>"; };
-		A5CAD7651A29A0BF0023F948 /* SanFranciscoText-HeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-HeavyItalic.otf"; sourceTree = "<group>"; };
 		A5CAD7661A29A0BF0023F948 /* SanFranciscoText-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-Light.otf"; sourceTree = "<group>"; };
-		A5CAD7671A29A0BF0023F948 /* SanFranciscoText-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-LightItalic.otf"; sourceTree = "<group>"; };
 		A5CAD7681A29A0BF0023F948 /* SanFranciscoText-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-Medium.otf"; sourceTree = "<group>"; };
-		A5CAD7691A29A0BF0023F948 /* SanFranciscoText-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-MediumItalic.otf"; sourceTree = "<group>"; };
 		A5CAD76A1A29A0BF0023F948 /* SanFranciscoText-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-Regular.otf"; sourceTree = "<group>"; };
-		A5CAD76B1A29A0BF0023F948 /* SanFranciscoText-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-RegularItalic.otf"; sourceTree = "<group>"; };
 		A5CAD76C1A29A0BF0023F948 /* SanFranciscoText-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-Semibold.otf"; sourceTree = "<group>"; };
-		A5CAD76D1A29A0BF0023F948 /* SanFranciscoText-SemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-SemiboldItalic.otf"; sourceTree = "<group>"; };
 		A5CAD76E1A29A0BF0023F948 /* SanFranciscoText-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-Thin.otf"; sourceTree = "<group>"; };
-		A5CAD76F1A29A0BF0023F948 /* SanFranciscoText-ThinItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-ThinItalic.otf"; sourceTree = "<group>"; };
 		A5E01C281A2AF811003ED753 /* AVCamPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamPreviewView.h; sourceTree = "<group>"; };
 		A5E01C291A2AF811003ED753 /* AVCamPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamPreviewView.m; sourceTree = "<group>"; };
 		A5E01C961A2B37D7003ED753 /* JKSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JKSegmentedControl.h; path = Libraries/JKSegmentedControl.h; sourceTree = "<group>"; };
@@ -231,6 +217,43 @@
 			name = API;
 			sourceTree = "<group>";
 		};
+		A59DADB51A2B3D9A00FB6EBB /* Bold */ = {
+			isa = PBXGroup;
+			children = (
+				A5CAD7591A29A0BF0023F948 /* SanFrancisco-Black.otf */,
+				A5CAD75A1A29A0BF0023F948 /* SanFranciscoDisplay-Bold.otf */,
+				A5CAD75B1A29A0BF0023F948 /* SanFranciscoDisplay-Heavy.otf */,
+				A5CAD75F1A29A0BF0023F948 /* SanFranciscoDisplay-Semibold.otf */,
+				A5CAD7621A29A0BF0023F948 /* SanFranciscoText-Bold.otf */,
+				A5CAD7641A29A0BF0023F948 /* SanFranciscoText-Heavy.otf */,
+				A5CAD76C1A29A0BF0023F948 /* SanFranciscoText-Semibold.otf */,
+			);
+			name = Bold;
+			sourceTree = "<group>";
+		};
+		A59DADB61A2B3DB200FB6EBB /* Medium */ = {
+			isa = PBXGroup;
+			children = (
+				A5CAD75D1A29A0BF0023F948 /* SanFranciscoDisplay-Medium.otf */,
+				A5CAD75E1A29A0BF0023F948 /* SanFranciscoDisplay-Regular.otf */,
+				A5CAD7681A29A0BF0023F948 /* SanFranciscoText-Medium.otf */,
+				A5CAD76A1A29A0BF0023F948 /* SanFranciscoText-Regular.otf */,
+			);
+			name = Medium;
+			sourceTree = "<group>";
+		};
+		A59DADB71A2B3DC200FB6EBB /* Light */ = {
+			isa = PBXGroup;
+			children = (
+				A5CAD75C1A29A0BF0023F948 /* SanFranciscoDisplay-Light.otf */,
+				A5CAD7601A29A0BF0023F948 /* SanFranciscoDisplay-Thin.otf */,
+				A5CAD7611A29A0BF0023F948 /* SanFranciscoDisplay-Ultralight.otf */,
+				A5CAD7661A29A0BF0023F948 /* SanFranciscoText-Light.otf */,
+				A5CAD76E1A29A0BF0023F948 /* SanFranciscoText-Thin.otf */,
+			);
+			name = Light;
+			sourceTree = "<group>";
+		};
 		A5B31C281A287F25009734EE = {
 			isa = PBXGroup;
 			children = (
@@ -296,29 +319,9 @@
 		A5CAD7581A29A0BF0023F948 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				A5CAD7591A29A0BF0023F948 /* SanFrancisco-Black.otf */,
-				A5CAD75A1A29A0BF0023F948 /* SanFranciscoDisplay-Bold.otf */,
-				A5CAD75B1A29A0BF0023F948 /* SanFranciscoDisplay-Heavy.otf */,
-				A5CAD75C1A29A0BF0023F948 /* SanFranciscoDisplay-Light.otf */,
-				A5CAD75D1A29A0BF0023F948 /* SanFranciscoDisplay-Medium.otf */,
-				A5CAD75E1A29A0BF0023F948 /* SanFranciscoDisplay-Regular.otf */,
-				A5CAD75F1A29A0BF0023F948 /* SanFranciscoDisplay-Semibold.otf */,
-				A5CAD7601A29A0BF0023F948 /* SanFranciscoDisplay-Thin.otf */,
-				A5CAD7611A29A0BF0023F948 /* SanFranciscoDisplay-Ultralight.otf */,
-				A5CAD7621A29A0BF0023F948 /* SanFranciscoText-Bold.otf */,
-				A5CAD7631A29A0BF0023F948 /* SanFranciscoText-BoldItalic.otf */,
-				A5CAD7641A29A0BF0023F948 /* SanFranciscoText-Heavy.otf */,
-				A5CAD7651A29A0BF0023F948 /* SanFranciscoText-HeavyItalic.otf */,
-				A5CAD7661A29A0BF0023F948 /* SanFranciscoText-Light.otf */,
-				A5CAD7671A29A0BF0023F948 /* SanFranciscoText-LightItalic.otf */,
-				A5CAD7681A29A0BF0023F948 /* SanFranciscoText-Medium.otf */,
-				A5CAD7691A29A0BF0023F948 /* SanFranciscoText-MediumItalic.otf */,
-				A5CAD76A1A29A0BF0023F948 /* SanFranciscoText-Regular.otf */,
-				A5CAD76B1A29A0BF0023F948 /* SanFranciscoText-RegularItalic.otf */,
-				A5CAD76C1A29A0BF0023F948 /* SanFranciscoText-Semibold.otf */,
-				A5CAD76D1A29A0BF0023F948 /* SanFranciscoText-SemiboldItalic.otf */,
-				A5CAD76E1A29A0BF0023F948 /* SanFranciscoText-Thin.otf */,
-				A5CAD76F1A29A0BF0023F948 /* SanFranciscoText-ThinItalic.otf */,
+				A59DADB71A2B3DC200FB6EBB /* Light */,
+				A59DADB61A2B3DB200FB6EBB /* Medium */,
+				A59DADB51A2B3D9A00FB6EBB /* Bold */,
 			);
 			name = Fonts;
 			path = Assets/Fonts;
@@ -452,7 +455,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5CAD7861A29A0BF0023F948 /* SanFranciscoDisplay-Thin.otf in Resources */,
-				A5CAD7891A29A0BF0023F948 /* SanFranciscoText-BoldItalic.otf in Resources */,
 				A5E01CDB1A2B3899003ED753 /* interface.xcassets in Resources */,
 				A5CAD78A1A29A0BF0023F948 /* SanFranciscoText-Heavy.otf in Resources */,
 				A5CAD7811A29A0BF0023F948 /* SanFranciscoDisplay-Heavy.otf in Resources */,
@@ -462,22 +464,16 @@
 				A5CAD7921A29A0BF0023F948 /* SanFranciscoText-Semibold.otf in Resources */,
 				A5E01CDD1A2B3C76003ED753 /* fundamentals.xcassets in Resources */,
 				A5CAD7801A29A0BF0023F948 /* SanFranciscoDisplay-Bold.otf in Resources */,
-				A5CAD78B1A29A0BF0023F948 /* SanFranciscoText-HeavyItalic.otf in Resources */,
-				A5CAD78D1A29A0BF0023F948 /* SanFranciscoText-LightItalic.otf in Resources */,
 				A5CAD78C1A29A0BF0023F948 /* SanFranciscoText-Light.otf in Resources */,
 				A5CAD7941A29A0BF0023F948 /* SanFranciscoText-Thin.otf in Resources */,
 				A5CAD7831A29A0BF0023F948 /* SanFranciscoDisplay-Medium.otf in Resources */,
 				A5CAD7901A29A0BF0023F948 /* SanFranciscoText-Regular.otf in Resources */,
 				A5B31C451A287F26009734EE /* LaunchScreen.xib in Resources */,
-				A5CAD7951A29A0BF0023F948 /* SanFranciscoText-ThinItalic.otf in Resources */,
-				A5CAD7931A29A0BF0023F948 /* SanFranciscoText-SemiboldItalic.otf in Resources */,
-				A5CAD78F1A29A0BF0023F948 /* SanFranciscoText-MediumItalic.otf in Resources */,
 				A5CAD7851A29A0BF0023F948 /* SanFranciscoDisplay-Semibold.otf in Resources */,
 				A5CAD7821A29A0BF0023F948 /* SanFranciscoDisplay-Light.otf in Resources */,
 				A5CAD7881A29A0BF0023F948 /* SanFranciscoText-Bold.otf in Resources */,
 				A5CAD7841A29A0BF0023F948 /* SanFranciscoDisplay-Regular.otf in Resources */,
 				A5CAD7871A29A0BF0023F948 /* SanFranciscoDisplay-Ultralight.otf in Resources */,
-				A5CAD7911A29A0BF0023F948 /* SanFranciscoText-RegularItalic.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
