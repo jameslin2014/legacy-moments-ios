@@ -42,7 +42,7 @@
 		A5B31C421A287F26009734EE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5B31C411A287F26009734EE /* Images.xcassets */; };
 		A5B31C451A287F26009734EE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5B31C431A287F26009734EE /* LaunchScreen.xib */; };
 		A5C5EB811A2A8358002F1591 /* CaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5EB7A1A2A8358002F1591 /* CaptureViewController.m */; };
-		A5C5EB821A2A8358002F1591 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5EB7C1A2A8358002F1591 /* FriendsViewController.m */; };
+		A5C5EB821A2A8358002F1591 /* FollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5EB7C1A2A8358002F1591 /* FollowingViewController.m */; };
 		A5C5EB831A2A8358002F1591 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5EB7E1A2A8358002F1591 /* ListViewController.m */; };
 		A5C5EB841A2A8358002F1591 /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5EB801A2A8358002F1591 /* PageViewController.m */; };
 		A5CAD7511A299B480023F948 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5CAD7501A299B480023F948 /* LoginViewController.m */; };
@@ -147,8 +147,8 @@
 		A5B31C441A287F26009734EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		A5C5EB791A2A8358002F1591 /* CaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureViewController.h; sourceTree = "<group>"; };
 		A5C5EB7A1A2A8358002F1591 /* CaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureViewController.m; sourceTree = "<group>"; };
-		A5C5EB7B1A2A8358002F1591 /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
-		A5C5EB7C1A2A8358002F1591 /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
+		A5C5EB7B1A2A8358002F1591 /* FollowingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowingViewController.h; sourceTree = "<group>"; };
+		A5C5EB7C1A2A8358002F1591 /* FollowingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingViewController.m; sourceTree = "<group>"; };
 		A5C5EB7D1A2A8358002F1591 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		A5C5EB7E1A2A8358002F1591 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		A5C5EB7F1A2A8358002F1591 /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
@@ -342,8 +342,8 @@
 				A5C5EB7E1A2A8358002F1591 /* ListViewController.m */,
 				A5C5EB791A2A8358002F1591 /* CaptureViewController.h */,
 				A5C5EB7A1A2A8358002F1591 /* CaptureViewController.m */,
-				A5C5EB7B1A2A8358002F1591 /* FriendsViewController.h */,
-				A5C5EB7C1A2A8358002F1591 /* FriendsViewController.m */,
+				A5C5EB7B1A2A8358002F1591 /* FollowingViewController.h */,
+				A5C5EB7C1A2A8358002F1591 /* FollowingViewController.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -522,7 +522,7 @@
 				02949F0C1A298565001EDD2D /* UIRefreshControl+AFNetworking.m in Sources */,
 				02949F081A298565001EDD2D /* UIAlertView+AFNetworking.m in Sources */,
 				02949EF01A298554001EDD2D /* AFSecurityPolicy.m in Sources */,
-				A5C5EB821A2A8358002F1591 /* FriendsViewController.m in Sources */,
+				A5C5EB821A2A8358002F1591 /* FollowingViewController.m in Sources */,
 				A5C5EB811A2A8358002F1591 /* CaptureViewController.m in Sources */,
 				02949EED1A298554001EDD2D /* AFHTTPRequestOperationManager.m in Sources */,
 				02949EF11A298554001EDD2D /* AFURLConnectionOperation.m in Sources */,

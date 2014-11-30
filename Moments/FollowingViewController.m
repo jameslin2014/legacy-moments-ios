@@ -6,20 +6,20 @@
 //  Copyright (c) 2014 Cosmic. All rights reserved.
 //
 
-#import "FriendsViewController.h"
+#import "FollowingViewController.h"
 
-@interface FriendsViewController ()
+@interface FollowingViewController ()
 
 @end
 
-@implementation FriendsViewController
+@implementation FollowingViewController
 @synthesize tableView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = NO;
-    self.title = @"Friends";
+    self.title = @"Following";
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.23 green:0.52 blue:0.68 alpha:0.39]];
     [self.navigationController.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys: [UIFont fontWithName:@"SanFranciscoDisplay-Medium" size:17], NSFontAttributeName, nil]];
     

@@ -23,7 +23,7 @@
     
     ListViewController *listView = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"listView"];
     CaptureViewController *captureView = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"captureView"];
-    FriendsViewController *friendsView = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"friendsView"];
+    FollowingViewController *friendsView = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"friendsView"];
     
     // Load the ViewControllers in our pages array.
     self.pages = [[NSArray alloc] initWithObjects:listView, captureView, friendsView, nil];

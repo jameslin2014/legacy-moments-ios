@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ListViewController.h"
 #import "CaptureViewController.h"
-#import "FriendsViewController.h"
+#import "FollowingViewController.h"
 
 @interface PageViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 
