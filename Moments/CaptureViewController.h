@@ -7,7 +7,37 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import "AVCamPreviewView.h"
 
-@interface CaptureViewController : UIViewController
+static void *RecordingContext = &RecordingContext;
+static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDeviceAuthorizedContext;
+
+@interface CaptureViewController : UIViewController <AVCaptureFileOutputRecordingDelegate>
+
+// For use in the storyboards.
+@property (nonatomic, weak) IBOutlet AVCamPreviewView *previewView;
+@property (nonatomic, weak) IBOutlet UIButton *recordButton;
+@property (nonatomic, weak) IBOutlet UIButton *cameraButton;
+@property (nonatomic, weak) IBOutlet UIButton *flashButton;
+
+- (IBAction)toggleMovieRecording:(id)sender;
+- (IBAction)changeCamera:(id)sender;
+- (IBAction)focusAndExposeTap:(UIGestureRecognizer *)gestureRecognizer;
+
+// Session management.
+// Communicate with the session and other session objects on this queue.
+@property (nonatomic) dispatch_queue_t sessionQueue;
+@property (nonatomic) AVCaptureSession *session;
+@property (nonatomic) AVCaptureDeviceInput *videoDeviceInput;
+@property (nonatomic) AVCaptureMovieFileOutput *movieFileOutput;
+
+// Utilities.
+@property (nonatomic) UIBackgroundTaskIdentifier backgroundRecordingID;
+@property (nonatomic, getter = isDeviceAuthorized) BOOL deviceAuthorized;
+@property (nonatomic, readonly, getter = isSessionRunningAndDeviceAuthorized) BOOL sessionRunningAndDeviceAuthorized;
+@property (nonatomic) BOOL lockInterfaceRotation;
+@property (nonatomic) id runtimeErrorHandlingObserver;
 
 @end

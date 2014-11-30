@@ -84,6 +84,23 @@
 		A5E01C251A2AE61A003ED753 /* login-field-background.png in Resources */ = {isa = PBXBuildFile; fileRef = A5E01C1F1A2AE61A003ED753 /* login-field-background.png */; };
 		A5E01C261A2AE61A003ED753 /* login-field-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5E01C201A2AE61A003ED753 /* login-field-background@2x.png */; };
 		A5E01C271A2AE61A003ED753 /* login-field-background@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5E01C211A2AE61A003ED753 /* login-field-background@3x.png */; };
+		A5E01C2A1A2AF811003ED753 /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E01C291A2AF811003ED753 /* AVCamPreviewView.m */; };
+		A5E01C3B1A2AFCAD003ED753 /* bool-flash-button.png in Resources */ = {isa = PBXBuildFile; fileRef = A5E01C2C1A2AFCAD003ED753 /* bool-flash-button.png */; };
+		A5E01C3C1A2AFCAD003ED753 /* bool-flash-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5E01C2D1A2AFCAD003ED753 /* bool-flash-button@2x.png */; };
+		A5E01C3D1A2AFCAD003ED753 /* bool-flash-button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5E01C2E1A2AFCAD003ED753 /* bool-flash-button@3x.png */; };
+		A5E01C3E1A2AFCAD003ED753 /* camera-background-bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = A5E01C2F1A2AFCAD003ED753 /* camera-background-bottom.png */; };
+		A5E01C3F1A2AFCAD003ED753 /* camera-background-bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5E01C301A2AFCAD003ED753 /* camera-background-bottom@2x.png */; };
+		A5E01C401A2AFCAD003ED753 /* camera-background-bottom@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5E01C311A2AFCAD003ED753 /* camera-background-bottom@3x.png */; };
+		A5E01C411A2AFCAD003ED753 /* camera-background-top.png in Resources */ = {isa = PBXBuildFile; fileRef = A5E01C321A2AFCAD003ED753 /* camera-background-top.png */; };
+		A5E01C421A2AFCAD003ED753 /* camera-background-top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5E01C331A2AFCAD003ED753 /* camera-background-top@2x.png */; };
+		A5E01C431A2AFCAD003ED753 /* camera-background-top@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5E01C341A2AFCAD003ED753 /* camera-background-top@3x.png */; };
+		A5E01C441A2AFCAD003ED753 /* capture-button.png in Resources */ = {isa = PBXBuildFile; fileRef = A5E01C351A2AFCAD003ED753 /* capture-button.png */; };
+		A5E01C451A2AFCAD003ED753 /* capture-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5E01C361A2AFCAD003ED753 /* capture-button@2x.png */; };
+		A5E01C461A2AFCAD003ED753 /* capture-button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5E01C371A2AFCAD003ED753 /* capture-button@3x.png */; };
+		A5E01C471A2AFCAD003ED753 /* flip-camera-button.png in Resources */ = {isa = PBXBuildFile; fileRef = A5E01C381A2AFCAD003ED753 /* flip-camera-button.png */; };
+		A5E01C481A2AFCAD003ED753 /* flip-camera-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5E01C391A2AFCAD003ED753 /* flip-camera-button@2x.png */; };
+		A5E01C491A2AFCAD003ED753 /* flip-camera-button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5E01C3A1A2AFCAD003ED753 /* flip-camera-button@3x.png */; };
+		A5E01C4B1A2AFCC7003ED753 /* Recorder.png in Resources */ = {isa = PBXBuildFile; fileRef = A5E01C4A1A2AFCC7003ED753 /* Recorder.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -193,6 +210,24 @@
 		A5E01C1F1A2AE61A003ED753 /* login-field-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-field-background.png"; sourceTree = "<group>"; };
 		A5E01C201A2AE61A003ED753 /* login-field-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-field-background@2x.png"; sourceTree = "<group>"; };
 		A5E01C211A2AE61A003ED753 /* login-field-background@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-field-background@3x.png"; sourceTree = "<group>"; };
+		A5E01C281A2AF811003ED753 /* AVCamPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamPreviewView.h; sourceTree = "<group>"; };
+		A5E01C291A2AF811003ED753 /* AVCamPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamPreviewView.m; sourceTree = "<group>"; };
+		A5E01C2C1A2AFCAD003ED753 /* bool-flash-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bool-flash-button.png"; sourceTree = "<group>"; };
+		A5E01C2D1A2AFCAD003ED753 /* bool-flash-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bool-flash-button@2x.png"; sourceTree = "<group>"; };
+		A5E01C2E1A2AFCAD003ED753 /* bool-flash-button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bool-flash-button@3x.png"; sourceTree = "<group>"; };
+		A5E01C2F1A2AFCAD003ED753 /* camera-background-bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-background-bottom.png"; sourceTree = "<group>"; };
+		A5E01C301A2AFCAD003ED753 /* camera-background-bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-background-bottom@2x.png"; sourceTree = "<group>"; };
+		A5E01C311A2AFCAD003ED753 /* camera-background-bottom@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-background-bottom@3x.png"; sourceTree = "<group>"; };
+		A5E01C321A2AFCAD003ED753 /* camera-background-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-background-top.png"; sourceTree = "<group>"; };
+		A5E01C331A2AFCAD003ED753 /* camera-background-top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-background-top@2x.png"; sourceTree = "<group>"; };
+		A5E01C341A2AFCAD003ED753 /* camera-background-top@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-background-top@3x.png"; sourceTree = "<group>"; };
+		A5E01C351A2AFCAD003ED753 /* capture-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "capture-button.png"; sourceTree = "<group>"; };
+		A5E01C361A2AFCAD003ED753 /* capture-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "capture-button@2x.png"; sourceTree = "<group>"; };
+		A5E01C371A2AFCAD003ED753 /* capture-button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "capture-button@3x.png"; sourceTree = "<group>"; };
+		A5E01C381A2AFCAD003ED753 /* flip-camera-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flip-camera-button.png"; sourceTree = "<group>"; };
+		A5E01C391A2AFCAD003ED753 /* flip-camera-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flip-camera-button@2x.png"; sourceTree = "<group>"; };
+		A5E01C3A1A2AFCAD003ED753 /* flip-camera-button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flip-camera-button@3x.png"; sourceTree = "<group>"; };
+		A5E01C4A1A2AFCC7003ED753 /* Recorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Recorder.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -342,6 +377,7 @@
 				A5C5EB7E1A2A8358002F1591 /* ListViewController.m */,
 				A5C5EB791A2A8358002F1591 /* CaptureViewController.h */,
 				A5C5EB7A1A2A8358002F1591 /* CaptureViewController.m */,
+				A5E01C2B1A2AF814003ED753 /* AV Utilities */,
 				A5C5EB7B1A2A8358002F1591 /* FollowingViewController.h */,
 				A5C5EB7C1A2A8358002F1591 /* FollowingViewController.m */,
 			);
@@ -351,7 +387,21 @@
 		A5CAD7541A29A0BF0023F948 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				A5E01C0F1A2AE515003ED753 /* alternate */,
+				A5E01C2C1A2AFCAD003ED753 /* bool-flash-button.png */,
+				A5E01C2D1A2AFCAD003ED753 /* bool-flash-button@2x.png */,
+				A5E01C2E1A2AFCAD003ED753 /* bool-flash-button@3x.png */,
+				A5E01C2F1A2AFCAD003ED753 /* camera-background-bottom.png */,
+				A5E01C301A2AFCAD003ED753 /* camera-background-bottom@2x.png */,
+				A5E01C311A2AFCAD003ED753 /* camera-background-bottom@3x.png */,
+				A5E01C321A2AFCAD003ED753 /* camera-background-top.png */,
+				A5E01C331A2AFCAD003ED753 /* camera-background-top@2x.png */,
+				A5E01C341A2AFCAD003ED753 /* camera-background-top@3x.png */,
+				A5E01C351A2AFCAD003ED753 /* capture-button.png */,
+				A5E01C361A2AFCAD003ED753 /* capture-button@2x.png */,
+				A5E01C371A2AFCAD003ED753 /* capture-button@3x.png */,
+				A5E01C381A2AFCAD003ED753 /* flip-camera-button.png */,
+				A5E01C391A2AFCAD003ED753 /* flip-camera-button@2x.png */,
+				A5E01C3A1A2AFCAD003ED753 /* flip-camera-button@3x.png */,
 				A5CAD7581A29A0BF0023F948 /* Fonts */,
 				A5CAD7551A29A0BF0023F948 /* background.png */,
 				A5CAD7561A29A0BF0023F948 /* background@2x.png */,
@@ -402,11 +452,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		A5E01C0F1A2AE515003ED753 /* alternate */ = {
+		A5E01C2B1A2AF814003ED753 /* AV Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				A5E01C4A1A2AFCC7003ED753 /* Recorder.png */,
+				A5E01C281A2AF811003ED753 /* AVCamPreviewView.h */,
+				A5E01C291A2AF811003ED753 /* AVCamPreviewView.m */,
 			);
-			path = alternate;
+			name = "AV Utilities";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -468,9 +521,13 @@
 			files = (
 				A5CAD79F1A29A0BF0023F948 /* login-lock.png in Resources */,
 				A5CAD7861A29A0BF0023F948 /* SanFranciscoDisplay-Thin.otf in Resources */,
+				A5E01C411A2AFCAD003ED753 /* camera-background-top.png in Resources */,
+				A5E01C451A2AFCAD003ED753 /* capture-button@2x.png in Resources */,
+				A5E01C461A2AFCAD003ED753 /* capture-button@3x.png in Resources */,
 				A5CAD7891A29A0BF0023F948 /* SanFranciscoText-BoldItalic.otf in Resources */,
 				A5CAD78A1A29A0BF0023F948 /* SanFranciscoText-Heavy.otf in Resources */,
 				A5CAD7811A29A0BF0023F948 /* SanFranciscoDisplay-Heavy.otf in Resources */,
+				A5E01C3E1A2AFCAD003ED753 /* camera-background-bottom.png in Resources */,
 				A5B31C401A287F26009734EE /* Main.storyboard in Resources */,
 				A5CAD77F1A29A0BF0023F948 /* SanFrancisco-Black.otf in Resources */,
 				A5CAD78E1A29A0BF0023F948 /* SanFranciscoText-Medium.otf in Resources */,
@@ -478,18 +535,28 @@
 				A5CAD7921A29A0BF0023F948 /* SanFranciscoText-Semibold.otf in Resources */,
 				A5CAD7801A29A0BF0023F948 /* SanFranciscoDisplay-Bold.otf in Resources */,
 				A5CAD78B1A29A0BF0023F948 /* SanFranciscoText-HeavyItalic.otf in Resources */,
+				A5E01C3B1A2AFCAD003ED753 /* bool-flash-button.png in Resources */,
 				A5CAD7A01A29A0BF0023F948 /* login-lock@2x.png in Resources */,
+				A5E01C481A2AFCAD003ED753 /* flip-camera-button@2x.png in Resources */,
+				A5E01C3D1A2AFCAD003ED753 /* bool-flash-button@3x.png in Resources */,
+				A5E01C471A2AFCAD003ED753 /* flip-camera-button.png in Resources */,
 				A5CAD77E1A29A0BF0023F948 /* background@3x.png in Resources */,
 				A5E01C221A2AE61A003ED753 /* login-button.png in Resources */,
 				A5CAD78D1A29A0BF0023F948 /* SanFranciscoText-LightItalic.otf in Resources */,
 				A5E01C231A2AE61A003ED753 /* login-button@2x.png in Resources */,
 				A5CAD78C1A29A0BF0023F948 /* SanFranciscoText-Light.otf in Resources */,
+				A5E01C431A2AFCAD003ED753 /* camera-background-top@3x.png in Resources */,
 				A5E01C261A2AE61A003ED753 /* login-field-background@2x.png in Resources */,
 				A5CAD7941A29A0BF0023F948 /* SanFranciscoText-Thin.otf in Resources */,
 				A5E01C251A2AE61A003ED753 /* login-field-background.png in Resources */,
 				A5CAD7A11A29A0BF0023F948 /* login-lock@3x.png in Resources */,
+				A5E01C3C1A2AFCAD003ED753 /* bool-flash-button@2x.png in Resources */,
+				A5E01C3F1A2AFCAD003ED753 /* camera-background-bottom@2x.png in Resources */,
+				A5E01C4B1A2AFCC7003ED753 /* Recorder.png in Resources */,
+				A5E01C491A2AFCAD003ED753 /* flip-camera-button@3x.png in Resources */,
 				A5CAD7831A29A0BF0023F948 /* SanFranciscoDisplay-Medium.otf in Resources */,
 				A5E01C241A2AE61A003ED753 /* login-button@3x.png in Resources */,
+				A5E01C441A2AFCAD003ED753 /* capture-button.png in Resources */,
 				A5CAD7901A29A0BF0023F948 /* SanFranciscoText-Regular.otf in Resources */,
 				A5B31C451A287F26009734EE /* LaunchScreen.xib in Resources */,
 				A5CAD7951A29A0BF0023F948 /* SanFranciscoText-ThinItalic.otf in Resources */,
@@ -501,12 +568,14 @@
 				A5CAD79C1A29A0BF0023F948 /* login-key.png in Resources */,
 				A5CAD7881A29A0BF0023F948 /* SanFranciscoText-Bold.otf in Resources */,
 				A5CAD79D1A29A0BF0023F948 /* login-key@2x.png in Resources */,
+				A5E01C401A2AFCAD003ED753 /* camera-background-bottom@3x.png in Resources */,
 				A5E01C271A2AE61A003ED753 /* login-field-background@3x.png in Resources */,
 				A5CAD7841A29A0BF0023F948 /* SanFranciscoDisplay-Regular.otf in Resources */,
 				A5CAD79E1A29A0BF0023F948 /* login-key@3x.png in Resources */,
 				A5CAD7871A29A0BF0023F948 /* SanFranciscoDisplay-Ultralight.otf in Resources */,
 				A5B31C421A287F26009734EE /* Images.xcassets in Resources */,
 				A5CAD7911A29A0BF0023F948 /* SanFranciscoText-RegularItalic.otf in Resources */,
+				A5E01C421A2AFCAD003ED753 /* camera-background-top@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,6 +606,7 @@
 				02949EEE1A298554001EDD2D /* AFHTTPSessionManager.m in Sources */,
 				02949EEF1A298554001EDD2D /* AFNetworkReachabilityManager.m in Sources */,
 				02949EF31A298554001EDD2D /* AFURLResponseSerialization.m in Sources */,
+				A5E01C2A1A2AF811003ED753 /* AVCamPreviewView.m in Sources */,
 				02949F0D1A298565001EDD2D /* UIWebView+AFNetworking.m in Sources */,
 				02949EF41A298554001EDD2D /* AFURLSessionManager.m in Sources */,
 				02949F061A298565001EDD2D /* AFNetworkActivityIndicatorManager.m in Sources */,

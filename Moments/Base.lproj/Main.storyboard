@@ -154,9 +154,53 @@
                     <view key="view" contentMode="scaleToFill" id="fah-ee-3Ck">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="camera-background-bottom.png" translatesAutoresizingMaskIntoConstraints="NO" id="qFj-1t-ahC">
+                                <rect key="frame" x="0.0" y="473" width="375" height="194"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fp-Rk-D9Y">
+                                <rect key="frame" x="65" y="563" width="31" height="19"/>
+                                <state key="normal" title="Button" image="flip-camera-button.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="changeCamera:" destination="lzj-Vv-tF4" eventType="touchUpInside" id="eat-eg-MrT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7L-6T-xkJ">
+                                <rect key="frame" x="146" y="529" width="82" height="81.5"/>
+                                <state key="normal" title="Button" image="capture-button.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="toggleMovieRecording:" destination="lzj-Vv-tF4" eventType="touchUpInside" id="gWE-oD-nnQ"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sgs-dV-lyT" customClass="AVCamPreviewView">
+                                <rect key="frame" x="0.0" y="59" width="375" height="414"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azg-Fi-Lly">
+                                <rect key="frame" x="177" y="28" width="22" height="22"/>
+                                <state key="normal" title="Button" image="bool-flash-button.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="flashButtonAction:" destination="lzj-Vv-tF4" eventType="touchUpInside" id="EbC-KP-ofr"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="camera-background-top.png" translatesAutoresizingMaskIntoConstraints="NO" id="W0P-Zd-asz">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="flashButton" destination="azg-Fi-Lly" id="wLW-2v-jtK"/>
+                        <outlet property="previewView" destination="Sgs-dV-lyT" id="Vsn-Fj-Brz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Ac-vc-bKb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -234,6 +278,11 @@
     </scenes>
     <resources>
         <image name="background.png" width="750" height="1334"/>
+        <image name="bool-flash-button.png" width="44" height="44"/>
+        <image name="camera-background-bottom.png" width="750" height="389"/>
+        <image name="camera-background-top.png" width="750" height="121"/>
+        <image name="capture-button.png" width="164" height="165"/>
+        <image name="flip-camera-button.png" width="62" height="30"/>
         <image name="login-button.png" width="543" height="71"/>
         <image name="login-field-background.png" width="543" height="179"/>
         <image name="login-key.png" width="25" height="32"/>
