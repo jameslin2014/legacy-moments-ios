@@ -55,7 +55,7 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
                                   reuseIdentifier: CellIdentifier];
     
-    
+    cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:20];
     cell.textLabel.textColor = [UIColor whiteColor];
