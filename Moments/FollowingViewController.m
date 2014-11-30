@@ -10,6 +10,9 @@
 
 @interface FollowingViewController ()
 
+@property UISegmentedControl *tabSegmentedControl;
+@property UIView *segmentView;
+
 @end
 
 @implementation FollowingViewController
@@ -23,12 +26,34 @@
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.23 green:0.52 blue:0.68 alpha:0.39]];
     [self.navigationController.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys: [UIFont fontWithName:@"SanFranciscoDisplay-Medium" size:17], NSFontAttributeName, nil]];
     
+//    UISegmentedControl *statFilter = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Filter_Personnal", @"Filter_Department", @"Filter_Company", nil]];
+//    [statFilter setSegmentedControlStyle:UISegmentedControlStyleBar];
+//    [statFilter sizeToFit];
+//    self.navigationItem.titleView = statFilter;
+//    
+//    [statFilter sizeToFit];
+
+    self.segmentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.navigationController.navigationBar.frame.size.width, 50)];
+    
+    [self.segmentView setBackgroundColor:[UIColor colorWithRed:0.23 green:0.52 blue:0.68 alpha:0.39]];
+    self.segmentView.alpha = 0.95;
+    
+    self.tabSegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Following", @"Followers", nil]];
+    self.tabSegmentedControl.frame = CGRectMake(20, 10, self.navigationController.navigationBar.frame.size.width - 40, 30);
+    self.tabSegmentedControl.userInteractionEnabled = YES;
+    self.tabSegmentedControl.tintColor = [UIColor whiteColor];
+    
+    
+    [self.tabSegmentedControl addTarget:self action:@selector(tabChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.segmentView addSubview:self.tabSegmentedControl];
+    [self.navigationController.navigationBar addSubview:self.segmentView];
+//    [self.tabSegmentedControl setSelectedSegmentIndex:1];
+    
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
     self.tableView.separatorColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
     self.tableView.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
     
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
