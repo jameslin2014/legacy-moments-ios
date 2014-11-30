@@ -206,6 +206,7 @@
 
 - (void)showRegular {
     [view removeFromSuperview];
+    [searchBar resignFirstResponder];
     [self.searchButton setAction:@selector(showSearch)];
     [UIView animateWithDuration:0.1 animations:^{
         searchBar.alpha = 0.0f;
@@ -285,6 +286,10 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return NO;
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [searchBar resignFirstResponder];
 }
 
 - (void)tableView: (UITableView*)tableView willDisplayCell: (UITableViewCell*)cell forRowAtIndexPath: (NSIndexPath*)indexPath {
