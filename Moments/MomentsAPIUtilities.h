@@ -37,6 +37,8 @@
  */
 -(void)getUserFollowingListWithUsername:(NSString *)username completion:(void(^)(NSArray *followedUsers))data;;;;
 
+-(void)getUserFollowersListWithUsername:(NSString *)username completion:(void(^)(NSArray *followers))data;;;;
+
 /**
  Attempts to login with a username/password combination. Gives you a boolean with the result (true, it did authenticate or false, it did not authenticate).
  */

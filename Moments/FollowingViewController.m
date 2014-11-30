@@ -22,12 +22,21 @@
     UISearchBar *searchBar;
     NSUInteger number;
     NSArray *tempArray;
+    UITableViewController *followersVC;
 }
 @synthesize tableView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSString *currentUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
+    MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
+    [APIHelper getUserFollowersListWithUsername:currentUser completion:^(NSArray *followers) {
+        [[NSUserDefaults standardUserDefaults] setInteger:[followers count] forKey:@"saved"];
+    }];
+    
+    followersVC = [self.storyboard instantiateViewControllerWithIdentifier:@"followersVC"]; // make sure
+
     [NSTimer scheduledTimerWithTimeInterval:5.0f
                                      target:self selector:@selector(reloadTable) userInfo:nil repeats:YES];
 
@@ -37,13 +46,6 @@
     self.title = @"Following";
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.23 green:0.52 blue:0.68 alpha:0.39]];
     [self.navigationController.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys: [UIFont fontWithName:@"SanFranciscoDisplay-Medium" size:17], NSFontAttributeName, nil]];
-    
-//    UISegmentedControl *statFilter = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Filter_Personnal", @"Filter_Department", @"Filter_Company", nil]];
-//    [statFilter setSegmentedControlStyle:UISegmentedControlStyleBar];
-//    [statFilter sizeToFit];
-//    self.navigationItem.titleView = statFilter;
-//    
-//    [statFilter sizeToFit];
 
     self.segmentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.navigationController.navigationBar.frame.size.width, 50)];
     
@@ -113,7 +115,16 @@
 }
 
 -(void)tabsChanged:(id)sender {
-    
+    if ([self.tabSegmentedControl selectedSegmentIndex] == 0) {
+        followersVC.view.alpha = 0.0f;
+        NSLog(@"changed");
+    } else {
+            followersVC.view.alpha = 1.0f;
+                    [self addChildViewController:followersVC];
+                    [followersVC didMoveToParentViewController:self];
+                    followersVC.view.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
+                    [self.view addSubview:followersVC.view];
+    }
 }
 
 -(void)showSearch {
@@ -152,7 +163,7 @@
     [APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *followedUsers) {
         number = [followedUsers count];
     }];
-    NSLog(@"numbers");
+    NSLog(@"%lu",(unsigned long)number);
     return number;
 }
 
@@ -178,13 +189,13 @@
     nameLabel.textColor = [UIColor whiteColor];
     [cell.contentView addSubview:nameLabel];
 
-       UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 11, 35, 35)];
+    UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 11, 35, 35)];
     
     profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
     profileImageView.clipsToBounds = YES;
     [cell.contentView addSubview:profileImageView];
     
-    
+    if (self.tabSegmentedControl.selectedSegmentIndex == 0) {
     MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
     NSString *currentUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
     [APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *followedUsers) {
@@ -192,6 +203,15 @@
          [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",[followedUsers objectAtIndex:indexPath.row]]] placeholderImage:[UIImage imageNamed:@"capture-button.png"]];
         tempArray = followedUsers;
          }];
+    } else {
+        MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
+        NSString *currentUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
+        [APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *followedUsers) {
+            nameLabel.text = [followedUsers objectAtIndex:indexPath.row ];
+            [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",[followedUsers objectAtIndex:indexPath.row]]] placeholderImage:[UIImage imageNamed:@"capture-button.png"]];
+            tempArray = followedUsers;
+        }];
+    }
     return cell;
 }
 
@@ -202,10 +222,10 @@
 - (void)tableView: (UITableView*)tableView willDisplayCell: (UITableViewCell*)cell forRowAtIndexPath: (NSIndexPath*)indexPath {
     if(indexPath.row % 2 == 0)
         // color for first alternating cell
-        cell.contentView.backgroundColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
+        cell.backgroundColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
     else
         // color for second alternating cell
-        cell.contentView.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
+        cell.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
 }
 
 

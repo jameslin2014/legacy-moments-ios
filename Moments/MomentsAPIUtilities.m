@@ -78,6 +78,31 @@
     
 }
 
+-(void)getUserFollowersListWithUsername:(NSString *)username completion:(void (^)(NSArray *))data {
+    [Firebase goOnline];
+    Firebase *followingPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@/followers",username]];
+    [followingPath observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        if (snapshot.value == [NSNull null]) {
+            NSArray *empty = @[];
+            NSLog(@"Success: Recieved follower list for user: %@ but there are 0 followers.",username);
+            data(empty);
+            [Firebase goOffline];
+        } else {
+            NSArray *followingUsers = snapshot.value;
+            data(followingUsers);
+            NSLog(@"Success: Recieved follower list for user: %@",username);
+            [Firebase goOffline];
+        }
+    } withCancelBlock:^(NSError *error) {
+        NSLog(@"Error: %@",error);
+        [Firebase goOffline];
+    }];
+    
+}
+
+
+
+
 // Attempt to login with specified credentials (username/pass) and throw a boolean with the result
 -(void)loginWithUsername:(NSString *)username andPassword:(NSString *)password completion:(void (^)(BOOL))data {
     [Firebase goOnline];

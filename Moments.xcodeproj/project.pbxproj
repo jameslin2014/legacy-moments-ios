@@ -14,6 +14,7 @@
 		0232A0631A2A8ABD00ABF2FB /* MomentsAPIUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0232A0621A2A8ABD00ABF2FB /* MomentsAPIUtilities.m */; };
 		02567A011A2B0478002465CF /* FollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02567A001A2B0478002465CF /* FollowingViewController.m */; };
 		02567A041A2B04BB002465CF /* JKSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 02567A031A2B04BB002465CF /* JKSegmentedControl.m */; };
+		02567A0D1A2B1B69002465CF /* FollowersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02567A0C1A2B1B69002465CF /* FollowersViewController.m */; };
 		02949EC91A298431001EDD2D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949EC81A298431001EDD2D /* libicucore.dylib */; };
 		02949ECB1A29843A001EDD2D /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ECA1A29843A001EDD2D /* libc++.dylib */; };
 		02949ECD1A298441001EDD2D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ECC1A298441001EDD2D /* CFNetwork.framework */; };
@@ -123,6 +124,8 @@
 		02567A001A2B0478002465CF /* FollowingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingViewController.m; sourceTree = "<group>"; };
 		02567A021A2B04BB002465CF /* JKSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKSegmentedControl.h; sourceTree = "<group>"; };
 		02567A031A2B04BB002465CF /* JKSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKSegmentedControl.m; sourceTree = "<group>"; };
+		02567A0B1A2B1B69002465CF /* FollowersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowersViewController.h; sourceTree = "<group>"; };
+		02567A0C1A2B1B69002465CF /* FollowersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowersViewController.m; sourceTree = "<group>"; };
 		02949EC81A298431001EDD2D /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		02949ECA1A29843A001EDD2D /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		02949ECC1A298441001EDD2D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -358,6 +361,8 @@
 				A5C5EB791A2A8358002F1591 /* CaptureViewController.h */,
 				025679FF1A2B0478002465CF /* FollowingViewController.h */,
 				02567A001A2B0478002465CF /* FollowingViewController.m */,
+				02567A0B1A2B1B69002465CF /* FollowersViewController.h */,
+				02567A0C1A2B1B69002465CF /* FollowersViewController.m */,
 				A5C5EB7A1A2A8358002F1591 /* CaptureViewController.m */,
 				A5E01C2B1A2AF814003ED753 /* AV Utilities */,
 			);
@@ -653,6 +658,7 @@
 				A5CAD7511A299B480023F948 /* LoginViewController.m in Sources */,
 				02C8944A1A29B94C00B87592 /* SSKeychain.m in Sources */,
 				A5B31C371A287F25009734EE /* main.m in Sources */,
+				02567A0D1A2B1B69002465CF /* FollowersViewController.m in Sources */,
 				A5E01C821A2B152D003ED753 /* AFAmazonS3RequestSerializer.m in Sources */,
 				A5E01C8F1A2B152D003ED753 /* UIButton+AFNetworking.m in Sources */,
 				A5E01C8C1A2B152D003ED753 /* AFURLSessionManager.m in Sources */,
