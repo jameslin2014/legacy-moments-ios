@@ -30,7 +30,8 @@
     // Login Button
     self.loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [loginButton addTarget:self action:@selector(loginButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    
+    self.view.alpha = 1.0;
+
     // Username Field
     usernameField.borderStyle = UITextBorderStyleNone;
     usernameField.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -86,6 +87,17 @@
     }];
     }
 
+-(void)viewWillAppear:(BOOL)animated {
+    self.view.alpha = 0.0f;
+    MomentsAPIUtilities *LoginAPI = [MomentsAPIUtilities alloc];
+    [LoginAPI loginWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] andPassword:[SSKeychain passwordForService:@"moments" account:@"password"] completion:^(BOOL login) {
+        if (login == true) {
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"pageView"];
+            [self presentViewController:vc animated:NO completion:nil];
+        }
+    }];
+}
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }

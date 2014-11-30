@@ -131,6 +131,25 @@
     return cell;
 }
 
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+/* Create custom view to display section header... */
+UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 2, tableView.frame.size.width, 18)];
+[label setFont:[UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:1]];
+    label.textColor = [UIColor whiteColor];
+    if (number == 1) {
+        NSString *string =[NSString stringWithFormat:@"1 Follower"];
+        [label setText:string];
+
+    } else {
+        NSString *string =[NSString stringWithFormat:@"%lu Followers",(unsigned long)number];
+        [label setText:string];
+    }
+
+[view addSubview:label];
+[view setBackgroundColor:[UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0]]; //your background color...
+return view;
+}
 
 /*
 // Override to support conditional editing of the table view.

@@ -15,6 +15,7 @@
 		02567A011A2B0478002465CF /* FollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02567A001A2B0478002465CF /* FollowingViewController.m */; };
 		02567A041A2B04BB002465CF /* JKSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 02567A031A2B04BB002465CF /* JKSegmentedControl.m */; };
 		02567A0D1A2B1B69002465CF /* FollowersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02567A0C1A2B1B69002465CF /* FollowersViewController.m */; };
+		02567A131A2B338F002465CF /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 02567A121A2B338F002465CF /* loading.png */; };
 		02949EC91A298431001EDD2D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949EC81A298431001EDD2D /* libicucore.dylib */; };
 		02949ECB1A29843A001EDD2D /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ECA1A29843A001EDD2D /* libc++.dylib */; };
 		02949ECD1A298441001EDD2D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ECC1A298441001EDD2D /* CFNetwork.framework */; };
@@ -126,6 +127,7 @@
 		02567A031A2B04BB002465CF /* JKSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKSegmentedControl.m; sourceTree = "<group>"; };
 		02567A0B1A2B1B69002465CF /* FollowersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowersViewController.h; sourceTree = "<group>"; };
 		02567A0C1A2B1B69002465CF /* FollowersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowersViewController.m; sourceTree = "<group>"; };
+		02567A121A2B338F002465CF /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
 		02949EC81A298431001EDD2D /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		02949ECA1A29843A001EDD2D /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		02949ECC1A298441001EDD2D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -372,6 +374,7 @@
 		A5CAD7541A29A0BF0023F948 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				02567A121A2B338F002465CF /* loading.png */,
 				A5E01C4C1A2B14C5003ED753 /* follow-successful.png */,
 				A5E01C4D1A2B14C5003ED753 /* follow-successful@2x.png */,
 				A5E01C4E1A2B14C5003ED753 /* follow-successful@3x.png */,
@@ -586,6 +589,7 @@
 				A5CAD77E1A29A0BF0023F948 /* background@3x.png in Resources */,
 				A5E01C221A2AE61A003ED753 /* login-button.png in Resources */,
 				A5CAD78D1A29A0BF0023F948 /* SanFranciscoText-LightItalic.otf in Resources */,
+				02567A131A2B338F002465CF /* loading.png in Resources */,
 				A5E01C231A2AE61A003ED753 /* login-button@2x.png in Resources */,
 				A5CAD78C1A29A0BF0023F948 /* SanFranciscoText-Light.otf in Resources */,
 				A5E01C431A2AFCAD003ED753 /* camera-background-top@3x.png in Resources */,

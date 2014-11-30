@@ -37,7 +37,7 @@
     
     followersVC = [self.storyboard instantiateViewControllerWithIdentifier:@"followersVC"]; // make sure
 
-    [NSTimer scheduledTimerWithTimeInterval:5.0f
+    [NSTimer scheduledTimerWithTimeInterval:3.0f
                                      target:self selector:@selector(reloadTable) userInfo:nil repeats:YES];
 
     
