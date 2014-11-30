@@ -87,6 +87,7 @@
     }];
     }
 
+
 - (void)viewWillAppear:(BOOL)animated {
     self.view.alpha = 0.0f;
     MomentsAPIUtilities *LoginAPI = [MomentsAPIUtilities alloc];
@@ -95,6 +96,8 @@
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
             UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"pageView"];
             [self presentViewController:vc animated:NO completion:nil];
+        } else {
+            self.view.alpha = 1;
         }
     }];
 }
