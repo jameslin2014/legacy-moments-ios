@@ -26,6 +26,11 @@
     NSUInteger number;
     NSArray *tempArray;
     UITableViewController *followersVC;
+    UIView *view;
+    UIView *view2;
+    UILabel *nameLabel;
+    UIImageView *profileImageView;
+
 }
 
 @synthesize tableView, tapper;
@@ -78,13 +83,18 @@
     searchBar.barTintColor = [UIColor whiteColor];
     searchBar.tintColor = [UIColor whiteColor];
     searchBar.searchBarStyle = UISearchBarStyleMinimal;
+    searchBar.delegate = self;
     searchBar.placeholder = @"Search for a username";
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor whiteColor]];
     [searchBar removeFromSuperview];
     [self.navigationController.view addSubview:searchBar];
     searchBar.alpha = 0.0f;
     UITextField *searchField = nil;
-    
+    view2 = [[UIView alloc] initWithFrame:CGRectMake(0, tableView.frame.origin.y, self.view.frame.size.width, 60.5)];
+            view = [[UIView alloc] initWithFrame:CGRectMake(0, tableView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)];
+    nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, view2.frame.size.width, view2.frame.size.height)];
+    profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 12, 35, 35)];
+
     for (UIView *v in searchBar.subviews) {
         if ([v isKindOfClass:[UITextField class]]) {
             searchField = (UITextField *)v;
@@ -102,6 +112,50 @@
     self.tableView.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
     [self.tableView setContentInset:UIEdgeInsetsMake(50,0,0,0)];
 
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if ([searchText isEqualToString:@""]) {
+        [view removeFromSuperview];
+    } else {
+    MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
+    [APIHelper searchForUsersWithUserName:searchText completion:^(BOOL valid) {
+        
+        if (valid) {
+
+            view.backgroundColor = tableView.backgroundColor;
+            [self.view addSubview:view];
+            
+            view2.backgroundColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
+            [view addSubview:view2];
+            
+            nameLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:24];
+            nameLabel.textColor = [UIColor whiteColor];
+            [view2 addSubview:nameLabel];
+            nameLabel.text = @"Loading..";
+            nameLabel.text = searchText;
+            profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
+            profileImageView.clipsToBounds = YES;
+            [view2 addSubview:profileImageView];
+            
+            [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",nameLabel.text]] placeholderImage:[UIImage imageNamed:@"capture-button.png"]];
+
+        } else {
+            view.backgroundColor = tableView.backgroundColor;
+            [self.view addSubview:view];
+            view2.backgroundColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
+            [view addSubview:view2];
+            
+            nameLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:25];
+            nameLabel.textColor = [UIColor whiteColor];
+            nameLabel.text = @"User Not Found";
+            [view2 addSubview:nameLabel];
+            [profileImageView removeFromSuperview];
+
+            }
+        
+    }];
+    }
 }
 
 - (void)handleSingleTap:(UITapGestureRecognizer *) sender {
@@ -151,10 +205,12 @@
 }
 
 - (void)showRegular {
+    [view removeFromSuperview];
     [self.searchButton setAction:@selector(showSearch)];
     [UIView animateWithDuration:0.1 animations:^{
         searchBar.alpha = 0.0f;
         self.tabSegmentedControl.userInteractionEnabled = true;
+
     } completion:^(BOOL finished) {
         if (finished) {
             [UIView animateWithDuration:0.3 animations:^{

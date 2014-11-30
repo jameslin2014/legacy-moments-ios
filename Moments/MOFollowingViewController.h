@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@interface MOFollowingViewController : UITableViewController
+@interface MOFollowingViewController : UITableViewController <UISearchBarDelegate>
 
 @property IBOutlet UITableView *tableView;
 @property IBOutlet UIBarButtonItem *searchButton;
