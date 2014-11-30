@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface FollowingViewController : UITableViewController
 
 @property IBOutlet UITableView *tableView;
+@property IBOutlet UIBarButtonItem *searchButton;
+-(IBAction)showSearch;
 
 @end

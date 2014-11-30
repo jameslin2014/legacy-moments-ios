@@ -12,6 +12,10 @@
 		020418421A296CAF00134216 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 020418411A296CAF00134216 /* AVFoundation.framework */; };
 		020418441A296CB600134216 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 020418431A296CB600134216 /* CoreFoundation.framework */; };
 		0232A0631A2A8ABD00ABF2FB /* MomentsAPIUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0232A0621A2A8ABD00ABF2FB /* MomentsAPIUtilities.m */; };
+		02567A011A2B0478002465CF /* FollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02567A001A2B0478002465CF /* FollowingViewController.m */; };
+		02567A041A2B04BB002465CF /* JKSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 02567A031A2B04BB002465CF /* JKSegmentedControl.m */; };
+		02567A091A2B0DFA002465CF /* AFAmazonS3Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 02567A061A2B0DFA002465CF /* AFAmazonS3Manager.m */; };
+		02567A0A1A2B0DFA002465CF /* AFAmazonS3RequestSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 02567A081A2B0DFA002465CF /* AFAmazonS3RequestSerializer.m */; };
 		02949EC91A298431001EDD2D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949EC81A298431001EDD2D /* libicucore.dylib */; };
 		02949ECB1A29843A001EDD2D /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ECA1A29843A001EDD2D /* libc++.dylib */; };
 		02949ECD1A298441001EDD2D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ECC1A298441001EDD2D /* CFNetwork.framework */; };
@@ -42,7 +46,6 @@
 		A5B31C421A287F26009734EE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5B31C411A287F26009734EE /* Images.xcassets */; };
 		A5B31C451A287F26009734EE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5B31C431A287F26009734EE /* LaunchScreen.xib */; };
 		A5C5EB811A2A8358002F1591 /* CaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5EB7A1A2A8358002F1591 /* CaptureViewController.m */; };
-		A5C5EB821A2A8358002F1591 /* FollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5EB7C1A2A8358002F1591 /* FollowingViewController.m */; };
 		A5C5EB831A2A8358002F1591 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5EB7E1A2A8358002F1591 /* ListViewController.m */; };
 		A5C5EB841A2A8358002F1591 /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5EB801A2A8358002F1591 /* PageViewController.m */; };
 		A5CAD7511A299B480023F948 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5CAD7501A299B480023F948 /* LoginViewController.m */; };
@@ -110,6 +113,14 @@
 		020418431A296CB600134216 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		0232A0611A2A8ABD00ABF2FB /* MomentsAPIUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentsAPIUtilities.h; sourceTree = "<group>"; };
 		0232A0621A2A8ABD00ABF2FB /* MomentsAPIUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentsAPIUtilities.m; sourceTree = "<group>"; };
+		025679FF1A2B0478002465CF /* FollowingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowingViewController.h; sourceTree = "<group>"; };
+		02567A001A2B0478002465CF /* FollowingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingViewController.m; sourceTree = "<group>"; };
+		02567A021A2B04BB002465CF /* JKSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKSegmentedControl.h; sourceTree = "<group>"; };
+		02567A031A2B04BB002465CF /* JKSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKSegmentedControl.m; sourceTree = "<group>"; };
+		02567A051A2B0DFA002465CF /* AFAmazonS3Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAmazonS3Manager.h; sourceTree = "<group>"; };
+		02567A061A2B0DFA002465CF /* AFAmazonS3Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFAmazonS3Manager.m; sourceTree = "<group>"; };
+		02567A071A2B0DFA002465CF /* AFAmazonS3RequestSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAmazonS3RequestSerializer.h; sourceTree = "<group>"; };
+		02567A081A2B0DFA002465CF /* AFAmazonS3RequestSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFAmazonS3RequestSerializer.m; sourceTree = "<group>"; };
 		02949EC81A298431001EDD2D /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		02949ECA1A29843A001EDD2D /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		02949ECC1A298441001EDD2D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -164,8 +175,6 @@
 		A5B31C441A287F26009734EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		A5C5EB791A2A8358002F1591 /* CaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureViewController.h; sourceTree = "<group>"; };
 		A5C5EB7A1A2A8358002F1591 /* CaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureViewController.m; sourceTree = "<group>"; };
-		A5C5EB7B1A2A8358002F1591 /* FollowingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowingViewController.h; sourceTree = "<group>"; };
-		A5C5EB7C1A2A8358002F1591 /* FollowingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingViewController.m; sourceTree = "<group>"; };
 		A5C5EB7D1A2A8358002F1591 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		A5C5EB7E1A2A8358002F1591 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		A5C5EB7F1A2A8358002F1591 /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
@@ -288,6 +297,10 @@
 				02949EF81A298565001EDD2D /* UIActivityIndicatorView+AFNetworking.m */,
 				02949EF91A298565001EDD2D /* UIAlertView+AFNetworking.h */,
 				02949EFA1A298565001EDD2D /* UIAlertView+AFNetworking.m */,
+				02567A051A2B0DFA002465CF /* AFAmazonS3Manager.h */,
+				02567A061A2B0DFA002465CF /* AFAmazonS3Manager.m */,
+				02567A071A2B0DFA002465CF /* AFAmazonS3RequestSerializer.h */,
+				02567A081A2B0DFA002465CF /* AFAmazonS3RequestSerializer.m */,
 				02949EFB1A298565001EDD2D /* UIButton+AFNetworking.h */,
 				02949EFC1A298565001EDD2D /* UIButton+AFNetworking.m */,
 				02949EFD1A298565001EDD2D /* UIImageView+AFNetworking.h */,
@@ -359,6 +372,8 @@
 		A5B31C341A287F25009734EE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				02567A021A2B04BB002465CF /* JKSegmentedControl.h */,
+				02567A031A2B04BB002465CF /* JKSegmentedControl.m */,
 				02C894481A29B94C00B87592 /* SSKeychain.h */,
 				02C894491A29B94C00B87592 /* SSKeychain.m */,
 				A5CAD7541A29A0BF0023F948 /* Assets */,
@@ -376,10 +391,10 @@
 				A5C5EB7D1A2A8358002F1591 /* ListViewController.h */,
 				A5C5EB7E1A2A8358002F1591 /* ListViewController.m */,
 				A5C5EB791A2A8358002F1591 /* CaptureViewController.h */,
+				025679FF1A2B0478002465CF /* FollowingViewController.h */,
+				02567A001A2B0478002465CF /* FollowingViewController.m */,
 				A5C5EB7A1A2A8358002F1591 /* CaptureViewController.m */,
 				A5E01C2B1A2AF814003ED753 /* AV Utilities */,
-				A5C5EB7B1A2A8358002F1591 /* FollowingViewController.h */,
-				A5C5EB7C1A2A8358002F1591 /* FollowingViewController.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -587,11 +602,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				02949F0B1A298565001EDD2D /* UIProgressView+AFNetworking.m in Sources */,
+				02567A091A2B0DFA002465CF /* AFAmazonS3Manager.m in Sources */,
+				02567A011A2B0478002465CF /* FollowingViewController.m in Sources */,
 				02949F091A298565001EDD2D /* UIButton+AFNetworking.m in Sources */,
 				02949F0C1A298565001EDD2D /* UIRefreshControl+AFNetworking.m in Sources */,
 				02949F081A298565001EDD2D /* UIAlertView+AFNetworking.m in Sources */,
 				02949EF01A298554001EDD2D /* AFSecurityPolicy.m in Sources */,
-				A5C5EB821A2A8358002F1591 /* FollowingViewController.m in Sources */,
 				A5C5EB811A2A8358002F1591 /* CaptureViewController.m in Sources */,
 				02949EED1A298554001EDD2D /* AFHTTPRequestOperationManager.m in Sources */,
 				02949EF11A298554001EDD2D /* AFURLConnectionOperation.m in Sources */,
@@ -603,9 +619,11 @@
 				02949F071A298565001EDD2D /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				A5B31C3A1A287F25009734EE /* AppDelegate.m in Sources */,
 				02949EF21A298554001EDD2D /* AFURLRequestSerialization.m in Sources */,
+				02567A041A2B04BB002465CF /* JKSegmentedControl.m in Sources */,
 				02949EEE1A298554001EDD2D /* AFHTTPSessionManager.m in Sources */,
 				02949EEF1A298554001EDD2D /* AFNetworkReachabilityManager.m in Sources */,
 				02949EF31A298554001EDD2D /* AFURLResponseSerialization.m in Sources */,
+				02567A0A1A2B0DFA002465CF /* AFAmazonS3RequestSerializer.m in Sources */,
 				A5E01C2A1A2AF811003ED753 /* AVCamPreviewView.m in Sources */,
 				02949F0D1A298565001EDD2D /* UIWebView+AFNetworking.m in Sources */,
 				02949EF41A298554001EDD2D /* AFURLSessionManager.m in Sources */,
