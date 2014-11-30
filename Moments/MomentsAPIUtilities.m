@@ -41,12 +41,36 @@
 
 // Grab a user password from Firebase with a specified username
 -(void)getUserPasswordWithUsername:(NSString *)username completion:(void (^)(NSString *))data {
+    /**
+     An iOS library for interacting with the Moments API */
     [Firebase goOnline];
     Firebase *UserPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@/password",username]];
-    [UserPath observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+    [UserPath observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         NSString *password = snapshot.value;
         data(password);
         [Firebase goOffline];
+    } withCancelBlock:^(NSError *error) {
+        NSLog(@"Error: %@",error);
+        [Firebase goOffline];
+    }];
+    
+}
+
+-(void)getUserFollowingListWithUsername:(NSString *)username completion:(void (^)(NSArray *))data {
+    [Firebase goOnline];
+     Firebase *followingPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@/following",username]];
+    [followingPath observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        if (snapshot.value == [NSNull null]) {
+            NSArray *empty = @[];
+            NSLog(@"Success: Recieved following list for user: %@ but there are 0 followed users.",username);
+            data(empty);
+            [Firebase goOffline];
+        } else {
+        NSArray *followingUsers = snapshot.value;
+        data(followingUsers);
+        NSLog(@"Success: Recieved following list for user: %@",username);
+        [Firebase goOffline];
+    }
     } withCancelBlock:^(NSError *error) {
         NSLog(@"Error: %@",error);
         [Firebase goOffline];
@@ -58,7 +82,7 @@
 -(void)loginWithUsername:(NSString *)username andPassword:(NSString *)password completion:(void (^)(BOOL))data {
     [Firebase goOnline];
     Firebase *userPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@",username]];
-        [userPath observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        [userPath observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
             if (snapshot.value == [NSNull null]) {
                 data(false);
                 [Firebase goOffline];
