@@ -31,7 +31,7 @@
     self.loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [loginButton addTarget:self action:@selector(loginButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     self.view.alpha = 1.0;
-
+    
     // Username Field
     usernameField.borderStyle = UITextBorderStyleNone;
     usernameField.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -83,9 +83,9 @@
         } else {
             NSLog(@"Login Failed");
         }
-
+        
     }];
-    }
+}
 
 
 - (void)viewWillAppear:(BOOL)animated {

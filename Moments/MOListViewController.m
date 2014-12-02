@@ -26,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     // Do any additional setup after loading the view, typically from a nib.
     tableView.delegate = self;
     tableView.dataSource = self;
@@ -54,9 +54,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 1) {
-    NSLog(@"log: %@",followingArray);
-    NSLog(@"%lu",(unsigned long)[followingArray count]);
-    return [followingArray count];
+        NSLog(@"log: %@",followingArray);
+        NSLog(@"%lu",(unsigned long)[followingArray count]);
+        return [followingArray count];
     } else {
         return 1;
     }
@@ -70,7 +70,7 @@
         NSLog(@"%@",followingArray);
         [tableView reloadData];
     }];
-
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -95,7 +95,7 @@
     nameLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:24];
     nameLabel.textColor = [UIColor whiteColor];
     [cell.contentView addSubview:nameLabel];
-
+    
     if (indexPath.section == 0) {
         NSString *user = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
         nameLabel.text = user;
@@ -104,18 +104,18 @@
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
         profileImageView.clipsToBounds = YES;
         [cell addSubview:profileImageView];
-        [profileImageView setImage:[UIImage imageNamed:@"capture-button"]];        
+        [profileImageView setImage:[UIImage imageNamed:@"capture-button"]];
         
     } else {
-    UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 11, 35, 35)];
-    profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
-    profileImageView.clipsToBounds = YES;
-    [cell addSubview:profileImageView];
-
-    MomentsAPIUtilities *API = [MomentsAPIUtilities alloc];
-    [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.png",[followingArray objectAtIndex:indexPath.row]]] placeholderImage:[UIImage imageNamed:@"capture-button"]];
-    
-    nameLabel.text = [followingArray objectAtIndex:indexPath.row];
+        UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 11, 35, 35)];
+        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
+        profileImageView.clipsToBounds = YES;
+        [cell addSubview:profileImageView];
+        
+        MomentsAPIUtilities *API = [MomentsAPIUtilities alloc];
+        [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.png",[followingArray objectAtIndex:indexPath.row]]] placeholderImage:[UIImage imageNamed:@"capture-button"]];
+        
+        nameLabel.text = [followingArray objectAtIndex:indexPath.row];
     }
     return cell;
 }
@@ -126,7 +126,7 @@
 
 - (void)tableView: (UITableView*)tableView willDisplayCell: (UITableViewCell*)cell forRowAtIndexPath: (NSIndexPath*)indexPath {
     if(indexPath.row % 2 == 0)
-    cell.contentView.backgroundColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
+        cell.contentView.backgroundColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
     else
         cell.contentView.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
 }
@@ -150,23 +150,23 @@
         [view setBackgroundColor:[UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0]]; //your background color...
         return view;
     } else{
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 18)];
-    /* Create custom view to display section header... */
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 2, self.tableView.frame.size.width, 18)];
-    [label setFont:[UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:1]];
-    label.textColor = [UIColor whiteColor];
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 18)];
+        /* Create custom view to display section header... */
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 2, self.tableView.frame.size.width, 18)];
+        [label setFont:[UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:1]];
+        label.textColor = [UIColor whiteColor];
         NSString *string =[NSString stringWithFormat:@"Recent Updates"];
         [label setText:string];
-  
-    
-    [view addSubview:label];
-    [view setBackgroundColor:[UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0]]; //your background color...
-    return view;
+        
+        
+        [view addSubview:label];
+        [view setBackgroundColor:[UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0]]; //your background color...
+        return view;
     }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    
     videoPlayer = [[PBJVideoPlayerController alloc] init];
     videoPlayer.view.frame = self.view.bounds;
     videoPlayer.delegate = self;
@@ -193,13 +193,12 @@
             [HUD1 showInView:self.view animated:YES];
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            
         }];
     } else {
-            AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",[followingArray objectAtIndex:indexPath.row]]]]];
+        AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",[followingArray objectAtIndex:indexPath.row]]]]];
         [op start];
         [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-    videoPlayer.videoPath = [NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",[followingArray objectAtIndex:indexPath.row]];
+            videoPlayer.videoPath = [NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",[followingArray objectAtIndex:indexPath.row]];
             [self addChildViewController:videoPlayer];
             [self.view addSubview:videoPlayer.view];
             [videoPlayer didMoveToParentViewController:self];
@@ -217,10 +216,8 @@
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             
         }];
-
     }
-    // present
-       }
+}
 
 -(void)dismissPlayer {
     [videoPlayer removeFromParentViewController];
@@ -245,16 +242,13 @@
     [player removeFromParentViewController];
     [player.view removeFromSuperview];
     self.navigationController.navigationBar.alpha = 1.0f;
-     reloadTimer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(numberOfRows) userInfo:nil repeats:YES];
+    reloadTimer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(numberOfRows) userInfo:nil repeats:YES];
 }
 
 -(void)videoPlayerPlaybackWillStartFromBeginning:(PBJVideoPlayerController *)player {
     HUD1.alpha = 0.0f;
 }
 
--(void)videoPlayerPlaybackStateDidChange:(PBJVideoPlayerController *)player {
-    if (player.playbackState == PBJVideoPlayerPlaybackStateStopped) {
-    }
-}
+-(void)videoPlayerPlaybackStateDidChange:(PBJVideoPlayerController *)player {}
 
 @end

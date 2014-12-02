@@ -31,7 +31,6 @@
     UILabel *nameLabel;
     UIImageView *profileImageView;
     NSArray *followersArray;
-
 }
 
 @synthesize tableView, tapper;
@@ -53,9 +52,9 @@
     }];
     
     followersVC = [self.storyboard instantiateViewControllerWithIdentifier:@"followersVC"]; // make sure
-
+    
     NSTimer *rowTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f
-                                     target:self selector:@selector(numberOfRows) userInfo:nil repeats:YES];
+                                                         target:self selector:@selector(numberOfRows) userInfo:nil repeats:YES];
     
     [rowTimer fire];
     // Do any additional setup after loading the view.
@@ -63,7 +62,7 @@
     self.title = @"Following";
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.23 green:0.52 blue:0.68 alpha:0.39]];
     [self.navigationController.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys: [UIFont fontWithName:@"SanFranciscoDisplay-Medium" size:17], NSFontAttributeName, nil]];
-
+    
     self.segmentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.navigationController.navigationBar.frame.size.width, 50)];
     
     [self.segmentView setBackgroundColor:[UIColor colorWithRed:0.23 green:0.52 blue:0.68 alpha:0.39]];
@@ -93,10 +92,10 @@
     searchBar.alpha = 0.0f;
     UITextField *searchField = nil;
     view2 = [[UIView alloc] initWithFrame:CGRectMake(0, tableView.frame.origin.y, self.view.frame.size.width, 60.5)];
-            view = [[UIView alloc] initWithFrame:CGRectMake(0, tableView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)];
+    view = [[UIView alloc] initWithFrame:CGRectMake(0, tableView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)];
     nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, view2.frame.size.width, view2.frame.size.height)];
     profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 12, 35, 35)];
-
+    
     for (UIView *v in searchBar.subviews) {
         if ([v isKindOfClass:[UITextField class]]) {
             searchField = (UITextField *)v;
@@ -107,62 +106,62 @@
     if (searchField) {
         searchField.textColor = [UIColor whiteColor];
     }
-
+    
     
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
     self.tableView.separatorColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
     self.tableView.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
     [self.tableView setContentInset:UIEdgeInsetsMake(50,0,0,0)];
-
+    
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if ([searchText isEqualToString:@""]) {
         [view removeFromSuperview];
     } else {
-    MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
-    [APIHelper searchForUsersWithUserName:searchText completion:^(BOOL valid) {
-        
-        if (valid) {
-
-            view.backgroundColor = tableView.backgroundColor;
-            [self.view addSubview:view];
+        MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
+        [APIHelper searchForUsersWithUserName:searchText completion:^(BOOL valid) {
             
-            view2.backgroundColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
-            [view addSubview:view2];
-            
-            nameLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:24];
-            nameLabel.textColor = [UIColor whiteColor];
-            [view2 addSubview:nameLabel];
-            nameLabel.text = @"Loading..";
-            nameLabel.text = searchText;
-            profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
-            profileImageView.clipsToBounds = YES;
-            [view2 addSubview:profileImageView];
-            
-            [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",nameLabel.text]] placeholderImage:[UIImage imageNamed:@"capture-button.png"]];
-
-        } else {
-            view.backgroundColor = tableView.backgroundColor;
-            [self.view addSubview:view];
-            view2.backgroundColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
-            [view addSubview:view2];
-            
-            nameLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:25];
-            nameLabel.textColor = [UIColor whiteColor];
-            nameLabel.text = @"User Not Found";
-            [view2 addSubview:nameLabel];
-            [profileImageView removeFromSuperview];
-
+            if (valid) {
+                
+                view.backgroundColor = tableView.backgroundColor;
+                [self.view addSubview:view];
+                
+                view2.backgroundColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
+                [view addSubview:view2];
+                
+                nameLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:24];
+                nameLabel.textColor = [UIColor whiteColor];
+                [view2 addSubview:nameLabel];
+                nameLabel.text = @"Loading..";
+                nameLabel.text = searchText;
+                profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
+                profileImageView.clipsToBounds = YES;
+                [view2 addSubview:profileImageView];
+                
+                [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",nameLabel.text]] placeholderImage:[UIImage imageNamed:@"capture-button.png"]];
+                
+            } else {
+                view.backgroundColor = tableView.backgroundColor;
+                [self.view addSubview:view];
+                view2.backgroundColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
+                [view addSubview:view2];
+                
+                nameLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:25];
+                nameLabel.textColor = [UIColor whiteColor];
+                nameLabel.text = @"User Not Found";
+                [view2 addSubview:nameLabel];
+                [profileImageView removeFromSuperview];
+                
             }
-        
-    }];
+            
+        }];
     }
 }
 
 - (void)handleSingleTap:(UITapGestureRecognizer *) sender {
     [self.view endEditing:YES];
-
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -174,12 +173,14 @@
     if ([self.tabSegmentedControl selectedSegmentIndex] == 0) {
         followersVC.view.alpha = 0.0f;
         NSLog(@"changed");
+        self.title = @"Following";
     } else {
-            followersVC.view.alpha = 1.0f;
-                    [self addChildViewController:followersVC];
-                    [followersVC didMoveToParentViewController:self];
-                    followersVC.view.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
-                    [self.view addSubview:followersVC.view];
+        followersVC.view.alpha = 1.0f;
+        [self addChildViewController:followersVC];
+        [followersVC didMoveToParentViewController:self];
+        followersVC.view.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
+        self.title = @"Followers";
+        [self.view addSubview:followersVC.view];
     }
 }
 
@@ -191,7 +192,7 @@
         searchBar.alpha = 1.0;
     } completion:^(BOOL finished) {}];
     
-        
+    
 }
 
 - (void)showRegular {
@@ -201,7 +202,7 @@
     [UIView animateWithDuration:0.1 animations:^{
         searchBar.alpha = 0.0f;
         self.tabSegmentedControl.userInteractionEnabled = true;
-
+        
     } completion:^(BOOL finished) {
         if (finished) {
             [UIView animateWithDuration:0.3 animations:^{
@@ -227,11 +228,11 @@
         if ([followedUsers isEqual:followersArray]) {
             
         } else {
-        followersArray = followedUsers;
-        [self.tableView reloadData];
+            followersArray = followedUsers;
+            [self.tableView reloadData];
         }
     }];
-
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -247,7 +248,7 @@
     
     cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-   
+    
     cell.detailTextLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:20];
     cell.detailTextLabel.textColor = [UIColor whiteColor];
     
@@ -255,7 +256,7 @@
     nameLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:24];
     nameLabel.textColor = [UIColor whiteColor];
     [cell.contentView addSubview:nameLabel];
-
+    
     UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 11, 35, 35)];
     
     profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
@@ -263,13 +264,14 @@
     [cell.contentView addSubview:profileImageView];
     
     if (self.tabSegmentedControl.selectedSegmentIndex == 0) {
-    MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
-    NSString *currentUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
-    [APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *followedUsers) {
-        nameLabel.text = [followedUsers objectAtIndex:indexPath.row ];
-         [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",[followedUsers objectAtIndex:indexPath.row]]] placeholderImage:[UIImage imageNamed:@"capture-button.png"]];
-        tempArray = followedUsers;
-         }];
+        MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
+        NSString *currentUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
+        [APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *followedUsers) {
+            nameLabel.text = [followedUsers objectAtIndex:indexPath.row ];
+            [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",[followedUsers objectAtIndex:indexPath.row]]] placeholderImage:[UIImage imageNamed:@"capture-button.png"]];
+            tempArray = followedUsers;
+            
+        }];
     } else {
         MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
         NSString *currentUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
@@ -298,6 +300,27 @@
         // color for second alternating cell
         cell.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
 }
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+    /* Create custom view to display section header... */
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 2, tableView.frame.size.width, 18)];
+    [label setFont:[UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:1]];
+    label.textColor = [UIColor whiteColor];
+    if ([followersArray count] == 1) {
+        NSString *string =[NSString stringWithFormat:@"Following 1 user"];
+        [label setText:string];
+        
+    } else {
+        NSString *string =[NSString stringWithFormat:@"Following %lu users",[followersArray count]];
+        [label setText:string];
+    }
+    
+    [view addSubview:label];
+    [view setBackgroundColor:[UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0]]; //your background color...
+    return view;
+}
+
 
 
 @end

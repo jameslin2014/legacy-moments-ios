@@ -25,7 +25,7 @@
     self.tableView.separatorColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
     self.tableView.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
     [NSTimer scheduledTimerWithTimeInterval:5.0f target:self selector:@selector(reloadTable) userInfo:nil repeats:YES];
-
+    
 }
 
 #pragma mark - Table view data source
@@ -41,22 +41,21 @@
     [APIHelper getUserFollowersListWithUsername:currentUser completion:^(NSArray *followedUsers) {
         if ([followedUsers isEqual:tempArray]) {
         } else {
+            tempArray = followedUsers;
             [self.tableView reloadData];
-            [self.tableView numberOfRowsInSection:0];
         }
     }];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    number = [[NSUserDefaults standardUserDefaults] integerForKey:@"saved"];
-    return number;
+    return [tempArray count];
 }
 
 - (void)tableView: (UITableView*)tableView willDisplayCell: (UITableViewCell*)cell forRowAtIndexPath: (NSIndexPath*)indexPath {
     if(indexPath.row % 2 == 0)
         // color for first alternating cell
-        cell.backgroundColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
+        cell.backgroundColor = [UIColor colorWithRed:(40/255.0) green:(38/255.0) blue:(38/255.0) alpha:100];
     else
         // color for second alternating cell
         cell.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
@@ -94,49 +93,49 @@
     UIImageView *chevronImgVw = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"follow-waiting"]];
     chevronImgVw.frame = CGRectMake(cell.accessoryView.frame.origin.x, cell.accessoryView.frame.origin.y, 20, 20);
     cell.accessoryView = chevronImgVw;
-
-        MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
-        NSString *currentUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
-        [APIHelper getUserFollowersListWithUsername:currentUser completion:^(NSArray *followers) {
-            tempArray = followers;
-            nameLabel.text = [followers objectAtIndex:indexPath.row ];
-            [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",[followers objectAtIndex:indexPath.row]]] placeholderImage:[UIImage imageNamed:@"capture-button.png"]];
-            NSLog(@"done");
-            
-            [APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *following) {
-                if ([following containsObject:[followers objectAtIndex:indexPath.row]]) {
-                    UIImageView *chevronImgVw = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"follow-successful"]];
-                    chevronImgVw.frame = CGRectMake(cell.accessoryView.frame.origin.x, cell.accessoryView.frame.origin.y, 15, 15);
-                    cell.accessoryView = chevronImgVw;
-                } else {
-                    UIImageView *chevronImgVw = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"follow-waiting"]];
-                    chevronImgVw.frame = CGRectMake(cell.accessoryView.frame.origin.x, cell.accessoryView.frame.origin.y, 15, 15);
-                    cell.accessoryView = chevronImgVw;
-                }
-            }];
+    
+    MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
+    NSString *currentUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
+    [APIHelper getUserFollowersListWithUsername:currentUser completion:^(NSArray *followers) {
+        tempArray = followers;
+        nameLabel.text = [followers objectAtIndex:indexPath.row ];
+        [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",[followers objectAtIndex:indexPath.row]]] placeholderImage:[UIImage imageNamed:@"capture-button.png"]];
+        NSLog(@"done");
+        
+        [APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *following) {
+            if ([following containsObject:[followers objectAtIndex:indexPath.row]]) {
+                UIImageView *chevronImgVw = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"follow-successful"]];
+                chevronImgVw.frame = CGRectMake(cell.accessoryView.frame.origin.x, cell.accessoryView.frame.origin.y, 15, 15);
+                cell.accessoryView = chevronImgVw;
+            } else {
+                UIImageView *chevronImgVw = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"follow-waiting"]];
+                chevronImgVw.frame = CGRectMake(cell.accessoryView.frame.origin.x, cell.accessoryView.frame.origin.y, 15, 15);
+                cell.accessoryView = chevronImgVw;
+            }
         }];
+    }];
     
     return cell;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
-/* Create custom view to display section header... */
-UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 2, tableView.frame.size.width, 18)];
-[label setFont:[UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:1]];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+    /* Create custom view to display section header... */
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 2, tableView.frame.size.width, 18)];
+    [label setFont:[UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:1]];
     label.textColor = [UIColor whiteColor];
-    if (number == 1) {
-        NSString *string =[NSString stringWithFormat:@"1 Follower"];
+    if ([tableView numberOfRowsInSection:0] == 1) {
+        NSString *string =[NSString stringWithFormat:@"Followed by 1 user"];
         [label setText:string];
-
+        
     } else {
-        NSString *string =[NSString stringWithFormat:@"%lu Followers",(unsigned long)number];
+        NSString *string =[NSString stringWithFormat:@"Followed by %lu users",[tempArray count]];
         [label setText:string];
     }
-
-[view addSubview:label];
-[view setBackgroundColor:[UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0]]; //your background color...
-return view;
+    
+    [view addSubview:label];
+    [view setBackgroundColor:[UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0]]; //your background color...
+    return view;
 }
 
 - (void)didReceiveMemoryWarning {

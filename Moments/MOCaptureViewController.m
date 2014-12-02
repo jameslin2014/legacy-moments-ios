@@ -48,7 +48,7 @@
         if ([session canAddInput:videoDeviceInput]) {
             [session addInput:videoDeviceInput];
             [self setVideoDeviceInput:videoDeviceInput];
-        
+            
         }
         
         AVCaptureDevice *audioDevice = [[AVCaptureDevice devicesWithMediaType:AVMediaTypeAudio] firstObject];
@@ -70,7 +70,7 @@
                 [connection setPreferredVideoStabilizationMode:AVCaptureVideoStabilizationModeAuto];
             [self setMovieFileOutput:movieFileOutput];
         }
-
+        
     });
 }
 
@@ -172,7 +172,7 @@
 #pragma mark Actions
 - (IBAction)toggleMovieRecording:(id)sender {
     [[self recordButton] setEnabled:NO];
-
+    
     dispatch_async([self sessionQueue], ^{
         if (![[self movieFileOutput] isRecording]) {
             [self setLockInterfaceRotation:YES];
