@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <Firebase/Firebase.h>
 #import "AFNetworking.h"
-#import <AVFoundation/AVFoundation.h>
-#import <MediaPlayer/MediaPlayer.h>
 /**
  A block based API wrapper for interacting with the Moments API that makes use of real-time updating
  
@@ -28,7 +26,6 @@
  Grabs a user's phone number from Firebase from a username.
  */
 - (void)getUserPhoneNumberWithUsername:(NSString *)username completion:(void(^)(NSString *phoneNumber))data;
-;
 
 /**
  Grabs a user's password from Firebase from a username.
