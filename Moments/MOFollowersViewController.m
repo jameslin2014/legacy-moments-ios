@@ -66,7 +66,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"done");
     static NSString *CellIdentifier;
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -100,7 +99,6 @@
         tempArray = followers;
         nameLabel.text = [followers objectAtIndex:indexPath.row ];
         [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",[followers objectAtIndex:indexPath.row]]] placeholderImage:[UIImage imageNamed:@"capture-button.png"]];
-        NSLog(@"done");
         
         [APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *following) {
             if ([following containsObject:[followers objectAtIndex:indexPath.row]]) {

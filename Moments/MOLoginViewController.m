@@ -63,7 +63,6 @@
 }
 
 - (void)loginButtonAction:(UIButton *)sender {
-    NSLog(@"Login button pressed.");
 }
 
 - (void)handleSingleTap:(UITapGestureRecognizer *) sender {

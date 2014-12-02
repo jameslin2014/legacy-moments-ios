@@ -54,8 +54,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 1) {
-        NSLog(@"log: %@",followingArray);
-        NSLog(@"%lu",(unsigned long)[followingArray count]);
         return [followingArray count];
     } else {
         return 1;
@@ -67,7 +65,6 @@
     NSString *user = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
     [API getUserFollowingListWithUsername:user completion:^(NSArray *followingList) {
         followingArray = followingList;
-        NSLog(@"%@",followingArray);
         [tableView reloadData];
     }];
     

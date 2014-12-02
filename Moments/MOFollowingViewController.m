@@ -172,7 +172,6 @@
 - (void)tabsChanged:(id)sender {
     if ([self.tabSegmentedControl selectedSegmentIndex] == 0) {
         followersVC.view.alpha = 0.0f;
-        NSLog(@"changed");
         self.title = @"Following";
     } else {
         followersVC.view.alpha = 1.0f;
