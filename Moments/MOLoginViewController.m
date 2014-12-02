@@ -95,6 +95,7 @@
         if (login == true) {
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
             UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"pageView"];
+            [[NSUserDefaults standardUserDefaults] setObject:[SSKeychain passwordForService:@"moments" account:@"username"] forKey:@"currentUserName"];
             [self presentViewController:vc animated:NO completion:nil];
         } else {
             self.view.alpha = 1;

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PBJVideoPlayerController.h"
 
-@interface MOListViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
+@interface MOListViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, PBJVideoPlayerControllerDelegate, UIGestureRecognizerDelegate>
 
 @property IBOutlet UITableView *tableView;
 

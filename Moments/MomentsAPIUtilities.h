@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <Firebase/Firebase.h>
 #import "AFNetworking.h"
-
+#import <AVFoundation/AVFoundation.h>
+#import <MediaPlayer/MediaPlayer.h>
 /**
  A block based iOS library for interacting with the Moments API */
 
@@ -57,6 +58,8 @@
  Searches for a user with a specified username and gives you the result in a boolean.
  */
 - (void)searchForUsersWithUserName:(NSString *)searchString completion:(void(^)(BOOL validUser))data;;;;
+
+-(UIImage *)grabThumbnailFromMomentFromUsername:(NSString *)username;
 
 
 @end

@@ -81,7 +81,7 @@
 - (void)getUserFollowersListWithUsername:(NSString *)username completion:(void (^)(NSArray *))data {
     [Firebase goOnline];
     Firebase *followingPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@/followers",username]];
-    [followingPath observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+    [followingPath observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         if (snapshot.value == [NSNull null]) {
             NSArray *empty = @[];
             NSLog(@"Success: Recieved follower list for user: %@ but there are 0 followers.",username);
@@ -226,6 +226,18 @@
         [Firebase goOffline];
         data(false);
     }];
+}
+
+-(UIImage*)grabThumbnailFromMomentFromUsername:(NSString *)username {
+    NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/douglas.mp4"]];
+    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:url options:nil];
+    AVAssetImageGenerator *generate = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+    NSError *err = NULL;
+    CMTime time = CMTimeMake(1, 60);
+    CGImageRef imgRef = [generate copyCGImageAtTime:time actualTime:NULL error:&err];
+    NSLog(@"err==%@, imageRef==%@", err, imgRef);
+    
+    return [[UIImage alloc] initWithCGImage:imgRef];
 }
 
 @end

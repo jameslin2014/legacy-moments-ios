@@ -20,7 +20,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     // Create the AVCaptureSession
     AVCaptureSession *session = [[AVCaptureSession alloc] init];
     [self setSession:session];
@@ -71,7 +70,7 @@
                 [connection setPreferredVideoStabilizationMode:AVCaptureVideoStabilizationModeAuto];
             [self setMovieFileOutput:movieFileOutput];
         }
-        
+
     });
 }
 
@@ -173,7 +172,7 @@
 #pragma mark Actions
 - (IBAction)toggleMovieRecording:(id)sender {
     [[self recordButton] setEnabled:NO];
-    
+
     dispatch_async([self sessionQueue], ^{
         if (![[self movieFileOutput] isRecording]) {
             [self setLockInterfaceRotation:YES];
@@ -347,8 +346,8 @@
             
             //Not granted access to mediaType
             dispatch_async(dispatch_get_main_queue(), ^{
-                [[[UIAlertView alloc] initWithTitle:@"AVCam!"
-                                            message:@"AVCam doesn't have permission to use Camera, please change privacy settings"
+                [[[UIAlertView alloc] initWithTitle:@"No Access"
+                                            message:@"Moments doesn't have permission to use Camera, please change privacy settings"
                                            delegate:self
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil] show];

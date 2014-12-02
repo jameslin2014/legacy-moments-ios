@@ -200,6 +200,7 @@
                     <connections>
                         <outlet property="flashButton" destination="azg-Fi-Lly" id="wLW-2v-jtK"/>
                         <outlet property="previewView" destination="Sgs-dV-lyT" id="Vsn-Fj-Brz"/>
+                        <outlet property="recordButton" destination="q7L-6T-xkJ" id="udx-i7-kQ5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Ac-vc-bKb" userLabel="First Responder" sceneMemberID="firstResponder"/>

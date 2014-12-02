@@ -30,6 +30,7 @@
     UIView *view2;
     UILabel *nameLabel;
     UIImageView *profileImageView;
+    NSArray *followersArray;
 
 }
 
@@ -46,16 +47,17 @@
     
     NSString *currentUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
     MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
+    
     [APIHelper getUserFollowersListWithUsername:currentUser completion:^(NSArray *followers) {
         [[NSUserDefaults standardUserDefaults] setInteger:[followers count] forKey:@"saved"];
     }];
     
     followersVC = [self.storyboard instantiateViewControllerWithIdentifier:@"followersVC"]; // make sure
 
-    [NSTimer scheduledTimerWithTimeInterval:3.0f
-                                     target:self selector:@selector(reloadTable) userInfo:nil repeats:YES];
-
+    NSTimer *rowTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f
+                                     target:self selector:@selector(numberOfRows) userInfo:nil repeats:YES];
     
+    [rowTimer fire];
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = NO;
     self.title = @"Following";
@@ -168,18 +170,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)reloadTable {
-    MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
-    NSString *currentUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
-    [APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *followedUsers) {
-        if ([followedUsers isEqual:tempArray]) {
-        } else {
-            [self.tableView reloadData];
-            [self.tableView numberOfRowsInSection:0];
-        }
-    }];
-}
-
 - (void)tabsChanged:(id)sender {
     if ([self.tabSegmentedControl selectedSegmentIndex] == 0) {
         followersVC.view.alpha = 0.0f;
@@ -227,13 +217,21 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [followersArray count];
+}
+
+-(void)numberOfRows {
     MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
     NSString *currentUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
     [APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *followedUsers) {
-        number = [followedUsers count];
+        if ([followedUsers isEqual:followersArray]) {
+            
+        } else {
+        followersArray = followedUsers;
+        [self.tableView reloadData];
+        }
     }];
-    NSLog(@"%lu",(unsigned long)number);
-    return number;
+
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
