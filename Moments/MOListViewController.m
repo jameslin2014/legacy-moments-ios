@@ -104,15 +104,7 @@
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
         profileImageView.clipsToBounds = YES;
         [cell addSubview:profileImageView];
-        
-        AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",user]]]];
-        [op start];
-        [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-            [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.png",user]] placeholderImage:[UIImage imageNamed:@"capture-button"]];
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            
-        }];
-        
+        [profileImageView setImage:[UIImage imageNamed:@"capture-button"]];        
         
     } else {
     UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 11, 35, 35)];
@@ -246,7 +238,7 @@
     [player playFromBeginning];
     [reloadTimer invalidate];
     self.navigationController.navigationBar.alpha = 0.0f;
-    [HUD1 dismissAnimated:NO];
+    HUD1.alpha = 0.0f;
 }
 
 -(void)videoPlayerPlaybackDidEnd:(PBJVideoPlayerController *)player {
@@ -257,15 +249,11 @@
 }
 
 -(void)videoPlayerPlaybackWillStartFromBeginning:(PBJVideoPlayerController *)player {
-    NSLog(@"beginning");
-    [HUD dismissAnimated:YES];
-    HUD = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleLight];
-    [videoPlayer.view addSubview:HUD];
+    HUD1.alpha = 0.0f;
 }
 
 -(void)videoPlayerPlaybackStateDidChange:(PBJVideoPlayerController *)player {
     if (player.playbackState == PBJVideoPlayerPlaybackStateStopped) {
-        NSLog(@"stopped");
     }
 }
 
