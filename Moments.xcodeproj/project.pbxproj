@@ -258,6 +258,14 @@
 			name = API;
 			sourceTree = "<group>";
 		};
+		02C1E4A51A2ED27700F7EC6E /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Utilities;
+			path = Libraries/AFNetworking;
+			sourceTree = "<group>";
+		};
 		A59DADB51A2B3D9A00FB6EBB /* Bold */ = {
 			isa = PBXGroup;
 			children = (
@@ -324,6 +332,7 @@
 				A5B31C3E1A287F26009734EE /* Main.storyboard */,
 				A5E01CDA1A2B3899003ED753 /* interface.xcassets */,
 				A5E01CDC1A2B3C76003ED753 /* fundamentals.xcassets */,
+				02C1E4A51A2ED27700F7EC6E /* Utilities */,
 				02949ED71A2984F8001EDD2D /* API */,
 				A5B31C341A287F25009734EE /* Supporting Files */,
 			);

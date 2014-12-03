@@ -185,8 +185,10 @@
     } else {
         taps = YES;
     videoPlayer = [[PBJVideoPlayerController alloc] init];
+    videoPlayer.view.transform = CGAffineTransformMakeRotation(M_PI/2);
     videoPlayer.view.frame = self.view.bounds;
     videoPlayer.delegate = self;
+
     // setup media
     if (indexPath.section == 0) {
         NSString *user = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
@@ -207,6 +209,7 @@
             [dismissGesture setNumberOfTouchesRequired:1];
             dismissGesture.delegate = self;
             [videoPlayer.view addGestureRecognizer:dismissGesture];
+
             [dismissGesture addTarget:self action:@selector(dismissPlayer)];
             
             HUD1 = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleLight];

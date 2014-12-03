@@ -56,7 +56,6 @@
     NSTimer *rowTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f
                                                          target:self selector:@selector(numberOfRows) userInfo:nil repeats:YES];
     
-    [rowTimer fire];
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = NO;
     self.title = @"Following";
@@ -225,7 +224,6 @@
     NSString *currentUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
     [APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *followedUsers) {
         if ([followedUsers isEqual:followersArray]) {
-            
         } else {
             followersArray = followedUsers;
             [self.tableView reloadData];
@@ -311,7 +309,7 @@
         [label setText:string];
         
     } else {
-        NSString *string =[NSString stringWithFormat:@"Following %lu users",[followersArray count]];
+        NSString *string =[NSString stringWithFormat:@"Following %lu users",(unsigned long)[followersArray count]];
         [label setText:string];
     }
     
