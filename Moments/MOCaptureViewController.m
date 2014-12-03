@@ -7,6 +7,8 @@
 //
 
 #import "MOCaptureViewController.h"
+#import "AFAmazonS3Manager.h"
+#import "AFAmazonS3RequestSerializer.h"
 
 @implementation MOCaptureViewController
 
@@ -38,7 +40,7 @@
         
         NSError *error = nil;
         
-        MOCaptureViewController *videoDevice = [MOCaptureViewController deviceWithMediaType:AVMediaTypeVideo preferringPosition:AVCaptureDevicePositionBack];
+        MOCaptureViewController *videoDevice = [MOCaptureViewController deviceWithMediaType:AVMediaTypeVideo preferringPosition:AVCaptureDevicePositionFront];
         AVCaptureDeviceInput *videoDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:videoDevice error:&error];
         
         if (error) {
@@ -260,25 +262,75 @@
 #pragma mark File Output Delegate
 
 - (void)captureOutput:(AVCaptureFileOutput *)captureOutput didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL fromConnections:(NSArray *)connections error:(NSError *)error {
-    if (error)
+    if (error) {
         NSLog(@"%@", error);
-    
+    }
+    NSLog(@"REC");
     [self setLockInterfaceRotation:NO];
     
     UIBackgroundTaskIdentifier backgroundRecordingID = [self backgroundRecordingID];
     [self setBackgroundRecordingID:UIBackgroundTaskInvalid];
     
-    [[[ALAssetsLibrary alloc] init] writeVideoAtPathToSavedPhotosAlbum:outputFileURL completionBlock:^(NSURL *assetURL, NSError *error) {
-        if (error)
-            NSLog(@"%@", error);
-        
-        [[NSFileManager defaultManager] removeItemAtURL:outputFileURL error:nil];
-        
-        if (backgroundRecordingID != UIBackgroundTaskInvalid)
-            [[UIApplication sharedApplication] endBackgroundTask:backgroundRecordingID];
+    AFAmazonS3Manager *s3Manager =
+    [[AFAmazonS3Manager alloc] initWithAccessKeyID:@"AKIAIVV5BPQF5DZFC26Q"
+                                            secret:@"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"];
+    s3Manager.requestSerializer.region = AFAmazonS3USStandardRegion;
+    s3Manager.requestSerializer.bucket = @"moments-videos";
+    
+   NSString *user = [NSString stringWithFormat:@"%@.mp4",[[NSUserDefaults standardUserDefaults]  objectForKey:@"currentUserName"]];
+    NSURL *url = [s3Manager.baseURL URLByAppendingPathComponent:user];
+    NSMutableURLRequest *originalRequest = [[NSMutableURLRequest alloc] initWithURL:url];
+    originalRequest.HTTPMethod = @"PUT";
+    originalRequest.HTTPBody = [NSData dataWithContentsOfURL:outputFileURL];
+    [originalRequest setValue:@"video/mp4" forHTTPHeaderField:@"Content-Type"];
+    NSURLRequest *request = [s3Manager.requestSerializer
+                             requestBySettingAuthorizationHeadersForRequest:originalRequest
+                             error:nil];
+    
+    
+    AFHTTPRequestOperation *operation = [s3Manager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        // Success!
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error uploading %@", error);
     }];
+    [s3Manager.operationQueue addOperation:operation];
+    
+    
+    AFAmazonS3Manager *s3Manager2 =
+    [[AFAmazonS3Manager alloc] initWithAccessKeyID:@"AKIAIVV5BPQF5DZFC26Q"
+                                            secret:@"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"];
+    s3Manager2.requestSerializer.region = AFAmazonS3USStandardRegion;
+    s3Manager2.requestSerializer.bucket = @"moments-videos";
+    
+    AVAsset *asset = [AVAsset assetWithURL:outputFileURL];
+    AVAssetImageGenerator *imageGenerator = [[AVAssetImageGenerator alloc]initWithAsset:asset];
+    CMTime time = [asset duration];
+    time.value = 0;
+    CGImageRef imageRef = [imageGenerator copyCGImageAtTime:time actualTime:NULL error:NULL];
+    UIImage *thumbnail = [UIImage imageWithCGImage:imageRef];
+    CGImageRef imageRef2 = CGImageCreateWithImageInRect([thumbnail CGImage], CGRectMake(0, 0, 200, 200));
+    UIImage *cropped = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef2);
+    
+    NSString *user2 = [NSString stringWithFormat:@"%@.jpg",[[NSUserDefaults standardUserDefaults]  objectForKey:@"currentUserName"]];
+    NSURL *url2 = [s3Manager.baseURL URLByAppendingPathComponent:user2];
+    NSMutableURLRequest *originalRequest2 = [[NSMutableURLRequest alloc] initWithURL:url2];
+    originalRequest2.HTTPMethod = @"PUT";
+    originalRequest2.HTTPBody = UIImageJPEGRepresentation(cropped, 0.2f);
+    [originalRequest2 setValue:@"image/jpg" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLRequest *request2 = [s3Manager2.requestSerializer
+                             requestBySettingAuthorizationHeadersForRequest:originalRequest2
+                             error:nil];
+    
+    
+    AFHTTPRequestOperation *operation2 = [s3Manager2 HTTPRequestOperationWithRequest:request2 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"success");
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error uploading %@", error);
+    }];
+    [s3Manager2.operationQueue addOperation:operation2];
 }
-
 #pragma mark Device Configuration
 
 - (void)focusWithMode:(AVCaptureFocusMode)focusMode exposeWithMode:(AVCaptureExposureMode)exposureMode atDevicePoint:(CGPoint)point monitorSubjectAreaChange:(BOOL)monitorSubjectAreaChange {

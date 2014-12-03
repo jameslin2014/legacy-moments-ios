@@ -21,6 +21,7 @@
     JGProgressHUD *HUD;
     JGProgressHUD *HUD1;
     NSTimer *reloadTimer;
+    BOOL taps;
 }
 @synthesize tableView;
 
@@ -64,8 +65,10 @@
     MomentsAPIUtilities *API = [MomentsAPIUtilities alloc];
     NSString *user = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
     [API getUserFollowingListWithUsername:user completion:^(NSArray *followingList) {
-        followingArray = followingList;
-        [tableView reloadData];
+        if ([followingArray isEqual:followingList]) {} else {
+            followingArray = followingList;
+            [tableView reloadData];
+        }
     }];
     
 }
@@ -82,7 +85,9 @@
                                   reuseIdentifier: CellIdentifier];
     
     cell.backgroundColor = [UIColor clearColor];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    UIView *bgColorView = [[UIView alloc] init];
+    bgColorView.backgroundColor = [UIColor redColor];
+    [cell setSelectedBackgroundView:bgColorView];
     cell.textLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:20];
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.detailTextLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:20];
@@ -101,16 +106,21 @@
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
         profileImageView.clipsToBounds = YES;
         [cell addSubview:profileImageView];
-        [profileImageView setImage:[UIImage imageNamed:@"capture-button"]];
-        
+        NSURL * imageURL = [NSURL URLWithString:@"https://s3.amazonaws.com/moments-videos/colton.jpg"];
+        NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+        UIImage * image = [UIImage imageWithData:imageData];
+        UIImage* flippedImage = [UIImage imageWithCGImage:image.CGImage
+                                                    scale:image.scale - 200
+                                              orientation:UIImageOrientationRight];
+        [profileImageView setImage:flippedImage];
+        NSLog(@"%@",[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.jpg",user]);
     } else {
         UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 11, 35, 35)];
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
         profileImageView.clipsToBounds = YES;
         [cell addSubview:profileImageView];
         
-        MomentsAPIUtilities *API = [MomentsAPIUtilities alloc];
-        [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.png",[followingArray objectAtIndex:indexPath.row]]] placeholderImage:[UIImage imageNamed:@"capture-button"]];
+        [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",[followingArray objectAtIndex:indexPath.row]]] placeholderImage:[UIImage imageNamed:@"capture-button"]];
         
         nameLabel.text = [followingArray objectAtIndex:indexPath.row];
     }
@@ -163,16 +173,24 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (taps == YES) {
+        
+    } else {
+        taps = YES;
     videoPlayer = [[PBJVideoPlayerController alloc] init];
     videoPlayer.view.frame = self.view.bounds;
     videoPlayer.delegate = self;
     // setup media
     if (indexPath.section == 0) {
         NSString *user = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
-        AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",user]]]];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",user]]];
+        [request setHTTPMethod:@"HEAD"];
+        AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
         [op start];
         [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            taps = NO;
+            [reloadTimer invalidate];
             videoPlayer.videoPath = [NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",user];
             [self addChildViewController:videoPlayer];
             [self.view addSubview:videoPlayer.view];
@@ -190,11 +208,21 @@
             [HUD1 showInView:self.view animated:YES];
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            taps = NO;
         }];
+        [op setCacheResponseBlock:^NSCachedURLResponse *(NSURLConnection *connection, NSCachedURLResponse *cachedResponse) {
+            return nil;
+        }];
+
+
     } else {
-        AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",[followingArray objectAtIndex:indexPath.row]]]]];
-        [op start];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",[followingArray objectAtIndex:indexPath.row]]]];
+        [request setHTTPMethod:@"HEAD"];
+        AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+            [op start];
         [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            taps = NO;
+            [reloadTimer invalidate];
             videoPlayer.videoPath = [NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",[followingArray objectAtIndex:indexPath.row]];
             [self addChildViewController:videoPlayer];
             [self.view addSubview:videoPlayer.view];
@@ -211,12 +239,18 @@
             [self.view addSubview:HUD1];
             [HUD1 showInView:self.view animated:YES];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            
+            taps = NO;
+            NSLog(@"fail");
         }];
+        [op setCacheResponseBlock:^NSCachedURLResponse *(NSURLConnection *connection, NSCachedURLResponse *cachedResponse) {
+            return nil;
+        }];
+    }
     }
 }
 
 -(void)dismissPlayer {
+    taps = NO;
     [videoPlayer removeFromParentViewController];
     [videoPlayer.view removeFromSuperview];
     self.navigationController.navigationBar.alpha = 1.0f;
@@ -230,7 +264,6 @@
 
 -(void)videoPlayerReady:(PBJVideoPlayerController *)player {
     [player playFromBeginning];
-    [reloadTimer invalidate];
     self.navigationController.navigationBar.alpha = 0.0f;
     HUD1.alpha = 0.0f;
 }
@@ -240,6 +273,7 @@
     [player.view removeFromSuperview];
     self.navigationController.navigationBar.alpha = 1.0f;
     reloadTimer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(numberOfRows) userInfo:nil repeats:YES];
+    taps = NO;
 }
 
 -(void)videoPlayerPlaybackWillStartFromBeginning:(PBJVideoPlayerController *)player {
