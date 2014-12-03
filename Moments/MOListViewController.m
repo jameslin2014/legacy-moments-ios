@@ -106,7 +106,7 @@
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
         profileImageView.clipsToBounds = YES;
         [cell addSubview:profileImageView];
-        NSURL * imageURL = [NSURL URLWithString:@"https://s3.amazonaws.com/moments-videos/colton.jpg"];
+        NSURL * imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.jpg",user]];
         NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
         UIImage * image = [UIImage imageWithData:imageData];
         UIImage* flippedImage = [UIImage imageWithCGImage:image.CGImage
@@ -120,7 +120,13 @@
         profileImageView.clipsToBounds = YES;
         [cell addSubview:profileImageView];
         
-        [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",[followingArray objectAtIndex:indexPath.row]]] placeholderImage:[UIImage imageNamed:@"capture-button"]];
+        NSURL * imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.jpg",[followingArray objectAtIndex:indexPath.row]]];
+        NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+        UIImage * image = [UIImage imageWithData:imageData];
+        UIImage* flippedImage = [UIImage imageWithCGImage:image.CGImage
+                                                    scale:image.scale - 200
+                                              orientation:UIImageOrientationRight];
+        [profileImageView setImage:flippedImage];
         
         nameLabel.text = [followingArray objectAtIndex:indexPath.row];
     }
