@@ -267,7 +267,7 @@
     }
     JGProgressHUD *HUD = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleLight];
     [HUD showInView:self.view animated:YES];
-    [self.view setUserInteractionEnabled:false];
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     
@@ -403,7 +403,8 @@
     
     AFHTTPRequestOperation *operation2 = [s3Manager2 HTTPRequestOperationWithRequest:request2 success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [HUD dismissAnimated:YES];
-        [self.view setUserInteractionEnabled:true];
+        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+        [self.navigationController.view setUserInteractionEnabled:true];
         NSLog(@"success");
         NSLog(@"%@",operation.request.allHTTPHeaderFields);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
