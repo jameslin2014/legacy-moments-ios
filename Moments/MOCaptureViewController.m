@@ -9,7 +9,7 @@
 #import "MOCaptureViewController.h"
 #import "AFAmazonS3Manager.h"
 #import "AFAmazonS3RequestSerializer.h"
-
+#import "JGProgressHUD.h"
 @implementation MOCaptureViewController
 
 - (BOOL)isSessionRunningAndDeviceAuthorized {
@@ -265,6 +265,9 @@
     if (error) {
         NSLog(@"%@", error);
     }
+    JGProgressHUD *HUD = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleLight];
+    [HUD showInView:self.view animated:YES];
+    [self.view setUserInteractionEnabled:false];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     
@@ -399,6 +402,8 @@
     
     
     AFHTTPRequestOperation *operation2 = [s3Manager2 HTTPRequestOperationWithRequest:request2 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [HUD dismissAnimated:YES];
+        [self.view setUserInteractionEnabled:true];
         NSLog(@"success");
         NSLog(@"%@",operation.request.allHTTPHeaderFields);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
