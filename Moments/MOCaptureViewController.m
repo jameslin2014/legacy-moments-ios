@@ -359,7 +359,6 @@
     originalRequest.HTTPMethod = @"PUT";
     originalRequest.HTTPBody = [NSData dataWithContentsOfURL:movieURL];
     [originalRequest setValue:@"video/mp4" forHTTPHeaderField:@"Content-Type"];
-    [originalRequest setValue:@"REDUCED_REDUNDANCY" forHTTPHeaderField:@"x-amz-storage-class"];
     NSURLRequest *request = [s3Manager.requestSerializer
                              requestBySettingAuthorizationHeadersForRequest:originalRequest
                              error:nil];
@@ -393,7 +392,6 @@
     originalRequest2.HTTPMethod = @"PUT";
     originalRequest2.HTTPBody = UIImageJPEGRepresentation(cropped, 0.2f);
     [originalRequest2 setValue:@"image/jpg" forHTTPHeaderField:@"Content-Type"];
-    [originalRequest2 setValue:@"REDUCED_REDUNDANCY" forHTTPHeaderField:@"x-amz-storage-class"];
 
     NSURLRequest *request2 = [s3Manager2.requestSerializer
                              requestBySettingAuthorizationHeadersForRequest:originalRequest2
