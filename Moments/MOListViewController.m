@@ -11,18 +11,22 @@
 #import "PBJVideoPlayerController.h"
 #import "JGProgressHUD.h"
 #import "UIImageView+AFNetworking.h"
+#import "SSKeychain.h"
+
 @interface MOListViewController ()
+
+@property UIBarButtonItem *rightButton;
+@property NSArray *followingArray;
+@property PBJVideoPlayerController *videoPlayer;
+@property JGProgressHUD *HUD;
+@property JGProgressHUD *HUD1;
+@property NSTimer *reloadTimer;
+@property BOOL taps;
 
 @end
 
-@implementation MOListViewController {
-    NSArray *followingArray;
-    PBJVideoPlayerController *videoPlayer;
-    JGProgressHUD *HUD;
-    JGProgressHUD *HUD1;
-    NSTimer *reloadTimer;
-    BOOL taps;
-}
+@implementation MOListViewController
+@synthesize rightButton, followingArray, videoPlayer, HUD, HUD1, reloadTimer, taps;
 @synthesize tableView;
 
 - (void)viewDidLoad {
@@ -33,17 +37,25 @@
     tableView.dataSource = self;
     
     // UINavigationBar styling
-    self.navigationController.navigationBarHidden = NO;
     self.title = @"Moments";
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.23 green:0.52 blue:0.68 alpha:0.39]];
-    [self.navigationController.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys: [UIFont fontWithName:@"SanFranciscoDisplay-Medium" size:17], NSFontAttributeName, nil]];
-    
+    self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
-    self.tableView.separatorColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
-    self.tableView.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.23 green:0.52 blue:0.68 alpha:0.39]];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"SanFranciscoDisplay-Medium" size:17], NSFontAttributeName, nil]];
+    
+    // UITableView styling
+    tableView.separatorColor = [UIColor colorWithRed:0.141 green:0.137 blue:0.13 alpha:1];
+    tableView.backgroundColor = [UIColor colorWithRed:0.141 green:0.137 blue:0.13 alpha:1];
+    
+    self.clearsSelectionOnViewWillAppear = NO;
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    // UIBarButtonItem = Right
+    self.rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"file_name"] style:UIBarButtonItemStylePlain target:self action:@selector(rightButton:)];
+    self.navigationItem.rightBarButtonItem = self.rightButton;
 }
 
--(void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     [self numberOfRows];
     reloadTimer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(numberOfRows) userInfo:nil repeats:YES];
 }
@@ -61,9 +73,9 @@
     }
 }
 
--(void)numberOfRows {
+- (void)numberOfRows {
     MomentsAPIUtilities *API = [MomentsAPIUtilities alloc];
-    NSString *user = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
+    NSString *user = [SSKeychain passwordForService:@"moments" account:@"username"];
     [API getUserFollowingListWithUsername:user completion:^(NSArray *followingList) {
         if ([followingArray isEqual:followingList]) {} else {
             followingArray = followingList;
@@ -99,7 +111,7 @@
     [cell.contentView addSubview:nameLabel];
     
     if (indexPath.section == 0) {
-        NSString *user = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
+        NSString *user = [SSKeychain passwordForService:@"moments" account:@"username"];
         nameLabel.text = user;
         nameLabel.frame = CGRectMake(55, 7, cell.frame.size.width, cell.frame.size.height);
         UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 11, 35, 35)];
@@ -110,7 +122,7 @@
         NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
         UIImage * image = [UIImage imageWithData:imageData];
         UIImage* flippedImage = [UIImage imageWithCGImage:image.CGImage
-                                                    scale:image.scale - 200
+                                                    scale:image.scale
                                               orientation:UIImageOrientationRight];
         [profileImageView setImage:flippedImage];
         NSLog(@"%@",[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.jpg",user]);
@@ -124,12 +136,13 @@
         NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
         UIImage * image = [UIImage imageWithData:imageData];
         UIImage* flippedImage = [UIImage imageWithCGImage:image.CGImage
-                                                    scale:image.scale - 200
+                                                    scale:image.scale
                                               orientation:UIImageOrientationRight];
         [profileImageView setImage:flippedImage];
         
         nameLabel.text = [followingArray objectAtIndex:indexPath.row];
     }
+    
     return cell;
 }
 
@@ -144,24 +157,17 @@
         cell.contentView.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return (CGFloat) 0.0;
+    } else {
+        return 21.5f;
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 0) {
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 18)];
-        /* Create custom view to display section header... */
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 2, self.tableView.frame.size.width, 18)];
-        [label setFont:[UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:1]];
-        label.textColor = [UIColor whiteColor];
-        NSString *string =[NSString stringWithFormat:@"You"];
-        [label setText:string];
-        
-        [view addSubview:label];
-        [view setBackgroundColor:[UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0]]; //your background color...
-        return view;
+        return nil;
     } else{
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 18)];
         /* Create custom view to display section header... */
@@ -184,77 +190,77 @@
         
     } else {
         taps = YES;
-    videoPlayer = [[PBJVideoPlayerController alloc] init];
-    videoPlayer.view.transform = CGAffineTransformMakeRotation(M_PI/2);
-    videoPlayer.view.frame = self.view.bounds;
-    videoPlayer.delegate = self;
-
-    // setup media
-    if (indexPath.section == 0) {
-        NSString *user = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",user]]];
-        [request setHTTPMethod:@"HEAD"];
-        AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-        [op start];
-        [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-            taps = NO;
-            [reloadTimer invalidate];
-            videoPlayer.videoPath = [NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",user];
-            [self addChildViewController:videoPlayer];
-            [self.view addSubview:videoPlayer.view];
-            [videoPlayer didMoveToParentViewController:self];
-            
-            UITapGestureRecognizer *dismissGesture = [[UITapGestureRecognizer alloc] init];
-            dismissGesture.numberOfTapsRequired = 1;
-            [dismissGesture setNumberOfTouchesRequired:1];
-            dismissGesture.delegate = self;
-            [videoPlayer.view addGestureRecognizer:dismissGesture];
-
-            [dismissGesture addTarget:self action:@selector(dismissPlayer)];
-            
-            HUD1 = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleLight];
-            [self.view addSubview:HUD1];
-            [HUD1 showInView:self.view animated:YES];
-            
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            taps = NO;
-        }];
-        [op setCacheResponseBlock:^NSCachedURLResponse *(NSURLConnection *connection, NSCachedURLResponse *cachedResponse) {
-            return nil;
-        }];
-
-
-    } else {
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",[followingArray objectAtIndex:indexPath.row]]]];
-        [request setHTTPMethod:@"HEAD"];
-        AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+        videoPlayer = [[PBJVideoPlayerController alloc] init];
+        videoPlayer.view.transform = CGAffineTransformMakeRotation(M_PI/2);
+        videoPlayer.view.frame = self.view.bounds;
+        videoPlayer.delegate = self;
+        
+        // setup media
+        if (indexPath.section == 0) {
+            NSString *user = [SSKeychain passwordForService:@"moments" account:@"username"];
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",user]]];
+            [request setHTTPMethod:@"HEAD"];
+            AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
             [op start];
-        [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-            taps = NO;
-            [reloadTimer invalidate];
-            videoPlayer.videoPath = [NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",[followingArray objectAtIndex:indexPath.row]];
-            [self addChildViewController:videoPlayer];
-            [self.view addSubview:videoPlayer.view];
-            [videoPlayer didMoveToParentViewController:self];
+            [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                taps = NO;
+                [reloadTimer invalidate];
+                videoPlayer.videoPath = [NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",user];
+                [self addChildViewController:videoPlayer];
+                [self.view addSubview:videoPlayer.view];
+                [videoPlayer didMoveToParentViewController:self];
+                
+                UITapGestureRecognizer *dismissGesture = [[UITapGestureRecognizer alloc] init];
+                dismissGesture.numberOfTapsRequired = 1;
+                [dismissGesture setNumberOfTouchesRequired:1];
+                dismissGesture.delegate = self;
+                [videoPlayer.view addGestureRecognizer:dismissGesture];
+                
+                [dismissGesture addTarget:self action:@selector(dismissPlayer)];
+                
+                HUD1 = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleLight];
+                [self.view addSubview:HUD1];
+                [HUD1 showInView:self.view animated:YES];
+                
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                taps = NO;
+            }];
+            [op setCacheResponseBlock:^NSCachedURLResponse *(NSURLConnection *connection, NSCachedURLResponse *cachedResponse) {
+                return nil;
+            }];
             
-            UITapGestureRecognizer *dismissGesture = [[UITapGestureRecognizer alloc] init];
-            dismissGesture.numberOfTapsRequired = 1;
-            [dismissGesture setNumberOfTouchesRequired:1];
-            dismissGesture.delegate = self;
-            [videoPlayer.view addGestureRecognizer:dismissGesture];
-            [dismissGesture addTarget:self action:@selector(dismissPlayer)];
             
-            HUD1 = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleLight];
-            [self.view addSubview:HUD1];
-            [HUD1 showInView:self.view animated:YES];
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            taps = NO;
-            NSLog(@"fail");
-        }];
-        [op setCacheResponseBlock:^NSCachedURLResponse *(NSURLConnection *connection, NSCachedURLResponse *cachedResponse) {
-            return nil;
-        }];
-    }
+        } else {
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",[followingArray objectAtIndex:indexPath.row]]]];
+            [request setHTTPMethod:@"HEAD"];
+            AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+            [op start];
+            [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                taps = NO;
+                [reloadTimer invalidate];
+                videoPlayer.videoPath = [NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",[followingArray objectAtIndex:indexPath.row]];
+                [self addChildViewController:videoPlayer];
+                [self.view addSubview:videoPlayer.view];
+                [videoPlayer didMoveToParentViewController:self];
+                
+                UITapGestureRecognizer *dismissGesture = [[UITapGestureRecognizer alloc] init];
+                dismissGesture.numberOfTapsRequired = 1;
+                [dismissGesture setNumberOfTouchesRequired:1];
+                dismissGesture.delegate = self;
+                [videoPlayer.view addGestureRecognizer:dismissGesture];
+                [dismissGesture addTarget:self action:@selector(dismissPlayer)];
+                
+                HUD1 = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleLight];
+                [self.view addSubview:HUD1];
+                [HUD1 showInView:self.view animated:YES];
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                taps = NO;
+                NSLog(@"fail");
+            }];
+            [op setCacheResponseBlock:^NSCachedURLResponse *(NSURLConnection *connection, NSCachedURLResponse *cachedResponse) {
+                return nil;
+            }];
+        }
     }
 }
 

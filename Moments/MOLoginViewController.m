@@ -59,7 +59,7 @@
     passwordField.returnKeyType = UIReturnKeyDone;
     passwordField.secureTextEntry = YES;
     [self.view addSubview:passwordField];
-    passwordField.text = [SSKeychain passwordForService:@"moments" account:@"password"];
+    passwordField.text = [SSKeychain passwordForService:@"moments" account:@"username"];
 }
 
 - (void)loginButtonAction:(UIButton *)sender {
@@ -78,7 +78,6 @@
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
             UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"pageView"];
             [self presentViewController:vc animated:YES completion:nil];
-            [[NSUserDefaults standardUserDefaults] setObject:usernameField.text forKey:@"currentUserName"];
         } else {
             NSLog(@"Login Failed");
         }
@@ -94,7 +93,6 @@
         if (login == true) {
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
             UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"pageView"];
-            [[NSUserDefaults standardUserDefaults] setObject:[SSKeychain passwordForService:@"moments" account:@"username"] forKey:@"currentUserName"];
             [self presentViewController:vc animated:NO completion:nil];
         } else {
             self.view.alpha = 1;

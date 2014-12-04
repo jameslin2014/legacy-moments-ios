@@ -8,10 +8,9 @@
 
 #import "UIImageView+AFNetworking.h"
 #import "AFNetworking.h"
-
 #import "MOFollowersViewController.h"
 #import "MomentsAPIUtilities.h"
-
+#import "SSKeychain.h"
 @implementation MOFollowersViewController {
     NSUInteger number;
     NSArray *tempArray;
@@ -19,7 +18,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDir = [paths objectAtIndex: 0];
+    NSString* docFile = [docDir stringByAppendingPathComponent: @"array.plist"];
+    tempArray = [NSKeyedUnarchiver unarchiveObjectWithFile:docFile];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
@@ -37,19 +39,21 @@
 
 - (void)reloadTable {
     MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
-    NSString *currentUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
-    [APIHelper getUserFollowersListWithUsername:currentUser completion:^(NSArray *followedUsers) {
-        if ([followedUsers isEqual:tempArray]) {
+    NSString *currentUser = [SSKeychain passwordForService:@"moments" account:@"username"];
+    [APIHelper getUserFollowersListWithUsername:currentUser completion:^(NSArray *followerUsers) {
+        if ([followerUsers isEqual:tempArray]) {
         } else {
-            tempArray = followedUsers;
+            tempArray = followerUsers;
             [self.tableView reloadData];
         }
     }];
+    
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [tempArray count];
+    
 }
 
 - (void)tableView: (UITableView*)tableView willDisplayCell: (UITableViewCell*)cell forRowAtIndexPath: (NSIndexPath*)indexPath {
@@ -82,7 +86,8 @@
     nameLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:24];
     nameLabel.textColor = [UIColor whiteColor];
     [cell.contentView addSubview:nameLabel];
-    
+    nameLabel.text = [tempArray objectAtIndex:indexPath.row ];
+
     UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 11, 35, 35)];
     
     profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
@@ -94,10 +99,9 @@
     cell.accessoryView = chevronImgVw;
     
     MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
-    NSString *currentUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
-    [APIHelper getUserFollowersListWithUsername:currentUser completion:^(NSArray *followers) {
-        tempArray = followers;
-        nameLabel.text = [followers objectAtIndex:indexPath.row ];
+    NSString *currentUser = [SSKeychain passwordForService:@"moments" account:@"username"];
+        NSArray *followers = [NSArray new];
+    followers = tempArray;
         [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",[followers objectAtIndex:indexPath.row]]] placeholderImage:[UIImage imageNamed:@"capture-button.png"]];
         
         [APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *following) {
@@ -110,7 +114,6 @@
                 chevronImgVw.frame = CGRectMake(cell.accessoryView.frame.origin.x, cell.accessoryView.frame.origin.y, 15, 15);
                 cell.accessoryView = chevronImgVw;
             }
-        }];
     }];
     
     return cell;
@@ -127,7 +130,7 @@
         [label setText:string];
         
     } else {
-        NSString *string =[NSString stringWithFormat:@"Followed by %lu users",[tempArray count]];
+        NSString *string =[NSString stringWithFormat:@"Followed by %lu users",[tableView numberOfRowsInSection:0]];
         [label setText:string];
     }
     

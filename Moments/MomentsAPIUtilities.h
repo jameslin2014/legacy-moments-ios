@@ -43,6 +43,11 @@
 - (void)getUserFollowersListWithUsername:(NSString *)username completion:(void(^)(NSArray *followers))data;
 
 /**
+ Grabs a user's profile picture from S3 from a username.
+ */
+- (void)getUserProfilePictureWithUsername:(NSString *)username completion:(void(^)(UIImage *profilePicture))data;
+
+/**
  Attempts to login with a username/password combination. Gives you a boolean with the result (true, it did authenticate or false, it did not authenticate).
  */
 - (void)loginWithUsername:(NSString *)username andPassword:(NSString *)password completion:(void(^)(BOOL loginStatus))data;

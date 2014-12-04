@@ -32,6 +32,10 @@
 		02949ECD1A298441001EDD2D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ECC1A298441001EDD2D /* CFNetwork.framework */; };
 		02949ED11A298458001EDD2D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ED01A298458001EDD2D /* SystemConfiguration.framework */; };
 		02C1E4A31A2E9AAE00F7EC6E /* JCDHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C1E4A21A2E9AAE00F7EC6E /* JCDHTTPConnection.m */; };
+		02C1E4B71A30221C00F7EC6E /* DLILCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C1E4AF1A30221C00F7EC6E /* DLILCacheManager.m */; };
+		02C1E4B81A30221C00F7EC6E /* DLILOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C1E4B21A30221C00F7EC6E /* DLILOperation.m */; };
+		02C1E4B91A30221C00F7EC6E /* DLImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C1E4B41A30221C00F7EC6E /* DLImageLoader.m */; };
+		02C1E4BA1A30221C00F7EC6E /* DLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C1E4B61A30221C00F7EC6E /* DLImageView.m */; };
 		02C894471A29B89100B87592 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ECE1A298451001EDD2D /* Security.framework */; };
 		A5B31C371A287F25009734EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B31C361A287F25009734EE /* main.m */; };
 		A5B31C3A1A287F25009734EE /* MOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B31C391A287F25009734EE /* MOAppDelegate.m */; };
@@ -127,6 +131,15 @@
 		02949ED01A298458001EDD2D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		02C1E4A11A2E9AAE00F7EC6E /* JCDHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCDHTTPConnection.h; sourceTree = "<group>"; };
 		02C1E4A21A2E9AAE00F7EC6E /* JCDHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCDHTTPConnection.m; sourceTree = "<group>"; };
+		02C1E4AC1A30221C00F7EC6E /* DLIL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLIL.h; sourceTree = "<group>"; };
+		02C1E4AE1A30221C00F7EC6E /* DLILCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLILCacheManager.h; sourceTree = "<group>"; };
+		02C1E4AF1A30221C00F7EC6E /* DLILCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLILCacheManager.m; sourceTree = "<group>"; };
+		02C1E4B11A30221C00F7EC6E /* DLILOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLILOperation.h; sourceTree = "<group>"; };
+		02C1E4B21A30221C00F7EC6E /* DLILOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLILOperation.m; sourceTree = "<group>"; };
+		02C1E4B31A30221C00F7EC6E /* DLImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLImageLoader.h; sourceTree = "<group>"; };
+		02C1E4B41A30221C00F7EC6E /* DLImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLImageLoader.m; sourceTree = "<group>"; };
+		02C1E4B51A30221C00F7EC6E /* DLImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLImageView.h; sourceTree = "<group>"; };
+		02C1E4B61A30221C00F7EC6E /* DLImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLImageView.m; sourceTree = "<group>"; };
 		A5B31C311A287F25009734EE /* Moments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moments.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5B31C351A287F25009734EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5B31C361A287F25009734EE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -264,6 +277,24 @@
 			);
 			name = Utilities;
 			path = Libraries/AFNetworking;
+			sourceTree = "<group>";
+		};
+		02C1E4AD1A30221C00F7EC6E /* DLILCache */ = {
+			isa = PBXGroup;
+			children = (
+				02C1E4AE1A30221C00F7EC6E /* DLILCacheManager.h */,
+				02C1E4AF1A30221C00F7EC6E /* DLILCacheManager.m */,
+			);
+			path = DLILCache;
+			sourceTree = "<group>";
+		};
+		02C1E4B01A30221C00F7EC6E /* DLILOperation */ = {
+			isa = PBXGroup;
+			children = (
+				02C1E4B11A30221C00F7EC6E /* DLILOperation.h */,
+				02C1E4B21A30221C00F7EC6E /* DLILOperation.m */,
+			);
+			path = DLILOperation;
 			sourceTree = "<group>";
 		};
 		A59DADB51A2B3D9A00FB6EBB /* Bold */ = {
@@ -429,6 +460,13 @@
 			children = (
 				A5E01C9F1A2B37F0003ED753 /* AFAmazonS3Manager.h */,
 				A5E01CA01A2B37F0003ED753 /* AFAmazonS3Manager.m */,
+				02C1E4AC1A30221C00F7EC6E /* DLIL.h */,
+				02C1E4AD1A30221C00F7EC6E /* DLILCache */,
+				02C1E4B01A30221C00F7EC6E /* DLILOperation */,
+				02C1E4B31A30221C00F7EC6E /* DLImageLoader.h */,
+				02C1E4B41A30221C00F7EC6E /* DLImageLoader.m */,
+				02C1E4B51A30221C00F7EC6E /* DLImageView.h */,
+				02C1E4B61A30221C00F7EC6E /* DLImageView.m */,
 				A5E01CA11A2B37F0003ED753 /* AFAmazonS3RequestSerializer.h */,
 				A5E01CA21A2B37F0003ED753 /* AFAmazonS3RequestSerializer.m */,
 				02C1E4A11A2E9AAE00F7EC6E /* JCDHTTPConnection.h */,
@@ -566,6 +604,7 @@
 				A5E01CD31A2B37F1003ED753 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				A5E01CD81A2B37F1003ED753 /* UIRefreshControl+AFNetworking.m in Sources */,
 				A5E01CD51A2B37F1003ED753 /* UIButton+AFNetworking.m in Sources */,
+				02C1E4B71A30221C00F7EC6E /* DLILCacheManager.m in Sources */,
 				023DF6CF1A2D505000A367EB /* JGProgressHUDRingIndicatorView.m in Sources */,
 				A5E01CD41A2B37F1003ED753 /* UIAlertView+AFNetworking.m in Sources */,
 				023DF6CE1A2D505000A367EB /* JGProgressHUDPieIndicatorView.m in Sources */,
@@ -577,10 +616,13 @@
 				023DF6B01A2D4AA700A367EB /* PBJVideoView.m in Sources */,
 				A5C5EB811A2A8358002F1591 /* MOCaptureViewController.m in Sources */,
 				A5E01CCD1A2B37F1003ED753 /* AFNetworkReachabilityManager.m in Sources */,
+				02C1E4B81A30221C00F7EC6E /* DLILOperation.m in Sources */,
 				023DF6C91A2D505000A367EB /* JGProgressHUDErrorIndicatorView.m in Sources */,
 				A5C5EB831A2A8358002F1591 /* MOListViewController.m in Sources */,
+				02C1E4B91A30221C00F7EC6E /* DLImageLoader.m in Sources */,
 				A5E01CD01A2B37F1003ED753 /* AFURLRequestSerialization.m in Sources */,
 				A5E01CD71A2B37F1003ED753 /* UIProgressView+AFNetworking.m in Sources */,
+				02C1E4BA1A30221C00F7EC6E /* DLImageView.m in Sources */,
 				A5E01CCF1A2B37F1003ED753 /* AFURLConnectionOperation.m in Sources */,
 				A5E01CD21A2B37F1003ED753 /* AFURLSessionManager.m in Sources */,
 				A5E01CCA1A2B37F1003ED753 /* AFHTTPRequestOperationManager.m in Sources */,

@@ -7,7 +7,7 @@
 //
 
 #import "MomentsAPIUtilities.h"
-
+#import "DLIL.h"
 @implementation MomentsAPIUtilities {
     BOOL loginStatus;
     NSArray *followingArray;
@@ -228,6 +228,17 @@
         [Firebase goOffline];
         data(false);
     }];
+}
+
+-(void)getUserProfilePictureWithUsername:(NSString *)username completion:(void (^)(UIImage *))data {
+    [[DLImageLoader sharedInstance] loadImageFromUrl:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",username]
+                                           completed:^(NSError *error, UIImage *image) {
+                                               if (error == nil) {
+                                                   data(image);
+                                               } else {
+                                                   NSLog(@"Error: %@",error);
+                                               }
+                                           }];
 }
 
 

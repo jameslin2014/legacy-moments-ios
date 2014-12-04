@@ -10,6 +10,7 @@
 #import "AFAmazonS3Manager.h"
 #import "AFAmazonS3RequestSerializer.h"
 #import "JGProgressHUD.h"
+#import "SSKeychain.h"
 @implementation MOCaptureViewController
 
 - (BOOL)isSessionRunningAndDeviceAuthorized {
@@ -39,7 +40,7 @@
         [self setBackgroundRecordingID:UIBackgroundTaskInvalid];
         
         NSError *error = nil;
-        
+    
         MOCaptureViewController *videoDevice = [MOCaptureViewController deviceWithMediaType:AVMediaTypeVideo preferringPosition:AVCaptureDevicePositionBack];
         AVCaptureDeviceInput *videoDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:videoDevice error:&error];
         
@@ -273,7 +274,7 @@
     
     NSString *filePath = [documentsPath stringByAppendingPathComponent:@"merged2.mp4"];
     [fileManager removeItemAtPath:filePath error:&error];
-    NSString *user = [NSString stringWithFormat:@"%@.mp4",[[NSUserDefaults standardUserDefaults]  objectForKey:@"currentUserName"]];
+    NSString *user = [NSString stringWithFormat:@"%@.mp4",[SSKeychain passwordForService:@"moments" account:@"username"]];
     AVAsset *firstVid = [AVAsset assetWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@",user]]];
     AVAsset *secondVid = [AVAsset assetWithURL:outputFileURL];
     NSArray *assets = @[firstVid, secondVid];
@@ -334,85 +335,86 @@
     pi.videoComposition = mutableVideoComposition;
     
     AVPlayer *player = [AVPlayer playerWithPlayerItem:pi];
-   AVAssetExportSession *exportSession =  [AVAssetExportSession exportSessionWithAsset:pi.asset presetName:AVAssetExportPresetMediumQuality];
+    AVAssetExportSession *exportSession =  [AVAssetExportSession exportSessionWithAsset:pi.asset presetName:AVAssetExportPresetMediumQuality];
     NSString* documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString* path = [documentPath stringByAppendingPathComponent:@"merged2.mp4"];
     NSURL* movieURL = [NSURL fileURLWithPath: path];
-     exportSession.outputURL = movieURL;
+    exportSession.outputURL = movieURL;
     exportSession.outputFileType = AVFileTypeMPEG4;
     [exportSession exportAsynchronouslyWithCompletionHandler:^{
         NSLog(@"done");
         NSLog(@"%@",exportSession.outputURL);
         
-    [self setLockInterfaceRotation:NO];
-    
-    UIBackgroundTaskIdentifier backgroundRecordingID = [self backgroundRecordingID];
-    [self setBackgroundRecordingID:UIBackgroundTaskInvalid];
-    
-    AFAmazonS3Manager *s3Manager =
-    [[AFAmazonS3Manager alloc] initWithAccessKeyID:@"AKIAIVV5BPQF5DZFC26Q"
-                                            secret:@"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"];
-    s3Manager.requestSerializer.region = AFAmazonS3USStandardRegion;
-    s3Manager.requestSerializer.bucket = @"moments-videos";
-    
-    
-   NSString *user = [NSString stringWithFormat:@"%@.mp4",[[NSUserDefaults standardUserDefaults]  objectForKey:@"currentUserName"]];
-    NSURL *url = [s3Manager.baseURL URLByAppendingPathComponent:user];
-    NSMutableURLRequest *originalRequest = [[NSMutableURLRequest alloc] initWithURL:url];
-    originalRequest.HTTPMethod = @"PUT";
-    originalRequest.HTTPBody = [NSData dataWithContentsOfURL:movieURL];
-    [originalRequest setValue:@"video/mp4" forHTTPHeaderField:@"Content-Type"];
-    NSURLRequest *request = [s3Manager.requestSerializer
-                             requestBySettingAuthorizationHeadersForRequest:originalRequest
-                             error:nil];
-    
-    
-    AFHTTPRequestOperation *operation = [s3Manager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        // Success!
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error uploading %@", error);
+        [self setLockInterfaceRotation:NO];
+        
+        UIBackgroundTaskIdentifier backgroundRecordingID = [self backgroundRecordingID];
+        [self setBackgroundRecordingID:UIBackgroundTaskInvalid];
+        
+        AFAmazonS3Manager *s3Manager =
+        [[AFAmazonS3Manager alloc] initWithAccessKeyID:@"AKIAIVV5BPQF5DZFC26Q"
+                                                secret:@"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"];
+        s3Manager.requestSerializer.region = AFAmazonS3USStandardRegion;
+        s3Manager.requestSerializer.bucket = @"moments-videos";
+        
+        
+        NSString *user = [NSString stringWithFormat:@"%@.mp4",[SSKeychain passwordForService:@"moments" account:@"username"]];
+        NSURL *url = [s3Manager.baseURL URLByAppendingPathComponent:user];
+        NSMutableURLRequest *originalRequest = [[NSMutableURLRequest alloc] initWithURL:url];
+        originalRequest.HTTPMethod = @"PUT";
+        originalRequest.HTTPBody = [NSData dataWithContentsOfURL:movieURL];
+        [originalRequest setValue:@"video/mp4" forHTTPHeaderField:@"Content-Type"];
+        NSURLRequest *request = [s3Manager.requestSerializer
+                                 requestBySettingAuthorizationHeadersForRequest:originalRequest
+                                 error:nil];
+        
+        
+        AFHTTPRequestOperation *operation = [s3Manager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            // Success!
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error uploading %@", error);
+        }];
+        [s3Manager.operationQueue addOperation:operation];
+        
+        
+        AFAmazonS3Manager *s3Manager2 =
+        [[AFAmazonS3Manager alloc] initWithAccessKeyID:@"AKIAIVV5BPQF5DZFC26Q"
+                                                secret:@"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"];
+        s3Manager2.requestSerializer.region = AFAmazonS3USStandardRegion;
+        s3Manager2.requestSerializer.bucket = @"moments-videos";
+        
+        AVAsset *asset = [AVAsset assetWithURL:movieURL];
+        AVAssetImageGenerator *imageGenerator = [[AVAssetImageGenerator alloc]initWithAsset:asset];
+        CMTime time3 = CMTimeMake(1, 0);
+        CGImageRef imageRef = [imageGenerator copyCGImageAtTime:asset.duration actualTime:&time3 error:NULL];
+        UIImage *thumbnail = [UIImage imageWithCGImage:imageRef];
+        CGImageRef imageRef2 = CGImageCreateWithImageInRect([thumbnail CGImage], CGRectMake(0, 0, 200, 200));
+        UIImage *cropped = [UIImage imageWithCGImage:imageRef];
+        CGImageRelease(imageRef2);
+        
+        NSString *user2 = [NSString stringWithFormat:@"%@.jpg",[SSKeychain passwordForService:@"moments" account:@"username"]];
+        NSURL *url2 = [s3Manager.baseURL URLByAppendingPathComponent:user2];
+        NSMutableURLRequest *originalRequest2 = [[NSMutableURLRequest alloc] initWithURL:url2];
+        originalRequest2.HTTPMethod = @"PUT";
+        originalRequest2.HTTPBody = UIImageJPEGRepresentation(cropped, 0.2f);
+        [originalRequest2 setValue:@"image/jpg" forHTTPHeaderField:@"Content-Type"];
+        
+        NSURLRequest *request2 = [s3Manager2.requestSerializer
+                                  requestBySettingAuthorizationHeadersForRequest:originalRequest2
+                                  error:nil];
+        
+        
+        AFHTTPRequestOperation *operation2 = [s3Manager2 HTTPRequestOperationWithRequest:request2 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [HUD dismissAnimated:YES];
+            [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+            [self.navigationController.view setUserInteractionEnabled:true];
+            NSLog(@"success");
+            NSLog(@"%@",operation.request.allHTTPHeaderFields);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error uploading %@", error);
+        }];
+        [s3Manager2.operationQueue addOperation:operation2];
     }];
-    [s3Manager.operationQueue addOperation:operation];
     
-    
-    AFAmazonS3Manager *s3Manager2 =
-    [[AFAmazonS3Manager alloc] initWithAccessKeyID:@"AKIAIVV5BPQF5DZFC26Q"
-                                            secret:@"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"];
-    s3Manager2.requestSerializer.region = AFAmazonS3USStandardRegion;
-    s3Manager2.requestSerializer.bucket = @"moments-videos";
-    
-    AVAsset *asset = [AVAsset assetWithURL:movieURL];
-    AVAssetImageGenerator *imageGenerator = [[AVAssetImageGenerator alloc]initWithAsset:asset];
-    CGImageRef imageRef = [imageGenerator copyCGImageAtTime:time actualTime:NULL error:NULL];
-    UIImage *thumbnail = [UIImage imageWithCGImage:imageRef];
-    CGImageRef imageRef2 = CGImageCreateWithImageInRect([thumbnail CGImage], CGRectMake(0, 0, 200, 200));
-    UIImage *cropped = [UIImage imageWithCGImage:imageRef];
-    CGImageRelease(imageRef2);
-    
-    NSString *user2 = [NSString stringWithFormat:@"%@.jpg",[[NSUserDefaults standardUserDefaults]  objectForKey:@"currentUserName"]];
-    NSURL *url2 = [s3Manager.baseURL URLByAppendingPathComponent:user2];
-    NSMutableURLRequest *originalRequest2 = [[NSMutableURLRequest alloc] initWithURL:url2];
-    originalRequest2.HTTPMethod = @"PUT";
-    originalRequest2.HTTPBody = UIImageJPEGRepresentation(cropped, 0.2f);
-    [originalRequest2 setValue:@"image/jpg" forHTTPHeaderField:@"Content-Type"];
-
-    NSURLRequest *request2 = [s3Manager2.requestSerializer
-                             requestBySettingAuthorizationHeadersForRequest:originalRequest2
-                             error:nil];
-    
-    
-    AFHTTPRequestOperation *operation2 = [s3Manager2 HTTPRequestOperationWithRequest:request2 success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [HUD dismissAnimated:YES];
-        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-        [self.navigationController.view setUserInteractionEnabled:true];
-        NSLog(@"success");
-        NSLog(@"%@",operation.request.allHTTPHeaderFields);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error uploading %@", error);
-    }];
-    [s3Manager2.operationQueue addOperation:operation2];
-    }];
-
 }
 #pragma mark Device Configuration
 

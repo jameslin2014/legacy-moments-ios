@@ -9,10 +9,9 @@
 #import "UIImageView+AFNetworking.h"
 #import "JKSegmentedControl.h"
 #import "AFNetworking.h"
-
 #import "MOFollowingViewController.h"
 #import "MomentsAPIUtilities.h"
-
+#import "SSKeychain.h"
 @interface MOFollowingViewController ()
 
 @property JKSegmentedControl *tabSegmentedControl;
@@ -44,11 +43,13 @@
     tapper.cancelsTouchesInView = YES;
     [self.view addGestureRecognizer:tapper];
     
-    NSString *currentUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
+    NSString *currentUser = [SSKeychain passwordForService:@"moments" account:@"username"];
     MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
-    
-    [APIHelper getUserFollowersListWithUsername:currentUser completion:^(NSArray *followers) {
-        [[NSUserDefaults standardUserDefaults] setInteger:[followers count] forKey:@"saved"];
+    [APIHelper getUserFollowersListWithUsername:currentUser completion:^(NSArray *followersList) {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *docDir = [paths objectAtIndex: 0];
+        NSString* docFile = [docDir stringByAppendingPathComponent: @"array.plist"];
+        [NSKeyedArchiver archiveRootObject:followersList toFile:docFile];
     }];
     
     followersVC = [self.storyboard instantiateViewControllerWithIdentifier:@"followersVC"]; // make sure
@@ -221,7 +222,8 @@
 
 -(void)numberOfRows {
     MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
-    NSString *currentUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
+    NSString *currentUser = [SSKeychain passwordForService:@"moments" account:@"username"];
+    
     [APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *followedUsers) {
         if ([followedUsers isEqual:followersArray]) {
         } else {
@@ -262,7 +264,7 @@
     
     if (self.tabSegmentedControl.selectedSegmentIndex == 0) {
         MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
-        NSString *currentUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
+        NSString *currentUser = [SSKeychain passwordForService:@"moments" account:@"username"];
         [APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *followedUsers) {
             nameLabel.text = [followedUsers objectAtIndex:indexPath.row ];
             [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",[followedUsers objectAtIndex:indexPath.row]]] placeholderImage:[UIImage imageNamed:@"capture-button.png"]];
@@ -271,7 +273,7 @@
         }];
     } else {
         MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
-        NSString *currentUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserName"];
+        NSString *currentUser = [SSKeychain passwordForService:@"moments" account:@"username"];
         [APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *followedUsers) {
             nameLabel.text = [followedUsers objectAtIndex:indexPath.row ];
             [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",[followedUsers objectAtIndex:indexPath.row]]] placeholderImage:[UIImage imageNamed:@"capture-button.png"]];
@@ -292,7 +294,7 @@
 - (void)tableView: (UITableView*)tableView willDisplayCell: (UITableViewCell*)cell forRowAtIndexPath: (NSIndexPath*)indexPath {
     if(indexPath.row % 2 == 0)
         // color for first alternating cell
-        cell.backgroundColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
+        cell.backgroundColor = [UIColor colorWithRed:(40/255.0) green:(38/255.0) blue:(38/255.0) alpha:100];
     else
         // color for second alternating cell
         cell.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
