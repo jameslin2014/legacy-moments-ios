@@ -42,6 +42,13 @@
         [NSKeyedArchiver archiveRootObject:followingList toFile:docFile];
     }];
     
+    [APIHelper getUserFollowersListWithUsername:currentUser completion:^(NSArray *followingList) {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *docDir = [paths objectAtIndex:0];
+        NSString* docFile = [docDir stringByAppendingPathComponent: @"followersTemp.plist"];
+        [NSKeyedArchiver archiveRootObject:followingList toFile:docFile];
+    }];
+    
     
     // Do any additional setup after loading the view, typically from a nib.
     tableView.delegate = self;
