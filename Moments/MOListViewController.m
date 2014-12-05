@@ -32,6 +32,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSString *currentUser = [SSKeychain passwordForService:@"moments" account:@"username"];
+    MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
+    
+    [APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *followingList) {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *docDir = [paths objectAtIndex: 0];
+        NSString* docFile = [docDir stringByAppendingPathComponent: @"followingTemp.plist"];
+        [NSKeyedArchiver archiveRootObject:followingList toFile:docFile];
+    }];
+    
+    
     // Do any additional setup after loading the view, typically from a nib.
     tableView.delegate = self;
     tableView.dataSource = self;

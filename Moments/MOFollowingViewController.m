@@ -42,15 +42,11 @@
     tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
     tapper.cancelsTouchesInView = YES;
     [self.view addGestureRecognizer:tapper];
-    
-    NSString *currentUser = [SSKeychain passwordForService:@"moments" account:@"username"];
-    MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
-    [APIHelper getUserFollowersListWithUsername:currentUser completion:^(NSArray *followersList) {
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *docDir = [paths objectAtIndex: 0];
-        NSString* docFile = [docDir stringByAppendingPathComponent: @"array.plist"];
-        [NSKeyedArchiver archiveRootObject:followersList toFile:docFile];
-    }];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDir = [paths objectAtIndex: 0];
+    NSString* docFile = [docDir stringByAppendingPathComponent: @"followingTemp.plist"];
+    followersArray = [NSKeyedUnarchiver unarchiveObjectWithFile:docFile];
+
     
     followersVC = [self.storyboard instantiateViewControllerWithIdentifier:@"followersVC"]; // make sure
     
@@ -223,7 +219,6 @@
 -(void)numberOfRows {
     MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
     NSString *currentUser = [SSKeychain passwordForService:@"moments" account:@"username"];
-    
     [APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *followedUsers) {
         if ([followedUsers isEqual:followersArray]) {
         } else {

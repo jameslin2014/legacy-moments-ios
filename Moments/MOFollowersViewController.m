@@ -20,7 +20,7 @@
     [super viewDidLoad];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docDir = [paths objectAtIndex: 0];
-    NSString* docFile = [docDir stringByAppendingPathComponent: @"array.plist"];
+    NSString* docFile = [docDir stringByAppendingPathComponent: @"followersTemp.plist"];
     tempArray = [NSKeyedUnarchiver unarchiveObjectWithFile:docFile];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
