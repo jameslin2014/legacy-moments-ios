@@ -14,26 +14,32 @@
 #import "SSKeychain.h"
 @interface MOFollowingViewController ()
 
+// UI Parent properties
 @property JKSegmentedControl *tabSegmentedControl;
 @property UIGestureRecognizer *tapper;
 @property UIView *segmentView;
+@property UIView *view1;
+@property UIView *view2;
+
+// UI Child properties
+@property UISearchBar *searchBar;
+@property UITableViewController *followersVC;
+@property UILabel *nameLabel;
+@property UIImageView *profileImageView;
+
+// Numeric properties
+@property NSUInteger number;
+@property NSArray *tempArray;
+@property NSArray *followersArray;
 
 @end
 
-@implementation MOFollowingViewController {
-    UISearchBar *searchBar;
-    NSUInteger number;
-    NSArray *tempArray;
-    UITableViewController *followersVC;
-    UIView *view;
-    UIView *view2;
-    UILabel *nameLabel;
-    UIImageView *profileImageView;
-    NSArray *followersArray;
-}
+@implementation MOFollowingViewController
 
+@synthesize tabSegmentedControl, segmentView, view1, view2, followersVC;
+@synthesize searchBar, nameLabel, profileImageView;
+@synthesize number, tempArray, followersArray;
 @synthesize tableView, tapper;
-
 
 
 - (void)viewDidLoad {
@@ -88,7 +94,7 @@
     searchBar.alpha = 0.0f;
     UITextField *searchField = nil;
     view2 = [[UIView alloc] initWithFrame:CGRectMake(0, tableView.frame.origin.y, self.view.frame.size.width, 60.5)];
-    view = [[UIView alloc] initWithFrame:CGRectMake(0, tableView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)];
+    view1 = [[UIView alloc] initWithFrame:CGRectMake(0, tableView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)];
     nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, view2.frame.size.width, view2.frame.size.height)];
     profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 12, 35, 35)];
     
@@ -113,18 +119,18 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if ([searchText isEqualToString:@""]) {
-        [view removeFromSuperview];
+        [view1 removeFromSuperview];
     } else {
         MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
         [APIHelper searchForUsersWithUserName:searchText completion:^(BOOL valid) {
             
             if (valid) {
                 
-                view.backgroundColor = tableView.backgroundColor;
-                [self.view addSubview:view];
+                view1.backgroundColor = tableView.backgroundColor;
+                [self.view addSubview:view1];
                 
                 view2.backgroundColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
-                [view addSubview:view2];
+                [view1 addSubview:view2];
                 
                 nameLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:24];
                 nameLabel.textColor = [UIColor whiteColor];
@@ -138,10 +144,10 @@
                 [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",nameLabel.text]] placeholderImage:[UIImage imageNamed:@"capture-button.png"]];
                 
             } else {
-                view.backgroundColor = tableView.backgroundColor;
-                [self.view addSubview:view];
+                view1.backgroundColor = tableView.backgroundColor;
+                [self.view addSubview:view1];
                 view2.backgroundColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
-                [view addSubview:view2];
+                [view1 addSubview:view2];
                 
                 nameLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:25];
                 nameLabel.textColor = [UIColor whiteColor];
@@ -191,7 +197,7 @@
 }
 
 - (void)showRegular {
-    [view removeFromSuperview];
+    [view1 removeFromSuperview];
     [searchBar resignFirstResponder];
     [self.searchButton setAction:@selector(showSearch)];
     [UIView animateWithDuration:0.1 animations:^{
@@ -246,14 +252,14 @@
     cell.detailTextLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:20];
     cell.detailTextLabel.textColor = [UIColor whiteColor];
     
-    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 7, cell.frame.size.width, cell.frame.size.height)];
+    self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 7, cell.frame.size.width, cell.frame.size.height)];
     nameLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:24];
     nameLabel.textColor = [UIColor whiteColor];
     [cell.contentView addSubview:nameLabel];
     
-    UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 11, 35, 35)];
+    self.profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 11, 35, 35)];
     
-    profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
+    self.profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
     profileImageView.clipsToBounds = YES;
     [cell.contentView addSubview:profileImageView];
     
@@ -296,7 +302,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+    self.view1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
     /* Create custom view to display section header... */
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 2, tableView.frame.size.width, 18)];
     [label setFont:[UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:1]];
@@ -310,9 +316,9 @@
         [label setText:string];
     }
     
-    [view addSubview:label];
-    [view setBackgroundColor:[UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0]]; //your background color...
-    return view;
+    [view1 addSubview:label];
+    [view1 setBackgroundColor:[UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0]]; //your background color...
+    return view1;
 }
 
 

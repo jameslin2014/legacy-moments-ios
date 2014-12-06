@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @interface MOFollowingViewController : UITableViewController <UISearchBarDelegate>
 
-@property IBOutlet UITableView *tableView;
+@property (nonatomic) IBOutlet UITableView *tableView;
 @property IBOutlet UIBarButtonItem *searchButton;
 
 - (IBAction)showSearch;

@@ -12,19 +12,6 @@
 		020418421A296CAF00134216 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 020418411A296CAF00134216 /* AVFoundation.framework */; };
 		020418441A296CB600134216 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 020418431A296CB600134216 /* CoreFoundation.framework */; };
 		0232A0631A2A8ABD00ABF2FB /* MomentsAPIUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0232A0621A2A8ABD00ABF2FB /* MomentsAPIUtilities.m */; };
-		023DF6AF1A2D4AA700A367EB /* PBJVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 023DF6AC1A2D4AA700A367EB /* PBJVideoPlayerController.m */; };
-		023DF6B01A2D4AA700A367EB /* PBJVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 023DF6AE1A2D4AA700A367EB /* PBJVideoView.m */; };
-		023DF6C61A2D505000A367EB /* JGProgressHUD Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 023DF6B11A2D505000A367EB /* JGProgressHUD Resources.bundle */; };
-		023DF6C71A2D505000A367EB /* JGProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 023DF6B31A2D505000A367EB /* JGProgressHUD.m */; };
-		023DF6C81A2D505000A367EB /* JGProgressHUDAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 023DF6B51A2D505000A367EB /* JGProgressHUDAnimation.m */; };
-		023DF6C91A2D505000A367EB /* JGProgressHUDErrorIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 023DF6B71A2D505000A367EB /* JGProgressHUDErrorIndicatorView.m */; };
-		023DF6CA1A2D505000A367EB /* JGProgressHUDFadeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 023DF6B91A2D505000A367EB /* JGProgressHUDFadeAnimation.m */; };
-		023DF6CB1A2D505000A367EB /* JGProgressHUDFadeZoomAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 023DF6BB1A2D505000A367EB /* JGProgressHUDFadeZoomAnimation.m */; };
-		023DF6CC1A2D505000A367EB /* JGProgressHUDIndeterminateIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 023DF6BD1A2D505000A367EB /* JGProgressHUDIndeterminateIndicatorView.m */; };
-		023DF6CD1A2D505000A367EB /* JGProgressHUDIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 023DF6BF1A2D505000A367EB /* JGProgressHUDIndicatorView.m */; };
-		023DF6CE1A2D505000A367EB /* JGProgressHUDPieIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 023DF6C11A2D505000A367EB /* JGProgressHUDPieIndicatorView.m */; };
-		023DF6CF1A2D505000A367EB /* JGProgressHUDRingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 023DF6C31A2D505000A367EB /* JGProgressHUDRingIndicatorView.m */; };
-		023DF6D01A2D505000A367EB /* JGProgressHUDSuccessIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 023DF6C51A2D505000A367EB /* JGProgressHUDSuccessIndicatorView.m */; };
 		02567A011A2B0478002465CF /* MOFollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02567A001A2B0478002465CF /* MOFollowingViewController.m */; };
 		02567A0D1A2B1B69002465CF /* MOFollowersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02567A0C1A2B1B69002465CF /* MOFollowersViewController.m */; };
 		02949EC91A298431001EDD2D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949EC81A298431001EDD2D /* libicucore.dylib */; };
@@ -41,6 +28,19 @@
 		A5B31C3A1A287F25009734EE /* MOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B31C391A287F25009734EE /* MOAppDelegate.m */; };
 		A5B31C401A287F26009734EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B31C3E1A287F26009734EE /* Main.storyboard */; };
 		A5B31C451A287F26009734EE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5B31C431A287F26009734EE /* LaunchScreen.xib */; };
+		A5C29FE41A33C9BE00E605F1 /* JGProgressHUD Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A5C29FCF1A33C9BE00E605F1 /* JGProgressHUD Resources.bundle */; };
+		A5C29FE51A33C9BE00E605F1 /* JGProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C29FD11A33C9BE00E605F1 /* JGProgressHUD.m */; };
+		A5C29FE61A33C9BE00E605F1 /* JGProgressHUDAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C29FD31A33C9BE00E605F1 /* JGProgressHUDAnimation.m */; };
+		A5C29FE71A33C9BE00E605F1 /* JGProgressHUDErrorIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C29FD51A33C9BE00E605F1 /* JGProgressHUDErrorIndicatorView.m */; };
+		A5C29FE81A33C9BE00E605F1 /* JGProgressHUDFadeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C29FD71A33C9BE00E605F1 /* JGProgressHUDFadeAnimation.m */; };
+		A5C29FE91A33C9BE00E605F1 /* JGProgressHUDFadeZoomAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C29FD91A33C9BE00E605F1 /* JGProgressHUDFadeZoomAnimation.m */; };
+		A5C29FEA1A33C9BE00E605F1 /* JGProgressHUDIndeterminateIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C29FDB1A33C9BE00E605F1 /* JGProgressHUDIndeterminateIndicatorView.m */; };
+		A5C29FEB1A33C9BE00E605F1 /* JGProgressHUDIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C29FDD1A33C9BE00E605F1 /* JGProgressHUDIndicatorView.m */; };
+		A5C29FEC1A33C9BE00E605F1 /* JGProgressHUDPieIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C29FDF1A33C9BE00E605F1 /* JGProgressHUDPieIndicatorView.m */; };
+		A5C29FED1A33C9BE00E605F1 /* JGProgressHUDRingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C29FE11A33C9BE00E605F1 /* JGProgressHUDRingIndicatorView.m */; };
+		A5C29FEE1A33C9BE00E605F1 /* JGProgressHUDSuccessIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C29FE31A33C9BE00E605F1 /* JGProgressHUDSuccessIndicatorView.m */; };
+		A5C29FF41A33C9F300E605F1 /* PBJVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C29FF11A33C9F300E605F1 /* PBJVideoPlayerController.m */; };
+		A5C29FF51A33C9F300E605F1 /* PBJVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C29FF31A33C9F300E605F1 /* PBJVideoView.m */; };
 		A5C5EB811A2A8358002F1591 /* MOCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5EB7A1A2A8358002F1591 /* MOCaptureViewController.m */; };
 		A5C5EB831A2A8358002F1591 /* MOListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5EB7E1A2A8358002F1591 /* MOListViewController.m */; };
 		A5C5EB841A2A8358002F1591 /* MOPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5EB801A2A8358002F1591 /* MOPageViewController.m */; };
@@ -95,31 +95,6 @@
 		020418431A296CB600134216 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		0232A0611A2A8ABD00ABF2FB /* MomentsAPIUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentsAPIUtilities.h; sourceTree = "<group>"; };
 		0232A0621A2A8ABD00ABF2FB /* MomentsAPIUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentsAPIUtilities.m; sourceTree = "<group>"; };
-		023DF6AB1A2D4AA700A367EB /* PBJVideoPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJVideoPlayerController.h; sourceTree = "<group>"; };
-		023DF6AC1A2D4AA700A367EB /* PBJVideoPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJVideoPlayerController.m; sourceTree = "<group>"; };
-		023DF6AD1A2D4AA700A367EB /* PBJVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJVideoView.h; sourceTree = "<group>"; };
-		023DF6AE1A2D4AA700A367EB /* PBJVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJVideoView.m; sourceTree = "<group>"; };
-		023DF6B11A2D505000A367EB /* JGProgressHUD Resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = "JGProgressHUD Resources.bundle"; sourceTree = "<group>"; };
-		023DF6B21A2D505000A367EB /* JGProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUD.h; sourceTree = "<group>"; };
-		023DF6B31A2D505000A367EB /* JGProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUD.m; sourceTree = "<group>"; };
-		023DF6B41A2D505000A367EB /* JGProgressHUDAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDAnimation.h; sourceTree = "<group>"; };
-		023DF6B51A2D505000A367EB /* JGProgressHUDAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDAnimation.m; sourceTree = "<group>"; };
-		023DF6B61A2D505000A367EB /* JGProgressHUDErrorIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDErrorIndicatorView.h; sourceTree = "<group>"; };
-		023DF6B71A2D505000A367EB /* JGProgressHUDErrorIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDErrorIndicatorView.m; sourceTree = "<group>"; };
-		023DF6B81A2D505000A367EB /* JGProgressHUDFadeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDFadeAnimation.h; sourceTree = "<group>"; };
-		023DF6B91A2D505000A367EB /* JGProgressHUDFadeAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDFadeAnimation.m; sourceTree = "<group>"; };
-		023DF6BA1A2D505000A367EB /* JGProgressHUDFadeZoomAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDFadeZoomAnimation.h; sourceTree = "<group>"; };
-		023DF6BB1A2D505000A367EB /* JGProgressHUDFadeZoomAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDFadeZoomAnimation.m; sourceTree = "<group>"; };
-		023DF6BC1A2D505000A367EB /* JGProgressHUDIndeterminateIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDIndeterminateIndicatorView.h; sourceTree = "<group>"; };
-		023DF6BD1A2D505000A367EB /* JGProgressHUDIndeterminateIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDIndeterminateIndicatorView.m; sourceTree = "<group>"; };
-		023DF6BE1A2D505000A367EB /* JGProgressHUDIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDIndicatorView.h; sourceTree = "<group>"; };
-		023DF6BF1A2D505000A367EB /* JGProgressHUDIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDIndicatorView.m; sourceTree = "<group>"; };
-		023DF6C01A2D505000A367EB /* JGProgressHUDPieIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDPieIndicatorView.h; sourceTree = "<group>"; };
-		023DF6C11A2D505000A367EB /* JGProgressHUDPieIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDPieIndicatorView.m; sourceTree = "<group>"; };
-		023DF6C21A2D505000A367EB /* JGProgressHUDRingIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDRingIndicatorView.h; sourceTree = "<group>"; };
-		023DF6C31A2D505000A367EB /* JGProgressHUDRingIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDRingIndicatorView.m; sourceTree = "<group>"; };
-		023DF6C41A2D505000A367EB /* JGProgressHUDSuccessIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDSuccessIndicatorView.h; sourceTree = "<group>"; };
-		023DF6C51A2D505000A367EB /* JGProgressHUDSuccessIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDSuccessIndicatorView.m; sourceTree = "<group>"; };
 		025679FF1A2B0478002465CF /* MOFollowingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOFollowingViewController.h; sourceTree = "<group>"; };
 		02567A001A2B0478002465CF /* MOFollowingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOFollowingViewController.m; sourceTree = "<group>"; };
 		02567A0B1A2B1B69002465CF /* MOFollowersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOFollowersViewController.h; sourceTree = "<group>"; };
@@ -147,6 +122,31 @@
 		A5B31C391A287F25009734EE /* MOAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MOAppDelegate.m; sourceTree = "<group>"; };
 		A5B31C3F1A287F26009734EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A5B31C441A287F26009734EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		A5C29FCF1A33C9BE00E605F1 /* JGProgressHUD Resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = "JGProgressHUD Resources.bundle"; sourceTree = "<group>"; };
+		A5C29FD01A33C9BE00E605F1 /* JGProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUD.h; sourceTree = "<group>"; };
+		A5C29FD11A33C9BE00E605F1 /* JGProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUD.m; sourceTree = "<group>"; };
+		A5C29FD21A33C9BE00E605F1 /* JGProgressHUDAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDAnimation.h; sourceTree = "<group>"; };
+		A5C29FD31A33C9BE00E605F1 /* JGProgressHUDAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDAnimation.m; sourceTree = "<group>"; };
+		A5C29FD41A33C9BE00E605F1 /* JGProgressHUDErrorIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDErrorIndicatorView.h; sourceTree = "<group>"; };
+		A5C29FD51A33C9BE00E605F1 /* JGProgressHUDErrorIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDErrorIndicatorView.m; sourceTree = "<group>"; };
+		A5C29FD61A33C9BE00E605F1 /* JGProgressHUDFadeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDFadeAnimation.h; sourceTree = "<group>"; };
+		A5C29FD71A33C9BE00E605F1 /* JGProgressHUDFadeAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDFadeAnimation.m; sourceTree = "<group>"; };
+		A5C29FD81A33C9BE00E605F1 /* JGProgressHUDFadeZoomAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDFadeZoomAnimation.h; sourceTree = "<group>"; };
+		A5C29FD91A33C9BE00E605F1 /* JGProgressHUDFadeZoomAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDFadeZoomAnimation.m; sourceTree = "<group>"; };
+		A5C29FDA1A33C9BE00E605F1 /* JGProgressHUDIndeterminateIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDIndeterminateIndicatorView.h; sourceTree = "<group>"; };
+		A5C29FDB1A33C9BE00E605F1 /* JGProgressHUDIndeterminateIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDIndeterminateIndicatorView.m; sourceTree = "<group>"; };
+		A5C29FDC1A33C9BE00E605F1 /* JGProgressHUDIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDIndicatorView.h; sourceTree = "<group>"; };
+		A5C29FDD1A33C9BE00E605F1 /* JGProgressHUDIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDIndicatorView.m; sourceTree = "<group>"; };
+		A5C29FDE1A33C9BE00E605F1 /* JGProgressHUDPieIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDPieIndicatorView.h; sourceTree = "<group>"; };
+		A5C29FDF1A33C9BE00E605F1 /* JGProgressHUDPieIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDPieIndicatorView.m; sourceTree = "<group>"; };
+		A5C29FE01A33C9BE00E605F1 /* JGProgressHUDRingIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDRingIndicatorView.h; sourceTree = "<group>"; };
+		A5C29FE11A33C9BE00E605F1 /* JGProgressHUDRingIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDRingIndicatorView.m; sourceTree = "<group>"; };
+		A5C29FE21A33C9BE00E605F1 /* JGProgressHUDSuccessIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDSuccessIndicatorView.h; sourceTree = "<group>"; };
+		A5C29FE31A33C9BE00E605F1 /* JGProgressHUDSuccessIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDSuccessIndicatorView.m; sourceTree = "<group>"; };
+		A5C29FF01A33C9F300E605F1 /* PBJVideoPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJVideoPlayerController.h; sourceTree = "<group>"; };
+		A5C29FF11A33C9F300E605F1 /* PBJVideoPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJVideoPlayerController.m; sourceTree = "<group>"; };
+		A5C29FF21A33C9F300E605F1 /* PBJVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJVideoView.h; sourceTree = "<group>"; };
+		A5C29FF31A33C9F300E605F1 /* PBJVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJVideoView.m; sourceTree = "<group>"; };
 		A5C5EB791A2A8358002F1591 /* MOCaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOCaptureViewController.h; sourceTree = "<group>"; };
 		A5C5EB7A1A2A8358002F1591 /* MOCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOCaptureViewController.m; sourceTree = "<group>"; };
 		A5C5EB7D1A2A8358002F1591 /* MOListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOListViewController.h; sourceTree = "<group>"; };
@@ -382,6 +382,47 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A5C29FCE1A33C9BE00E605F1 /* JGProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				A5C29FCF1A33C9BE00E605F1 /* JGProgressHUD Resources.bundle */,
+				A5C29FD01A33C9BE00E605F1 /* JGProgressHUD.h */,
+				A5C29FD11A33C9BE00E605F1 /* JGProgressHUD.m */,
+				A5C29FD21A33C9BE00E605F1 /* JGProgressHUDAnimation.h */,
+				A5C29FD31A33C9BE00E605F1 /* JGProgressHUDAnimation.m */,
+				A5C29FD41A33C9BE00E605F1 /* JGProgressHUDErrorIndicatorView.h */,
+				A5C29FD51A33C9BE00E605F1 /* JGProgressHUDErrorIndicatorView.m */,
+				A5C29FD61A33C9BE00E605F1 /* JGProgressHUDFadeAnimation.h */,
+				A5C29FD71A33C9BE00E605F1 /* JGProgressHUDFadeAnimation.m */,
+				A5C29FD81A33C9BE00E605F1 /* JGProgressHUDFadeZoomAnimation.h */,
+				A5C29FD91A33C9BE00E605F1 /* JGProgressHUDFadeZoomAnimation.m */,
+				A5C29FDA1A33C9BE00E605F1 /* JGProgressHUDIndeterminateIndicatorView.h */,
+				A5C29FDB1A33C9BE00E605F1 /* JGProgressHUDIndeterminateIndicatorView.m */,
+				A5C29FDC1A33C9BE00E605F1 /* JGProgressHUDIndicatorView.h */,
+				A5C29FDD1A33C9BE00E605F1 /* JGProgressHUDIndicatorView.m */,
+				A5C29FDE1A33C9BE00E605F1 /* JGProgressHUDPieIndicatorView.h */,
+				A5C29FDF1A33C9BE00E605F1 /* JGProgressHUDPieIndicatorView.m */,
+				A5C29FE01A33C9BE00E605F1 /* JGProgressHUDRingIndicatorView.h */,
+				A5C29FE11A33C9BE00E605F1 /* JGProgressHUDRingIndicatorView.m */,
+				A5C29FE21A33C9BE00E605F1 /* JGProgressHUDSuccessIndicatorView.h */,
+				A5C29FE31A33C9BE00E605F1 /* JGProgressHUDSuccessIndicatorView.m */,
+			);
+			name = JGProgressHUD;
+			path = Libraries/JGProgressHUD;
+			sourceTree = "<group>";
+		};
+		A5C29FEF1A33C9F300E605F1 /* PBJVideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				A5C29FF01A33C9F300E605F1 /* PBJVideoPlayerController.h */,
+				A5C29FF11A33C9F300E605F1 /* PBJVideoPlayerController.m */,
+				A5C29FF21A33C9F300E605F1 /* PBJVideoView.h */,
+				A5C29FF31A33C9F300E605F1 /* PBJVideoView.m */,
+			);
+			name = PBJVideoPlayer;
+			path = Libraries/PBJVideoPlayer;
+			sourceTree = "<group>";
+		};
 		A5C5EB851A2A835E002F1591 /* User interface */ = {
 			isa = PBXGroup;
 			children = (
@@ -422,31 +463,8 @@
 		A5E01C951A2B3531003ED753 /* External Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				023DF6AB1A2D4AA700A367EB /* PBJVideoPlayerController.h */,
-				023DF6AC1A2D4AA700A367EB /* PBJVideoPlayerController.m */,
-				023DF6B11A2D505000A367EB /* JGProgressHUD Resources.bundle */,
-				023DF6B21A2D505000A367EB /* JGProgressHUD.h */,
-				023DF6B31A2D505000A367EB /* JGProgressHUD.m */,
-				023DF6B41A2D505000A367EB /* JGProgressHUDAnimation.h */,
-				023DF6B51A2D505000A367EB /* JGProgressHUDAnimation.m */,
-				023DF6B61A2D505000A367EB /* JGProgressHUDErrorIndicatorView.h */,
-				023DF6B71A2D505000A367EB /* JGProgressHUDErrorIndicatorView.m */,
-				023DF6B81A2D505000A367EB /* JGProgressHUDFadeAnimation.h */,
-				023DF6B91A2D505000A367EB /* JGProgressHUDFadeAnimation.m */,
-				023DF6BA1A2D505000A367EB /* JGProgressHUDFadeZoomAnimation.h */,
-				023DF6BB1A2D505000A367EB /* JGProgressHUDFadeZoomAnimation.m */,
-				023DF6BC1A2D505000A367EB /* JGProgressHUDIndeterminateIndicatorView.h */,
-				023DF6BD1A2D505000A367EB /* JGProgressHUDIndeterminateIndicatorView.m */,
-				023DF6BE1A2D505000A367EB /* JGProgressHUDIndicatorView.h */,
-				023DF6BF1A2D505000A367EB /* JGProgressHUDIndicatorView.m */,
-				023DF6C01A2D505000A367EB /* JGProgressHUDPieIndicatorView.h */,
-				023DF6C11A2D505000A367EB /* JGProgressHUDPieIndicatorView.m */,
-				023DF6C21A2D505000A367EB /* JGProgressHUDRingIndicatorView.h */,
-				023DF6C31A2D505000A367EB /* JGProgressHUDRingIndicatorView.m */,
-				023DF6C41A2D505000A367EB /* JGProgressHUDSuccessIndicatorView.h */,
-				023DF6C51A2D505000A367EB /* JGProgressHUDSuccessIndicatorView.m */,
-				023DF6AD1A2D4AA700A367EB /* PBJVideoView.h */,
-				023DF6AE1A2D4AA700A367EB /* PBJVideoView.m */,
+				A5C29FEF1A33C9F300E605F1 /* PBJVideoPlayer */,
+				A5C29FCE1A33C9BE00E605F1 /* JGProgressHUD */,
 				A5E01C961A2B37D7003ED753 /* JKSegmentedControl.h */,
 				A5E01C971A2B37D7003ED753 /* JKSegmentedControl.m */,
 				A5E01C981A2B37D7003ED753 /* SSKeychain.h */,
@@ -589,7 +607,7 @@
 				A5CAD7881A29A0BF0023F948 /* SanFranciscoText-Bold.otf in Resources */,
 				A5CAD7841A29A0BF0023F948 /* SanFranciscoDisplay-Regular.otf in Resources */,
 				A5CAD7871A29A0BF0023F948 /* SanFranciscoDisplay-Ultralight.otf in Resources */,
-				023DF6C61A2D505000A367EB /* JGProgressHUD Resources.bundle in Resources */,
+				A5C29FE41A33C9BE00E605F1 /* JGProgressHUD Resources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,52 +620,52 @@
 			files = (
 				A5E01CC81A2B37F1003ED753 /* AFAmazonS3RequestSerializer.m in Sources */,
 				A5E01CD31A2B37F1003ED753 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				A5C29FE81A33C9BE00E605F1 /* JGProgressHUDFadeAnimation.m in Sources */,
 				A5E01CD81A2B37F1003ED753 /* UIRefreshControl+AFNetworking.m in Sources */,
+				A5C29FEE1A33C9BE00E605F1 /* JGProgressHUDSuccessIndicatorView.m in Sources */,
+				A5C29FF51A33C9F300E605F1 /* PBJVideoView.m in Sources */,
 				A5E01CD51A2B37F1003ED753 /* UIButton+AFNetworking.m in Sources */,
 				02C1E4B71A30221C00F7EC6E /* DLILCacheManager.m in Sources */,
-				023DF6CF1A2D505000A367EB /* JGProgressHUDRingIndicatorView.m in Sources */,
 				A5E01CD41A2B37F1003ED753 /* UIAlertView+AFNetworking.m in Sources */,
-				023DF6CE1A2D505000A367EB /* JGProgressHUDPieIndicatorView.m in Sources */,
 				A5E01C9A1A2B37D7003ED753 /* JKSegmentedControl.m in Sources */,
-				023DF6CB1A2D505000A367EB /* JGProgressHUDFadeZoomAnimation.m in Sources */,
 				02567A011A2B0478002465CF /* MOFollowingViewController.m in Sources */,
 				A5E01CC71A2B37F1003ED753 /* AFAmazonS3Manager.m in Sources */,
-				023DF6CA1A2D505000A367EB /* JGProgressHUDFadeAnimation.m in Sources */,
-				023DF6B01A2D4AA700A367EB /* PBJVideoView.m in Sources */,
 				A5C5EB811A2A8358002F1591 /* MOCaptureViewController.m in Sources */,
 				A5E01CCD1A2B37F1003ED753 /* AFNetworkReachabilityManager.m in Sources */,
 				02C1E4B81A30221C00F7EC6E /* DLILOperation.m in Sources */,
-				023DF6C91A2D505000A367EB /* JGProgressHUDErrorIndicatorView.m in Sources */,
 				A5C5EB831A2A8358002F1591 /* MOListViewController.m in Sources */,
 				02C1E4B91A30221C00F7EC6E /* DLImageLoader.m in Sources */,
 				A5E01CD01A2B37F1003ED753 /* AFURLRequestSerialization.m in Sources */,
 				A5E01CD71A2B37F1003ED753 /* UIProgressView+AFNetworking.m in Sources */,
+				A5C29FEC1A33C9BE00E605F1 /* JGProgressHUDPieIndicatorView.m in Sources */,
+				A5C29FF41A33C9F300E605F1 /* PBJVideoPlayerController.m in Sources */,
 				02C1E4BA1A30221C00F7EC6E /* DLImageView.m in Sources */,
 				A5E01CCF1A2B37F1003ED753 /* AFURLConnectionOperation.m in Sources */,
 				A5E01CD21A2B37F1003ED753 /* AFURLSessionManager.m in Sources */,
 				A5E01CCA1A2B37F1003ED753 /* AFHTTPRequestOperationManager.m in Sources */,
 				A5E01C9B1A2B37D7003ED753 /* SSKeychain.m in Sources */,
 				A5E01CCC1A2B37F1003ED753 /* AFNetworkActivityIndicatorManager.m in Sources */,
-				023DF6CD1A2D505000A367EB /* JGProgressHUDIndicatorView.m in Sources */,
 				0232A0631A2A8ABD00ABF2FB /* MomentsAPIUtilities.m in Sources */,
 				A5C5EB841A2A8358002F1591 /* MOPageViewController.m in Sources */,
 				A5B31C3A1A287F25009734EE /* MOAppDelegate.m in Sources */,
 				A5E01CD61A2B37F1003ED753 /* UIImageView+AFNetworking.m in Sources */,
-				023DF6C81A2D505000A367EB /* JGProgressHUDAnimation.m in Sources */,
 				A5E01C2A1A2AF811003ED753 /* AVCamPreviewView.m in Sources */,
 				02C1E4A31A2E9AAE00F7EC6E /* JCDHTTPConnection.m in Sources */,
+				A5C29FEB1A33C9BE00E605F1 /* JGProgressHUDIndicatorView.m in Sources */,
 				A5CAD7511A299B480023F948 /* MOLoginViewController.m in Sources */,
 				A5E01CC91A2B37F1003ED753 /* AFHTTPRequestOperation.m in Sources */,
-				023DF6AF1A2D4AA700A367EB /* PBJVideoPlayerController.m in Sources */,
+				A5C29FE61A33C9BE00E605F1 /* JGProgressHUDAnimation.m in Sources */,
+				A5C29FE91A33C9BE00E605F1 /* JGProgressHUDFadeZoomAnimation.m in Sources */,
 				A5E01CCE1A2B37F1003ED753 /* AFSecurityPolicy.m in Sources */,
-				023DF6CC1A2D505000A367EB /* JGProgressHUDIndeterminateIndicatorView.m in Sources */,
+				A5C29FEA1A33C9BE00E605F1 /* JGProgressHUDIndeterminateIndicatorView.m in Sources */,
 				A5B31C371A287F25009734EE /* main.m in Sources */,
 				A5E01CCB1A2B37F1003ED753 /* AFHTTPSessionManager.m in Sources */,
-				023DF6D01A2D505000A367EB /* JGProgressHUDSuccessIndicatorView.m in Sources */,
 				A5E01CD91A2B37F1003ED753 /* UIWebView+AFNetworking.m in Sources */,
 				02567A0D1A2B1B69002465CF /* MOFollowersViewController.m in Sources */,
+				A5C29FED1A33C9BE00E605F1 /* JGProgressHUDRingIndicatorView.m in Sources */,
+				A5C29FE71A33C9BE00E605F1 /* JGProgressHUDErrorIndicatorView.m in Sources */,
 				A5E01CD11A2B37F1003ED753 /* AFURLResponseSerialization.m in Sources */,
-				023DF6C71A2D505000A367EB /* JGProgressHUD.m in Sources */,
+				A5C29FE51A33C9BE00E605F1 /* JGProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
