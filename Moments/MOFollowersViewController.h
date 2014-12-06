@@ -10,6 +10,6 @@
 
 @interface MOFollowersViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate> {}
 
-@property IBOutlet UITableView *tableView;
+@property (nonatomic) IBOutlet UITableView *tableView;
 
 @end
