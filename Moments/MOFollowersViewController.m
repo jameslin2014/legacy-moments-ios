@@ -102,8 +102,10 @@
     NSString *currentUser = [SSKeychain passwordForService:@"moments" account:@"username"];
         NSArray *followers = [NSArray new];
     followers = tempArray;
-        [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",[followers objectAtIndex:indexPath.row]]] placeholderImage:[UIImage imageNamed:@"capture-button.png"]];
-        
+    [profileImageView setImage:[UIImage imageNamed:@"capture-button"]];
+    [APIHelper getUserProfilePictureWithUsername:[followers objectAtIndex:indexPath.row] completion:^(UIImage *profileImage) {
+        [profileImageView setImage:profileImage];
+    }];
         [APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *following) {
             if ([following containsObject:[followers objectAtIndex:indexPath.row]]) {
                 UIImageView *chevronImgVw = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"follow-successful"]];
@@ -137,6 +139,28 @@
     [view addSubview:label];
     [view setBackgroundColor:[UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0]]; //your background color...
     return view;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"selected");
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
+    NSString *currentUser = [SSKeychain passwordForService:@"moments" account:@"username"];
+    [APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *following) {
+        if ([following containsObject:[tempArray objectAtIndex:indexPath.row]]) {
+            [APIHelper unfollowUserWithUsername:[tempArray objectAtIndex:indexPath.row] fromUsername:currentUser completion:nil];
+            UITableViewCell *cell =  [self.tableView cellForRowAtIndexPath:indexPath];
+            UIImageView *chevronImgVw = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"follow-waiting"]];
+            chevronImgVw.frame = CGRectMake(cell.accessoryView.frame.origin.x, cell.accessoryView.frame.origin.y, 15, 15);
+            cell.accessoryView = chevronImgVw;
+        } else {
+            [APIHelper followUserWithUsername:[tempArray objectAtIndex:indexPath.row] fromUsername:currentUser completion:nil];
+            UITableViewCell *cell =  [self.tableView cellForRowAtIndexPath:indexPath];
+            UIImageView *chevronImgVw = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"follow-successful"]];
+            chevronImgVw.frame = CGRectMake(cell.accessoryView.frame.origin.x, cell.accessoryView.frame.origin.y, 15, 15);
+            cell.accessoryView = chevronImgVw;
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

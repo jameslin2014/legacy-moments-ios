@@ -156,12 +156,10 @@
             [userPath setValue:array];
             NSLog(@"Success: Followed User: %@",followedUsername);
             [Firebase goOffline];
-            data(true);
         } else {
             
             if ([followingArray containsObject:followedUsername]) {
                 NSLog(@"Error: Already following user: %@",followedUsername);
-                data(false);
                 [Firebase goOffline];
             } else {
                 NSMutableArray *editableArray = [followingArray mutableCopy];
@@ -169,7 +167,6 @@
                 followingArray = [editableArray copy];
                 NSLog(@"Success: Followed User: %@",followedUsername);
                 [userPath setValue:followingArray];
-                data(true);
                 [Firebase goOffline];
             }
         }
@@ -182,13 +179,12 @@
 // Unfollow a user from a specified username and return a boolean with the follow status
 - (void)unfollowUserWithUsername:(NSString *)followedUsername fromUsername:(NSString *)followerUsername completion:(void (^)(BOOL))data {
     [Firebase goOnline];
-    Firebase *userPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/%@/following",followerUsername]];
+    Firebase *userPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/users/%@/following",followerUsername]];
     [userPath observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         followingArray = snapshot.value;
         if (snapshot.value == [NSNull null]) {
             NSLog(@"Error: Not Following User: %@", followedUsername);
             [Firebase goOffline];
-            data(false);
         } else {
             if ([followingArray containsObject:followedUsername]) {
                 NSMutableArray *tempArray = [followingArray mutableCopy];
@@ -197,11 +193,9 @@
                 [userPath setValue:followingArray];
                 NSLog(@"Success: Unfollowed User: %@",followedUsername);
                 [Firebase goOffline];
-                data(true);
             } else {
                 NSLog(@"Error: Not Following User: %@", followedUsername);
                 [Firebase goOffline];
-                data(false);
             }
         }
     } withCancelBlock:^(NSError *error) {
@@ -231,6 +225,9 @@
     }];
 }
 
+/**
+ Grabs a user's profile picture from S3 from a username.
+ */
 -(void)getUserProfilePictureWithUsername:(NSString *)username completion:(void (^)(UIImage *))data {
     [[DLImageLoader sharedInstance] loadImageFromUrl:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",username]
                                            completed:^(NSError *error, UIImage *image) {
@@ -238,6 +235,8 @@
                                                    data(image);
                                                } else {
                                                    NSLog(@"Error: %@",error);
+                                                   UIImage *errorImage = [UIImage imageNamed:@"captue-button"];
+                                                   data(errorImage);
                                                }
                                            }];
 }
