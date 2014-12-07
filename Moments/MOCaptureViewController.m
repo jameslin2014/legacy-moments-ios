@@ -71,6 +71,7 @@
             AVCaptureConnection *connection = [movieFileOutput connectionWithMediaType:AVMediaTypeVideo];
             if ([connection isVideoStabilizationSupported])
                 [connection setPreferredVideoStabilizationMode:AVCaptureVideoStabilizationModeAuto];
+            
             [self setMovieFileOutput:movieFileOutput];
         }
         
@@ -185,7 +186,7 @@
             }
             
             // Update the orientation on the movie file output video connection before starting recording.
-            [[[self movieFileOutput] connectionWithMediaType:AVMediaTypeVideo] setVideoOrientation:[[(AVCaptureVideoPreviewLayer *)[[self previewView] layer] connection] videoOrientation]];
+            [[[self movieFileOutput] connectionWithMediaType:AVMediaTypeVideo] setVideoOrientation:AVCaptureVideoOrientationPortrait];
             
             // Turning OFF flash for video recording
             [MOCaptureViewController setFlashMode:AVCaptureFlashModeOff forDevice:[[self videoDeviceInput] device]];
@@ -285,7 +286,8 @@
                                                                                        preferredTrackID:kCMPersistentTrackID_Invalid];
     
     NSMutableArray *instructions = [NSMutableArray new];
-    CGSize size = CGSizeZero;
+    CGSize size = CGSizeMake([[assets objectAtIndex:1] naturalSize].height, [[assets objectAtIndex:1] naturalSize].width);
+
     
     CMTime time = kCMTimeZero;
     for (AVAsset *asset in assets) {
@@ -313,10 +315,11 @@
         videoCompositionInstruction.timeRange = CMTimeRangeMake(time, assetTrack.timeRange.duration);
         videoCompositionInstruction.layerInstructions = @[[AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:videoCompositionTrack]];
         [instructions addObject:videoCompositionInstruction];
-        CGAffineTransform rotation = CGAffineTransformMakeRotation(M_PI);
+        CGAffineTransform rotation = CGAffineTransformMakeRotation(M_PI_2);
         CGAffineTransform translateToCenter = CGAffineTransformMakeTranslation(640, 480);
         CGAffineTransform mixedTransform = CGAffineTransformConcat(rotation, translateToCenter);
-        
+        AVMutableVideoCompositionLayerInstruction *FirstlayerInstruction = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:videoCompositionTrack];
+        [videoCompositionTrack setPreferredTransform:CGAffineTransformConcat(rotation,translateToCenter)];
         time = CMTimeAdd(time, assetTrack.timeRange.duration);
         
         if (CGSizeEqualToSize(size, CGSizeZero)) {
@@ -330,7 +333,7 @@
     // Set the frame duration to an appropriate value (i.e. 30 frames per second for video).
     mutableVideoComposition.frameDuration = CMTimeMake(1, 30);
     mutableVideoComposition.renderSize = size;
-    
+
     AVPlayerItem *pi = [AVPlayerItem playerItemWithAsset:mutableComposition];
     pi.videoComposition = mutableVideoComposition;
     

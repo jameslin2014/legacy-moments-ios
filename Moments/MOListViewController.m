@@ -129,6 +129,25 @@
     [cell.contentView addSubview:nameLabel];
     
     if (indexPath.section == 0) {
+        UIToolbar *toolbar = [[UIToolbar alloc] init];
+        toolbar.barTintColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
+
+        toolbar.translucent = false;
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareMoment)];
+        toolbar.frame = CGRectMake(0, 0, 55, 55);
+        item.tintColor = [UIColor whiteColor];
+        [toolbar setItems:[NSArray arrayWithObject:item] animated:NO];
+        [toolbar setBarTintColor:[UIColor clearColor]];
+        for(UIView *view in [toolbar subviews])
+        {
+            if([view isKindOfClass:[UIImageView class]])
+            {
+                [view setHidden:YES];
+                [view setAlpha:0.0f];
+            }
+        }
+        cell.accessoryView = toolbar;
+
         NSString *user = [SSKeychain passwordForService:@"moments" account:@"username"];
         nameLabel.text = user;
         nameLabel.frame = CGRectMake(55, 7, cell.frame.size.width, cell.frame.size.height);
@@ -164,15 +183,27 @@
     return cell;
 }
 
+-(void)shareMoment {
+    NSString *user = [SSKeychain passwordForService:@"moments" account:@"username"];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *imagePath =[documentsDirectory stringByAppendingPathComponent:@"saved.mp4"];
+    NSURL *video = [NSURL fileURLWithPath:imagePath];
+    NSData *videoData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",user]]];
+    [videoData writeToFile:imagePath atomically:YES];
+    UIActivityViewController *shareSheet = [[UIActivityViewController alloc] initWithActivityItems:@[video] applicationActivities:nil];
+    [self presentViewController:shareSheet animated:YES completion:nil];
+}
+
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return NO;
 }
 
 - (void)tableView: (UITableView*)tableView willDisplayCell: (UITableViewCell*)cell forRowAtIndexPath: (NSIndexPath*)indexPath {
     if(indexPath.row % 2 == 0)
-        cell.contentView.backgroundColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
+        cell.backgroundColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
     else
-        cell.contentView.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
+        cell.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -205,11 +236,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (taps == YES) {
-        
     } else {
         taps = YES;
         videoPlayer = [[PBJVideoPlayerController alloc] init];
-        videoPlayer.view.transform = CGAffineTransformMakeRotation(M_PI/2);
         videoPlayer.view.frame = self.view.bounds;
         videoPlayer.delegate = self;
         
