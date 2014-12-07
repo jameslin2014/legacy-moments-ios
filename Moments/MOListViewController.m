@@ -7,30 +7,29 @@
 //
 
 #import "MOListViewController.h"
-#import "MomentsAPIUtilities.h"
-#import "PBJVideoPlayerController.h"
-#import "JGProgressHUD.h"
-#import "UIImageView+AFNetworking.h"
-#import "SSKeychain.h"
 
 @interface MOListViewController ()
 
-@property UIBarButtonItem *rightButton;
-@property NSArray *followingArray;
 @property PBJVideoPlayerController *videoPlayer;
 @property JGProgressHUD *HUD;
 @property JGProgressHUD *HUD1;
-@property NSTimer *reloadTimer;
-@property BOOL taps;
 
 @end
 
-@implementation MOListViewController
-@synthesize rightButton, followingArray, videoPlayer, HUD, HUD1, reloadTimer, taps;
+@implementation MOListViewController {
+    NSArray *followingArray;
+    NSTimer *reloadTimer;
+    BOOL taps;
+    
+}
+
+@synthesize videoPlayer, HUD, HUD1;
 @synthesize tableView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = @"Moments";
     
     NSString *currentUser = [SSKeychain passwordForService:@"moments" account:@"username"];
     MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
@@ -54,23 +53,9 @@
     tableView.delegate = self;
     tableView.dataSource = self;
     
-    // UINavigationBar styling
-    self.title = @"Moments";
-    self.navigationController.navigationBarHidden = NO;
-    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.23 green:0.52 blue:0.68 alpha:0.39]];
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"SanFranciscoDisplay-Medium" size:17], NSFontAttributeName, nil]];
-    
-    // UITableView styling
-    tableView.separatorColor = [UIColor colorWithRed:0.141 green:0.137 blue:0.13 alpha:1];
-    tableView.backgroundColor = [UIColor colorWithRed:0.141 green:0.137 blue:0.13 alpha:1];
-    
-    self.clearsSelectionOnViewWillAppear = NO;
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     // UIBarButtonItem = Right
-    self.rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"file_name"] style:UIBarButtonItemStylePlain target:self action:@selector(rightButton:)];
-    self.navigationItem.rightBarButtonItem = self.rightButton;
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"file_name"] style:UIBarButtonItemStylePlain target:self action:@selector(rightButton:)];
+    self.navigationItem.rightBarButtonItem = rightButton;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -335,7 +320,5 @@
 - (void)videoPlayerPlaybackWillStartFromBeginning:(PBJVideoPlayerController *)player {
     HUD1.alpha = 0.0f;
 }
-
-- (void)videoPlayerPlaybackStateDidChange:(PBJVideoPlayerController *)player {}
 
 @end

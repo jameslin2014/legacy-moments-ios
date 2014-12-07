@@ -7,8 +7,21 @@
 //
 
 #import "MOTableViewController.h"
+#import "MOListViewController.h"
 
 @implementation MOTableViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.23 green:0.52 blue:0.68 alpha:0.39]];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"SanFranciscoDisplay-Medium" size:17], NSFontAttributeName, nil]];
+    
+    self.tableView.separatorColor = [UIColor colorWithRed:0.141 green:0.137 blue:0.13 alpha:1];
+    self.tableView.backgroundColor = [UIColor colorWithRed:0.141 green:0.137 blue:0.13 alpha:1];
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 60.5;

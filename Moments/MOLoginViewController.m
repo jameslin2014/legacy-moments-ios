@@ -7,8 +7,6 @@
 //
 
 #import "MOLoginViewController.h"
-#import "MomentsAPIUtilities.h"
-#import "SSKeychain.h"
 
 @interface MOLoginViewController ()
 
@@ -62,9 +60,6 @@
     passwordField.text = [SSKeychain passwordForService:@"moments" account:@"username"];
 }
 
-- (void)loginButtonAction:(UIButton *)sender {
-}
-
 - (void)handleSingleTap:(UITapGestureRecognizer *) sender {
     [self.view endEditing:YES];
     
@@ -84,7 +79,6 @@
         
     }];
 }
-
 
 - (void)viewWillAppear:(BOOL)animated {
     self.view.alpha = 0.0f;

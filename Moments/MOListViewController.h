@@ -7,11 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PBJVideoPlayerController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
-// Subclasses
+// External Libraries
+#import "PBJVideoPlayerController.h"
+#import "UIImageView+AFNetworking.h"
+#import "JGProgressHUD.h"
+#import "SSKeychain.h"
+
+// Internal Classes
 #import "MOTableViewController.h"
+#import "MomentsAPIUtilities.h"
 
 @interface MOListViewController : MOTableViewController <UITableViewDataSource, UITableViewDelegate, PBJVideoPlayerControllerDelegate, UIGestureRecognizerDelegate>
 

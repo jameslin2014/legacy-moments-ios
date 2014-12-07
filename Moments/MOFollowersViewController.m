@@ -6,11 +6,7 @@
 //  Copyright (c) 2014 Cosmic. All rights reserved.
 //
 
-#import "UIImageView+AFNetworking.h"
-#import "AFNetworking.h"
 #import "MOFollowersViewController.h"
-#import "MomentsAPIUtilities.h"
-#import "SSKeychain.h"
 
 @implementation MOFollowersViewController {
     NSUInteger number;
@@ -25,16 +21,13 @@
     tempArray = [NSKeyedUnarchiver unarchiveObjectWithFile:docFile];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.separatorColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
-    self.tableView.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
+    
     [NSTimer scheduledTimerWithTimeInterval:5.0f target:self selector:@selector(reloadTable) userInfo:nil repeats:YES];
     
 }
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
     return 1;
 }
 
@@ -125,11 +118,11 @@
     }
     
     [view addSubview:label];
-    [view setBackgroundColor:[UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0]]; //your background color...
+    [view setBackgroundColor:[UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0]];
     return view;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"selected");
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
@@ -149,11 +142,6 @@
             cell.accessoryView = chevronImgVw;
         }
     }];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

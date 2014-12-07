@@ -372,10 +372,7 @@
 				02C1E4A51A2ED27700F7EC6E /* Utilities */,
 				02949ED71A2984F8001EDD2D /* API */,
 				A5B31C341A287F25009734EE /* Supporting Files */,
-				A5B834411A34EAC7006ECBF8 /* MOTableViewController.h */,
-				A5B834421A34EAC7006ECBF8 /* MOTableViewController.m */,
-				A5B834441A34EC14006ECBF8 /* MOTableViewCell.h */,
-				A5B834451A34EC14006ECBF8 /* MOTableViewCell.m */,
+				A5B834471A34EFBE006ECBF8 /* UITableView Subclass */,
 			);
 			path = Moments;
 			sourceTree = "<group>";
@@ -390,6 +387,17 @@
 				A5CAD7581A29A0BF0023F948 /* Fonts */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A5B834471A34EFBE006ECBF8 /* UITableView Subclass */ = {
+			isa = PBXGroup;
+			children = (
+				A5B834411A34EAC7006ECBF8 /* MOTableViewController.h */,
+				A5B834421A34EAC7006ECBF8 /* MOTableViewController.m */,
+				A5B834441A34EC14006ECBF8 /* MOTableViewCell.h */,
+				A5B834451A34EC14006ECBF8 /* MOTableViewCell.m */,
+			);
+			name = "UITableView Subclass";
 			sourceTree = "<group>";
 		};
 		A5C29FCE1A33C9BE00E605F1 /* JGProgressHUD */ = {

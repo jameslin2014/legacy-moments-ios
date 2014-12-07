@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+
+// External Libraries
+#import "UIImageView+AFNetworking.h"
+#import "JKSegmentedControl.h"
+#import "SSKeychain.h"
+#import "AFNetworking.h"
+
+// Internal Classes
 #import "MOTableViewController.h"
+#import "MomentsAPIUtilities.h"
 
 @interface MOFollowersViewController : MOTableViewController <UITableViewDataSource, UITableViewDelegate> {}
 

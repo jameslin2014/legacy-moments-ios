@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MomentsAPIUtilities.h"
+#import "SSKeychain.h"
 
 @interface MOLoginViewController : UIViewController
 
