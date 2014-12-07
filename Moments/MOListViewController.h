@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "PBJVideoPlayerController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
-@interface MOListViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, PBJVideoPlayerControllerDelegate, UIGestureRecognizerDelegate>
+
+// Subclasses
+#import "MOTableViewController.h"
+
+@interface MOListViewController : MOTableViewController <UITableViewDataSource, UITableViewDelegate, PBJVideoPlayerControllerDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic) IBOutlet UITableView *tableView;
 

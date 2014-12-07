@@ -28,6 +28,8 @@
 		A5B31C3A1A287F25009734EE /* MOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B31C391A287F25009734EE /* MOAppDelegate.m */; };
 		A5B31C401A287F26009734EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B31C3E1A287F26009734EE /* Main.storyboard */; };
 		A5B31C451A287F26009734EE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5B31C431A287F26009734EE /* LaunchScreen.xib */; };
+		A5B834431A34EAC7006ECBF8 /* MOTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B834421A34EAC7006ECBF8 /* MOTableViewController.m */; };
+		A5B834461A34EC14006ECBF8 /* MOTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B834451A34EC14006ECBF8 /* MOTableViewCell.m */; };
 		A5C29FE41A33C9BE00E605F1 /* JGProgressHUD Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A5C29FCF1A33C9BE00E605F1 /* JGProgressHUD Resources.bundle */; };
 		A5C29FE51A33C9BE00E605F1 /* JGProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C29FD11A33C9BE00E605F1 /* JGProgressHUD.m */; };
 		A5C29FE61A33C9BE00E605F1 /* JGProgressHUDAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C29FD31A33C9BE00E605F1 /* JGProgressHUDAnimation.m */; };
@@ -122,6 +124,10 @@
 		A5B31C391A287F25009734EE /* MOAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MOAppDelegate.m; sourceTree = "<group>"; };
 		A5B31C3F1A287F26009734EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A5B31C441A287F26009734EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		A5B834411A34EAC7006ECBF8 /* MOTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOTableViewController.h; sourceTree = "<group>"; };
+		A5B834421A34EAC7006ECBF8 /* MOTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOTableViewController.m; sourceTree = "<group>"; };
+		A5B834441A34EC14006ECBF8 /* MOTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOTableViewCell.h; sourceTree = "<group>"; };
+		A5B834451A34EC14006ECBF8 /* MOTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOTableViewCell.m; sourceTree = "<group>"; };
 		A5C29FCF1A33C9BE00E605F1 /* JGProgressHUD Resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = "JGProgressHUD Resources.bundle"; sourceTree = "<group>"; };
 		A5C29FD01A33C9BE00E605F1 /* JGProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUD.h; sourceTree = "<group>"; };
 		A5C29FD11A33C9BE00E605F1 /* JGProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUD.m; sourceTree = "<group>"; };
@@ -366,6 +372,10 @@
 				02C1E4A51A2ED27700F7EC6E /* Utilities */,
 				02949ED71A2984F8001EDD2D /* API */,
 				A5B31C341A287F25009734EE /* Supporting Files */,
+				A5B834411A34EAC7006ECBF8 /* MOTableViewController.h */,
+				A5B834421A34EAC7006ECBF8 /* MOTableViewController.m */,
+				A5B834441A34EC14006ECBF8 /* MOTableViewCell.h */,
+				A5B834451A34EC14006ECBF8 /* MOTableViewCell.m */,
 			);
 			path = Moments;
 			sourceTree = "<group>";
@@ -621,6 +631,7 @@
 				A5E01CC81A2B37F1003ED753 /* AFAmazonS3RequestSerializer.m in Sources */,
 				A5E01CD31A2B37F1003ED753 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				A5C29FE81A33C9BE00E605F1 /* JGProgressHUDFadeAnimation.m in Sources */,
+				A5B834431A34EAC7006ECBF8 /* MOTableViewController.m in Sources */,
 				A5E01CD81A2B37F1003ED753 /* UIRefreshControl+AFNetworking.m in Sources */,
 				A5C29FEE1A33C9BE00E605F1 /* JGProgressHUDSuccessIndicatorView.m in Sources */,
 				A5C29FF51A33C9F300E605F1 /* PBJVideoView.m in Sources */,
@@ -632,6 +643,7 @@
 				A5E01CC71A2B37F1003ED753 /* AFAmazonS3Manager.m in Sources */,
 				A5C5EB811A2A8358002F1591 /* MOCaptureViewController.m in Sources */,
 				A5E01CCD1A2B37F1003ED753 /* AFNetworkReachabilityManager.m in Sources */,
+				A5B834461A34EC14006ECBF8 /* MOTableViewCell.m in Sources */,
 				02C1E4B81A30221C00F7EC6E /* DLILOperation.m in Sources */,
 				A5C5EB831A2A8358002F1591 /* MOListViewController.m in Sources */,
 				02C1E4B91A30221C00F7EC6E /* DLImageLoader.m in Sources */,

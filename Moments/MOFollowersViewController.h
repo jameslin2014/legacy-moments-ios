@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MOTableViewController.h"
 
-@interface MOFollowersViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate> {}
+@interface MOFollowersViewController : MOTableViewController <UITableViewDataSource, UITableViewDelegate> {}
 
 @property (nonatomic) IBOutlet UITableView *tableView;
 

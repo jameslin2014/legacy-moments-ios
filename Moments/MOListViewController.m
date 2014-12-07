@@ -103,10 +103,6 @@
     
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 60.5;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier;
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -183,7 +179,7 @@
     return cell;
 }
 
--(void)shareMoment {
+- (void)shareMoment {
     NSString *user = [SSKeychain passwordForService:@"moments" account:@"username"];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -193,17 +189,6 @@
     [videoData writeToFile:imagePath atomically:YES];
     UIActivityViewController *shareSheet = [[UIActivityViewController alloc] initWithActivityItems:@[video] applicationActivities:nil];
     [self presentViewController:shareSheet animated:YES completion:nil];
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return NO;
-}
-
-- (void)tableView: (UITableView*)tableView willDisplayCell: (UITableViewCell*)cell forRowAtIndexPath: (NSIndexPath*)indexPath {
-    if(indexPath.row % 2 == 0)
-        cell.backgroundColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
-    else
-        cell.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -217,7 +202,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         return nil;
-    } else{
+    } else {
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 18)];
         /* Create custom view to display section header... */
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 2, self.tableView.frame.size.width, 18)];
@@ -233,7 +218,7 @@
     }
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (taps == YES) {
     } else {
@@ -311,7 +296,7 @@
     }
 }
 
--(void)dismissPlayer {
+- (void)dismissPlayer {
     taps = NO;
     [videoPlayer removeFromParentViewController];
     [videoPlayer.view removeFromSuperview];
@@ -320,17 +305,17 @@
 }
 
 
--(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     return YES;
 }
 
--(void)videoPlayerReady:(PBJVideoPlayerController *)player {
+- (void)videoPlayerReady:(PBJVideoPlayerController *)player {
     [player playFromBeginning];
     self.navigationController.navigationBar.alpha = 0.0f;
     HUD1.alpha = 0.0f;
 }
 
--(void)videoPlayerPlaybackDidEnd:(PBJVideoPlayerController *)player {
+- (void)videoPlayerPlaybackDidEnd:(PBJVideoPlayerController *)player {
     [player removeFromParentViewController];
     [player.view removeFromSuperview];
     self.navigationController.navigationBar.alpha = 1.0f;
@@ -338,10 +323,10 @@
     taps = NO;
 }
 
--(void)videoPlayerPlaybackWillStartFromBeginning:(PBJVideoPlayerController *)player {
+- (void)videoPlayerPlaybackWillStartFromBeginning:(PBJVideoPlayerController *)player {
     HUD1.alpha = 0.0f;
 }
 
--(void)videoPlayerPlaybackStateDidChange:(PBJVideoPlayerController *)player {}
+- (void)videoPlayerPlaybackStateDidChange:(PBJVideoPlayerController *)player {}
 
 @end
