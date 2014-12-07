@@ -7,7 +7,7 @@
 //
 
 #import "MOListViewController.h"
-
+#import "ALAssetsLibrary+CustomPhotoAlbum.h"
 @interface MOListViewController ()
 
 @property PBJVideoPlayerController *videoPlayer;
@@ -177,6 +177,12 @@
         NSData *videoData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",user]]];
         [videoData writeToFile:imagePath atomically:NO];
         UIActivityViewController *shareSheet = [[UIActivityViewController alloc] initWithActivityItems:@[video] applicationActivities:nil];
+        [shareSheet setCompletionHandler:^(NSString *activityType, BOOL completed) {
+            if([activityType isEqualToString: UIActivityTypeSaveToCameraRoll]){
+                ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+                [library saveVideo:video toAlbum:@"Saved Moments" withCompletionBlock:nil];
+            }
+        }];
         [self presentViewController:shareSheet animated:YES completion:^ {
             [LoadingHUD dismissAnimated:YES];
 
