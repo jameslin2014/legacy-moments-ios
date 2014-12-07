@@ -37,9 +37,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIGestureRecognizer *tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
     tapper.cancelsTouchesInView = YES;
     [self.view addGestureRecognizer:tapper];
+    
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docDir = [paths objectAtIndex: 0];
     NSString* docFile = [docDir stringByAppendingPathComponent: @"followingTemp.plist"];
@@ -54,7 +55,7 @@
     segmentView.userInteractionEnabled = YES;
     segmentView.alpha = 1;
     segmentView.layer.zPosition = 0;
-    [segmentView setBackgroundColor:[UIColor colorWithRed:0.23 green:0.52 blue:0.68 alpha:0.39]];
+    [segmentView setBackgroundColor:[UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100]];
     [self.navigationController.navigationBar addSubview:segmentView];
     
     self.tabSegmentedControl = [[JKSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Following", @"Followers", nil]];
@@ -76,7 +77,7 @@
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor whiteColor]];
     [searchBar removeFromSuperview];
     [self.navigationController.view addSubview:searchBar];
-    searchBar.alpha = 0.0f;
+    searchBar.alpha = 1.0f;
     UITextField *searchField = nil;
     view2 = [[UIView alloc] initWithFrame:CGRectMake(0, tableView.frame.origin.y, self.view.frame.size.width, 60.5)];
     view1 = [[UIView alloc] initWithFrame:CGRectMake(0, tableView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)];
@@ -94,20 +95,22 @@
         searchField.textColor = [UIColor whiteColor];
     }
     
-    [self.tableView setContentInset:UIEdgeInsetsMake(50,0,0,0)];
-    
+    [self.tableView setContentInset:UIEdgeInsetsMake(50, 0, 0, 0)];
 }
 
+- (void)handleSingleTap:(UITapGestureRecognizer *) sender {
+    [self.view endEditing:YES];
+}
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if ([searchText isEqualToString:@""]) {
         [view1 removeFromSuperview];
     } else {
+    
         MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
         [APIHelper searchForUsersWithUserName:searchText completion:^(BOOL valid) {
             
             if (valid) {
-                
                 view1.backgroundColor = tableView.backgroundColor;
                 [self.view addSubview:view1];
                 
@@ -143,11 +146,6 @@
     }
 }
 
-- (void)handleSingleTap:(UITapGestureRecognizer *) sender {
-    [self.view endEditing:YES];
-    
-}
-
 - (void)tabsChanged:(id)sender {
     if ([self.tabSegmentedControl selectedSegmentIndex] == 0) {
         followersVC.view.alpha = 0.0f;
@@ -169,8 +167,6 @@
         self.tabSegmentedControl.userInteractionEnabled = false;
         searchBar.alpha = 1.0;
     } completion:^(BOOL finished) {}];
-    
-    
 }
 
 - (void)showRegular {
@@ -262,9 +258,9 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    self.view1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+    self.view1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 18)];
     /* Create custom view to display section header... */
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 2, tableView.frame.size.width, 18)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 2, self.tableView.frame.size.width, 18)];
     [label setFont:[UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:1]];
     label.textColor = [UIColor whiteColor];
     if ([followersArray count] == 1) {

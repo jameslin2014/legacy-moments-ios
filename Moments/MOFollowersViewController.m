@@ -19,6 +19,7 @@
     NSString *docDir = [paths objectAtIndex: 0];
     NSString* docFile = [docDir stringByAppendingPathComponent: @"followersTemp.plist"];
     tempArray = [NSKeyedUnarchiver unarchiveObjectWithFile:docFile];
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     

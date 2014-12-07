@@ -12,6 +12,11 @@
 
 @property UIGestureRecognizer *tapper;
 
+@property IBOutlet UITextField *usernameField;
+@property IBOutlet UITextField *passwordField;
+@property IBOutlet UIButton *loginButton;
+@property IBOutlet UIImageView *backgroundImage;
+
 @end
 
 @implementation MOLoginViewController
@@ -24,11 +29,6 @@
     tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
     tapper.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapper];
-    
-    // Login Button
-    self.loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [loginButton addTarget:self action:@selector(loginButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    self.view.alpha = 1.0;
     
     // Username Field
     usernameField.borderStyle = UITextBorderStyleNone;
@@ -93,6 +93,7 @@
         }
     }];
 }
+
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
