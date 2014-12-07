@@ -317,6 +317,10 @@
     taps = NO;
 }
 
+-(void)videoPlayerPlaybackStateDidChange:(PBJVideoPlayerController *)videoPlayer {
+    //Dont remove this please
+}
+
 - (void)videoPlayerPlaybackWillStartFromBeginning:(PBJVideoPlayerController *)player {
     HUD1.alpha = 0.0f;
 }
