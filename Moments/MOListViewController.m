@@ -185,10 +185,19 @@
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *imagePath =[documentsDirectory stringByAppendingPathComponent:@"saved.mp4"];
     NSURL *video = [NSURL fileURLWithPath:imagePath];
-    NSData *videoData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",user]]];
-    [videoData writeToFile:imagePath atomically:YES];
-    UIActivityViewController *shareSheet = [[UIActivityViewController alloc] initWithActivityItems:@[video] applicationActivities:nil];
-    [self presentViewController:shareSheet animated:YES completion:nil];
+    JGProgressHUD *LoadingHUD = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleLight];
+    [LoadingHUD.textLabel setText:@"Exporting..."];
+    [LoadingHUD showInView:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSData *videoData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",user]]];
+        [videoData writeToFile:imagePath atomically:NO];
+        UIActivityViewController *shareSheet = [[UIActivityViewController alloc] initWithActivityItems:@[video] applicationActivities:nil];
+        [self presentViewController:shareSheet animated:YES completion:^ {
+            [LoadingHUD dismissAnimated:YES];
+
+        }];
+
+    });
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
