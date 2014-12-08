@@ -136,28 +136,39 @@
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
         profileImageView.clipsToBounds = YES;
         [cell addSubview:profileImageView];
-        NSURL * imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.jpg",user]];
-        NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-        UIImage * image = [UIImage imageWithData:imageData];
-        UIImage* flippedImage = [UIImage imageWithCGImage:image.CGImage
-                                                    scale:image.scale
-                                              orientation:UIImageOrientationRight];
-        [profileImageView setImage:flippedImage];
+        [profileImageView setImage:[UIImage imageNamed:@"capture-button"]];         
+
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+            NSURL * imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.jpg",user]];
+            NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+            UIImage * image = [UIImage imageWithData:imageData];
+            UIImage* flippedImage = [UIImage imageWithCGImage:image.CGImage
+                                                        scale:image.scale
+                                                  orientation:UIImageOrientationRight];
+            dispatch_async(dispatch_get_main_queue(), ^(void){
+ [profileImageView setImage:flippedImage];            });
+        });
+
         NSLog(@"%@",[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.jpg",user]);
     } else {
         UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 11, 35, 35)];
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
         profileImageView.clipsToBounds = YES;
         [cell addSubview:profileImageView];
-        
-        NSURL * imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.jpg",[followingArray objectAtIndex:indexPath.row]]];
-        NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-        UIImage * image = [UIImage imageWithData:imageData];
-        UIImage* flippedImage = [UIImage imageWithCGImage:image.CGImage
-                                                    scale:image.scale
-                                              orientation:UIImageOrientationRight];
-        [profileImageView setImage:flippedImage];
-        
+        [profileImageView setImage:[UIImage imageNamed:@"capture-button"]];
+
+            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+                NSURL * imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.jpg",[followingArray objectAtIndex:indexPath.row]]];
+                NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+                UIImage * image = [UIImage imageWithData:imageData];
+                UIImage* flippedImage = [UIImage imageWithCGImage:image.CGImage
+                                                            scale:image.scale
+                                                      orientation:UIImageOrientationRight];
+                dispatch_async(dispatch_get_main_queue(), ^(void){
+                    [profileImageView setImage:flippedImage];
+                });
+            });
+    
         nameLabel.text = [followingArray objectAtIndex:indexPath.row];
     }
     
