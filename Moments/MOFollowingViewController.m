@@ -6,12 +6,18 @@
 //  Copyright (c) 2014 Cosmic. All rights reserved.
 //
 
+#import "UIImageView+AFNetworking.h"
+#import "JKSegmentedControl.h"
+#import "AFNetworking.h"
 #import "MOFollowingViewController.h"
-
+#import "MomentsAPIUtilities.h"
+#import "SSKeychain.h"
 @interface MOFollowingViewController ()
 
 // UI Parent properties
 @property JKSegmentedControl *tabSegmentedControl;
+@property UIGestureRecognizer *tapper;
+@property UIView *segmentView;
 @property UIView *view1;
 @property UIView *view2;
 
@@ -21,53 +27,61 @@
 @property UILabel *nameLabel;
 @property UIImageView *profileImageView;
 
+// Numeric properties
+@property NSUInteger number;
+@property NSArray *tempArray;
+@property NSArray *followersArray;
+
 @end
 
-@implementation MOFollowingViewController {
-    NSUInteger number;
-    NSArray *tempArray;
-    NSArray *followersArray;
-}
+@implementation MOFollowingViewController
 
-@synthesize view1, view2, followersVC;
+@synthesize tabSegmentedControl, segmentView, view1, view2, followersVC;
 @synthesize searchBar, nameLabel, profileImageView;
-@synthesize tableView;
+@synthesize number, tempArray, followersArray;
+@synthesize tableView, tapper;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
     tapper.cancelsTouchesInView = YES;
     [self.view addGestureRecognizer:tapper];
-    
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docDir = [paths objectAtIndex: 0];
     NSString* docFile = [docDir stringByAppendingPathComponent: @"followingTemp.plist"];
     followersArray = [NSKeyedUnarchiver unarchiveObjectWithFile:docFile];
+    
+    
     followersVC = [self.storyboard instantiateViewControllerWithIdentifier:@"followersVC"]; // make sure
     
+    NSTimer *rowTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f
+                                                         target:self selector:@selector(numberOfRows) userInfo:nil repeats:YES];
+    
     // Do any additional setup after loading the view.
+    self.navigationController.navigationBarHidden = NO;
     self.title = @"Following";
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.23 green:0.52 blue:0.68 alpha:0.39]];
+    [self.navigationController.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys: [UIFont fontWithName:@"SanFranciscoDisplay-Medium" size:17], NSFontAttributeName, nil]];
     
-    UIView *segmentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.navigationController.navigationBar.frame.size.width, 50)];
+    self.segmentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.navigationController.navigationBar.frame.size.width, 50)];
     
-    segmentView.userInteractionEnabled = YES;
-    segmentView.alpha = 1;
-    segmentView.layer.zPosition = 0;
-    [segmentView setBackgroundColor:[UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100]];
-    [self.navigationController.navigationBar addSubview:segmentView];
-    
+    [self.segmentView setBackgroundColor:[UIColor colorWithRed:0.23 green:0.52 blue:0.68 alpha:0.39]];
+    self.segmentView.alpha = 1;
     self.tabSegmentedControl = [[JKSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Following", @"Followers", nil]];
+    self.tabSegmentedControl.frame = CGRectMake(20, self.navigationController.navigationBar.frame.size.height + 30, self.navigationController.navigationBar.frame.size.width - 40, 30);
     self.tabSegmentedControl.userInteractionEnabled = YES;
     self.tabSegmentedControl.tintColor = [UIColor whiteColor];
-    self.tabSegmentedControl.layer.zPosition = 1;
+    
+    
     [self.tabSegmentedControl addTarget:self action:@selector(tabsChanged:) forControlEvents:UIControlEventValueChanged];
-    self.tabSegmentedControl.frame = CGRectMake(20, self.navigationController.navigationBar.frame.size.height + 30, self.navigationController.navigationBar.frame.size.width - 40, 30);
-    
-    [self.tabSegmentedControl setSelectedSegmentIndex:0];
     [self.navigationController.view addSubview:self.tabSegmentedControl];
-    
+    self.segmentView.layer.zPosition = 0;
+    [self.tabSegmentedControl setSelectedSegmentIndex:0];
+    self.tabSegmentedControl.layer.zPosition = 1;
+    self.segmentView.userInteractionEnabled = YES;
+    [self.navigationController.navigationBar addSubview:self.segmentView];
     searchBar = [[UISearchBar alloc] initWithFrame:self.tabSegmentedControl.frame];
     searchBar.barTintColor = [UIColor whiteColor];
     searchBar.tintColor = [UIColor whiteColor];
@@ -77,7 +91,7 @@
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor whiteColor]];
     [searchBar removeFromSuperview];
     [self.navigationController.view addSubview:searchBar];
-    searchBar.alpha = 1.0f;
+    searchBar.alpha = 0.0f;
     UITextField *searchField = nil;
     view2 = [[UIView alloc] initWithFrame:CGRectMake(0, tableView.frame.origin.y, self.view.frame.size.width, 60.5)];
     view1 = [[UIView alloc] initWithFrame:CGRectMake(0, tableView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)];
@@ -95,22 +109,23 @@
         searchField.textColor = [UIColor whiteColor];
     }
     
-    [self.tableView setContentInset:UIEdgeInsetsMake(50, 0, 0, 0)];
-}
-
-- (void)handleSingleTap:(UITapGestureRecognizer *) sender {
-    [self.view endEditing:YES];
+    
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
+    self.tableView.separatorColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
+    self.tableView.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
+    [self.tableView setContentInset:UIEdgeInsetsMake(50,0,0,0)];
+    
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if ([searchText isEqualToString:@""]) {
         [view1 removeFromSuperview];
     } else {
-    
         MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
         [APIHelper searchForUsersWithUserName:searchText completion:^(BOOL valid) {
             
             if (valid) {
+                
                 view1.backgroundColor = tableView.backgroundColor;
                 [self.view addSubview:view1];
                 
@@ -146,6 +161,16 @@
     }
 }
 
+- (void)handleSingleTap:(UITapGestureRecognizer *) sender {
+    [self.view endEditing:YES];
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 - (void)tabsChanged:(id)sender {
     if ([self.tabSegmentedControl selectedSegmentIndex] == 0) {
         followersVC.view.alpha = 0.0f;
@@ -167,6 +192,8 @@
         self.tabSegmentedControl.userInteractionEnabled = false;
         searchBar.alpha = 1.0;
     } completion:^(BOOL finished) {}];
+    
+    
 }
 
 - (void)showRegular {
@@ -195,7 +222,7 @@
     return [followersArray count];
 }
 
-- (void)numberOfRows {
+-(void)numberOfRows {
     MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
     NSString *currentUser = [SSKeychain passwordForService:@"moments" account:@"username"];
     [APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *followedUsers) {
@@ -206,6 +233,10 @@
         }
     }];
     
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 60.5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -253,14 +284,27 @@
     return cell;
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return NO;
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
     [searchBar resignFirstResponder];
 }
 
+- (void)tableView: (UITableView*)tableView willDisplayCell: (UITableViewCell*)cell forRowAtIndexPath: (NSIndexPath*)indexPath {
+    if(indexPath.row % 2 == 0)
+        // color for first alternating cell
+        cell.backgroundColor = [UIColor colorWithRed:(40/255.0) green:(38/255.0) blue:(38/255.0) alpha:100];
+    else
+        // color for second alternating cell
+        cell.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    self.view1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 18)];
+    self.view1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
     /* Create custom view to display section header... */
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 2, self.tableView.frame.size.width, 18)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 2, tableView.frame.size.width, 18)];
     [label setFont:[UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:1]];
     label.textColor = [UIColor whiteColor];
     if ([followersArray count] == 1) {
@@ -273,8 +317,10 @@
     }
     
     [view1 addSubview:label];
-    [view1 setBackgroundColor:[UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0]];
+    [view1 setBackgroundColor:[UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0]]; //your background color...
     return view1;
 }
+
+
 
 @end

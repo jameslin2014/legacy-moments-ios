@@ -142,11 +142,8 @@
             NSURL * imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.jpg",user]];
             NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
             UIImage * image = [UIImage imageWithData:imageData];
-            UIImage* flippedImage = [UIImage imageWithCGImage:image.CGImage
-                                                        scale:image.scale
-                                                  orientation:UIImageOrientationRight];
             dispatch_async(dispatch_get_main_queue(), ^(void){
- [profileImageView setImage:flippedImage];            });
+ [profileImageView setImage:image];            });
         });
 
         NSLog(@"%@",[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.jpg",user]);
@@ -161,11 +158,8 @@
                 NSURL * imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.jpg",[followingArray objectAtIndex:indexPath.row]]];
                 NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
                 UIImage * image = [UIImage imageWithData:imageData];
-                UIImage* flippedImage = [UIImage imageWithCGImage:image.CGImage
-                                                            scale:image.scale
-                                                      orientation:UIImageOrientationRight];
-                dispatch_async(dispatch_get_main_queue(), ^(void){
-                    [profileImageView setImage:flippedImage];
+                    dispatch_async(dispatch_get_main_queue(), ^(void){
+                    [profileImageView setImage:image];
                 });
             });
     
@@ -173,6 +167,16 @@
     }
     
     return cell;
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [self.navigationController.navigationBar setHidden:NO];
+    NSLog(@"disappear");
+    [videoPlayer removeFromParentViewController];
+    videoPlayer.view.frame = CGRectZero;
+    [videoPlayer stop];
+    [videoPlayer.view removeFromSuperview];
+
 }
 
 - (void)shareMoment {
