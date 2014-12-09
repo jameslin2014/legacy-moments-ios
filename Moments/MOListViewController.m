@@ -17,9 +17,10 @@
 @end
 
 @implementation MOListViewController {
-    NSArray *followingArray;
+    NSMutableArray *followingArray;
     NSTimer *reloadTimer;
     BOOL taps;
+    NSArray *tempFollowing;
     
 }
 
@@ -53,14 +54,11 @@
     tableView.delegate = self;
     tableView.dataSource = self;
     
-    // UIBarButtonItem = Right
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"file_name"] style:UIBarButtonItemStylePlain target:self action:@selector(rightButton:)];
-    self.navigationItem.rightBarButtonItem = rightButton;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [self numberOfRows];
-    reloadTimer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(numberOfRows) userInfo:nil repeats:YES];
+    reloadTimer = [NSTimer scheduledTimerWithTimeInterval:7.0f target:self selector:@selector(numberOfRows) userInfo:nil repeats:YES];
 }
 
 #pragma mark —— Table view data source
@@ -70,7 +68,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 1) {
-        return [followingArray count];
+        if (followingArray == nil) {
+            return 0;
+        } else {
+        return [[followingArray copy] count];
+        }
     } else {
         return 1;
     }
@@ -80,10 +82,31 @@
     MomentsAPIUtilities *API = [MomentsAPIUtilities alloc];
     NSString *user = [SSKeychain passwordForService:@"moments" account:@"username"];
     [API getUserFollowingListWithUsername:user completion:^(NSArray *followingList) {
-        if ([followingArray isEqual:followingList]) {} else {
+        NSMutableArray *tempArray = followingArray;
+        followingArray = [followingList mutableCopy];
+        [followingList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",[followingList objectAtIndex:idx]]]];
+            [request setHTTPMethod:@"HEAD"];
+            AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+            [op start];
+            [op setCacheResponseBlock:^NSCachedURLResponse *(NSURLConnection *connection, NSCachedURLResponse *cachedResponse) {
+                return nil;
+            }];
+            [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                if ([tempArray isEqual:followingArray]) {} else {
+                    [tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+                }
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [followingArray removeObjectAtIndex:idx];
+                if ([tempArray isEqual:followingArray]) {} else {
+                [tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+                }
+            }];
+        }];
+      /*  if ([followingArray isEqual:followingList]) {} else {
             followingArray = followingList;
             [tableView reloadData];
-        }
+        }*/
     }];
     
 }
@@ -110,24 +133,6 @@
     [cell.contentView addSubview:nameLabel];
     
     if (indexPath.section == 0) {
-        UIToolbar *toolbar = [[UIToolbar alloc] init];
-        toolbar.barTintColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
-
-        toolbar.translucent = false;
-        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareMoment)];
-        toolbar.frame = CGRectMake(0, 0, 55, 55);
-        item.tintColor = [UIColor whiteColor];
-        [toolbar setItems:[NSArray arrayWithObject:item] animated:NO];
-        [toolbar setBarTintColor:[UIColor clearColor]];
-        for(UIView *view in [toolbar subviews])
-        {
-            if([view isKindOfClass:[UIImageView class]])
-            {
-                [view setHidden:YES];
-                [view setAlpha:0.0f];
-            }
-        }
-        cell.accessoryView = toolbar;
 
         NSString *user = [SSKeychain passwordForService:@"moments" account:@"username"];
         nameLabel.text = user;
@@ -143,11 +148,48 @@
             NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
             UIImage * image = [UIImage imageWithData:imageData];
             dispatch_async(dispatch_get_main_queue(), ^(void){
- [profileImageView setImage:image];            });
+                [profileImageView setImage:image];
+                if (profileImageView.image == nil) {
+                    [profileImageView setImage:[UIImage imageNamed:@"capture-button"]];
+                } else {
+                    UIToolbar *toolbar = [[UIToolbar alloc] init];
+                    toolbar.barTintColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
+                    toolbar.translucent = false;
+                    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareMoment)];
+                    toolbar.frame = CGRectMake(0, 0, 55, 55);
+                    item.tintColor = [UIColor whiteColor];
+                    [toolbar setItems:[NSArray arrayWithObject:item] animated:NO];
+                    [toolbar setBarTintColor:[UIColor clearColor]];
+                    for(UIView *view in [toolbar subviews])
+                    {
+                        if([view isKindOfClass:[UIImageView class]])
+                        {
+                            [view setHidden:YES];
+                            [view setAlpha:0.0f];
+                        }
+                    }
+                    cell.accessoryView = toolbar;
+                }
+});
         });
 
         NSLog(@"%@",[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.jpg",user]);
     } else {
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",[followingArray objectAtIndex:indexPath.row]]]];
+        [request setHTTPMethod:@"HEAD"];
+        AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+        [op start];
+        [op setCacheResponseBlock:^NSCachedURLResponse *(NSURLConnection *connection, NSCachedURLResponse *cachedResponse) {
+            return nil;
+        }];
+        [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%ld",(long)operation.response.statusCode);
+           
+            
+        }];
+
         UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 11, 35, 35)];
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
         profileImageView.clipsToBounds = YES;
@@ -160,7 +202,7 @@
                 UIImage * image = [UIImage imageWithData:imageData];
                     dispatch_async(dispatch_get_main_queue(), ^(void){
                     [profileImageView setImage:image];
-                });
+                    });
             });
     
         nameLabel.text = [followingArray objectAtIndex:indexPath.row];
@@ -171,7 +213,6 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
     [self.navigationController.navigationBar setHidden:NO];
-    NSLog(@"disappear");
     [videoPlayer removeFromParentViewController];
     videoPlayer.view.frame = CGRectZero;
     [videoPlayer stop];
@@ -316,7 +357,7 @@
     [videoPlayer removeFromParentViewController];
     [videoPlayer.view removeFromSuperview];
     self.navigationController.navigationBar.alpha = 1.0f;
-    reloadTimer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(numberOfRows) userInfo:nil repeats:YES];
+    reloadTimer = [NSTimer scheduledTimerWithTimeInterval:7.0f target:self selector:@selector(numberOfRows) userInfo:nil repeats:YES];
 }
 
 
@@ -334,7 +375,7 @@
     [player removeFromParentViewController];
     [player.view removeFromSuperview];
     self.navigationController.navigationBar.alpha = 1.0f;
-    reloadTimer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(numberOfRows) userInfo:nil repeats:YES];
+    reloadTimer = [NSTimer scheduledTimerWithTimeInterval:7.0f target:self selector:@selector(numberOfRows) userInfo:nil repeats:YES];
     taps = NO;
 }
 

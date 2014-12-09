@@ -11,6 +11,7 @@
 @implementation MomentsAPIUtilities {
     BOOL loginStatus;
     NSArray *followingArray;
+    NSMutableArray *recentUpdatesArray;
 }
 
 // Grab all user data from Firebase with a specified username

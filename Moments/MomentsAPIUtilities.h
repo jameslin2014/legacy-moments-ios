@@ -67,5 +67,4 @@
  */
 - (void)searchForUsersWithUserName:(NSString *)searchString completion:(void(^)(BOOL validUser))data;
 
-
 @end
