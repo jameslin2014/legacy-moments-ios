@@ -29,10 +29,10 @@
     [[self previewView] setSession:session];
     [self checkDeviceAuthorizationStatus];
     
-    self.flashButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.flashButton addTarget:self action:@selector(flashButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.flashButton];
-    
+//    self.flashButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    [self.flashButton addTarget:self action:@selector(flashButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:self.flashButton];
+	
     dispatch_queue_t sessionQueue = dispatch_queue_create("session queue", DISPATCH_QUEUE_SERIAL);
     [self setSessionQueue:sessionQueue];
     
@@ -125,12 +125,21 @@
         
         if (success) {
             if ([flash isTorchActive]) {
+				self.cameraButton.enabled = true;
                 [flash setTorchMode:AVCaptureTorchModeOff];
 				sender.tintColor = [UIColor whiteColor];
+				[sender setTitle:@"Off" forState:UIControlStateNormal];
+				self.cameraButton.enabled = true;
             } else {
+				self.cameraButton.enabled = false;
                 [flash setTorchMode:AVCaptureTorchModeOn];
 				sender.tintColor = [UIColor yellowColor];
-				sender.titleLabel.text = @"On";
+				[sender setTitle:@"On" forState:UIControlStateNormal];
+				self.cameraButton.enabled = NO;
+				if ([[[self videoDeviceInput] device]position] == AVCaptureDevicePositionFront){
+					[self changeCamera:self];
+					self.cameraButton.enabled = false;
+				}
             }
             [flash unlockForConfiguration];
         }
@@ -182,6 +191,10 @@
     
     dispatch_async([self sessionQueue], ^{
         if (![[self movieFileOutput] isRecording]) {
+			dispatch_async(dispatch_get_main_queue(), ^{
+				self.recordingLabel.hidden = NO;
+				self.blinkTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(blinkLabel) userInfo:nil repeats:YES];
+			});
             [self setLockInterfaceRotation:YES];
             
             if ([[UIDevice currentDevice] isMultitaskingSupported]) {
@@ -198,9 +211,21 @@
             NSString *outputFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[@"movie" stringByAppendingPathExtension:@"mov"]];
             [[self movieFileOutput] startRecordingToOutputFileURL:[NSURL fileURLWithPath:outputFilePath] recordingDelegate:self];
         } else {
+			dispatch_async(dispatch_get_main_queue(), ^{
+				self.recordingLabel.hidden = true;
+				[self.blinkTimer invalidate];
+				self.blinkTimer = nil;
+			});
             [[self movieFileOutput] stopRecording];
         }
     });
+}
+
+- (void)blinkLabel{
+	self.recordingLabel.alpha = 0.0;
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+		self.recordingLabel.alpha = 1.0;
+	});
 }
 
 - (IBAction)changeCamera:(id)sender {
@@ -246,6 +271,10 @@
         [[self session] commitConfiguration];
         
         dispatch_async(dispatch_get_main_queue(), ^{
+			if (videoDevice.flashActive == NO){
+				self.flashButton.tintColor = [UIColor whiteColor];
+				[self.flashButton setTitle:@"Off" forState:UIControlStateNormal];
+			}
             [[self cameraButton] setEnabled:YES];
             [[self recordButton] setEnabled:YES];
         });

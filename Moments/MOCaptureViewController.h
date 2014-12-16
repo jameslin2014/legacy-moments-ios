@@ -16,6 +16,8 @@ static void *RecordingContext = &RecordingContext;
 static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDeviceAuthorizedContext;
 
 @interface MOCaptureViewController : UIViewController <AVCaptureFileOutputRecordingDelegate>
+@property (strong, nonatomic) IBOutlet UILabel *recordingLabel;
+@property (strong, nonatomic) NSTimer *blinkTimer;
 
 // For use in the storyboards.
 @property (nonatomic, weak) IBOutlet AVCamPreviewView *previewView;

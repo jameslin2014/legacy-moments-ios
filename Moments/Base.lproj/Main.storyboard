@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -182,10 +181,21 @@
                                                         <action selector="changeCamera:" destination="lzj-Vv-tF4" eventType="touchUpInside" id="eat-eg-MrT"/>
                                                     </connections>
                                                 </button>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RECORDING" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BiE-2a-tzU">
+                                                    <rect key="frame" x="136" y="31" width="102" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="2rh-CN-aby"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="BiE-2a-tzU" secondAttribute="bottom" constant="8" id="2r2-7i-VN7"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="8fp-Rk-D9Y" secondAttribute="trailing" id="5AF-Xe-cjK"/>
                                                 <constraint firstItem="8fp-Rk-D9Y" firstAttribute="bottom" secondItem="3bm-dB-Xu9" secondAttribute="bottomMargin" id="AkZ-g4-Wwk"/>
+                                                <constraint firstAttribute="centerX" secondItem="BiE-2a-tzU" secondAttribute="centerX" constant="0.5" id="Q9e-e8-oUx"/>
                                                 <constraint firstItem="azg-Fi-Lly" firstAttribute="leading" secondItem="3bm-dB-Xu9" secondAttribute="leadingMargin" id="WSU-qw-p02"/>
                                                 <constraint firstItem="azg-Fi-Lly" firstAttribute="bottom" secondItem="3bm-dB-Xu9" secondAttribute="bottomMargin" id="X8F-Qb-gr7"/>
                                             </constraints>
@@ -255,6 +265,7 @@
                         <outlet property="flashButton" destination="azg-Fi-Lly" id="wLW-2v-jtK"/>
                         <outlet property="previewView" destination="Sgs-dV-lyT" id="Vsn-Fj-Brz"/>
                         <outlet property="recordButton" destination="q7L-6T-xkJ" id="udx-i7-kQ5"/>
+                        <outlet property="recordingLabel" destination="BiE-2a-tzU" id="QVN-dh-vCk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Ac-vc-bKb" userLabel="First Responder" sceneMemberID="firstResponder"/>
