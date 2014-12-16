@@ -126,8 +126,11 @@
         if (success) {
             if ([flash isTorchActive]) {
                 [flash setTorchMode:AVCaptureTorchModeOff];
+				sender.tintColor = [UIColor whiteColor];
             } else {
                 [flash setTorchMode:AVCaptureTorchModeOn];
+				sender.tintColor = [UIColor yellowColor];
+				sender.titleLabel.text = @"On";
             }
             [flash unlockForConfiguration];
         }
@@ -203,7 +206,7 @@
 - (IBAction)changeCamera:(id)sender {
     [[self cameraButton] setEnabled:NO];
     [[self recordButton] setEnabled:NO];
-    
+	
     dispatch_async([self sessionQueue], ^{
         AVCaptureDevice *currentVideoDevice = [[self videoDeviceInput] device];
         AVCaptureDevicePosition preferredPosition = AVCaptureDevicePositionUnspecified;
