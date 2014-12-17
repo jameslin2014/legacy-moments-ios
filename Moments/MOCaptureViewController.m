@@ -11,6 +11,9 @@
 #import "AFAmazonS3RequestSerializer.h"
 #import "JGProgressHUD.h"
 #import "SSKeychain.h"
+#import <SceneKit/SceneKit.h>
+#import "EDSpinningBoxScene.h"
+
 @implementation MOCaptureViewController
 
 - (BOOL)isSessionRunningAndDeviceAuthorized {
@@ -299,8 +302,18 @@
     if (error) {
         NSLog(@"%@", error);
     }
-    JGProgressHUD *HUD = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleLight];
-    [HUD showInView:self.view animated:YES];
+//    JGProgressHUD *HUD = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleLight];
+//    [HUD showInView:self.view animated:YES];
+
+	SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
+	v.scene = [[EDSpinningBoxScene alloc] init];
+	v.alpha = 0.0;
+	v.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+	[self.view addSubview:v];
+	[UIView animateWithDuration:0.2 animations:^{
+		v.alpha = 1.0;
+	}];
+	
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
@@ -439,7 +452,11 @@
         
         
         AFHTTPRequestOperation *operation2 = [s3Manager2 HTTPRequestOperationWithRequest:request2 success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            [HUD dismissAnimated:YES];
+			[UIView animateWithDuration:0.2 animations:^{
+				v.alpha = 0.0;
+			} completion:^(BOOL finished) {
+				[v removeFromSuperview];
+			}];
             [[UIApplication sharedApplication] endIgnoringInteractionEvents];
             [self.navigationController.view setUserInteractionEnabled:true];
             NSLog(@"success");
