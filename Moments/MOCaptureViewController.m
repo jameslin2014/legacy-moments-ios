@@ -463,18 +463,17 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
 	
-	NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
+	NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
 	
-	if (CFStringCompare ((__bridge CFStringRef) mediaType, kUTTypeMovie, 0) == kCFCompareEqualTo) {
-		NSURL *videoUrl=(NSURL*)[info objectForKey:UIImagePickerControllerMediaURL];
-		
-		NSFileManager *fileManager = [NSFileManager defaultManager];
-		NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-		NSString *path = [documentsPath stringByAppendingPathComponent:@"movieFile.mov"];
-		NSError *error;
-		[fileManager moveItemAtPath:videoUrl.path toPath:path error:&error];
-		if (error){ NSLog(@"Error: %@", error); }
-		[self postVideoWithURL:[NSURL URLWithString:path]];
+	NSData *videoData = [NSData dataWithContentsOfURL:videoURL];
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsDirectory = [paths objectAtIndex:0];
+	NSString *tempPath = [documentsDirectory stringByAppendingFormat:@"/vid1.mov"];
+	
+	BOOL success = [videoData writeToFile:tempPath atomically:YES];
+	
+	if (success){
+		[self postVideoWithURL:[NSURL URLWithString:tempPath]];
 	}
 	
 	[self dismissViewControllerAnimated:YES completion:nil];
