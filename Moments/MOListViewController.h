@@ -12,7 +12,7 @@
 // External Libraries
 #import "PBJVideoPlayerController.h"
 #import "UIImageView+AFNetworking.h"
-#import "JGProgressHUD.h"
+#import "EDSpinningBoxScene.h"
 #import "SSKeychain.h"
 
 // Internal Classes

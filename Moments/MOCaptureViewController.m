@@ -9,7 +9,6 @@
 #import "MOCaptureViewController.h"
 #import "AFAmazonS3Manager.h"
 #import "AFAmazonS3RequestSerializer.h"
-#import "JGProgressHUD.h"
 #import "SSKeychain.h"
 #import <SceneKit/SceneKit.h>
 #import "EDSpinningBoxScene.h"
@@ -31,10 +30,6 @@
     [self setSession:session];
     [[self previewView] setSession:session];
     [self checkDeviceAuthorizationStatus];
-    
-//    self.flashButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//    [self.flashButton addTarget:self action:@selector(flashButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:self.flashButton];
 	
     dispatch_queue_t sessionQueue = dispatch_queue_create("session queue", DISPATCH_QUEUE_SERIAL);
     [self setSessionQueue:sessionQueue];
@@ -303,8 +298,6 @@
     if (error) {
         NSLog(@"%@", error);
     }
-//    JGProgressHUD *HUD = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleLight];
-//    [HUD showInView:self.view animated:YES];
 
 	SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
 	v.scene = [[EDSpinningBoxScene alloc] init];
