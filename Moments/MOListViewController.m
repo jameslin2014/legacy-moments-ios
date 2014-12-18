@@ -197,6 +197,7 @@
 	[UIView animateWithDuration:0.2 animations:^{
 		v.alpha = 1.0;
 	}];
+	[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
 //    [LoadingHUD.textLabel setText:@"Exporting..."];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSData *videoData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",user]]];
@@ -213,6 +214,7 @@
 				v.alpha = 0.0;
 			} completion:^(BOOL finished) {
 				[v removeFromSuperview];
+				[[UIApplication sharedApplication] endIgnoringInteractionEvents];
 			}];
         }];
         
@@ -286,6 +288,7 @@
 				[UIView animateWithDuration:0.2 animations:^{
 					self.HUD1.alpha = 1.0;
 				}];
+				[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
                 
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 taps = NO;
@@ -323,6 +326,7 @@
 				[UIView animateWithDuration:0.2 animations:^{
 					self.HUD1.alpha = 1.0;
 				}];
+				[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 taps = NO;
                 NSLog(@"fail");
@@ -354,6 +358,7 @@
 		self.HUD1.alpha = 0.0;
 	} completion:^(BOOL finished) {
 		[self.HUD1 removeFromSuperview];
+		[[UIApplication sharedApplication]endIgnoringInteractionEvents];
 	}];
 }
 
@@ -374,6 +379,7 @@
 		self.HUD1.alpha = 0.0;
 	} completion:^(BOOL finished) {
 		[self.HUD1 removeFromSuperview];
+		[[UIApplication sharedApplication]endIgnoringInteractionEvents];
 	}];
 }
 

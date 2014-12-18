@@ -452,6 +452,34 @@
 	}];
 }
 
+- (IBAction)openVideoPicker{
+	UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+	imagePicker.delegate = self;
+	imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+	imagePicker.mediaTypes = [[NSArray alloc] initWithObjects:(NSString *)kUTTypeMovie,nil];
+	
+	[self presentViewController:imagePicker animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+	
+	NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
+	
+	if (CFStringCompare ((__bridge CFStringRef) mediaType, kUTTypeMovie, 0) == kCFCompareEqualTo) {
+		NSURL *videoUrl=(NSURL*)[info objectForKey:UIImagePickerControllerMediaURL];
+		
+		NSFileManager *fileManager = [NSFileManager defaultManager];
+		NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+		NSString *path = [documentsPath stringByAppendingPathComponent:@"movieFile.mov"];
+		NSError *error;
+		[fileManager moveItemAtPath:videoUrl.path toPath:path error:&error];
+		if (error){ NSLog(@"Error: %@", error); }
+		[self postVideoWithURL:[NSURL URLWithString:path]];
+	}
+	
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)captureOutput:(AVCaptureFileOutput *)captureOutput didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL fromConnections:(NSArray *)connections error:(NSError *)error {
     if (error) {
         NSLog(@"%@", error);
