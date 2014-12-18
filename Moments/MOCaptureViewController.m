@@ -331,7 +331,6 @@
 		if (error) {
 			NSLog(@"Error - %@", error.debugDescription);
 		}
-		
 		[audioCompositionTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, assetTrack.timeRange.duration)
 									   ofTrack:audioAssetTrack
 										atTime:time
@@ -466,14 +465,11 @@
 	NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
 	
 	NSData *videoData = [NSData dataWithContentsOfURL:videoURL];
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *documentsDirectory = [paths objectAtIndex:0];
-	NSString *tempPath = [documentsDirectory stringByAppendingFormat:@"/vid1.mov"];
+	NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+	NSString *tempPath = [documentsPath stringByAppendingPathComponent:@"merged2.mp4"];
 	
-	BOOL success = [videoData writeToFile:tempPath atomically:YES];
-	
-	if (success){
-		[self postVideoWithURL:[NSURL URLWithString:tempPath]];
+	if ([videoData writeToFile:tempPath atomically:YES]){
+		[self postVideoWithURL:[NSURL fileURLWithPath:tempPath]];
 	}
 	
 	[self dismissViewControllerAnimated:YES completion:nil];
