@@ -114,7 +114,7 @@
         [label setText:string];
         
     } else {
-        NSString *string =[NSString stringWithFormat:@"Followed by %lu users",[tableView numberOfRowsInSection:0]];
+        NSString *string =[NSString stringWithFormat:@"Followed by %lu users",(long)[tableView numberOfRowsInSection:0]];
         [label setText:string];
     }
     

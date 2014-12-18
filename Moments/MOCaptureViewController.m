@@ -44,7 +44,8 @@
         
         NSError *error = nil;
     
-        MOCaptureViewController *videoDevice = [MOCaptureViewController deviceWithMediaType:AVMediaTypeVideo preferringPosition:AVCaptureDevicePositionBack];
+//        MOCaptureViewController *videoDevice = [MOCaptureViewController deviceWithMediaType:AVMediaTypeVideo preferringPosition:AVCaptureDevicePositionBack];
+		MOCaptureViewController *videoDevice = [MOCaptureViewController deviceWithMediaType:AVMediaTypeVideo preferringPosition:(AVCaptureDevicePositionBack)];
         AVCaptureDeviceInput *videoDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:videoDevice error:&error];
         
         if (error) {
@@ -362,8 +363,8 @@
         [instructions addObject:videoCompositionInstruction];
         CGAffineTransform rotation = CGAffineTransformMakeRotation(M_PI_2);
         CGAffineTransform translateToCenter = CGAffineTransformMakeTranslation(640, 480);
-        CGAffineTransform mixedTransform = CGAffineTransformConcat(rotation, translateToCenter);
-        AVMutableVideoCompositionLayerInstruction *FirstlayerInstruction = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:videoCompositionTrack];
+//        CGAffineTransform mixedTransform = CGAffineTransformConcat(rotation, translateToCenter);
+//        AVMutableVideoCompositionLayerInstruction *FirstlayerInstruction = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:videoCompositionTrack];
         [videoCompositionTrack setPreferredTransform:CGAffineTransformConcat(rotation,translateToCenter)];
         time = CMTimeAdd(time, assetTrack.timeRange.duration);
         
@@ -382,7 +383,7 @@
     AVPlayerItem *pi = [AVPlayerItem playerItemWithAsset:mutableComposition];
     pi.videoComposition = mutableVideoComposition;
     
-    AVPlayer *player = [AVPlayer playerWithPlayerItem:pi];
+//    AVPlayer *player = [AVPlayer playerWithPlayerItem:pi];
     AVAssetExportSession *exportSession =  [AVAssetExportSession exportSessionWithAsset:pi.asset presetName:AVAssetExportPresetMediumQuality];
     NSString* documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString* path = [documentPath stringByAppendingPathComponent:@"merged2.mp4"];
@@ -395,7 +396,7 @@
         
         [self setLockInterfaceRotation:NO];
         
-        UIBackgroundTaskIdentifier backgroundRecordingID = [self backgroundRecordingID];
+//        UIBackgroundTaskIdentifier backgroundRecordingID = [self backgroundRecordingID];
         [self setBackgroundRecordingID:UIBackgroundTaskInvalid];
         
         AFAmazonS3Manager *s3Manager =

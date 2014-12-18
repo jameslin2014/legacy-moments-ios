@@ -56,9 +56,9 @@
     
     followersVC = [self.storyboard instantiateViewControllerWithIdentifier:@"followersVC"]; // make sure
     
-    NSTimer *rowTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f
-                                                         target:self selector:@selector(numberOfRows) userInfo:nil repeats:YES];
-    
+//    NSTimer *rowTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f
+//                                                         target:self selector:@selector(numberOfRows) userInfo:nil repeats:YES];
+	
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = NO;
     self.title = @"Following";
@@ -301,10 +301,10 @@
         cell.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    self.view1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+- (UIView *)tableView:(UITableView *)localTableView viewForHeaderInSection:(NSInteger)section {
+    self.view1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, localTableView.frame.size.width, 18)];
     /* Create custom view to display section header... */
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 2, tableView.frame.size.width, 18)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 2, localTableView.frame.size.width, 18)];
     [label setFont:[UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:1]];
     label.textColor = [UIColor whiteColor];
     if ([followersArray count] == 1) {

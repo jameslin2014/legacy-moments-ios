@@ -54,8 +54,8 @@
     tableView.dataSource = self;
     
     // UIBarButtonItem = Right
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"file_name"] style:UIBarButtonItemStylePlain target:self action:@selector(rightButton:)];
-    self.navigationItem.rightBarButtonItem = rightButton;
+//    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"file_name"] style:UIBarButtonItemStylePlain target:self action:@selector(rightButton:)];
+//    self.navigationItem.rightBarButtonItem = rightButton;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -199,12 +199,12 @@
         NSData *videoData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",user]]];
         [videoData writeToFile:imagePath atomically:NO];
         UIActivityViewController *shareSheet = [[UIActivityViewController alloc] initWithActivityItems:@[video] applicationActivities:nil];
-        [shareSheet setCompletionHandler:^(NSString *activityType, BOOL completed) {
-            if([activityType isEqualToString: UIActivityTypeSaveToCameraRoll]){
-                ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-                [library saveVideo:video toAlbum:@"Saved Moments" withCompletionBlock:nil];
-            }
-        }];
+		[shareSheet setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError){
+			if([activityType isEqualToString: UIActivityTypeSaveToCameraRoll]){
+				ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+				[library saveVideo:video toAlbum:@"Saved Moments" withCompletionBlock:nil];
+			}
+		}];
         [self presentViewController:shareSheet animated:YES completion:^ {
             [LoadingHUD dismissAnimated:YES];
             

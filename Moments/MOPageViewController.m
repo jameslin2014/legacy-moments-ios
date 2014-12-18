@@ -78,12 +78,12 @@
     
     UIViewController *visibleViewController = self.pageController.viewControllers[0];
     NSUInteger currentIndex = [self.pages indexOfObject:visibleViewController];
-    NSArray *viewControllers = [NSArray arrayWithObjects:[self.pages objectAtIndex:self.pageControl.currentPage], nil];
+    NSArray *controllers = [NSArray arrayWithObjects:[self.pages objectAtIndex:self.pageControl.currentPage], nil];
     
     if (self.pageControl.currentPage > currentIndex) {
-        [self.pageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+        [self.pageController setViewControllers:controllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     } else {
-        [self.pageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];
+        [self.pageController setViewControllers:controllers direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];
     }
     
     
