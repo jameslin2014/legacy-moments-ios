@@ -39,8 +39,7 @@
         
         NSError *error = nil;
     
-//        MOCaptureViewController *videoDevice = [MOCaptureViewController deviceWithMediaType:AVMediaTypeVideo preferringPosition:AVCaptureDevicePositionBack];
-		MOCaptureViewController *videoDevice = [MOCaptureViewController deviceWithMediaType:AVMediaTypeVideo preferringPosition:(AVCaptureDevicePositionBack)];
+		AVCaptureDevice *videoDevice = [MOCaptureViewController deviceWithMediaType:AVMediaTypeVideo preferringPosition:AVCaptureDevicePositionBack];
         AVCaptureDeviceInput *videoDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:videoDevice error:&error];
         
         if (error) {
