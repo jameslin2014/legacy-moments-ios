@@ -8,6 +8,8 @@
 
 #import "MOListViewController.h"
 #import "ALAssetsLibrary+CustomPhotoAlbum.h"
+#import "SettingsViewController.h"
+
 @interface MOListViewController ()
 
 @property (strong, nonatomic) PBJVideoPlayerController *videoPlayer;
@@ -53,6 +55,7 @@
     // UIBarButtonItem = Right
 //    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"file_name"] style:UIBarButtonItemStylePlain target:self action:@selector(rightButton:)];
 //    self.navigationItem.rightBarButtonItem = rightButton;
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showOptionsAndAbout)];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -181,6 +184,10 @@
     [self.videoPlayer stop];
     [self.videoPlayer.view removeFromSuperview];
     
+}
+
+- (void)showOptionsAndAbout{
+	[self presentViewController: [[SettingsViewController alloc]init] animated:YES completion:nil];
 }
 
 - (void)shareMoment {

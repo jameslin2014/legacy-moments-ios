@@ -26,6 +26,9 @@
 		02C1E4BA1A30221C00F7EC6E /* DLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C1E4B61A30221C00F7EC6E /* DLImageView.m */; };
 		02C894471A29B89100B87592 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ECE1A298451001EDD2D /* Security.framework */; };
 		204BA45D1A4134BF00C1C05E /* EDSpinningBoxScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 204BA45C1A4134BF00C1C05E /* EDSpinningBoxScene.m */; };
+		20D1785B1A43B8A5005D3463 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D1785A1A43B8A5005D3463 /* SettingsViewController.m */; };
+		20D6E7D61A43C7DA00B6DF3F /* EDSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D6E7D51A43C7DA00B6DF3F /* EDSegmentedControl.m */; };
+		20D6E7DC1A44D5BA00B6DF3F /* EDSegments.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D6E7DB1A44D5BA00B6DF3F /* EDSegments.m */; };
 		A5B31C371A287F25009734EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B31C361A287F25009734EE /* main.m */; };
 		A5B31C3A1A287F25009734EE /* MOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B31C391A287F25009734EE /* MOAppDelegate.m */; };
 		A5B31C401A287F26009734EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B31C3E1A287F26009734EE /* Main.storyboard */; };
@@ -111,6 +114,12 @@
 		02C1E4B61A30221C00F7EC6E /* DLImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLImageView.m; sourceTree = "<group>"; };
 		204BA45B1A4134BF00C1C05E /* EDSpinningBoxScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDSpinningBoxScene.h; sourceTree = "<group>"; };
 		204BA45C1A4134BF00C1C05E /* EDSpinningBoxScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDSpinningBoxScene.m; sourceTree = "<group>"; };
+		20D178591A43B8A5005D3463 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		20D1785A1A43B8A5005D3463 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		20D6E7D41A43C7DA00B6DF3F /* EDSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDSegmentedControl.h; sourceTree = "<group>"; };
+		20D6E7D51A43C7DA00B6DF3F /* EDSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDSegmentedControl.m; sourceTree = "<group>"; };
+		20D6E7DA1A44D5BA00B6DF3F /* EDSegments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDSegments.h; sourceTree = "<group>"; };
+		20D6E7DB1A44D5BA00B6DF3F /* EDSegments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDSegments.m; sourceTree = "<group>"; };
 		A5B31C311A287F25009734EE /* Moments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moments.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5B31C351A287F25009734EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5B31C361A287F25009734EE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -335,6 +344,12 @@
 				A5B31C391A287F25009734EE /* MOAppDelegate.m */,
 				204BA45B1A4134BF00C1C05E /* EDSpinningBoxScene.h */,
 				204BA45C1A4134BF00C1C05E /* EDSpinningBoxScene.m */,
+				20D178591A43B8A5005D3463 /* SettingsViewController.h */,
+				20D1785A1A43B8A5005D3463 /* SettingsViewController.m */,
+				20D6E7D41A43C7DA00B6DF3F /* EDSegmentedControl.h */,
+				20D6E7D51A43C7DA00B6DF3F /* EDSegmentedControl.m */,
+				20D6E7DA1A44D5BA00B6DF3F /* EDSegments.h */,
+				20D6E7DB1A44D5BA00B6DF3F /* EDSegments.m */,
 				A5E01C941A2B34DC003ED753 /* Camera Utilities */,
 				A5C5EB851A2A835E002F1591 /* User interface */,
 				A5CAD74F1A299B480023F948 /* MOLoginViewController.h */,
@@ -600,11 +615,14 @@
 				A5C29FF41A33C9F300E605F1 /* PBJVideoPlayerController.m in Sources */,
 				02C1E4BA1A30221C00F7EC6E /* DLImageView.m in Sources */,
 				A5E01CCF1A2B37F1003ED753 /* AFURLConnectionOperation.m in Sources */,
+				20D6E7DC1A44D5BA00B6DF3F /* EDSegments.m in Sources */,
 				A5E01CD21A2B37F1003ED753 /* AFURLSessionManager.m in Sources */,
 				A5E01CCA1A2B37F1003ED753 /* AFHTTPRequestOperationManager.m in Sources */,
 				A5E01C9B1A2B37D7003ED753 /* SSKeychain.m in Sources */,
 				A5E01CCC1A2B37F1003ED753 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				20D6E7D61A43C7DA00B6DF3F /* EDSegmentedControl.m in Sources */,
 				0232A0631A2A8ABD00ABF2FB /* MomentsAPIUtilities.m in Sources */,
+				20D1785B1A43B8A5005D3463 /* SettingsViewController.m in Sources */,
 				A5C5EB841A2A8358002F1591 /* MOPageViewController.m in Sources */,
 				A5B31C3A1A287F25009734EE /* MOAppDelegate.m in Sources */,
 				A5E01CD61A2B37F1003ED753 /* UIImageView+AFNetworking.m in Sources */,
