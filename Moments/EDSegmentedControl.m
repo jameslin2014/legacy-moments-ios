@@ -67,6 +67,10 @@ typedef NS_ENUM(NSUInteger, State) {
 	[self setNeedsDisplay];
 }
 
+-(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
+	self.state = self.stateBeforeTouches;
+}
+
 - (void)drawRect:(CGRect)rect{
 	switch (self.state) {
 		case StateLeftSelected:
