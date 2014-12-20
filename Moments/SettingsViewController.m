@@ -22,6 +22,7 @@
 
 - (void)viewDidLoad{
 	[super viewDidLoad];
+	self.view.backgroundColor = [UIColor darkGrayColor];
 	EDSegmentedControl *control = [[EDSegmentedControl alloc]init];
 	
 	control.center = self.view.center;

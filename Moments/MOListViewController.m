@@ -55,12 +55,15 @@
     // UIBarButtonItem = Right
 //    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"file_name"] style:UIBarButtonItemStylePlain target:self action:@selector(rightButton:)];
 //    self.navigationItem.rightBarButtonItem = rightButton;
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showOptionsAndAbout)];
+	
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [self numberOfRows];
     reloadTimer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(numberOfRows) userInfo:nil repeats:YES];
+	UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showOptionsAndAbout)];
+	button.tintColor = [UIColor whiteColor];
+	self.navigationItem.rightBarButtonItem = button;
 }
 
 #pragma mark —— Table view data source
