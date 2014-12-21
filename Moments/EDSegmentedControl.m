@@ -9,17 +9,8 @@
 #import "EDSegmentedControl.h"
 #import "EDSegments.h"
 
-typedef NS_ENUM(NSUInteger, State) {
-	StateLeftSelected,
-	StateRightSelected,
-	StateLeftHighlighted,
-	StateRightHighlighted
-};
-
 @interface EDSegmentedControl()
 
-@property (nonatomic) State stateBeforeTouches;
-@property (nonatomic) State state;
 
 @end
 
@@ -57,13 +48,16 @@ typedef NS_ENUM(NSUInteger, State) {
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
 	UITouch *touch = touches.anyObject;
+	[self setNeedsDisplay];
 	if ([touch locationInView:self].x < self.bounds.size.width / 2){
 		self.state = StateLeftSelected;
+		self.stateBeforeTouches = self.state;
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"SegmentedControlStateChanged" object:nil];
 	} else{
 		self.state = StateRightSelected;
+		self.stateBeforeTouches = self.state;
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"SegmentedControlStateChanged" object:nil];	
 	}
-	self.stateBeforeTouches = self.state;
-	[self setNeedsDisplay];
 }
 
 -(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{

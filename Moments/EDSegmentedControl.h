@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, State) {
+	StateLeftSelected,
+	StateRightSelected,
+	StateLeftHighlighted,
+	StateRightHighlighted
+};
+
 @interface EDSegmentedControl : UIView
+
+@property (nonatomic) State stateBeforeTouches;
+@property (nonatomic) State state;
 
 @end
