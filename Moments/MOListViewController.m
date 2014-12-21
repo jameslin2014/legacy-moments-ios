@@ -111,7 +111,8 @@
     nameLabel.font = [UIFont fontWithName:@"Avenir-Book" size:18];
     nameLabel.textColor = [UIColor whiteColor];
     [cell.contentView addSubview:nameLabel];
-    
+	
+	
     if (indexPath.section == 0) {
         UIToolbar *toolbar = [[UIToolbar alloc] init];
         toolbar.barTintColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];

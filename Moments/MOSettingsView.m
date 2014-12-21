@@ -136,7 +136,7 @@ static NSString *CellIdentifier = @"CellID";
 		if (section == 2) return 1;
 	} else if (self.control.stateBeforeTouches == StateRightSelected){
 		if (section == 0) return 5;
-		if (section == 1) return 2;
+		if (section == 1) return 1;
 	}
 	return 0;
 }
@@ -169,14 +169,16 @@ static NSString *CellIdentifier = @"CellID";
 	cell.selectedBackgroundView.layer.masksToBounds = YES;
 	cell.selectedBackgroundView.backgroundColor = [UIColor grayColor];
 	cell.separatorInset = UIEdgeInsetsZero;
+	cell.imageView.image = nil;
+	cell.imageView.tintColor = [UIColor whiteColor];
 	if (self.control.stateBeforeTouches == StateLeftSelected){
-		cell.imageView.image = nil;
 		if (indexPath.section == 0){
 			//Change Image
 			cell.textLabel.text = @"Change Profile Image";
 			cell.selectionStyle = UITableViewCellSelectionStyleGray;
 		} else if (indexPath.section == 1 && indexPath.row == 0){
 			cell.textLabel.text = @"Phone Number";
+			cell.imageView.image = [[UIImage imageNamed:@"phone"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			self.phoneNumberField = [[UITextField alloc] init];
 			self.phoneNumberField.translatesAutoresizingMaskIntoConstraints = NO;
 			self.phoneNumberField.adjustsFontSizeToFitWidth = YES;
@@ -201,6 +203,7 @@ static NSString *CellIdentifier = @"CellID";
 			
 		} else if (indexPath.section == 1 && indexPath.row == 1){
 			cell.textLabel.text = @"Password";
+			cell.imageView.image = [[UIImage imageNamed:@"lock"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			self.passwordField = [[UITextField alloc] init];
 			self.passwordField.translatesAutoresizingMaskIntoConstraints = NO;
 			self.passwordField.adjustsFontSizeToFitWidth = YES;
@@ -226,6 +229,7 @@ static NSString *CellIdentifier = @"CellID";
 			
 		} else if (indexPath.section == 1 && indexPath.row == 2){
 			cell.textLabel.text = @"Username";
+			cell.imageView.image = [[UIImage imageNamed:@"user"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			self.usernameField = [[UITextField alloc] init];
 			self.usernameField.translatesAutoresizingMaskIntoConstraints = NO;
 			self.usernameField.adjustsFontSizeToFitWidth = YES;
@@ -249,6 +253,7 @@ static NSString *CellIdentifier = @"CellID";
 								   ]];
 		}else if (indexPath.section == 2){
 			cell.textLabel.text = @"Sign Out";
+			cell.imageView.image = [[UIImage imageNamed:@"exit"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			cell.selectionStyle = UITableViewCellSelectionStyleGray;
 			cell.contentView.backgroundColor = [UIColor clearColor];
 			cell.backgroundColor = [UIColor colorWithRed:0.890 green:0.313 blue:0.313 alpha:0.75];
@@ -257,7 +262,6 @@ static NSString *CellIdentifier = @"CellID";
 	} else if (self.control.stateBeforeTouches == StateRightSelected){
 		cell.selectionStyle = UITableViewCellSelectionStyleGray;
 		if (indexPath.section == 0){
-			cell.imageView.tintColor = [UIColor whiteColor];
 			if (indexPath.row == 0){
 				cell.textLabel.text = @"Send Feedback";
 				cell.imageView.image = [[UIImage imageNamed:@"mail"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -276,9 +280,8 @@ static NSString *CellIdentifier = @"CellID";
 			}
 		} else if (indexPath.section == 1){
 			if (indexPath.row == 0){
-				cell.textLabel.text = @"Data Attribution";
-			} else if (indexPath.row == 1){
 				cell.textLabel.text = @"Privacy Policy";
+				cell.imageView.image = [[UIImage imageNamed:@"legal"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			}
 		}
 	}
@@ -324,9 +327,9 @@ static NSString *CellIdentifier = @"CellID";
 		}
 	} else if (self.control.stateBeforeTouches == StateRightSelected){
 		if (indexPath.section == 0){
-			
+			//TODO
 		} else if (indexPath.section == 1){
-			
+			//TODO
 		}
 	}
 }
