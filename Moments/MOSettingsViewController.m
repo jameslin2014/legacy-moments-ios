@@ -103,6 +103,7 @@ static NSString *CellIdentifier = @"CellID";
 											]];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(controlStateChanged) name:@"SegmentedControlStateChanged" object:nil];
 	}
+    
 	return self;
 }
 
@@ -260,6 +261,7 @@ static NSString *CellIdentifier = @"CellID";
 		cell.selectionStyle = UITableViewCellSelectionStyleGray;
 		if (indexPath.section == 0){
 			if (indexPath.row == 0){
+                
 				cell.textLabel.text = @"Send Feedback";
 				cell.imageView.image = [[UIImage imageNamed:@"mail"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			} else if (indexPath.row == 1){
@@ -310,24 +312,29 @@ static NSString *CellIdentifier = @"CellID";
 				[textField becomeFirstResponder];
 			}
 		} else if (indexPath.section == 2){
+            
 			UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Are you sure you want to sign out?" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
 			[alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
 			[alertController addAction:[UIAlertAction actionWithTitle:@"Sign Out" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
 				//TODO: log out!
 			}]];
-			UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
-			
-			while (topController.presentedViewController) {
-				topController = topController.presentedViewController;
-			}
-			[topController presentViewController:alertController animated:YES completion:nil];
+            
+            [self presentViewController:alertController animated:YES completion:nil];
+
 		}
+        
 	} else if (self.control.stateBeforeTouches == StateRightSelected){
 		if (indexPath.section == 0){
-			//TODO
+			//TODO - ADDING FEEDBACK
 		} else if (indexPath.section == 1){
-			//TODO
-		}
+            NSLog(@"1");
+        } else if (indexPath.section == 2){
+            NSLog(@"2");
+        } else if (indexPath.section == 3){
+            NSLog(@"3");
+        } else if (indexPath.section == 4){
+            NSLog(@"4");
+        }
 	}
 }
 
