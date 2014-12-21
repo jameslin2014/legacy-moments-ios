@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Instabug/Instabug.h>
 
 @interface MOAppDelegate : UIResponder <UIApplicationDelegate>
 
