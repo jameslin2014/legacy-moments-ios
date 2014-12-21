@@ -254,7 +254,7 @@
     cell.detailTextLabel.textColor = [UIColor whiteColor];
     
     self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 7, cell.frame.size.width, cell.frame.size.height)];
-    nameLabel.font = [UIFont fontWithName:@"Avenir-Book" size:24];
+    nameLabel.font = [UIFont fontWithName:@"Avenir-Book" size:18];
     nameLabel.textColor = [UIColor whiteColor];
     [cell.contentView addSubview:nameLabel];
     
@@ -306,7 +306,7 @@
     self.view1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, localTableView.frame.size.width, 18)];
     /* Create custom view to display section header... */
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 2, localTableView.frame.size.width, 18)];
-    [label setFont:[UIFont fontWithName:@"Avenir-Book" size:1]];
+    [label setFont:[UIFont fontWithName:@"Avenir-Book" size:12]];
     label.textColor = [UIColor whiteColor];
     if ([followersArray count] == 1) {
         NSString *string =[NSString stringWithFormat:@"Following 1 user"];

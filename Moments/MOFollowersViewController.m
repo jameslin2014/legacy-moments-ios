@@ -65,7 +65,7 @@
     cell.detailTextLabel.textColor = [UIColor whiteColor];
     
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 7, cell.frame.size.width, cell.frame.size.height)];
-    nameLabel.font = [UIFont fontWithName:@"Avenir-Book" size:24];
+    nameLabel.font = [UIFont fontWithName:@"Avenir-Book" size:18];
     nameLabel.textColor = [UIColor whiteColor];
     [cell.contentView addSubview:nameLabel];
     nameLabel.text = [tempArray objectAtIndex:indexPath.row ];
@@ -107,7 +107,7 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
     /* Create custom view to display section header... */
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 2, tableView.frame.size.width, 18)];
-    [label setFont:[UIFont fontWithName:@"Avenir-Book" size:1]];
+    [label setFont:[UIFont fontWithName:@"Avenir-Book" size:12]];
     label.textColor = [UIColor whiteColor];
     if ([tableView numberOfRowsInSection:0] == 1) {
         NSString *string =[NSString stringWithFormat:@"Followed by 1 user"];
