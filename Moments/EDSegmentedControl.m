@@ -29,7 +29,6 @@ typedef NS_ENUM(NSUInteger, State) {
 	if (self = [super init]){
 		self.state = StateLeftSelected;
 		self.stateBeforeTouches = StateLeftSelected;
-		self.frame = CGRectMake(0, 0, 146, 30);
 		self.backgroundColor = [UIColor clearColor];
 	}
 	return self;

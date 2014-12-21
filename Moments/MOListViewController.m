@@ -8,7 +8,7 @@
 
 #import "MOListViewController.h"
 #import "ALAssetsLibrary+CustomPhotoAlbum.h"
-#import "SettingsViewController.h"
+#import "MOSettingsView.h"
 
 @interface MOListViewController ()
 
@@ -167,7 +167,7 @@
             UIImage * image = [UIImage imageWithData:imageData];
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 [profileImageView setImage:image];
-                if (profileImageView.image == nil) {
+                if (profileImageView.image == nil){
                     [profileImageView setImage:[UIImage imageNamed:@"capture-button"]];
                 }
             });
@@ -190,7 +190,20 @@
 }
 
 - (void)showOptionsAndAbout{
-	[self presentViewController: [[SettingsViewController alloc]init] animated:YES completion:nil];
+	MOSettingsView *v = [[MOSettingsView alloc]init];
+	v.translatesAutoresizingMaskIntoConstraints = NO;
+	v.alpha = 0.0;
+	UIWindow *w = [[[UIApplication sharedApplication]delegate]window];
+	[w addSubview:v];
+	[w addConstraints:@[
+	   [NSLayoutConstraint constraintWithItem:v attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:w attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0],
+	   [NSLayoutConstraint constraintWithItem:v attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:w attribute:NSLayoutAttributeRight multiplier:1.0 constant:0],
+	   [NSLayoutConstraint constraintWithItem:v attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:w attribute:NSLayoutAttributeTop multiplier:1.0 constant:0],
+	   [NSLayoutConstraint constraintWithItem:v attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:w attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]
+	   ]];
+	[UIView animateWithDuration:0.25 animations:^{
+		v.alpha = 1.0;
+	}];
 }
 
 - (void)shareMoment {
