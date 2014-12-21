@@ -8,11 +8,13 @@
 
 #import "MOListViewController.h"
 #import "ALAssetsLibrary+CustomPhotoAlbum.h"
+#import "MOSettingsViewController.h"
+
 @interface MOListViewController ()
 
-@property PBJVideoPlayerController *videoPlayer;
-@property JGProgressHUD *HUD;
-@property JGProgressHUD *HUD1;
+@property (strong, nonatomic) PBJVideoPlayerController *videoPlayer;
+
+@property (strong, nonatomic) SCNView *HUD1;
 
 @end
 
@@ -22,9 +24,6 @@
     BOOL taps;
     
 }
-
-@synthesize videoPlayer, HUD, HUD1;
-@synthesize tableView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -50,17 +49,34 @@
     
     
     // Do any additional setup after loading the view, typically from a nib.
-    tableView.delegate = self;
-    tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     
     // UIBarButtonItem = Right
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"file_name"] style:UIBarButtonItemStylePlain target:self action:@selector(rightButton:)];
-    self.navigationItem.rightBarButtonItem = rightButton;
+//    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"file_name"] style:UIBarButtonItemStylePlain target:self action:@selector(rightButton:)];
+//    self.navigationItem.rightBarButtonItem = rightButton;
+	
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"signOut"
+                                                      object:nil
+                                                       queue:mainQueue
+                                                  usingBlock:^(NSNotification *note)
+     {
+         UIViewController *loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"login"];
+         [self presentViewController:loginVC animated:YES completion:nil];
+         
+         
+     }];
+    
+    
     [self numberOfRows];
     reloadTimer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(numberOfRows) userInfo:nil repeats:YES];
+	UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"gear"] style:UIBarButtonItemStylePlain target:self action:@selector(showOptionsAndAbout)];
+	button.tintColor = [UIColor whiteColor];
+	self.navigationItem.rightBarButtonItem = button;
 }
 
 #pragma mark —— Table view data source
@@ -82,7 +98,7 @@
     [API getUserFollowingListWithUsername:user completion:^(NSArray *followingList) {
         if ([followingArray isEqual:followingList]) {} else {
             followingArray = followingList;
-            [tableView reloadData];
+            [self.tableView reloadData];
         }
     }];
     
@@ -99,16 +115,17 @@
     UIView *bgColorView = [[UIView alloc] init];
     bgColorView.backgroundColor = [UIColor redColor];
     [cell setSelectedBackgroundView:bgColorView];
-    cell.textLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:20];
+    cell.textLabel.font = [UIFont fontWithName:@"Avenir-Book" size:20];
     cell.textLabel.textColor = [UIColor whiteColor];
-    cell.detailTextLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:20];
+    cell.detailTextLabel.font = [UIFont fontWithName:@"Avenir-Book" size:20];
     cell.detailTextLabel.textColor = [UIColor whiteColor];
     
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(55, 7, cell.frame.size.width, cell.frame.size.height)];
-    nameLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:24];
+    nameLabel.font = [UIFont fontWithName:@"Avenir-Book" size:18];
     nameLabel.textColor = [UIColor whiteColor];
     [cell.contentView addSubview:nameLabel];
-    
+	
+	
     if (indexPath.section == 0) {
         UIToolbar *toolbar = [[UIToolbar alloc] init];
         toolbar.barTintColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
@@ -164,7 +181,7 @@
             UIImage * image = [UIImage imageWithData:imageData];
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 [profileImageView setImage:image];
-                if (profileImageView.image == nil) {
+                if (profileImageView.image == nil){
                     [profileImageView setImage:[UIImage imageNamed:@"capture-button"]];
                 }
             });
@@ -176,38 +193,58 @@
     return cell;
 }
 
--(void)viewWillDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated {
     [self.navigationController.navigationBar setHidden:NO];
     NSLog(@"disappear");
-    [videoPlayer removeFromParentViewController];
-    videoPlayer.view.frame = CGRectZero;
-    [videoPlayer stop];
-    [videoPlayer.view removeFromSuperview];
+    [self.videoPlayer removeFromParentViewController];
+    self.videoPlayer.view.frame = CGRectZero;
+    [self.videoPlayer stop];
+    [self.videoPlayer.view removeFromSuperview];
     
+}
+
+- (void)showOptionsAndAbout{
+	MOSettingsViewController *settingsViewController = [[MOSettingsViewController alloc]init];
+	settingsViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+	settingsViewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+	self.providesPresentationContextTransitionStyle = YES;
+	self.definesPresentationContext = YES;
+	[self presentViewController:settingsViewController animated:YES completion:nil];
 }
 
 - (void)shareMoment {
     NSString *user = [SSKeychain passwordForService:@"moments" account:@"username"];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *imagePath =[documentsDirectory stringByAppendingPathComponent:@"saved.mp4"];
+    NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:@"saved.mp4"];
     NSURL *video = [NSURL fileURLWithPath:imagePath];
-    JGProgressHUD *LoadingHUD = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleLight];
-    [LoadingHUD.textLabel setText:@"Exporting..."];
-    [LoadingHUD showInView:self.view animated:YES];
+	SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
+	v.scene = [[EDSpinningBoxScene alloc] init];
+	v.alpha = 0.0;
+	v.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+	[self.view addSubview:v];
+	[UIView animateWithDuration:0.2 animations:^{
+		v.alpha = 1.0;
+	}];
+	[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+//    [LoadingHUD.textLabel setText:@"Exporting..."];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSData *videoData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",user]]];
         [videoData writeToFile:imagePath atomically:NO];
         UIActivityViewController *shareSheet = [[UIActivityViewController alloc] initWithActivityItems:@[video] applicationActivities:nil];
-        [shareSheet setCompletionHandler:^(NSString *activityType, BOOL completed) {
-            if([activityType isEqualToString: UIActivityTypeSaveToCameraRoll]){
-                ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-                [library saveVideo:video toAlbum:@"Saved Moments" withCompletionBlock:nil];
-            }
-        }];
+		[shareSheet setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError){
+			if([activityType isEqualToString: UIActivityTypeSaveToCameraRoll]){
+				ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+				[library saveVideo:video toAlbum:@"Saved Moments" withCompletionBlock:nil];
+			}
+		}];
         [self presentViewController:shareSheet animated:YES completion:^ {
-            [LoadingHUD dismissAnimated:YES];
-            
+			[UIView animateWithDuration:0.2 animations:^{
+				v.alpha = 0.0;
+			} completion:^(BOOL finished) {
+				[v removeFromSuperview];
+				[[UIApplication sharedApplication] endIgnoringInteractionEvents];
+			}];
         }];
         
     });
@@ -228,7 +265,7 @@
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 18)];
         /* Create custom view to display section header... */
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 2, self.tableView.frame.size.width, 18)];
-        [label setFont:[UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:1]];
+        [label setFont:[UIFont fontWithName:@"Avenir-Book" size:12]];
         label.textColor = [UIColor whiteColor];
         NSString *string =[NSString stringWithFormat:@"Recent Updates"];
         [label setText:string];
@@ -245,9 +282,9 @@
     if (taps == YES) {
     } else {
         taps = YES;
-        videoPlayer = [[PBJVideoPlayerController alloc] init];
-        videoPlayer.view.frame = self.view.bounds;
-        videoPlayer.delegate = self;
+        self.videoPlayer = [[PBJVideoPlayerController alloc] init];
+        self.videoPlayer.view.frame = self.view.bounds;
+        self.videoPlayer.delegate = self;
         
         // setup media
         if (indexPath.section == 0) {
@@ -259,22 +296,28 @@
             [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
                 taps = NO;
                 [reloadTimer invalidate];
-                videoPlayer.videoPath = [NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",user];
-                [self addChildViewController:videoPlayer];
-                [self.view addSubview:videoPlayer.view];
-                [videoPlayer didMoveToParentViewController:self];
+                self.videoPlayer.videoPath = [NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",user];
+                [self addChildViewController:self.videoPlayer];
+                [self.view addSubview:self.videoPlayer.view];
+                [self.videoPlayer didMoveToParentViewController:self];
                 
                 UITapGestureRecognizer *dismissGesture = [[UITapGestureRecognizer alloc] init];
                 dismissGesture.numberOfTapsRequired = 1;
                 [dismissGesture setNumberOfTouchesRequired:1];
                 dismissGesture.delegate = self;
-                [videoPlayer.view addGestureRecognizer:dismissGesture];
+                [self.videoPlayer.view addGestureRecognizer:dismissGesture];
                 
                 [dismissGesture addTarget:self action:@selector(dismissPlayer)];
                 
-                HUD1 = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleLight];
-                [self.view addSubview:HUD1];
-                [HUD1 showInView:self.view animated:YES];
+				self.HUD1 = [[SCNView alloc] initWithFrame:self.view.bounds];
+				self.HUD1.scene = [[EDSpinningBoxScene alloc] init];
+				self.HUD1.alpha = 0.0;
+				self.HUD1.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+				[self.view addSubview:self.HUD1];
+				[UIView animateWithDuration:0.2 animations:^{
+					self.HUD1.alpha = 1.0;
+				}];
+				[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
                 
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 taps = NO;
@@ -292,21 +335,27 @@
             [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
                 taps = NO;
                 [reloadTimer invalidate];
-                videoPlayer.videoPath = [NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",[followingArray objectAtIndex:indexPath.row]];
-                [self addChildViewController:videoPlayer];
-                [self.view addSubview:videoPlayer.view];
-                [videoPlayer didMoveToParentViewController:self];
+                self.videoPlayer.videoPath = [NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",[followingArray objectAtIndex:indexPath.row]];
+                [self addChildViewController:self.videoPlayer];
+                [self.view addSubview:self.videoPlayer.view];
+                [self.videoPlayer didMoveToParentViewController:self];
                 
                 UITapGestureRecognizer *dismissGesture = [[UITapGestureRecognizer alloc] init];
                 dismissGesture.numberOfTapsRequired = 1;
                 [dismissGesture setNumberOfTouchesRequired:1];
                 dismissGesture.delegate = self;
-                [videoPlayer.view addGestureRecognizer:dismissGesture];
+                [self.videoPlayer.view addGestureRecognizer:dismissGesture];
                 [dismissGesture addTarget:self action:@selector(dismissPlayer)];
                 
-                HUD1 = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleLight];
-                [self.view addSubview:HUD1];
-                [HUD1 showInView:self.view animated:YES];
+				self.HUD1 = [[SCNView alloc] initWithFrame:self.view.bounds];
+				self.HUD1.scene = [[EDSpinningBoxScene alloc] init];
+				self.HUD1.alpha = 0.0;
+				self.HUD1.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+				[self.view addSubview:self.HUD1];
+				[UIView animateWithDuration:0.2 animations:^{
+					self.HUD1.alpha = 1.0;
+				}];
+				[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 taps = NO;
                 NSLog(@"fail");
@@ -320,8 +369,8 @@
 
 - (void)dismissPlayer {
     taps = NO;
-    [videoPlayer removeFromParentViewController];
-    [videoPlayer.view removeFromSuperview];
+    [self.videoPlayer removeFromParentViewController];
+    [self.videoPlayer.view removeFromSuperview];
     self.navigationController.navigationBar.alpha = 1.0f;
     reloadTimer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(numberOfRows) userInfo:nil repeats:YES];
 }
@@ -334,7 +383,12 @@
 - (void)videoPlayerReady:(PBJVideoPlayerController *)player {
     [player playFromBeginning];
     self.navigationController.navigationBar.alpha = 0.0f;
-    HUD1.alpha = 0.0f;
+	[UIView animateWithDuration:0.2 animations:^{
+		self.HUD1.alpha = 0.0;
+	} completion:^(BOOL finished) {
+		[self.HUD1 removeFromSuperview];
+		[[UIApplication sharedApplication]endIgnoringInteractionEvents];
+	}];
 }
 
 - (void)videoPlayerPlaybackDidEnd:(PBJVideoPlayerController *)player {
@@ -350,7 +404,12 @@
 }
 
 - (void)videoPlayerPlaybackWillStartFromBeginning:(PBJVideoPlayerController *)player {
-    HUD1.alpha = 0.0f;
+	[UIView animateWithDuration:0.2 animations:^{
+		self.HUD1.alpha = 0.0;
+	} completion:^(BOOL finished) {
+		[self.HUD1 removeFromSuperview];
+		[[UIApplication sharedApplication]endIgnoringInteractionEvents];
+	}];
 }
 
 @end

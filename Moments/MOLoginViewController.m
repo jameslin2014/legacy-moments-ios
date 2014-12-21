@@ -34,7 +34,7 @@
     usernameField.borderStyle = UITextBorderStyleNone;
     usernameField.clearButtonMode = UITextFieldViewModeWhileEditing;
     usernameField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    usernameField.font = [UIFont fontWithName:@"SanFranciscoText-Regular" size:15];
+    usernameField.font = [UIFont fontWithName:@"Avenir-Book" size:15];
     usernameField.textColor = [UIColor whiteColor];
     usernameField.keyboardAppearance = UIKeyboardAppearanceLight;
     usernameField.keyboardType = UIKeyboardTypeEmailAddress;
@@ -49,7 +49,7 @@
     passwordField.tintColor = [UIColor whiteColor];
     passwordField.clearButtonMode = UITextFieldViewModeWhileEditing;
     passwordField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    passwordField.font = [UIFont fontWithName:@"SanFranciscoText-Regular" size:15];
+    passwordField.font = [UIFont fontWithName:@"Avenir-Book" size:15];
     passwordField.textColor = [UIColor whiteColor];
     passwordField.keyboardAppearance = UIKeyboardAppearanceLight;
     passwordField.keyboardType = UIKeyboardTypeDefault;

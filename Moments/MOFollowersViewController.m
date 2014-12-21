@@ -61,11 +61,11 @@
     cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    cell.detailTextLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:20];
+    cell.detailTextLabel.font = [UIFont fontWithName:@"Avenir-Book" size:20];
     cell.detailTextLabel.textColor = [UIColor whiteColor];
     
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 7, cell.frame.size.width, cell.frame.size.height)];
-    nameLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:24];
+    nameLabel.font = [UIFont fontWithName:@"Avenir-Book" size:24];
     nameLabel.textColor = [UIColor whiteColor];
     [cell.contentView addSubview:nameLabel];
     nameLabel.text = [tempArray objectAtIndex:indexPath.row ];
@@ -107,14 +107,14 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
     /* Create custom view to display section header... */
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 2, tableView.frame.size.width, 18)];
-    [label setFont:[UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:1]];
+    [label setFont:[UIFont fontWithName:@"Avenir-Book" size:1]];
     label.textColor = [UIColor whiteColor];
     if ([tableView numberOfRowsInSection:0] == 1) {
         NSString *string =[NSString stringWithFormat:@"Followed by 1 user"];
         [label setText:string];
         
     } else {
-        NSString *string =[NSString stringWithFormat:@"Followed by %lu users",[tableView numberOfRowsInSection:0]];
+        NSString *string =[NSString stringWithFormat:@"Followed by %lu users",(long)[tableView numberOfRowsInSection:0]];
         [label setText:string];
     }
     
