@@ -14,6 +14,9 @@ static NSString *CellIdentifier = @"CellID";
 @interface MOSettingsView () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) UITextField *phoneNumberField;
+@property (strong, nonatomic) UITextField *passwordField;
+@property (strong, nonatomic) UITextField *usernameField;
 @property (strong, nonatomic) UIVisualEffectView *backgroundBlurView;
 @property (strong, nonatomic) UIVisualEffectView *vibrancyView;
 @property (strong, nonatomic) EDSegmentedControl *control;
@@ -23,6 +26,15 @@ static NSString *CellIdentifier = @"CellID";
 @end
 
 @implementation MOSettingsView
+
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    [self.phoneNumberField resignFirstResponder];
+    [self.passwordField resignFirstResponder];
+    [self.usernameField resignFirstResponder];
+    
+}
 
 - (instancetype) init{
 	if (self = [super init]){
@@ -118,6 +130,7 @@ static NSString *CellIdentifier = @"CellID";
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 	
 	if (!cell){
+        
 		cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: CellIdentifier];
 	}
 	cell.backgroundColor = [UIColor clearColor];
@@ -134,75 +147,75 @@ static NSString *CellIdentifier = @"CellID";
 		cell.selectionStyle = UITableViewCellSelectionStyleGray;
 	} else if (indexPath.section == 1 && indexPath.row == 0){
 		cell.textLabel.text = @"Phone Number";
-		UITextField *phoneNumberField = [[UITextField alloc] init];
-		phoneNumberField.translatesAutoresizingMaskIntoConstraints = NO;
-		phoneNumberField.adjustsFontSizeToFitWidth = YES;
-		phoneNumberField.textColor = [UIColor whiteColor];
-		phoneNumberField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"987-654-3210" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor],NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
-		phoneNumberField.tintColor = [UIColor whiteColor];
-		phoneNumberField.keyboardType = UIKeyboardTypePhonePad;
-		phoneNumberField.returnKeyType = UIReturnKeyGo;
-		phoneNumberField.backgroundColor = [UIColor clearColor];
-		phoneNumberField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
-		phoneNumberField.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support
-		phoneNumberField.textAlignment = NSTextAlignmentRight;
-		phoneNumberField.tag = 0;
-		phoneNumberField.delegate = self;
-		[phoneNumberField setEnabled: YES];
-		[cell addSubview:phoneNumberField];
+		self.phoneNumberField = [[UITextField alloc] init];
+		self.phoneNumberField.translatesAutoresizingMaskIntoConstraints = NO;
+		self.phoneNumberField.adjustsFontSizeToFitWidth = YES;
+		self.phoneNumberField.textColor = [UIColor whiteColor];
+		self.phoneNumberField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"987-654-3210" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor],NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
+		self.phoneNumberField.tintColor = [UIColor whiteColor];
+		self.phoneNumberField.keyboardType = UIKeyboardTypePhonePad;
+		self.phoneNumberField.returnKeyType = UIReturnKeyGo;
+		self.phoneNumberField.backgroundColor = [UIColor clearColor];
+		self.phoneNumberField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
+		self.phoneNumberField.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support
+		self.phoneNumberField.textAlignment = NSTextAlignmentRight;
+		self.phoneNumberField.tag = 0;
+		self.phoneNumberField.delegate = self;
+		[self.phoneNumberField setEnabled: YES];
+		[cell addSubview:self.phoneNumberField];
 		
 		[cell addConstraints:@[
-							   [NSLayoutConstraint constraintWithItem:phoneNumberField attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
-							   [NSLayoutConstraint constraintWithItem:phoneNumberField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:cell attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:0]
+							   [NSLayoutConstraint constraintWithItem:self.phoneNumberField attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
+							   [NSLayoutConstraint constraintWithItem:self.phoneNumberField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:cell attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:0]
 							   ]];
 		
 	} else if (indexPath.section == 1 && indexPath.row == 1){
 		cell.textLabel.text = @"Password";
-		UITextField *passwordField = [[UITextField alloc] init];
-		passwordField.translatesAutoresizingMaskIntoConstraints = NO;
-		passwordField.adjustsFontSizeToFitWidth = YES;
-		passwordField.secureTextEntry = YES;
-		passwordField.textColor = [UIColor whiteColor];
-		passwordField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"New Password" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor], NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
-		passwordField.tintColor = [UIColor whiteColor];
-		passwordField.keyboardType = UIKeyboardTypeAlphabet;
-		passwordField.returnKeyType = UIReturnKeyGo;
-		passwordField.backgroundColor = [UIColor clearColor];
-		passwordField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
-		passwordField.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support
-		passwordField.textAlignment = NSTextAlignmentRight;
-		passwordField.tag = 0;
-		passwordField.delegate = self;
-		[passwordField setEnabled: YES];
-		[cell addSubview:passwordField];
+		self.passwordField = [[UITextField alloc] init];
+		self.passwordField.translatesAutoresizingMaskIntoConstraints = NO;
+		self.passwordField.adjustsFontSizeToFitWidth = YES;
+		self.passwordField.secureTextEntry = YES;
+		self.passwordField.textColor = [UIColor whiteColor];
+		self.passwordField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"New Password" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor], NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
+		self.passwordField.tintColor = [UIColor whiteColor];
+		self.passwordField.keyboardType = UIKeyboardTypeAlphabet;
+		self.passwordField.returnKeyType = UIReturnKeyGo;
+		self.passwordField.backgroundColor = [UIColor clearColor];
+		self.passwordField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
+		self.passwordField.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support
+		self.passwordField.textAlignment = NSTextAlignmentRight;
+		self.passwordField.tag = 0;
+		self.passwordField.delegate = self;
+		[self.passwordField setEnabled: YES];
+		[cell addSubview:self.passwordField];
 		
 		[cell addConstraints:@[
-							   [NSLayoutConstraint constraintWithItem:passwordField attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
-							   [NSLayoutConstraint constraintWithItem:passwordField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:cell attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:0]
+							   [NSLayoutConstraint constraintWithItem:self.passwordField attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
+							   [NSLayoutConstraint constraintWithItem:self.passwordField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:cell attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:0]
 							   ]];
 		
 	} else if (indexPath.section == 1 && indexPath.row == 2){
 		cell.textLabel.text = @"Username";
-		UITextField *usernameField = [[UITextField alloc] init];
-		usernameField.translatesAutoresizingMaskIntoConstraints = NO;
-		usernameField.adjustsFontSizeToFitWidth = YES;
-		usernameField.textColor = [UIColor whiteColor];
-		usernameField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"Username" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor], NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
-		usernameField.tintColor = [UIColor whiteColor];
-		usernameField.keyboardType = UIKeyboardTypeAlphabet;
-		usernameField.returnKeyType = UIReturnKeyGo;
-		usernameField.backgroundColor = [UIColor clearColor];
-		usernameField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
-		usernameField.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support
-		usernameField.textAlignment = NSTextAlignmentRight;
-		usernameField.tag = 0;
-		usernameField.delegate = self;
-		[usernameField setEnabled: YES];
-		[cell addSubview:usernameField];
+		self.usernameField = [[UITextField alloc] init];
+		self.usernameField.translatesAutoresizingMaskIntoConstraints = NO;
+		self.usernameField.adjustsFontSizeToFitWidth = YES;
+		self.usernameField.textColor = [UIColor whiteColor];
+		self.usernameField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"Username" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor], NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
+		self.usernameField.tintColor = [UIColor whiteColor];
+		self.usernameField.keyboardType = UIKeyboardTypeAlphabet;
+		self.usernameField.returnKeyType = UIReturnKeyGo;
+		self.usernameField.backgroundColor = [UIColor clearColor];
+		self.usernameField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
+		self.usernameField.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support
+		self.usernameField.textAlignment = NSTextAlignmentRight;
+		self.usernameField.tag = 0;
+		self.usernameField.delegate = self;
+		[self.usernameField setEnabled: YES];
+		[cell addSubview:self.usernameField];
 		
 		[cell addConstraints:@[
-							   [NSLayoutConstraint constraintWithItem:usernameField attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
-							   [NSLayoutConstraint constraintWithItem:usernameField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:cell attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:0]
+							   [NSLayoutConstraint constraintWithItem:self.usernameField attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
+							   [NSLayoutConstraint constraintWithItem:self.usernameField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:cell attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:0]
 							   ]];
 	}else if (indexPath.section == 2){
 		cell.textLabel.text = @"Sign Out";
@@ -217,10 +230,13 @@ static NSString *CellIdentifier = @"CellID";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-	return 50;
+	return 55;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.phoneNumberField resignFirstResponder];
+    [self.passwordField resignFirstResponder];
+    [self.usernameField resignFirstResponder];
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	if (indexPath.section == 0){
 		//TODO: change image!

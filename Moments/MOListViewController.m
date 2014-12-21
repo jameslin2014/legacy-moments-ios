@@ -179,7 +179,7 @@
     return cell;
 }
 
--(void)viewWillDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated {
     [self.navigationController.navigationBar setHidden:NO];
     NSLog(@"disappear");
     [self.videoPlayer removeFromParentViewController];
@@ -210,7 +210,7 @@
     NSString *user = [SSKeychain passwordForService:@"moments" account:@"username"];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *imagePath =[documentsDirectory stringByAppendingPathComponent:@"saved.mp4"];
+    NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:@"saved.mp4"];
     NSURL *video = [NSURL fileURLWithPath:imagePath];
 	SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
 	v.scene = [[EDSpinningBoxScene alloc] init];
