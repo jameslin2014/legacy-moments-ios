@@ -7,11 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+
+// External Libraries
 #import "PBJVideoPlayerController.h"
+#import "UIImageView+AFNetworking.h"
+#import "EDSpinningBoxScene.h"
+#import "SSKeychain.h"
 
-@interface MOListViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, PBJVideoPlayerControllerDelegate, UIGestureRecognizerDelegate>
+// Internal Classes
+#import "MOTableViewController.h"
+#import "MomentsAPIUtilities.h"
 
-@property IBOutlet UITableView *tableView;
+@interface MOListViewController : MOTableViewController <UITableViewDataSource, UITableViewDelegate, PBJVideoPlayerControllerDelegate, UIGestureRecognizerDelegate>
+
+@property (nonatomic) IBOutlet UITableView *tableView;
 
 @end
 

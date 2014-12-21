@@ -7,12 +7,15 @@
 //
 
 #import "MOLoginViewController.h"
-#import "MomentsAPIUtilities.h"
-#import "SSKeychain.h"
 
 @interface MOLoginViewController ()
 
 @property UIGestureRecognizer *tapper;
+
+@property IBOutlet UITextField *usernameField;
+@property IBOutlet UITextField *passwordField;
+@property IBOutlet UIButton *loginButton;
+@property IBOutlet UIImageView *backgroundImage;
 
 @end
 
@@ -27,16 +30,11 @@
     tapper.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapper];
     
-    // Login Button
-    self.loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [loginButton addTarget:self action:@selector(loginButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    self.view.alpha = 1.0;
-    
     // Username Field
     usernameField.borderStyle = UITextBorderStyleNone;
     usernameField.clearButtonMode = UITextFieldViewModeWhileEditing;
     usernameField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    usernameField.font = [UIFont fontWithName:@"SanFranciscoText-Regular" size:15];
+    usernameField.font = [UIFont fontWithName:@"Avenir-Book" size:15];
     usernameField.textColor = [UIColor whiteColor];
     usernameField.keyboardAppearance = UIKeyboardAppearanceLight;
     usernameField.keyboardType = UIKeyboardTypeEmailAddress;
@@ -51,7 +49,7 @@
     passwordField.tintColor = [UIColor whiteColor];
     passwordField.clearButtonMode = UITextFieldViewModeWhileEditing;
     passwordField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    passwordField.font = [UIFont fontWithName:@"SanFranciscoText-Regular" size:15];
+    passwordField.font = [UIFont fontWithName:@"Avenir-Book" size:15];
     passwordField.textColor = [UIColor whiteColor];
     passwordField.keyboardAppearance = UIKeyboardAppearanceLight;
     passwordField.keyboardType = UIKeyboardTypeDefault;
@@ -60,9 +58,6 @@
     passwordField.secureTextEntry = YES;
     [self.view addSubview:passwordField];
     passwordField.text = [SSKeychain passwordForService:@"moments" account:@"username"];
-}
-
-- (void)loginButtonAction:(UIButton *)sender {
 }
 
 - (void)handleSingleTap:(UITapGestureRecognizer *) sender {
@@ -85,7 +80,6 @@
     }];
 }
 
-
 - (void)viewWillAppear:(BOOL)animated {
     self.view.alpha = 0.0f;
     MomentsAPIUtilities *LoginAPI = [MomentsAPIUtilities alloc];
@@ -99,6 +93,7 @@
         }
     }];
 }
+
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }

@@ -8,18 +8,14 @@
 
 #import "MOPageViewController.h"
 
-@interface MOPageViewController ()
-
-@property NSArray *viewControllers;
-
-@end
-
-@implementation MOPageViewController
+@implementation MOPageViewController {
+    NSArray *viewControllers;
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
     
     // Instantiating view controllers with identifiers for IB to interact with.
     MOListViewController *listView = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"listView"];
@@ -36,10 +32,10 @@
     [self.pageController setDataSource:self];
     [[self.pageController view] setFrame:[[self view] bounds]];
     
-    self.viewControllers = [NSArray arrayWithObject:[self.pages objectAtIndex:0]];
+    viewControllers = [NSArray arrayWithObject:[self.pages objectAtIndex:0]];
     [self.pageControl setCurrentPage:0];
     [self.pageControl addTarget:self action:@selector(changePage:) forControlEvents:UIControlEventValueChanged];
-    [self.pageController setViewControllers:self.viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    [self.pageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     [self addChildViewController:self.pageController];
     
     [self.view addSubview:self.pageControl];
@@ -82,20 +78,15 @@
     
     UIViewController *visibleViewController = self.pageController.viewControllers[0];
     NSUInteger currentIndex = [self.pages indexOfObject:visibleViewController];
-    NSArray *viewControllers = [NSArray arrayWithObjects:[self.pages objectAtIndex:self.pageControl.currentPage], nil];
+    NSArray *controllers = [NSArray arrayWithObjects:[self.pages objectAtIndex:self.pageControl.currentPage], nil];
     
     if (self.pageControl.currentPage > currentIndex) {
-        [self.pageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+        [self.pageController setViewControllers:controllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     } else {
-        [self.pageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];
+        [self.pageController setViewControllers:controllers direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];
     }
     
     
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

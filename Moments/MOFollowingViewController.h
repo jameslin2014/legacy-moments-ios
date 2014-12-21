@@ -7,9 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-@interface MOFollowingViewController : UITableViewController <UISearchBarDelegate>
 
-@property IBOutlet UITableView *tableView;
+// External Libraries
+#import "UIImageView+AFNetworking.h"
+#import "JKSegmentedControl.h"
+#import "SSKeychain.h"
+#import "AFNetworking.h"
+
+// Internal Classes
+#import "MOTableViewController.h"
+#import "MomentsAPIUtilities.h"
+
+@interface MOFollowingViewController : MOTableViewController <UISearchBarDelegate>
+
+@property (nonatomic) IBOutlet UITableView *tableView;
 @property IBOutlet UIBarButtonItem *searchButton;
 
 - (IBAction)showSearch;

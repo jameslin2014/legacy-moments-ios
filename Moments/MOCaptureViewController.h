@@ -9,12 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVFoundation.h>
-#import "AVCamPreviewView.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "AVCamPreviewView.h"
+
 static void *RecordingContext = &RecordingContext;
 static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDeviceAuthorizedContext;
 
-@interface MOCaptureViewController : UIViewController <AVCaptureFileOutputRecordingDelegate>
+@interface MOCaptureViewController : UIViewController <AVCaptureFileOutputRecordingDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@property (strong, nonatomic) IBOutlet UILabel *recordingLabel;
+@property (strong, nonatomic) NSTimer *blinkTimer;
 
 // For use in the storyboards.
 @property (nonatomic, weak) IBOutlet AVCamPreviewView *previewView;

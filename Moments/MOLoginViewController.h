@@ -7,12 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MomentsAPIUtilities.h"
+#import "SSKeychain.h"
 
 @interface MOLoginViewController : UIViewController
-
-@property IBOutlet UITextField *usernameField;
-@property IBOutlet UITextField *passwordField;
-@property IBOutlet UIButton *loginButton;
-@property IBOutlet UIImageView *backgroundImage;
-
 @end

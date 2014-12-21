@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6221" systemVersion="14C68k" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C81f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6213"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <mutableArray key="SanFranciscoDisplay-Bold.otf">
-            <string>SanFranciscoDisplay-Bold</string>
-        </mutableArray>
-        <mutableArray key="SanFranciscoDisplay-Light.otf">
-            <string>SanFranciscoDisplay-Light</string>
-        </mutableArray>
-    </customFonts>
     <scenes>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -30,44 +22,44 @@
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login-field-background" translatesAutoresizingMaskIntoConstraints="NO" id="vf2-AB-07R">
-                                <rect key="frame" x="52" y="243" width="271.5" height="89.5"/>
+                                <rect key="frame" x="52" y="243" width="272" height="90"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login-key" translatesAutoresizingMaskIntoConstraints="NO" id="has-4o-hs4">
-                                <rect key="frame" x="62" y="259" width="12.5" height="16"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login-lock" translatesAutoresizingMaskIntoConstraints="NO" id="E8b-Mp-KyR">
-                                <rect key="frame" x="62" y="303" width="12.5" height="15"/>
+                                <rect key="frame" x="62" y="259" width="13" height="16"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tis-Yl-RlW">
-                                <rect key="frame" x="82" y="289" width="241.5" height="43"/>
+                                <rect key="frame" x="82" y="289" width="242" height="43"/>
                                 <color key="textColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Moments" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDT-d2-dPf">
                                 <rect key="frame" x="118" y="139" width="139" height="23"/>
-                                <fontDescription key="fontDescription" name="SanFranciscoDisplay-Bold" family="San Francisco Display" pointSize="32"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="32"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Share your moments" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OnZ-tC-Bhj">
                                 <rect key="frame" x="93" y="173" width="189" height="24"/>
-                                <fontDescription key="fontDescription" name="SanFranciscoDisplay-Light" family="San Francisco Display" pointSize="21"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="21"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hl2-eE-hFA">
-                                <rect key="frame" x="82" y="245" width="241.5" height="43"/>
+                                <rect key="frame" x="82" y="245" width="242" height="43"/>
                                 <color key="textColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F8U-VE-Ldc">
-                                <rect key="frame" x="52" y="332" width="271.5" height="35.5"/>
+                                <rect key="frame" x="52" y="332" width="272" height="36"/>
                                 <state key="normal" title="Button" image="login-button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login-lock" translatesAutoresizingMaskIntoConstraints="NO" id="E8b-Mp-KyR">
+                                <rect key="frame" x="62" y="303" width="13" height="15"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -156,57 +148,143 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="camera-background-bottom" translatesAutoresizingMaskIntoConstraints="NO" id="qFj-1t-ahC">
-                                <rect key="frame" x="0.0" y="473" width="375" height="194"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fp-Rk-D9Y">
-                                <rect key="frame" x="65" y="563" width="31" height="19"/>
-                                <state key="normal" title="Button" image="flip-camera-button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="changeCamera:" destination="lzj-Vv-tF4" eventType="touchUpInside" id="eat-eg-MrT"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7L-6T-xkJ">
-                                <rect key="frame" x="146" y="529" width="82" height="81.5"/>
-                                <state key="normal" title="Button" image="capture-button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="toggleMovieRecording:" destination="lzj-Vv-tF4" eventType="touchUpInside" id="gWE-oD-nnQ"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sgs-dV-lyT" customClass="AVCamPreviewView">
-                                <rect key="frame" x="0.0" y="59" width="375" height="414"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sgs-dV-lyT" customClass="AVCamPreviewView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nCf-zl-Vub">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="3bm-dB-Xu9">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azg-Fi-Lly">
+                                                    <rect key="frame" x="8" y="18" width="46" height="38"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="Off" image="flash"/>
+                                                    <connections>
+                                                        <action selector="flashButtonAction:" destination="lzj-Vv-tF4" eventType="touchUpInside" id="EbC-KP-ofr"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fp-Rk-D9Y">
+                                                    <rect key="frame" x="339" y="35" width="28" height="21"/>
+                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" image="camera-flip"/>
+                                                    <connections>
+                                                        <action selector="changeCamera:" destination="lzj-Vv-tF4" eventType="touchUpInside" id="eat-eg-MrT"/>
+                                                    </connections>
+                                                </button>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RECORDING" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BiE-2a-tzU">
+                                                    <rect key="frame" x="136" y="31" width="102" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="2rh-CN-aby"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="BiE-2a-tzU" secondAttribute="bottom" constant="8" id="2r2-7i-VN7"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="8fp-Rk-D9Y" secondAttribute="trailing" id="5AF-Xe-cjK"/>
+                                                <constraint firstItem="8fp-Rk-D9Y" firstAttribute="bottom" secondItem="3bm-dB-Xu9" secondAttribute="bottomMargin" id="AkZ-g4-Wwk"/>
+                                                <constraint firstAttribute="centerX" secondItem="BiE-2a-tzU" secondAttribute="centerX" constant="0.5" id="Q9e-e8-oUx"/>
+                                                <constraint firstItem="azg-Fi-Lly" firstAttribute="leading" secondItem="3bm-dB-Xu9" secondAttribute="leadingMargin" id="WSU-qw-p02"/>
+                                                <constraint firstItem="azg-Fi-Lly" firstAttribute="bottom" secondItem="3bm-dB-Xu9" secondAttribute="bottomMargin" id="X8F-Qb-gr7"/>
+                                            </constraints>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="64" id="INm-A3-xy4"/>
+                                        </constraints>
+                                        <blurEffect style="light"/>
+                                    </visualEffectView>
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BbI-SI-tag">
+                                        <rect key="frame" x="0.0" y="567" width="375" height="100"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="RJx-Kv-F2f">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7L-6T-xkJ">
+                                                    <rect key="frame" x="146" y="9" width="82" height="82"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="82" id="HfR-UR-EZ5"/>
+                                                        <constraint firstAttribute="height" constant="82" id="i1G-NK-nM6"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button" image="capture-button">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="toggleMovieRecording:" destination="lzj-Vv-tF4" eventType="touchUpInside" id="gWE-oD-nnQ"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="84n-dZ-KSz">
+                                                    <rect key="frame" x="236" y="34" width="131" height="33"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <state key="normal" title="Library">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="openVideoPicker" destination="lzj-Vv-tF4" eventType="touchUpInside" id="ORd-tg-7qg"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="q7L-6T-xkJ" secondAttribute="centerY" id="9qz-kB-jdd"/>
+                                                <constraint firstAttribute="centerX" secondItem="q7L-6T-xkJ" secondAttribute="centerX" id="Z9S-q2-HhE"/>
+                                                <constraint firstItem="84n-dZ-KSz" firstAttribute="top" secondItem="RJx-Kv-F2f" secondAttribute="top" constant="34" id="feN-kO-37I"/>
+                                                <constraint firstItem="84n-dZ-KSz" firstAttribute="trailing" secondItem="RJx-Kv-F2f" secondAttribute="trailingMargin" id="jNG-02-dyd"/>
+                                                <constraint firstItem="84n-dZ-KSz" firstAttribute="centerY" secondItem="q7L-6T-xkJ" secondAttribute="centerY" id="moa-zs-hhG"/>
+                                                <constraint firstItem="84n-dZ-KSz" firstAttribute="leading" secondItem="q7L-6T-xkJ" secondAttribute="trailing" constant="8" symbolic="YES" id="uip-Nr-aMX"/>
+                                                <constraint firstAttribute="centerY" secondItem="q7L-6T-xkJ" secondAttribute="centerY" id="wfV-LG-gQ2"/>
+                                            </constraints>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="7w4-vL-VVB"/>
+                                        </constraints>
+                                        <blurEffect style="light"/>
+                                    </visualEffectView>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azg-Fi-Lly">
-                                <rect key="frame" x="177" y="28" width="22" height="22"/>
-                                <state key="normal" title="Button" image="bool-flash-button.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <constraints>
+                                    <constraint firstItem="BbI-SI-tag" firstAttribute="leading" secondItem="Sgs-dV-lyT" secondAttribute="leading" id="9Zv-bJ-j7R"/>
+                                    <constraint firstAttribute="trailing" secondItem="BbI-SI-tag" secondAttribute="trailing" id="Bzl-oO-oF8"/>
+                                    <constraint firstAttribute="trailing" secondItem="nCf-zl-Vub" secondAttribute="trailing" id="FTk-TK-FJ2"/>
+                                    <constraint firstItem="nCf-zl-Vub" firstAttribute="leading" secondItem="Sgs-dV-lyT" secondAttribute="leading" id="H55-Mp-z56"/>
+                                    <constraint firstAttribute="bottom" secondItem="BbI-SI-tag" secondAttribute="bottom" id="QG2-Fd-IPv"/>
+                                    <constraint firstItem="nCf-zl-Vub" firstAttribute="top" secondItem="Sgs-dV-lyT" secondAttribute="top" id="elq-KK-dWM"/>
+                                </constraints>
                                 <connections>
-                                    <action selector="flashButtonAction:" destination="lzj-Vv-tF4" eventType="touchUpInside" id="EbC-KP-ofr"/>
+                                    <outletCollection property="gestureRecognizers" destination="SUO-ec-3cR" appends="YES" id="6qP-4Y-8kH"/>
                                 </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="camera-background-bottom" translatesAutoresizingMaskIntoConstraints="NO" id="W0P-Zd-asz">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
-                            </imageView>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fXp-tB-hyY" firstAttribute="top" secondItem="Sgs-dV-lyT" secondAttribute="bottom" id="86z-qS-VHu"/>
+                            <constraint firstItem="Sgs-dV-lyT" firstAttribute="top" secondItem="fah-ee-3Ck" secondAttribute="top" id="X2s-P5-Nrr"/>
+                            <constraint firstItem="Sgs-dV-lyT" firstAttribute="leading" secondItem="fah-ee-3Ck" secondAttribute="leading" id="dfa-b9-uPK"/>
+                            <constraint firstAttribute="trailing" secondItem="Sgs-dV-lyT" secondAttribute="trailing" id="ovI-4H-nDx"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="cameraButton" destination="8fp-Rk-D9Y" id="EV4-m7-vNK"/>
                         <outlet property="flashButton" destination="azg-Fi-Lly" id="wLW-2v-jtK"/>
                         <outlet property="previewView" destination="Sgs-dV-lyT" id="Vsn-Fj-Brz"/>
                         <outlet property="recordButton" destination="q7L-6T-xkJ" id="udx-i7-kQ5"/>
+                        <outlet property="recordingLabel" destination="BiE-2a-tzU" id="QVN-dh-vCk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Ac-vc-bKb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="SUO-ec-3cR">
+                    <connections>
+                        <action selector="focusAndExposeTap:" destination="lzj-Vv-tF4" id="Ahp-21-toS"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1732.5" y="388.5"/>
+            <point key="canvasLocation" x="1666.5" y="388.5"/>
         </scene>
         <!--Following View Controller-->
         <scene sceneID="7bc-1e-2xB">
@@ -323,10 +401,9 @@
     </scenes>
     <resources>
         <image name="background" width="750" height="1334"/>
-        <image name="bool-flash-button.png" width="44" height="44"/>
-        <image name="camera-background-bottom" width="750" height="389"/>
+        <image name="camera-flip" width="28" height="21"/>
         <image name="capture-button" width="164" height="165"/>
-        <image name="flip-camera-button" width="62" height="30"/>
+        <image name="flash" width="24" height="38"/>
         <image name="login-button" width="543" height="71"/>
         <image name="login-field-background" width="543" height="179"/>
         <image name="login-key" width="25" height="32"/>

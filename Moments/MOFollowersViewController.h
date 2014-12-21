@@ -8,8 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MOFollowersViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate> {}
+// External Libraries
+#import "UIImageView+AFNetworking.h"
+#import "JKSegmentedControl.h"
+#import "SSKeychain.h"
+#import "AFNetworking.h"
 
-@property IBOutlet UITableView *tableView;
+// Internal Classes
+#import "MOTableViewController.h"
+#import "MomentsAPIUtilities.h"
+
+@interface MOFollowersViewController : MOTableViewController <UITableViewDataSource, UITableViewDelegate> {}
+
+@property (nonatomic) IBOutlet UITableView *tableView;
 
 @end
