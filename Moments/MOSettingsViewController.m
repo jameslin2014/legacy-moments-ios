@@ -326,17 +326,28 @@ static NSString *CellIdentifier = @"CellID";
 	} else if (self.control.stateBeforeTouches == StateRightSelected){
 		if (indexPath.section == 0){
             
-            // Call this wherever you want to launch UserVoice
-            [UserVoice presentUserVoiceContactUsFormForParentViewController:self];
+            if (indexPath.row == 0) {
+                [UserVoice presentUserVoiceContactUsFormForParentViewController:self];
+            } else if (indexPath.row == 1){
+                NSLog(@"Review on App Store");
+            } else if (indexPath.row == 2){
+                NSLog(@"Follow <twitter account>");
+            } else if (indexPath.row == 3){
+                NSLog(@"Like Facebook");
+            } else if (indexPath.row == 4){
+                NSLog(@"Share with Friends");
+            }
             
 		} else if (indexPath.section == 1){
-            NSLog(@"1");
-        } else if (indexPath.section == 2){
-            NSLog(@"2");
-        } else if (indexPath.section == 3){
-            NSLog(@"3");
-        } else if (indexPath.section == 4){
-            NSLog(@"4");
+            
+            if (indexPath.row == 0) {
+                
+                NSURL *URL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"privacy" ofType:@"html"]];
+                SVModalWebViewController *webViewController = [[SVModalWebViewController alloc] initWithURL:URL];
+                webViewController.modalPresentationStyle = UIModalPresentationPageSheet;
+                webViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                [self presentViewController:webViewController animated:YES completion:NULL];
+            }
         }
 	}
 }

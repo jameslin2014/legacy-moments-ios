@@ -47,6 +47,11 @@
 		A564DA101A476ED7003C99F3 /* uv_heart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A564DA051A476ED7003C99F3 /* uv_heart@2x.png */; };
 		A564DA111A476ED7003C99F3 /* uv_idea.png in Resources */ = {isa = PBXBuildFile; fileRef = A564DA061A476ED7003C99F3 /* uv_idea.png */; };
 		A564DA121A476ED7003C99F3 /* uv_idea@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A564DA071A476ED7003C99F3 /* uv_idea@2x.png */; };
+		A564DA331A4781AA003C99F3 /* SVWebViewController.strings in Resources */ = {isa = PBXBuildFile; fileRef = A564DA141A4781AA003C99F3 /* SVWebViewController.strings */; };
+		A564DA351A4781AA003C99F3 /* SVWebViewController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A564DA1F1A4781AA003C99F3 /* SVWebViewController.bundle */; };
+		A564DA441A4784A3003C99F3 /* SVModalWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A564DA411A4784A3003C99F3 /* SVModalWebViewController.m */; };
+		A564DA451A4784A3003C99F3 /* SVWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A564DA431A4784A3003C99F3 /* SVWebViewController.m */; };
+		A564DA471A478A8A003C99F3 /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = A564DA461A478A8A003C99F3 /* privacy.html */; };
 		A5B31C371A287F25009734EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B31C361A287F25009734EE /* main.m */; };
 		A5B31C3A1A287F25009734EE /* MOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B31C391A287F25009734EE /* MOAppDelegate.m */; };
 		A5B31C401A287F26009734EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B31C3E1A287F26009734EE /* Main.storyboard */; };
@@ -191,6 +196,22 @@
 		A564DA081A476ED7003C99F3 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/UserVoice.strings; sourceTree = "<group>"; };
 		A564DA091A476ED7003C99F3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/UserVoice.strings"; sourceTree = "<group>"; };
 		A564DA0A1A476ED7003C99F3 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/UserVoice.strings"; sourceTree = "<group>"; };
+		A564DA151A4781AA003C99F3 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
+		A564DA161A4781AA003C99F3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
+		A564DA171A4781AA003C99F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
+		A564DA181A4781AA003C99F3 /* es-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-ES"; path = "es-ES.lproj/SVWebViewController.strings"; sourceTree = "<group>"; };
+		A564DA191A4781AA003C99F3 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
+		A564DA1A1A4781AA003C99F3 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
+		A564DA1B1A4781AA003C99F3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
+		A564DA1C1A4781AA003C99F3 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
+		A564DA1F1A4781AA003C99F3 /* SVWebViewController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVWebViewController.bundle; sourceTree = "<group>"; };
+		A564DA311A4781AA003C99F3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SVWebViewController.strings"; sourceTree = "<group>"; };
+		A564DA321A4781AA003C99F3 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SVWebViewController.strings"; sourceTree = "<group>"; };
+		A564DA401A4784A3003C99F3 /* SVModalWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVModalWebViewController.h; sourceTree = "<group>"; };
+		A564DA411A4784A3003C99F3 /* SVModalWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVModalWebViewController.m; sourceTree = "<group>"; };
+		A564DA421A4784A3003C99F3 /* SVWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVWebViewController.h; sourceTree = "<group>"; };
+		A564DA431A4784A3003C99F3 /* SVWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVWebViewController.m; sourceTree = "<group>"; };
+		A564DA461A478A8A003C99F3 /* privacy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privacy.html; sourceTree = "<group>"; };
 		A5B31C311A287F25009734EE /* Moments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moments.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5B31C351A287F25009734EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5B31C361A287F25009734EE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -403,6 +424,21 @@
 			path = UVResources;
 			sourceTree = "<group>";
 		};
+		A564DA131A4781AA003C99F3 /* SVWebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A564DA461A478A8A003C99F3 /* privacy.html */,
+				A564DA401A4784A3003C99F3 /* SVModalWebViewController.h */,
+				A564DA411A4784A3003C99F3 /* SVModalWebViewController.m */,
+				A564DA421A4784A3003C99F3 /* SVWebViewController.h */,
+				A564DA431A4784A3003C99F3 /* SVWebViewController.m */,
+				A564DA141A4781AA003C99F3 /* SVWebViewController.strings */,
+				A564DA1F1A4781AA003C99F3 /* SVWebViewController.bundle */,
+			);
+			name = SVWebViewController;
+			path = Libraries/SVWebViewController;
+			sourceTree = "<group>";
+		};
 		A59DADB51A2B3D9A00FB6EBB /* Bold */ = {
 			isa = PBXGroup;
 			children = (
@@ -557,6 +593,7 @@
 		A5E01C951A2B3531003ED753 /* External Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				A564DA131A4781AA003C99F3 /* SVWebViewController */,
 				A564D9DC1A476ED7003C99F3 /* UserVoiceSDK */,
 				A5C29FEF1A33C9F300E605F1 /* PBJVideoPlayer */,
 				A5E01C961A2B37D7003ED753 /* JKSegmentedControl.h */,
@@ -698,6 +735,7 @@
 				vi,
 				"zh-Hans",
 				"zh-Hant",
+				"es-ES",
 			);
 			mainGroup = A5B31C281A287F25009734EE;
 			productRefGroup = A5B31C321A287F25009734EE /* Products */;
@@ -715,6 +753,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5CAD7861A29A0BF0023F948 /* SanFranciscoDisplay-Thin.otf in Resources */,
+				A564DA331A4781AA003C99F3 /* SVWebViewController.strings in Resources */,
 				A5E01CDB1A2B3899003ED753 /* interface.xcassets in Resources */,
 				A5CAD78A1A29A0BF0023F948 /* SanFranciscoText-Heavy.otf in Resources */,
 				A564DA0E1A476ED7003C99F3 /* uv_article@2x.png in Resources */,
@@ -728,6 +767,7 @@
 				A5CAD7921A29A0BF0023F948 /* SanFranciscoText-Semibold.otf in Resources */,
 				A5E01CDD1A2B3C76003ED753 /* fundamentals.xcassets in Resources */,
 				A5CAD7801A29A0BF0023F948 /* SanFranciscoDisplay-Bold.otf in Resources */,
+				A564DA351A4781AA003C99F3 /* SVWebViewController.bundle in Resources */,
 				A5CAD78C1A29A0BF0023F948 /* SanFranciscoText-Light.otf in Resources */,
 				A5CAD7941A29A0BF0023F948 /* SanFranciscoText-Thin.otf in Resources */,
 				A5CAD7831A29A0BF0023F948 /* SanFranciscoDisplay-Medium.otf in Resources */,
@@ -737,6 +777,7 @@
 				A5B31C451A287F26009734EE /* LaunchScreen.xib in Resources */,
 				A5CAD7851A29A0BF0023F948 /* SanFranciscoDisplay-Semibold.otf in Resources */,
 				A5CAD7821A29A0BF0023F948 /* SanFranciscoDisplay-Light.otf in Resources */,
+				A564DA471A478A8A003C99F3 /* privacy.html in Resources */,
 				A5CAD7881A29A0BF0023F948 /* SanFranciscoText-Bold.otf in Resources */,
 				A564DA0F1A476ED7003C99F3 /* uv_heart.png in Resources */,
 				A5CAD7841A29A0BF0023F948 /* SanFranciscoDisplay-Regular.otf in Resources */,
@@ -757,6 +798,7 @@
 				A5E01CD81A2B37F1003ED753 /* UIRefreshControl+AFNetworking.m in Sources */,
 				A5C29FF51A33C9F300E605F1 /* PBJVideoView.m in Sources */,
 				A5E01CD51A2B37F1003ED753 /* UIButton+AFNetworking.m in Sources */,
+				A564DA451A4784A3003C99F3 /* SVWebViewController.m in Sources */,
 				02C1E4B71A30221C00F7EC6E /* DLILCacheManager.m in Sources */,
 				A5E01CD41A2B37F1003ED753 /* UIAlertView+AFNetworking.m in Sources */,
 				A5E01C9A1A2B37D7003ED753 /* JKSegmentedControl.m in Sources */,
@@ -790,6 +832,7 @@
 				A5E01CC91A2B37F1003ED753 /* AFHTTPRequestOperation.m in Sources */,
 				A5E01CCE1A2B37F1003ED753 /* AFSecurityPolicy.m in Sources */,
 				A5B31C371A287F25009734EE /* main.m in Sources */,
+				A564DA441A4784A3003C99F3 /* SVModalWebViewController.m in Sources */,
 				A5E01CCB1A2B37F1003ED753 /* AFHTTPSessionManager.m in Sources */,
 				A5E01CD91A2B37F1003ED753 /* UIWebView+AFNetworking.m in Sources */,
 				02567A0D1A2B1B69002465CF /* MOFollowersViewController.m in Sources */,
@@ -838,6 +881,23 @@
 				A564DA0A1A476ED7003C99F3 /* zh-Hant */,
 			);
 			name = UserVoice.strings;
+			sourceTree = "<group>";
+		};
+		A564DA141A4781AA003C99F3 /* SVWebViewController.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A564DA151A4781AA003C99F3 /* da */,
+				A564DA161A4781AA003C99F3 /* de */,
+				A564DA171A4781AA003C99F3 /* en */,
+				A564DA181A4781AA003C99F3 /* es-ES */,
+				A564DA191A4781AA003C99F3 /* es */,
+				A564DA1A1A4781AA003C99F3 /* fr */,
+				A564DA1B1A4781AA003C99F3 /* ja */,
+				A564DA1C1A4781AA003C99F3 /* pt */,
+				A564DA311A4781AA003C99F3 /* zh-Hans */,
+				A564DA321A4781AA003C99F3 /* zh-Hant */,
+			);
+			name = SVWebViewController.strings;
 			sourceTree = "<group>";
 		};
 		A5B31C3E1A287F26009734EE /* Main.storyboard */ = {
