@@ -170,6 +170,7 @@ static NSString *CellIdentifier = @"CellID";
 	cell.selectedBackgroundView.backgroundColor = [UIColor grayColor];
 	cell.separatorInset = UIEdgeInsetsZero;
 	if (self.control.stateBeforeTouches == StateLeftSelected){
+		cell.imageView.image = nil;
 		if (indexPath.section == 0){
 			//Change Image
 			cell.textLabel.text = @"Change Profile Image";
@@ -256,16 +257,22 @@ static NSString *CellIdentifier = @"CellID";
 	} else if (self.control.stateBeforeTouches == StateRightSelected){
 		cell.selectionStyle = UITableViewCellSelectionStyleGray;
 		if (indexPath.section == 0){
+			cell.imageView.tintColor = [UIColor whiteColor];
 			if (indexPath.row == 0){
 				cell.textLabel.text = @"Send Feedback";
+				cell.imageView.image = [[UIImage imageNamed:@"mail"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			} else if (indexPath.row == 1){
 				cell.textLabel.text = @"Review on App Store";
+				cell.imageView.image = [[UIImage imageNamed:@"heart"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			} else if (indexPath.row == 2){
 				cell.textLabel.text = @"Follow @pickmoments";
+				cell.imageView.image = [[UIImage imageNamed:@"twitter"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			} else if (indexPath.row == 3){
 				cell.textLabel.text = @"Like PickMoments";
+				cell.imageView.image = [[UIImage imageNamed:@"facebook"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			} else if (indexPath.row == 4){
 				cell.textLabel.text = @"Share with Friends";
+				cell.imageView.image = [[UIImage imageNamed:@"upload"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			}
 		} else if (indexPath.section == 1){
 			if (indexPath.row == 0){
