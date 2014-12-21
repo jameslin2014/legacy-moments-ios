@@ -53,7 +53,7 @@ static NSString *CellIdentifier = @"CellID";
 		[self.vibrancyView addSubview:self.control];
 		[self.vibrancyView addConstraints:@[
 											[NSLayoutConstraint constraintWithItem:self.control attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.vibrancyView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0],
-											[NSLayoutConstraint constraintWithItem:self.control attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.vibrancyView attribute:NSLayoutAttributeTopMargin multiplier:1.0 constant: [[UIApplication sharedApplication]statusBarFrame].size.height],
+											[NSLayoutConstraint constraintWithItem:self.control attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.vibrancyView attribute:NSLayoutAttributeTopMargin multiplier:1.0 constant: [[UIApplication sharedApplication]statusBarFrame].size.height + 10],
 											[NSLayoutConstraint constraintWithItem:self.control attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:136],
 											[NSLayoutConstraint constraintWithItem:self.control attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30]
 											]];
@@ -62,18 +62,19 @@ static NSString *CellIdentifier = @"CellID";
 		self.doneButton.tintColor = [UIColor whiteColor];
 		[self.doneButton setTitle:@"Done" forState:UIControlStateNormal];
 		self.doneButton.translatesAutoresizingMaskIntoConstraints = NO;
-		self.doneButton.titleLabel.font = [UIFont systemFontOfSize:14];
+		self.doneButton.titleLabel.font = [UIFont fontWithName:@"Avenir-Book" size:14];
 		[self.doneButton addTarget:self action:@selector(dismissView) forControlEvents:UIControlEventTouchUpInside];
 		[self.vibrancyView addSubview:self.doneButton];
 		[self.vibrancyView addConstraints:@[
-											[NSLayoutConstraint constraintWithItem:self.doneButton attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.vibrancyView attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:0],
+											[NSLayoutConstraint constraintWithItem:self.doneButton attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.vibrancyView attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:-10],
 											[NSLayoutConstraint constraintWithItem:self.doneButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.control attribute:NSLayoutAttributeCenterY multiplier:1.0 constant: 0]
 											]];
 		
 //		self.profilePicture = [[UIImageView alloc]initWithImage:<#(UIImage *)#>];
 		
-		self.tableView = [[UITableView alloc]init];
+		self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
 		[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
+		self.tableView.separatorColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.5];
 		self.tableView.delegate = self;
 		self.tableView.dataSource = self;
 		self.tableView.tableFooterView = [[UIView alloc]init];
@@ -83,7 +84,7 @@ static NSString *CellIdentifier = @"CellID";
 		[self.vibrancyView addSubview:self.tableView];
 		[self.vibrancyView addConstraints:@[
 											[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.vibrancyView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0],
-											[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.vibrancyView attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:0],
+											[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.vibrancyView attribute:NSLayoutAttributeRight multiplier:1.0 constant:0],
 											[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.control attribute:NSLayoutAttributeBottom multiplier:1.0 constant:20],
 											[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.vibrancyView attribute:NSLayoutAttributeBottomMargin multiplier:1.0 constant:0]
 											]];
@@ -102,11 +103,14 @@ static NSString *CellIdentifier = @"CellID";
 #pragma mark - UITableView Data Source and Delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-	return 1;
+	return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-	return 5;
+	if (section == 0) return 1;
+	if (section == 1) return 3;
+	if (section == 2) return 1;
+	return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -118,21 +122,23 @@ static NSString *CellIdentifier = @"CellID";
 	}
 	cell.backgroundColor = [UIColor clearColor];
 	cell.textLabel.textColor = [UIColor whiteColor];
-	cell.textLabel.font = [UIFont systemFontOfSize:18];
+	cell.textLabel.font = [UIFont fontWithName:@"Avenir-Book" size:14];
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//	cell.layoutMargins = UIEdgeInsetsZero;
+	cell.selectedBackgroundView = [[UIView alloc]init];
+	cell.selectedBackgroundView.layer.masksToBounds = YES;
+	cell.selectedBackgroundView.backgroundColor = [UIColor grayColor];
 	cell.separatorInset = UIEdgeInsetsZero;
-	if (indexPath.row == 0){
+	if (indexPath.section == 0){
 		//Change Image
 		cell.textLabel.text = @"Change Profile Image";
 		cell.selectionStyle = UITableViewCellSelectionStyleGray;
-	} else if (indexPath.row == 1){
+	} else if (indexPath.section == 1 && indexPath.row == 0){
 		cell.textLabel.text = @"Phone Number";
 		UITextField *phoneNumberField = [[UITextField alloc] init];
 		phoneNumberField.translatesAutoresizingMaskIntoConstraints = NO;
 		phoneNumberField.adjustsFontSizeToFitWidth = YES;
 		phoneNumberField.textColor = [UIColor whiteColor];
-		phoneNumberField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"987-654-3210" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
+		phoneNumberField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"987-654-3210" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor],NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
 		phoneNumberField.tintColor = [UIColor whiteColor];
 		phoneNumberField.keyboardType = UIKeyboardTypePhonePad;
 		phoneNumberField.returnKeyType = UIReturnKeyGo;
@@ -150,14 +156,14 @@ static NSString *CellIdentifier = @"CellID";
 							   [NSLayoutConstraint constraintWithItem:phoneNumberField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:cell attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:0]
 							   ]];
 		
-	} else if (indexPath.row == 2){
+	} else if (indexPath.section == 1 && indexPath.row == 1){
 		cell.textLabel.text = @"Password";
 		UITextField *passwordField = [[UITextField alloc] init];
 		passwordField.translatesAutoresizingMaskIntoConstraints = NO;
 		passwordField.adjustsFontSizeToFitWidth = YES;
 		passwordField.secureTextEntry = YES;
 		passwordField.textColor = [UIColor whiteColor];
-		passwordField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"New Password" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
+		passwordField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"New Password" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor], NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
 		passwordField.tintColor = [UIColor whiteColor];
 		passwordField.keyboardType = UIKeyboardTypeAlphabet;
 		passwordField.returnKeyType = UIReturnKeyGo;
@@ -175,13 +181,13 @@ static NSString *CellIdentifier = @"CellID";
 							   [NSLayoutConstraint constraintWithItem:passwordField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:cell attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:0]
 							   ]];
 		
-	} else if (indexPath.row == 3){
+	} else if (indexPath.section == 1 && indexPath.row == 2){
 		cell.textLabel.text = @"Username";
 		UITextField *usernameField = [[UITextField alloc] init];
 		usernameField.translatesAutoresizingMaskIntoConstraints = NO;
 		usernameField.adjustsFontSizeToFitWidth = YES;
 		usernameField.textColor = [UIColor whiteColor];
-		usernameField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"Username" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
+		usernameField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"Username" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor], NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
 		usernameField.tintColor = [UIColor whiteColor];
 		usernameField.keyboardType = UIKeyboardTypeAlphabet;
 		usernameField.returnKeyType = UIReturnKeyGo;
@@ -198,10 +204,12 @@ static NSString *CellIdentifier = @"CellID";
 							   [NSLayoutConstraint constraintWithItem:usernameField attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
 							   [NSLayoutConstraint constraintWithItem:usernameField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:cell attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:0]
 							   ]];
-	}else if (indexPath.row == 4){
-		cell.textLabel.text = @"Log Out";
-		cell.textLabel.textColor = [UIColor redColor];
+	}else if (indexPath.section == 2){
+		cell.textLabel.text = @"Sign Out";
 		cell.selectionStyle = UITableViewCellSelectionStyleGray;
+		cell.contentView.backgroundColor = [UIColor clearColor];
+		cell.backgroundColor = [UIColor colorWithRed:0.890 green:0.313 blue:0.313 alpha:0.75];
+		cell.textLabel.backgroundColor = [UIColor clearColor];
 	}
 	
 	
@@ -209,18 +217,28 @@ static NSString *CellIdentifier = @"CellID";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-	return 80;
+	return 50;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	if (indexPath.row == 0){
+	if (indexPath.section == 0){
 		//TODO: change image!
-	} else if (indexPath.row == 4){
-		NSLog(@"Here");
-		UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"Are you sure you want to log out?" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+	} else if (indexPath.section == 1){
+		UITextField *tv;
+		UITableViewCell *c = [tableView cellForRowAtIndexPath:indexPath];
+		for (UIView *v in c.subviews){
+			if (v.class == [UITextField class]){
+				tv = (UITextField*)v;
+			}
+		}
+		if (tv){
+			[tv becomeFirstResponder];
+		}
+	} else if (indexPath.section == 2){
+		UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"Are you sure you want to sign out?" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
 		[ac addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
-		[ac addAction:[UIAlertAction actionWithTitle:@"Log Out" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+		[ac addAction:[UIAlertAction actionWithTitle:@"Sign Out" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
 			//TODO: log out!
 		}]];
 		UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
@@ -230,6 +248,22 @@ static NSString *CellIdentifier = @"CellID";
 		}
 		[topController presentViewController:ac animated:YES completion:nil];
 	}
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+	if (section == 0) return @"  Profile";
+	if (section == 1) return @"  Account";
+	if (section == 2) return @"  Leaving";
+	return @"";
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+	UILabel *headerLabel = [[UILabel alloc] init];
+	headerLabel.textColor = [UIColor lightGrayColor];
+	headerLabel.font = [UIFont fontWithName:@"Avenir-Book" size:12];
+	headerLabel.text = [NSString stringWithFormat:@"  %@",
+						[self tableView:tableView titleForHeaderInSection:section]];
+	return headerLabel;
 }
 
 #pragma mark - UITextFieldDelegate

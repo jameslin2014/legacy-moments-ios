@@ -61,7 +61,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [self numberOfRows];
     reloadTimer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(numberOfRows) userInfo:nil repeats:YES];
-	UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showOptionsAndAbout)];
+	UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"gear"] style:UIBarButtonItemStylePlain target:self action:@selector(showOptionsAndAbout)];
 	button.tintColor = [UIColor whiteColor];
 	self.navigationItem.rightBarButtonItem = button;
 }
@@ -102,13 +102,13 @@
     UIView *bgColorView = [[UIView alloc] init];
     bgColorView.backgroundColor = [UIColor redColor];
     [cell setSelectedBackgroundView:bgColorView];
-    cell.textLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:20];
+    cell.textLabel.font = [UIFont fontWithName:@"Avenir-Book" size:20];
     cell.textLabel.textColor = [UIColor whiteColor];
-    cell.detailTextLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:20];
+    cell.detailTextLabel.font = [UIFont fontWithName:@"Avenir-Book" size:20];
     cell.detailTextLabel.textColor = [UIColor whiteColor];
     
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(55, 7, cell.frame.size.width, cell.frame.size.height)];
-    nameLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:24];
+    nameLabel.font = [UIFont fontWithName:@"Avenir-Book" size:18];
     nameLabel.textColor = [UIColor whiteColor];
     [cell.contentView addSubview:nameLabel];
     
@@ -259,7 +259,7 @@
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 18)];
         /* Create custom view to display section header... */
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 2, self.tableView.frame.size.width, 18)];
-        [label setFont:[UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:1]];
+        [label setFont:[UIFont fontWithName:@"Avenir-Book" size:12]];
         label.textColor = [UIColor whiteColor];
         NSString *string =[NSString stringWithFormat:@"Recent Updates"];
         [label setText:string];

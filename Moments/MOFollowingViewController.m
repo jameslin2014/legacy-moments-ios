@@ -63,7 +63,7 @@
     self.navigationController.navigationBarHidden = NO;
     self.title = @"Following";
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.23 green:0.52 blue:0.68 alpha:0.39]];
-    [self.navigationController.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys: [UIFont fontWithName:@"SanFranciscoDisplay-Medium" size:17], NSFontAttributeName, nil]];
+    [self.navigationController.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys: [UIFont fontWithName:@"Avenir-Book" size:17], NSFontAttributeName, nil]];
     
     self.segmentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.navigationController.navigationBar.frame.size.width, 50)];
     
@@ -71,6 +71,7 @@
     self.segmentView.alpha = 1;
     self.tabSegmentedControl = [[JKSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Following", @"Followers", nil]];
     self.tabSegmentedControl.frame = CGRectMake(20, self.navigationController.navigationBar.frame.size.height + 30, self.navigationController.navigationBar.frame.size.width - 40, 30);
+	[self.tabSegmentedControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:12]} forState:UIControlStateNormal];
     self.tabSegmentedControl.userInteractionEnabled = YES;
     self.tabSegmentedControl.tintColor = [UIColor whiteColor];
     
@@ -132,7 +133,7 @@
                 view2.backgroundColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
                 [view1 addSubview:view2];
                 
-                nameLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:24];
+                nameLabel.font = [UIFont fontWithName:@"Avenir-Book" size:24];
                 nameLabel.textColor = [UIColor whiteColor];
                 [view2 addSubview:nameLabel];
                 nameLabel.text = @"Loading..";
@@ -149,7 +150,7 @@
                 view2.backgroundColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
                 [view1 addSubview:view2];
                 
-                nameLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:25];
+                nameLabel.font = [UIFont fontWithName:@"Avenir-Book" size:25];
                 nameLabel.textColor = [UIColor whiteColor];
                 nameLabel.text = @"User Not Found";
                 [view2 addSubview:nameLabel];
@@ -249,11 +250,11 @@
     cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    cell.detailTextLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:20];
+    cell.detailTextLabel.font = [UIFont fontWithName:@"Avenir-Book" size:20];
     cell.detailTextLabel.textColor = [UIColor whiteColor];
     
     self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 7, cell.frame.size.width, cell.frame.size.height)];
-    nameLabel.font = [UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:24];
+    nameLabel.font = [UIFont fontWithName:@"Avenir-Book" size:24];
     nameLabel.textColor = [UIColor whiteColor];
     [cell.contentView addSubview:nameLabel];
     
@@ -305,7 +306,7 @@
     self.view1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, localTableView.frame.size.width, 18)];
     /* Create custom view to display section header... */
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 2, localTableView.frame.size.width, 18)];
-    [label setFont:[UIFont fontWithName:@"SanFranciscoDisplay-Regular" size:1]];
+    [label setFont:[UIFont fontWithName:@"Avenir-Book" size:1]];
     label.textColor = [UIColor whiteColor];
     if ([followersArray count] == 1) {
         NSString *string =[NSString stringWithFormat:@"Following 1 user"];
