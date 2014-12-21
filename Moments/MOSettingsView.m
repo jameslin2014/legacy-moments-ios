@@ -241,20 +241,20 @@ static NSString *CellIdentifier = @"CellID";
 	if (indexPath.section == 0){
 		//TODO: change image!
 	} else if (indexPath.section == 1){
-		UITextField *tv;
-		UITableViewCell *c = [tableView cellForRowAtIndexPath:indexPath];
-		for (UIView *v in c.subviews){
-			if (v.class == [UITextField class]){
-				tv = (UITextField*)v;
+		UITextField *textField;
+		UITableViewCell *tableViewCell = [tableView cellForRowAtIndexPath:indexPath];
+		for (UIView *subView in tableViewCell.subviews){
+			if (subView.class == [UITextField class]){
+				textField = (UITextField*)subView;
 			}
 		}
-		if (tv){
-			[tv becomeFirstResponder];
+		if (textField){
+			[textField becomeFirstResponder];
 		}
 	} else if (indexPath.section == 2){
-		UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"Are you sure you want to sign out?" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-		[ac addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
-		[ac addAction:[UIAlertAction actionWithTitle:@"Sign Out" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+		UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Are you sure you want to sign out?" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+		[alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+		[alertController addAction:[UIAlertAction actionWithTitle:@"Sign Out" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
 			//TODO: log out!
 		}]];
 		UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
@@ -262,7 +262,7 @@ static NSString *CellIdentifier = @"CellID";
 		while (topController.presentedViewController) {
 			topController = topController.presentedViewController;
 		}
-		[topController presentViewController:ac animated:YES completion:nil];
+		[topController presentViewController:alertController animated:YES completion:nil];
 	}
 }
 
