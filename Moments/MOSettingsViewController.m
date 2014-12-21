@@ -1,18 +1,17 @@
 //
-//  MOSettingsView.m
+//  MOSettingsViewController.m
 //  Moments
 //
-//  Created by Evan Dekhayser on 12/20/14.
+//  Created by Evan Dekhayser on 12/21/14.
 //  Copyright (c) 2014 Cosmic. All rights reserved.
 //
 
-#import "MOSettingsView.h"
+#import "MOSettingsViewController.h"
 #import "EDSegmentedControl.h"
 
 static NSString *CellIdentifier = @"CellID";
 
-@interface MOSettingsView () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
-
+@interface MOSettingsViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UITextField *phoneNumberField;
 @property (strong, nonatomic) UITextField *passwordField;
@@ -22,34 +21,36 @@ static NSString *CellIdentifier = @"CellID";
 @property (strong, nonatomic) EDSegmentedControl *control;
 @property (strong, nonatomic) UIButton *doneButton;
 @property (strong, nonatomic) UIImageView *profilePicture;
-
 @end
 
-@implementation MOSettingsView
+@implementation MOSettingsViewController
 
+-(UIStatusBarStyle)preferredStatusBarStyle{
+	return UIStatusBarStyleLightContent;
+}
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-    [self.phoneNumberField resignFirstResponder];
-    [self.passwordField resignFirstResponder];
-    [self.usernameField resignFirstResponder];
-    
+	
+	[self.phoneNumberField resignFirstResponder];
+	[self.passwordField resignFirstResponder];
+	[self.usernameField resignFirstResponder];
+	
 }
 
 - (instancetype) init{
 	if (self = [super init]){
 		
-		self.backgroundColor = [UIColor clearColor];
+		self.view.backgroundColor = [UIColor clearColor];
 		
 		self.backgroundBlurView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
 		[self.backgroundBlurView setTranslatesAutoresizingMaskIntoConstraints:NO];
-		[self addSubview:self.backgroundBlurView];
-		[self addConstraints:@[
-									[NSLayoutConstraint constraintWithItem:self.backgroundBlurView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0],
-									[NSLayoutConstraint constraintWithItem:self.backgroundBlurView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:0],
-									[NSLayoutConstraint constraintWithItem:self.backgroundBlurView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0],
-									[NSLayoutConstraint constraintWithItem:self.backgroundBlurView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0],
-									]];
+		[self.view addSubview:self.backgroundBlurView];
+		[self.view addConstraints:@[
+							   [NSLayoutConstraint constraintWithItem:self.backgroundBlurView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0],
+							   [NSLayoutConstraint constraintWithItem:self.backgroundBlurView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0],
+							   [NSLayoutConstraint constraintWithItem:self.backgroundBlurView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:0],
+							   [NSLayoutConstraint constraintWithItem:self.backgroundBlurView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0],
+							   ]];
 		self.vibrancyView = [[UIVisualEffectView alloc] initWithEffect:[UIVibrancyEffect effectForBlurEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]]];
 		[self.vibrancyView setTranslatesAutoresizingMaskIntoConstraints:NO];
 		[self.backgroundBlurView addSubview:self.vibrancyView];
@@ -75,14 +76,14 @@ static NSString *CellIdentifier = @"CellID";
 		[self.doneButton setTitle:@"Done" forState:UIControlStateNormal];
 		self.doneButton.translatesAutoresizingMaskIntoConstraints = NO;
 		self.doneButton.titleLabel.font = [UIFont fontWithName:@"Avenir-Book" size:14];
-		[self.doneButton addTarget:self action:@selector(dismissView) forControlEvents:UIControlEventTouchUpInside];
+		[self.doneButton addTarget:self action:@selector(dismissOptionsAndAbout) forControlEvents:UIControlEventTouchUpInside];
 		[self.vibrancyView addSubview:self.doneButton];
 		[self.vibrancyView addConstraints:@[
 											[NSLayoutConstraint constraintWithItem:self.doneButton attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.vibrancyView attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:-10],
 											[NSLayoutConstraint constraintWithItem:self.doneButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.control attribute:NSLayoutAttributeCenterY multiplier:1.0 constant: 0]
 											]];
 		
-//		self.profilePicture = [[UIImageView alloc]init];
+		//		self.profilePicture = [[UIImageView alloc]init];
 		
 		self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
 		[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
@@ -105,17 +106,13 @@ static NSString *CellIdentifier = @"CellID";
 	return self;
 }
 
+- (void)dismissOptionsAndAbout{
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)controlStateChanged{
 	//Change image at the top?
 	[self.tableView reloadData];
-}
-
-- (void)dismissView{
-	[UIView animateWithDuration:0.25 animations:^{
-		self.alpha = 0.0;
-	} completion:^(BOOL finished) {
-		[self removeFromSuperview];
-	}];
 }
 
 #pragma mark - UITableView Data Source and Delegate
@@ -158,7 +155,7 @@ static NSString *CellIdentifier = @"CellID";
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 	
 	if (!cell){
-        
+		
 		cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: CellIdentifier];
 	}
 	cell.backgroundColor = [UIColor clearColor];
@@ -294,9 +291,9 @@ static NSString *CellIdentifier = @"CellID";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.phoneNumberField resignFirstResponder];
-    [self.passwordField resignFirstResponder];
-    [self.usernameField resignFirstResponder];
+	[self.phoneNumberField resignFirstResponder];
+	[self.passwordField resignFirstResponder];
+	[self.usernameField resignFirstResponder];
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	if (self.control.stateBeforeTouches == StateLeftSelected){
 		if (indexPath.section == 0){

@@ -8,7 +8,7 @@
 
 #import "MOListViewController.h"
 #import "ALAssetsLibrary+CustomPhotoAlbum.h"
-#import "MOSettingsView.h"
+#import "MOSettingsViewController.h"
 
 @interface MOListViewController ()
 
@@ -191,20 +191,12 @@
 }
 
 - (void)showOptionsAndAbout{
-	MOSettingsView *v = [[MOSettingsView alloc]init];
-	v.translatesAutoresizingMaskIntoConstraints = NO;
-	v.alpha = 0.0;
-	UIWindow *w = [[[UIApplication sharedApplication]delegate]window];
-	[w addSubview:v];
-	[w addConstraints:@[
-	   [NSLayoutConstraint constraintWithItem:v attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:w attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0],
-	   [NSLayoutConstraint constraintWithItem:v attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:w attribute:NSLayoutAttributeRight multiplier:1.0 constant:0],
-	   [NSLayoutConstraint constraintWithItem:v attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:w attribute:NSLayoutAttributeTop multiplier:1.0 constant:0],
-	   [NSLayoutConstraint constraintWithItem:v attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:w attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]
-	   ]];
-	[UIView animateWithDuration:0.25 animations:^{
-		v.alpha = 1.0;
-	}];
+	MOSettingsViewController *settingsViewController = [[MOSettingsViewController alloc]init];
+	settingsViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+	settingsViewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+	self.providesPresentationContextTransitionStyle = YES;
+	self.definesPresentationContext = YES;
+	[self presentViewController:settingsViewController animated:YES completion:nil];
 }
 
 - (void)shareMoment {
