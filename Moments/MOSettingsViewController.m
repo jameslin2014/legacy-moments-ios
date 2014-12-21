@@ -325,7 +325,10 @@ static NSString *CellIdentifier = @"CellID";
         
 	} else if (self.control.stateBeforeTouches == StateRightSelected){
 		if (indexPath.section == 0){
-			//TODO - ADDING FEEDBACK
+            
+            // Call this wherever you want to launch UserVoice
+            [UserVoice presentUserVoiceContactUsFormForParentViewController:self];
+            
 		} else if (indexPath.section == 1){
             NSLog(@"1");
         } else if (indexPath.section == 2){

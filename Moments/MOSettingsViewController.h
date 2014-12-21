@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "UserVoice.h"
 @interface MOSettingsViewController : UIViewController
 
 @end

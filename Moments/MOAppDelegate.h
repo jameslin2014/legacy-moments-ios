@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Instabug/Instabug.h>
+#import "UserVoice.h"
+
 
 @interface MOAppDelegate : UIResponder <UIApplicationDelegate>
 
