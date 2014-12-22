@@ -334,18 +334,16 @@ static NSString *CellIdentifier = @"CellID";
                 [UserVoice presentUserVoiceContactUsFormForParentViewController:self];
             } else if (indexPath.row == 1){
                 NSLog(@"Review on App Store");
-            } else if (indexPath.row == 2){
-                NSLog(@"Follow <twitter account>");
-            } else if (indexPath.row == 3){
-                NSLog(@"Like Facebook");
-            } else if (indexPath.row == 4){
-                NSLog(@"Share with Friends");
-            }
-            
+			}
 		} else if (indexPath.section == 1){
-            
+			if (indexPath.row == 0){
+				NSLog(@"Follow <twitter account>");
+			} else if (indexPath.row == 1){
+				NSLog(@"Share with Friends");
+			}
+		} else if (indexPath.section == 2){
             if (indexPath.row == 0) {
-                
+				
                 NSURL *URL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"privacy" ofType:@"html"]];
                 SVModalWebViewController *webViewController = [[SVModalWebViewController alloc] initWithURL:URL];
                 webViewController.modalPresentationStyle = UIModalPresentationPageSheet;
