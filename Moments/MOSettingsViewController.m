@@ -119,7 +119,7 @@ static NSString *CellIdentifier = @"CellID";
 	if (self.control.stateBeforeTouches == StateLeftSelected){
 		return 3;
 	} else if (self.control.stateBeforeTouches == StateRightSelected){
-		return 3;
+		return 4;
 	}
 	return 0;
 }
@@ -130,23 +130,18 @@ static NSString *CellIdentifier = @"CellID";
 		if (section == 1) return 3;
 		if (section == 2) return 1;
 	} else if (self.control.stateBeforeTouches == StateRightSelected){
-		if (section == 0) return 2;
+		if (section == 0) return 1;
 		if (section == 1) return 2;
-		if (section == 2) return 1;
+		if (section == 2) return 2;
+		if (section == 3) return 1;
 	}
 	return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//	if (self.control.stateBeforeTouches == StateLeftSelected){
-//		if (section == 0) return 30;
-//		if (section == 1) return 30;
-//		if (section == 2) return 30;
-//	} else if (self.control.stateBeforeTouches == StateRightSelected){
-//		if (section == 0) return 0;
-//		if (section == 1) return 30;
-//	}
-//	return 0;
+	if (self.control.stateBeforeTouches == StateRightHighlighted && section == 0){
+		return 0;
+	}
 	return 30;
 }
 
@@ -266,6 +261,13 @@ static NSString *CellIdentifier = @"CellID";
 			}
 		}
 		if (indexPath.section == 0){
+			cell.textLabel.text = @"";
+			UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"appIcon"]];
+			imageView.contentMode = UIViewContentModeScaleAspectFit;
+			[cell addSubview:imageView];
+			imageView.frame = CGRectMake(cell.bounds.size.width / 2 - 50, cell.bounds.size.height / 2 - 50, 100, 100);
+			NSLog(@"%@", imageView.image);
+		} else if (indexPath.section == 1){
 			if (indexPath.row == 0){
 				cell.textLabel.text = @"Send Feedback";
 				cell.imageView.image = [[UIImage imageNamed:@"mail"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -273,7 +275,7 @@ static NSString *CellIdentifier = @"CellID";
 				cell.textLabel.text = @"Review on App Store";
 				cell.imageView.image = [[UIImage imageNamed:@"heart"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			}
-		} else if (indexPath.section == 1){
+		} else if (indexPath.section == 2){
 			if (indexPath.row == 0){
 				cell.textLabel.text = @"Follow @pickmoments";
 				cell.imageView.image = [[UIImage imageNamed:@"twitter"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -281,7 +283,7 @@ static NSString *CellIdentifier = @"CellID";
 				cell.textLabel.text = @"Share with Friends";
 				cell.imageView.image = [[UIImage imageNamed:@"upload"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			}
-		} else if (indexPath.section == 2){
+		} else if (indexPath.section == 3){
 			if (indexPath.row == 0){
 				cell.textLabel.text = @"Privacy Policy";
 				cell.imageView.image = [[UIImage imageNamed:@"legal"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -293,6 +295,9 @@ static NSString *CellIdentifier = @"CellID";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+	if (self.control.stateBeforeTouches == StateRightHighlighted && indexPath.section == 0){
+		return 100;
+	}
 	return 55;
 }
 
@@ -360,9 +365,10 @@ static NSString *CellIdentifier = @"CellID";
 		else if (section == 1) return @"Account";
 		else if (section == 2) return @"Leaving";
 	} else if (self.control.stateBeforeTouches == StateRightSelected){
-		if (section == 0) return @"App";
-		else if (section == 1) return @"Share";
-		else if (section == 2) return @"Legal";
+		if (section == 0) return @"";
+		else if (section == 1) return @"App";
+		else if (section == 2) return @"Share";
+		else if (section == 3) return @"Legal";
 	}
 	return @"";
 }
