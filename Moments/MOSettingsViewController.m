@@ -11,7 +11,7 @@
 
 static NSString *CellIdentifier = @"CellID";
 
-@interface MOSettingsViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@interface MOSettingsViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UITextField *phoneNumberField;
 @property (strong, nonatomic) UITextField *passwordField;
@@ -293,7 +293,7 @@ static NSString *CellIdentifier = @"CellID";
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	if (self.control.stateBeforeTouches == StateLeftSelected){
 		if (indexPath.section == 0){
-			//TODO: change image!
+			[self changeProfilePicture];
 		} else if (indexPath.section == 1){
 			UITextField *textField;
 			UITableViewCell *tableViewCell = [tableView cellForRowAtIndexPath:indexPath];
@@ -319,7 +319,6 @@ static NSString *CellIdentifier = @"CellID";
         
 	} else if (self.control.stateBeforeTouches == StateRightSelected){
 		if (indexPath.section == 0){
-            
             if (indexPath.row == 0) {
                 [UserVoice presentUserVoiceContactUsFormForParentViewController:self];
             } else if (indexPath.row == 1){
@@ -370,6 +369,43 @@ static NSString *CellIdentifier = @"CellID";
 	return headerLabel;
 }
 
+- (void)changeProfilePicture{
+	NSLog(@"pressed");
+	
+	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+	UIAlertAction *cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+	
+	UIAlertAction *libraryButton = [UIAlertAction actionWithTitle:@"Photo Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+		//OPEN PHOTO LIBRARY
+		UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+		picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+		picker.delegate = self;
+		[self presentViewController:picker animated:YES completion:nil];
+	}];
+	
+	if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+		NSLog(@"Camera is available");
+		
+		UIAlertAction *cameraButton = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+			
+			UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+			picker.delegate = self;
+			picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+			
+			[self presentViewController:picker animated:YES completion:nil];
+			
+			
+		}];
+		[alertController addAction:cameraButton];
+
+	}
+	
+	[alertController addAction:libraryButton];
+	[alertController addAction:cancelButton];
+	
+	[self presentViewController:alertController animated:YES completion:nil];
+}
+
 #pragma mark - UITextFieldDelegate
 
 -(void)textFieldDidEndEditing:(UITextField *)textField{
@@ -378,6 +414,13 @@ static NSString *CellIdentifier = @"CellID";
 
 - (void)dealloc{
 	[[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+#pragma mark - UIImagePickerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+	[picker dismissViewControllerAnimated:YES completion:nil];
+	//TODO: Set profile image
 }
 
 @end
