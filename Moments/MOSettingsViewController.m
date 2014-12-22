@@ -330,7 +330,10 @@ static NSString *CellIdentifier = @"CellID";
 			if (indexPath.row == 0){
 				NSLog(@"Follow <twitter account>");
 			} else if (indexPath.row == 1){
-				NSLog(@"Share with Friends");
+				NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/app/id%d?mt=8", 953901607];
+				NSURL *url = [NSURL URLWithString:urlString];
+				UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[url, @"SOME STRING"] applicationActivities:nil];
+				[self presentViewController:activityViewController animated:YES completion:nil];
 			}
 		} else if (indexPath.section == 2){
             if (indexPath.row == 0) {
