@@ -101,7 +101,7 @@
     if(!_webView) {
         _webView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
         _webView.delegate = self;
-        _webView.scalesPageToFit = NO;
+        _webView.scalesPageToFit = YES;
     }
     return _webView;
 }
