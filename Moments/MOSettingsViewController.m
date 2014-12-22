@@ -323,7 +323,8 @@ static NSString *CellIdentifier = @"CellID";
             if (indexPath.row == 0) {
                 [UserVoice presentUserVoiceContactUsFormForParentViewController:self];
             } else if (indexPath.row == 1){
-                NSLog(@"Review on App Store");
+				NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/app/id%d?mt=8", 953901607];
+				[[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
 			}
 		} else if (indexPath.section == 1){
 			if (indexPath.row == 0){
