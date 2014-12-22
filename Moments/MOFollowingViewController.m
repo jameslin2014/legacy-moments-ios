@@ -192,6 +192,7 @@
         self.tabSegmentedControl.alpha = 0.0f;
         self.tabSegmentedControl.userInteractionEnabled = false;
         searchBar.alpha = 1.0;
+		[self.searchBar becomeFirstResponder];
     } completion:^(BOOL finished) {}];
     
     
