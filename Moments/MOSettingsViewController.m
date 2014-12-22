@@ -139,7 +139,7 @@ static NSString *CellIdentifier = @"CellID";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-	if (self.control.stateBeforeTouches == StateRightHighlighted && section == 0){
+	if (self.control.stateBeforeTouches == StateRightSelected && section == 0){
 		return 0;
 	}
 	return 30;
@@ -163,7 +163,11 @@ static NSString *CellIdentifier = @"CellID";
 	cell.separatorInset = UIEdgeInsetsZero;
 	cell.imageView.image = nil;
 	cell.imageView.tintColor = [UIColor whiteColor];
-	
+	for (UIView *subview in cell.subviews){
+		if ([subview isKindOfClass:[UITextField class]] || [subview isKindOfClass:[UIImageView class]]){
+			[subview removeFromSuperview];
+		}
+	}
 	if (self.control.stateBeforeTouches == StateLeftSelected){
 		if (indexPath.section == 0){
 			//Change Image
@@ -255,18 +259,14 @@ static NSString *CellIdentifier = @"CellID";
 	}
 	else if (self.control.stateBeforeTouches == StateRightSelected){
 		cell.selectionStyle = UITableViewCellSelectionStyleGray;
-		for (UIView *subview in cell.subviews){
-			if ([subview isKindOfClass:[UITextField class]]){
-				[subview removeFromSuperview];
-			}
-		}
 		if (indexPath.section == 0){
 			cell.textLabel.text = @"";
 			UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"appIcon"]];
 			imageView.contentMode = UIViewContentModeScaleAspectFit;
 			[cell addSubview:imageView];
 			imageView.frame = CGRectMake(cell.bounds.size.width / 2 - 50, cell.bounds.size.height / 2 - 50, 100, 100);
-			NSLog(@"%@", imageView.image);
+
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		} else if (indexPath.section == 1){
 			if (indexPath.row == 0){
 				cell.textLabel.text = @"Send Feedback";
@@ -295,7 +295,8 @@ static NSString *CellIdentifier = @"CellID";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-	if (self.control.stateBeforeTouches == StateRightHighlighted && indexPath.section == 0){
+	NSLog(@"Here");
+	if (self.control.stateBeforeTouches == StateRightSelected && indexPath.section == 0){
 		return 100;
 	}
 	return 55;
@@ -334,20 +335,20 @@ static NSString *CellIdentifier = @"CellID";
         
 	} else if (self.control.stateBeforeTouches == StateRightSelected){
 		if (indexPath.section == 0){
-            
+		} else if (indexPath.section == 1){
             if (indexPath.row == 0) {
                 [UserVoice presentUserVoiceContactUsFormForParentViewController:self];
             } else if (indexPath.row == 1){
                 NSLog(@"Review on App Store");
 			}
-		} else if (indexPath.section == 1){
+		} else if (indexPath.section == 2){
 			if (indexPath.row == 0){
 				NSLog(@"Follow <twitter account>");
 			} else if (indexPath.row == 1){
 				NSLog(@"Share with Friends");
 			}
 		} else if (indexPath.section == 2){
-            if (indexPath.row == 0) {
+            if (indexPath.row == 3) {
 				
                 NSURL *URL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"privacy" ofType:@"html"]];
                 SVModalWebViewController *webViewController = [[SVModalWebViewController alloc] initWithURL:URL];
