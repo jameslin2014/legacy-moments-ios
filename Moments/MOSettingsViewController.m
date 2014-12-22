@@ -37,74 +37,71 @@ static NSString *CellIdentifier = @"CellID";
 	
 }
 
-- (instancetype) init{
-	if (self = [super init]){
+- (void)viewDidLoad{
+	[super viewDidLoad];
 		
-		self.view.backgroundColor = [UIColor clearColor];
-		
-		self.backgroundBlurView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
-		[self.backgroundBlurView setTranslatesAutoresizingMaskIntoConstraints:NO];
-		[self.view addSubview:self.backgroundBlurView];
-		[self.view addConstraints:@[
-							   [NSLayoutConstraint constraintWithItem:self.backgroundBlurView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0],
-							   [NSLayoutConstraint constraintWithItem:self.backgroundBlurView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0],
-							   [NSLayoutConstraint constraintWithItem:self.backgroundBlurView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:0],
-							   [NSLayoutConstraint constraintWithItem:self.backgroundBlurView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0],
-							   ]];
-		self.vibrancyView = [[UIVisualEffectView alloc] initWithEffect:[UIVibrancyEffect effectForBlurEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]]];
-		[self.vibrancyView setTranslatesAutoresizingMaskIntoConstraints:NO];
-		[self.backgroundBlurView addSubview:self.vibrancyView];
-		[self.backgroundBlurView addConstraints:@[
-												  [NSLayoutConstraint constraintWithItem:self.vibrancyView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.backgroundBlurView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0],
-												  [NSLayoutConstraint constraintWithItem:self.vibrancyView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.backgroundBlurView attribute:NSLayoutAttributeRight multiplier:1.0 constant:0],
-												  [NSLayoutConstraint constraintWithItem:self.vibrancyView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.backgroundBlurView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0],
-												  [NSLayoutConstraint constraintWithItem:self.vibrancyView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.backgroundBlurView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]
-												  ]];
-		
-		self.control = [[EDSegmentedControl alloc]init];
-		[self.control setTranslatesAutoresizingMaskIntoConstraints:NO];
-		[self.vibrancyView addSubview:self.control];
-		[self.vibrancyView addConstraints:@[
-											[NSLayoutConstraint constraintWithItem:self.control attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.vibrancyView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0],
-											[NSLayoutConstraint constraintWithItem:self.control attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.vibrancyView attribute:NSLayoutAttributeTopMargin multiplier:1.0 constant: [[UIApplication sharedApplication]statusBarFrame].size.height + 10],
-											[NSLayoutConstraint constraintWithItem:self.control attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:136],
-											[NSLayoutConstraint constraintWithItem:self.control attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30]
-											]];
-		
-		self.doneButton = [UIButton buttonWithType:UIButtonTypeSystem];
-		self.doneButton.tintColor = [UIColor whiteColor];
-		[self.doneButton setTitle:@"Done" forState:UIControlStateNormal];
-		self.doneButton.translatesAutoresizingMaskIntoConstraints = NO;
-		self.doneButton.titleLabel.font = [UIFont fontWithName:@"Avenir-Book" size:14];
-		[self.doneButton addTarget:self action:@selector(dismissOptionsAndAbout) forControlEvents:UIControlEventTouchUpInside];
-		[self.vibrancyView addSubview:self.doneButton];
-		[self.vibrancyView addConstraints:@[
-											[NSLayoutConstraint constraintWithItem:self.doneButton attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.vibrancyView attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:-10],
-											[NSLayoutConstraint constraintWithItem:self.doneButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.control attribute:NSLayoutAttributeCenterY multiplier:1.0 constant: 0]
-											]];
-		
-		//		self.profilePicture = [[UIImageView alloc]init];
-		
-		self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-		[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
-		self.tableView.separatorColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.5];
-		self.tableView.delegate = self;
-		self.tableView.dataSource = self;
-		self.tableView.tableFooterView = [[UIView alloc]init];
-		self.tableView.backgroundColor = [UIColor clearColor];
-		self.tableView.layoutMargins = UIEdgeInsetsZero;
-		self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
-		[self.vibrancyView addSubview:self.tableView];
-		[self.vibrancyView addConstraints:@[
-											[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.vibrancyView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0],
-											[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.vibrancyView attribute:NSLayoutAttributeRight multiplier:1.0 constant:0],
-											[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.control attribute:NSLayoutAttributeBottom multiplier:1.0 constant:20],
-											[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.vibrancyView attribute:NSLayoutAttributeBottomMargin multiplier:1.0 constant:0]
-											]];
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(controlStateChanged) name:@"SegmentedControlStateChanged" object:nil];
-	}
-    
-	return self;
+	self.view.backgroundColor = [UIColor clearColor];
+	
+	self.backgroundBlurView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
+	[self.backgroundBlurView setTranslatesAutoresizingMaskIntoConstraints:NO];
+	[self.view addSubview:self.backgroundBlurView];
+	[self.view addConstraints:@[
+						   [NSLayoutConstraint constraintWithItem:self.backgroundBlurView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0],
+						   [NSLayoutConstraint constraintWithItem:self.backgroundBlurView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0],
+						   [NSLayoutConstraint constraintWithItem:self.backgroundBlurView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:0],
+						   [NSLayoutConstraint constraintWithItem:self.backgroundBlurView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0],
+						   ]];
+	self.vibrancyView = [[UIVisualEffectView alloc] initWithEffect:[UIVibrancyEffect effectForBlurEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]]];
+	[self.vibrancyView setTranslatesAutoresizingMaskIntoConstraints:NO];
+	[self.backgroundBlurView addSubview:self.vibrancyView];
+	[self.backgroundBlurView addConstraints:@[
+											  [NSLayoutConstraint constraintWithItem:self.vibrancyView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.backgroundBlurView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0],
+											  [NSLayoutConstraint constraintWithItem:self.vibrancyView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.backgroundBlurView attribute:NSLayoutAttributeRight multiplier:1.0 constant:0],
+											  [NSLayoutConstraint constraintWithItem:self.vibrancyView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.backgroundBlurView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0],
+											  [NSLayoutConstraint constraintWithItem:self.vibrancyView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.backgroundBlurView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]
+											  ]];
+	
+	self.control = [[EDSegmentedControl alloc]init];
+	[self.control setTranslatesAutoresizingMaskIntoConstraints:NO];
+	[self.vibrancyView addSubview:self.control];
+	[self.vibrancyView addConstraints:@[
+										[NSLayoutConstraint constraintWithItem:self.control attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.vibrancyView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0],
+										[NSLayoutConstraint constraintWithItem:self.control attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.vibrancyView attribute:NSLayoutAttributeTopMargin multiplier:1.0 constant: [[UIApplication sharedApplication]statusBarFrame].size.height + 10],
+										[NSLayoutConstraint constraintWithItem:self.control attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:136],
+										[NSLayoutConstraint constraintWithItem:self.control attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30]
+										]];
+	
+	self.doneButton = [UIButton buttonWithType:UIButtonTypeSystem];
+	self.doneButton.tintColor = [UIColor whiteColor];
+	[self.doneButton setTitle:@"Done" forState:UIControlStateNormal];
+	self.doneButton.translatesAutoresizingMaskIntoConstraints = NO;
+	self.doneButton.titleLabel.font = [UIFont fontWithName:@"Avenir-Book" size:14];
+	[self.doneButton addTarget:self action:@selector(dismissOptionsAndAbout) forControlEvents:UIControlEventTouchUpInside];
+	[self.vibrancyView addSubview:self.doneButton];
+	[self.vibrancyView addConstraints:@[
+										[NSLayoutConstraint constraintWithItem:self.doneButton attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.vibrancyView attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:-10],
+										[NSLayoutConstraint constraintWithItem:self.doneButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.control attribute:NSLayoutAttributeCenterY multiplier:1.0 constant: 0]
+										]];
+	
+	//		self.profilePicture = [[UIImageView alloc]init];
+	
+	self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+	[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
+	self.tableView.separatorColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.5];
+	self.tableView.delegate = self;
+	self.tableView.dataSource = self;
+	self.tableView.tableFooterView = [[UIView alloc]init];
+	self.tableView.backgroundColor = [UIColor clearColor];
+	self.tableView.layoutMargins = UIEdgeInsetsZero;
+	self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
+	[self.vibrancyView addSubview:self.tableView];
+	[self.vibrancyView addConstraints:@[
+										[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.vibrancyView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0],
+										[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.vibrancyView attribute:NSLayoutAttributeRight multiplier:1.0 constant:0],
+										[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.control attribute:NSLayoutAttributeBottom multiplier:1.0 constant:20],
+										[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.vibrancyView attribute:NSLayoutAttributeBottomMargin multiplier:1.0 constant:0]
+										]];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(controlStateChanged) name:@"SegmentedControlStateChanged" object:nil];
 }
 
 - (void)dismissOptionsAndAbout{
@@ -122,7 +119,7 @@ static NSString *CellIdentifier = @"CellID";
 	if (self.control.stateBeforeTouches == StateLeftSelected){
 		return 3;
 	} else if (self.control.stateBeforeTouches == StateRightSelected){
-		return 2;
+		return 3;
 	}
 	return 0;
 }
@@ -133,22 +130,24 @@ static NSString *CellIdentifier = @"CellID";
 		if (section == 1) return 3;
 		if (section == 2) return 1;
 	} else if (self.control.stateBeforeTouches == StateRightSelected){
-		if (section == 0) return 5;
-		if (section == 1) return 1;
+		if (section == 0) return 2;
+		if (section == 1) return 2;
+		if (section == 2) return 1;
 	}
 	return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-	if (self.control.stateBeforeTouches == StateLeftSelected){
-		if (section == 0) return 30;
-		if (section == 1) return 30;
-		if (section == 2) return 30;
-	} else if (self.control.stateBeforeTouches == StateRightSelected){
-		if (section == 0) return 0;
-		if (section == 1) return 30;
-	}
-	return 0;
+//	if (self.control.stateBeforeTouches == StateLeftSelected){
+//		if (section == 0) return 30;
+//		if (section == 1) return 30;
+//		if (section == 2) return 30;
+//	} else if (self.control.stateBeforeTouches == StateRightSelected){
+//		if (section == 0) return 0;
+//		if (section == 1) return 30;
+//	}
+//	return 0;
+	return 30;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -169,6 +168,7 @@ static NSString *CellIdentifier = @"CellID";
 	cell.separatorInset = UIEdgeInsetsZero;
 	cell.imageView.image = nil;
 	cell.imageView.tintColor = [UIColor whiteColor];
+	
 	if (self.control.stateBeforeTouches == StateLeftSelected){
 		if (indexPath.section == 0){
 			//Change Image
@@ -257,27 +257,31 @@ static NSString *CellIdentifier = @"CellID";
 			cell.backgroundColor = [UIColor colorWithRed:0.890 green:0.313 blue:0.313 alpha:0.75];
 			cell.textLabel.backgroundColor = [UIColor clearColor];
 		}
-	} else if (self.control.stateBeforeTouches == StateRightSelected){
+	}
+	else if (self.control.stateBeforeTouches == StateRightSelected){
 		cell.selectionStyle = UITableViewCellSelectionStyleGray;
+		for (UIView *subview in cell.subviews){
+			if ([subview isKindOfClass:[UITextField class]]){
+				[subview removeFromSuperview];
+			}
+		}
 		if (indexPath.section == 0){
 			if (indexPath.row == 0){
-                
 				cell.textLabel.text = @"Send Feedback";
 				cell.imageView.image = [[UIImage imageNamed:@"mail"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			} else if (indexPath.row == 1){
 				cell.textLabel.text = @"Review on App Store";
 				cell.imageView.image = [[UIImage imageNamed:@"heart"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-			} else if (indexPath.row == 2){
+			}
+		} else if (indexPath.section == 1){
+			if (indexPath.row == 0){
 				cell.textLabel.text = @"Follow @pickmoments";
 				cell.imageView.image = [[UIImage imageNamed:@"twitter"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-			} else if (indexPath.row == 3){
-				cell.textLabel.text = @"Like PickMoments";
-				cell.imageView.image = [[UIImage imageNamed:@"facebook"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-			} else if (indexPath.row == 4){
+			} else if (indexPath.row == 1){
 				cell.textLabel.text = @"Share with Friends";
 				cell.imageView.image = [[UIImage imageNamed:@"upload"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			}
-		} else if (indexPath.section == 1){
+		} else if (indexPath.section == 2){
 			if (indexPath.row == 0){
 				cell.textLabel.text = @"Privacy Policy";
 				cell.imageView.image = [[UIImage imageNamed:@"legal"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -330,18 +334,16 @@ static NSString *CellIdentifier = @"CellID";
                 [UserVoice presentUserVoiceContactUsFormForParentViewController:self];
             } else if (indexPath.row == 1){
                 NSLog(@"Review on App Store");
-            } else if (indexPath.row == 2){
-                NSLog(@"Follow <twitter account>");
-            } else if (indexPath.row == 3){
-                NSLog(@"Like Facebook");
-            } else if (indexPath.row == 4){
-                NSLog(@"Share with Friends");
-            }
-            
+			}
 		} else if (indexPath.section == 1){
-            
+			if (indexPath.row == 0){
+				NSLog(@"Follow <twitter account>");
+			} else if (indexPath.row == 1){
+				NSLog(@"Share with Friends");
+			}
+		} else if (indexPath.section == 2){
             if (indexPath.row == 0) {
-                
+				
                 NSURL *URL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"privacy" ofType:@"html"]];
                 SVModalWebViewController *webViewController = [[SVModalWebViewController alloc] initWithURL:URL];
                 webViewController.modalPresentationStyle = UIModalPresentationPageSheet;
@@ -358,32 +360,20 @@ static NSString *CellIdentifier = @"CellID";
 		else if (section == 1) return @"Account";
 		else if (section == 2) return @"Leaving";
 	} else if (self.control.stateBeforeTouches == StateRightSelected){
-		if (section == 0) return @"";
-		else if (section == 1) return @"Legal";
+		if (section == 0) return @"App";
+		else if (section == 1) return @"Share";
+		else if (section == 2) return @"Legal";
 	}
 	return @"";
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-	if (self.control.stateBeforeTouches == StateLeftSelected){
-		UILabel *headerLabel = [[UILabel alloc] init];
-		headerLabel.textColor = [UIColor lightGrayColor];
-		headerLabel.font = [UIFont fontWithName:@"Avenir-Book" size:12];
-		headerLabel.text = [NSString stringWithFormat:@"    %@",
-							[self tableView:tableView titleForHeaderInSection:section]];
-		return headerLabel;
-	} else if (self.control.stateBeforeTouches == StateRightSelected){
-		if (section == 0){
-			return nil;
-		}
-		UILabel *headerLabel = [[UILabel alloc]init];
-		headerLabel.textColor = [UIColor lightGrayColor];
-		headerLabel.font = [UIFont fontWithName:@"Avenir-Book" size:12];
-		headerLabel.text = [NSString stringWithFormat:@"    %@",
-							[self tableView:tableView titleForHeaderInSection:section]];
-		return headerLabel;
-	}
-	return nil;
+	UILabel *headerLabel = [[UILabel alloc] init];
+	headerLabel.textColor = [UIColor lightGrayColor];
+	headerLabel.font = [UIFont fontWithName:@"Avenir-Book" size:12];
+	headerLabel.text = [NSString stringWithFormat:@"    %@",
+						[self tableView:tableView titleForHeaderInSection:section]];
+	return headerLabel;
 }
 
 #pragma mark - UITextFieldDelegate
