@@ -30,6 +30,7 @@
 	self.tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
 	self.tapper.cancelsTouchesInView = YES;
 	[self.view addGestureRecognizer:self.tapper];
+	self.view.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:1.0];
 	
 	// Do any additional setup after loading the view.
 	self.navigationController.navigationBarHidden = NO;
@@ -37,7 +38,6 @@
 	[self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.23 green:0.52 blue:0.68 alpha:0.39]];
 	[self.navigationController.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys: [UIFont fontWithName:@"Avenir-Book" size:17], NSFontAttributeName, nil]];
 	
-	[self.subNavigationView setBackgroundColor:[UIColor colorWithRed:0.15 green:0.29 blue:0.35 alpha:1]];
 	self.subNavigationView.alpha = 1;
 	self.segmentedControl = [[JKSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Following", @"Followers", nil]];
 	self.segmentedControl.translatesAutoresizingMaskIntoConstraints = NO;
@@ -77,8 +77,8 @@
 	}
 	
 	self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
-	self.tableView.separatorColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
-	self.tableView.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
+	self.tableView.separatorColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:1.0];
+	self.tableView.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:1.0];
 //	[self.tableView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapOccurred:)]];
 }
 
@@ -211,8 +211,12 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-	NSArray *currentData = self.segmentedControl.selectedSegmentIndex == 0 ? self.following : self.followers;
-	return [NSString stringWithFormat:@"Following %i user%@", currentData.count, currentData.count == 1 ? @"" : @"s"];
+	if (self.segmentedControl.selectedSegmentIndex == 0){
+		return [NSString stringWithFormat:@"Following %i user%@", self.following.count, self.following.count == 1 ? @"" : @"s"];
+	} else {
+		BOOL oneUser = self.followers.count == 1;
+		return [NSString stringWithFormat:@"%i user%@ follow%@ you", self.followers.count, oneUser ? @"" : @"s", !oneUser ? @"" : @"s"];
+	}
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
