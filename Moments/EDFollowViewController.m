@@ -10,6 +10,7 @@
 #import "JKSegmentedControl.h"
 #import "MomentsAPIUtilities.h"
 #import "SSKeychain.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface EDFollowViewController ()
 
@@ -162,6 +163,10 @@
 	return self.segmentedControl.selectedSegmentIndex == 0 ? self.following.count : self.followers.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+	return 60.5;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	static NSString *CellIdentifier = @"personCell";
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -169,7 +174,34 @@
 		cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 	}
 	
-	cell.textLabel.text = self.segmentedControl.selectedSegmentIndex == 0 ? self.following[indexPath.row] : self.followers[indexPath.row];
+	UILabel *nameLabel;
+	UIImageView *profileImageView;
+	
+	for (UIView *v in cell.contentView.subviews){
+		if ([v isKindOfClass:[UIImageView class]]){
+			profileImageView = (UIImageView *) v;
+		} else if ([v isKindOfClass:[UILabel class]]){
+			nameLabel = (UILabel *) v;
+		}
+	}
+	
+	cell.backgroundColor = [UIColor clearColor];
+	cell.selectionStyle = UITableViewCellSelectionStyleNone;
+	
+	if (!nameLabel) {nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 7, cell.frame.size.width, cell.frame.size.height)];}
+	nameLabel.font = [UIFont fontWithName:@"Avenir-Book" size:18];
+	nameLabel.textColor = [UIColor whiteColor];
+	nameLabel.text = self.segmentedControl.selectedSegmentIndex == 0 ? self.following[indexPath.row] : self.followers[indexPath.row];
+	if (!nameLabel.superview){
+		[cell.contentView addSubview:nameLabel];
+	}
+	if (!profileImageView){profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 11, 35, 35)];}
+	profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
+	profileImageView.clipsToBounds = YES;
+	if (!profileImageView.superview){
+		[cell.contentView addSubview:profileImageView];
+	}
+	[profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",cell.textLabel.text]] placeholderImage:[UIImage imageNamed:@"capture-button.png"]];
 	
 	return cell;
 }
@@ -196,7 +228,7 @@
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-	MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
+//	MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
 	//API NEEDS TO SUPPORT MULTIPLE PEOPLE
 //	[APIHelper searchForUsersWithUserName:searchText completion:^(BOOL valid) {
 //		
