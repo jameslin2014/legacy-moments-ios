@@ -58,15 +58,22 @@
 	[self.segmentedControl setSelectedSegmentIndex:0];
 	self.segmentedControl.layer.zPosition = 1;
 	self.subNavigationView.userInteractionEnabled = YES;
-	self.searchBar = [[UISearchBar alloc] initWithFrame:self.segmentedControl.frame];
+//	self.searchBar = [[UISearchBar alloc] initWithFrame:self.segmentedControl.frame];
+	self.searchBar = [[UISearchBar alloc] init];
+	self.searchBar.translatesAutoresizingMaskIntoConstraints = NO;
 	self.searchBar.barTintColor = [UIColor whiteColor];
 	self.searchBar.tintColor = [UIColor whiteColor];
 	self.searchBar.searchBarStyle = UISearchBarStyleMinimal;
 	self.searchBar.delegate = self;
 	self.searchBar.placeholder = @"Search for a username";
 	[[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor whiteColor]];
-	[self.searchBar removeFromSuperview];
-	[self.navigationController.view addSubview:self.searchBar];
+	[self.subNavigationView addSubview:self.searchBar];
+	[self.subNavigationView addConstraints:@[
+											 [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.segmentedControl attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0],
+											 [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.segmentedControl attribute:NSLayoutAttributeRight multiplier:1.0 constant:0],
+											 [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.segmentedControl attribute:NSLayoutAttributeTop multiplier:1.0 constant:0],
+											 [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.segmentedControl attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0],
+											 ]];
 	self.searchBar.alpha = 0.0f;
 	
 	for (UIView *v in self.searchBar.subviews) {
