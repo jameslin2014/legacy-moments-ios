@@ -54,8 +54,8 @@
     followersArray = [NSKeyedUnarchiver unarchiveObjectWithFile:docFile];
     
     
-    followersVC = [self.storyboard instantiateViewControllerWithIdentifier:@"followersVC"]; // make sure
-    
+//    followersVC = [self.storyboard instantiateViewControllerWithIdentifier:@"followersVC"]; // make sure
+	
 //    NSTimer *rowTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f
 //                                                         target:self selector:@selector(numberOfRows) userInfo:nil repeats:YES];
 	
@@ -115,7 +115,15 @@
     self.tableView.separatorColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
     self.tableView.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:100];
     [self.tableView setContentInset:UIEdgeInsetsMake(50,0,0,0)];
-    
+	[self.tableView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapOccurred:)]];
+}
+
+- (void)tapOccurred: (UITapGestureRecognizer *) tap{
+	CGPoint location = [tap locationInView:self.tableView];
+	NSIndexPath *path = [self.tableView indexPathForRowAtPoint:location];
+	if (!path){
+		[self showRegular];
+	}
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
@@ -128,6 +136,7 @@
             if (valid) {
                 
                 view1.backgroundColor = tableView.backgroundColor;
+				view1.backgroundColor = [UIColor redColor];
                 [self.view addSubview:view1];
                 
                 view2.backgroundColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
@@ -155,7 +164,6 @@
                 nameLabel.text = @"User Not Found";
                 [view2 addSubview:nameLabel];
                 [profileImageView removeFromSuperview];
-                
             }
             
         }];
@@ -193,6 +201,7 @@
         self.tabSegmentedControl.userInteractionEnabled = false;
         searchBar.alpha = 1.0;
 		[self.searchBar becomeFirstResponder];
+
     } completion:^(BOOL finished) {}];
     
     

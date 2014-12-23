@@ -20,8 +20,9 @@
     // Instantiating view controllers with identifiers for IB to interact with.
     MOListViewController *listView = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"listView"];
     MOCaptureViewController *captureView = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"captureView"];
-    MOFollowingViewController *friendsView = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"friendsView"];
-    
+//    MOFollowingViewController *friendsView = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"friendsView"];
+	MOFollowingViewController *friendsView = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"followerStuff"];
+	
     // Load the ViewControllers in our pages array.
     self.pages = [[NSArray alloc] initWithObjects:listView, captureView, friendsView, nil];
     
