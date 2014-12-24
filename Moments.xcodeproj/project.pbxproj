@@ -26,11 +26,15 @@
 		02C1E4BA1A30221C00F7EC6E /* DLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C1E4B61A30221C00F7EC6E /* DLImageView.m */; };
 		02C894471A29B89100B87592 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ECE1A298451001EDD2D /* Security.framework */; };
 		204BA45D1A4134BF00C1C05E /* EDSpinningBoxScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 204BA45C1A4134BF00C1C05E /* EDSpinningBoxScene.m */; };
+		20B821061A4B3250009E293B /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B821031A4B3250009E293B /* SVIndefiniteAnimatedView.m */; };
+		20B821071A4B3250009E293B /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B821051A4B3250009E293B /* SVProgressHUD.m */; };
 		20C077C31A47B9260092B7AA /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C077C21A47B9260092B7AA /* Twitter.framework */; };
 		20C077C61A48C6220092B7AA /* EDFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C077C51A48C6220092B7AA /* EDFollowViewController.m */; };
 		20D6E7D61A43C7DA00B6DF3F /* EDSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D6E7D51A43C7DA00B6DF3F /* EDSegmentedControl.m */; };
 		20D6E7DC1A44D5BA00B6DF3F /* EDSegments.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D6E7DB1A44D5BA00B6DF3F /* EDSegments.m */; };
 		20EB172D1A4747A700DA1B16 /* MOSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20EB172C1A4747A700DA1B16 /* MOSettingsViewController.m */; };
+		20FE2B181A4B1D08000C0E86 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20FE2B171A4B1D08000C0E86 /* Accounts.framework */; };
+		20FE2B1A1A4B1DAD000C0E86 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20FE2B191A4B1DAD000C0E86 /* Social.framework */; };
 		A564D9C51A476808003C99F3 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A564D9C41A476808003C99F3 /* CoreMotion.framework */; };
 		A564D9C71A476812003C99F3 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A564D9C61A476812003C99F3 /* CoreTelephony.framework */; };
 		A564D9C91A476821003C99F3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A564D9C81A476821003C99F3 /* AudioToolbox.framework */; };
@@ -139,6 +143,10 @@
 		02C1E4B61A30221C00F7EC6E /* DLImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLImageView.m; sourceTree = "<group>"; };
 		204BA45B1A4134BF00C1C05E /* EDSpinningBoxScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDSpinningBoxScene.h; sourceTree = "<group>"; };
 		204BA45C1A4134BF00C1C05E /* EDSpinningBoxScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDSpinningBoxScene.m; sourceTree = "<group>"; };
+		20B821021A4B3250009E293B /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		20B821031A4B3250009E293B /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		20B821041A4B3250009E293B /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		20B821051A4B3250009E293B /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		20C077C21A47B9260092B7AA /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		20C077C41A48C6220092B7AA /* EDFollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDFollowViewController.h; sourceTree = "<group>"; };
 		20C077C51A48C6220092B7AA /* EDFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDFollowViewController.m; sourceTree = "<group>"; };
@@ -148,6 +156,8 @@
 		20D6E7DB1A44D5BA00B6DF3F /* EDSegments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDSegments.m; sourceTree = "<group>"; };
 		20EB172B1A4747A700DA1B16 /* MOSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOSettingsViewController.h; sourceTree = "<group>"; };
 		20EB172C1A4747A700DA1B16 /* MOSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOSettingsViewController.m; sourceTree = "<group>"; };
+		20FE2B171A4B1D08000C0E86 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		20FE2B191A4B1DAD000C0E86 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		A564D9C41A476808003C99F3 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		A564D9C61A476812003C99F3 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		A564D9C81A476821003C99F3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -310,6 +320,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20FE2B1A1A4B1DAD000C0E86 /* Social.framework in Frameworks */,
+				20FE2B181A4B1D08000C0E86 /* Accounts.framework in Frameworks */,
 				20C077C31A47B9260092B7AA /* Twitter.framework in Frameworks */,
 				A564D9D71A476870003C99F3 /* Foundation.framework in Frameworks */,
 				A564D9D51A476869003C99F3 /* CoreGraphics.framework in Frameworks */,
@@ -341,6 +353,8 @@
 		020418451A296CC100134216 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				20FE2B191A4B1DAD000C0E86 /* Social.framework */,
+				20FE2B171A4B1D08000C0E86 /* Accounts.framework */,
 				20C077C21A47B9260092B7AA /* Twitter.framework */,
 				A564D9D61A476870003C99F3 /* Foundation.framework */,
 				A564D9D41A476869003C99F3 /* CoreGraphics.framework */,
@@ -513,6 +527,10 @@
 				20D6E7D51A43C7DA00B6DF3F /* EDSegmentedControl.m */,
 				20D6E7DA1A44D5BA00B6DF3F /* EDSegments.h */,
 				20D6E7DB1A44D5BA00B6DF3F /* EDSegments.m */,
+				20B821021A4B3250009E293B /* SVIndefiniteAnimatedView.h */,
+				20B821031A4B3250009E293B /* SVIndefiniteAnimatedView.m */,
+				20B821041A4B3250009E293B /* SVProgressHUD.h */,
+				20B821051A4B3250009E293B /* SVProgressHUD.m */,
 				A5B31C3E1A287F26009734EE /* Main.storyboard */,
 				A5E01C941A2B34DC003ED753 /* Camera Utilities */,
 				A5C5EB851A2A835E002F1591 /* User interface */,
@@ -811,7 +829,9 @@
 				02C1E4B71A30221C00F7EC6E /* DLILCacheManager.m in Sources */,
 				A5E01CD41A2B37F1003ED753 /* UIAlertView+AFNetworking.m in Sources */,
 				A5E01C9A1A2B37D7003ED753 /* JKSegmentedControl.m in Sources */,
+				20B821071A4B3250009E293B /* SVProgressHUD.m in Sources */,
 				02567A011A2B0478002465CF /* MOFollowingViewController.m in Sources */,
+				20B821061A4B3250009E293B /* SVIndefiniteAnimatedView.m in Sources */,
 				204BA45D1A4134BF00C1C05E /* EDSpinningBoxScene.m in Sources */,
 				A5E01CC71A2B37F1003ED753 /* AFAmazonS3Manager.m in Sources */,
 				20EB172D1A4747A700DA1B16 /* MOSettingsViewController.m in Sources */,

@@ -217,10 +217,10 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
 	if (self.segmentedControl.selectedSegmentIndex == 0){
-		return [NSString stringWithFormat:@"Following %i user%@", self.following.count, self.following.count == 1 ? @"" : @"s"];
+		return [NSString stringWithFormat:@"Following %lu user%@", (unsigned long)self.following.count, self.following.count == 1 ? @"" : @"s"];
 	} else {
 		BOOL oneUser = self.followers.count == 1;
-		return [NSString stringWithFormat:@"%i user%@ follow%@ you", self.followers.count, oneUser ? @"" : @"s", !oneUser ? @"" : @"s"];
+		return [NSString stringWithFormat:@"%lu user%@ follow%@ you", (unsigned long)self.followers.count, oneUser ? @"" : @"s", !oneUser ? @"" : @"s"];
 	}
 }
 

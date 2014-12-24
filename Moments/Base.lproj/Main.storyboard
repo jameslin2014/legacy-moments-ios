@@ -431,7 +431,6 @@
         <!--Navigation Controller-->
         <scene sceneID="2cP-j8-nh0">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NfW-u9-0zg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="friendsView" automaticallyAdjustsScrollViewInsets="NO" id="BC2-nd-96V" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -444,6 +443,7 @@
                         <segue destination="PwU-7r-Cza" kind="relationship" relationship="rootViewController" id="asS-vm-7LQ"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NfW-u9-0zg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="924" y="1090.0866666666666"/>
         </scene>

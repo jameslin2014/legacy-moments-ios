@@ -8,6 +8,9 @@
 
 #import "MOSettingsViewController.h"
 #import "EDSegmentedControl.h"
+#import <Accounts/Accounts.h>
+#import <Social/Social.h>
+#import "SVProgressHUD.h"
 
 static NSString *CellIdentifier = @"CellID";
 
@@ -328,8 +331,68 @@ static NSString *CellIdentifier = @"CellID";
 			}
 		} else if (indexPath.section == 1){
 			if (indexPath.row == 0){
-				NSLog(@"Follow <twitter account>");
 				//TODO
+				ACAccountStore *accountStore = [[ACAccountStore alloc] init];
+				
+				ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+				
+				[accountStore requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error) {
+					if(granted) {
+						// Get the list of Twitter accounts.
+						NSArray *accountsArray = [accountStore accountsWithAccountType:accountType];
+						
+						// For the sake of brevity, we'll assume there is only one Twitter account present.
+						// You would ideally ask the user which account they want to tweet from, if there is more than one Twitter account present.
+						if ([accountsArray count] == 1) {
+							// Grab the initial Twitter account to tweet from.
+							ACAccount *twitterAccount = [accountsArray objectAtIndex:0];
+							
+							NSMutableDictionary *tempDict = [[NSMutableDictionary alloc] init];
+							[tempDict setValue:@"pickmoments" forKey:@"screen_name"];
+							[tempDict setValue:@"true" forKey:@"follow"];
+							NSLog(@"*******tempDict %@*******",tempDict);
+							
+							//requestForServiceType
+							[SVProgressHUD show];
+
+							SLRequest *postRequest = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodPOST URL:[NSURL URLWithString:@"https://api.twitter.com/1/friendships/create.json"] parameters:tempDict];
+							[postRequest setAccount:twitterAccount];
+							[postRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+								NSString *output = [NSString stringWithFormat:@"HTTP response status: %li Error %ld", (long)[urlResponse statusCode],(long)error.code];
+								NSLog(@"%@error %@", output,error.description);
+								[SVProgressHUD showSuccessWithStatus:@"Now following @PickMoments"];
+							}];
+						} else if ([accountsArray count] > 1){
+							UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+							for (ACAccount *twitterAccount in accountsArray){
+								NSString *twitterHandle = twitterAccount.username;
+								[alertController addAction:[UIAlertAction actionWithTitle:twitterHandle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+									// Grab the initial Twitter account to tweet from.
+									
+									NSMutableDictionary *tempDict = [[NSMutableDictionary alloc] init];
+									[tempDict setValue:@"pickmoments" forKey:@"screen_name"];
+									[tempDict setValue:@"true" forKey:@"follow"];
+									NSLog(@"*******tempDict %@*******",tempDict);
+									
+									//requestForServiceType
+									
+									[SVProgressHUD show];
+									
+									SLRequest *postRequest = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodPOST URL:[NSURL URLWithString:@"https://api.twitter.com/1/friendships/create.json"] parameters:tempDict];
+									[postRequest setAccount:twitterAccount];
+									[postRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+										NSString *output = [NSString stringWithFormat:@"HTTP response status: %li Error %ld", (long)[urlResponse statusCode],(long)error.code];
+										NSLog(@"%@error %@", output,error.description);
+										[SVProgressHUD showSuccessWithStatus:@"Now following @PickMoments"];
+									}];
+								}]];
+							}
+							[alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+							[self presentViewController:alertController animated:YES completion:nil];
+						}
+						
+					}
+				}];
 			} else if (indexPath.row == 1){
 				NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/app/id%d?mt=8", 953901607];
 				NSURL *url = [NSURL URLWithString:urlString];

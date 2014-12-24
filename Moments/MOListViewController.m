@@ -29,25 +29,7 @@
     [super viewDidLoad];
     
     self.title = @"Moments";
-    
-    NSString *currentUser = [SSKeychain passwordForService:@"moments" account:@"username"];
-    MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
-    
-    [APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *followingList) {
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *docDir = [paths objectAtIndex: 0];
-        NSString* docFile = [docDir stringByAppendingPathComponent: @"followingTemp.plist"];
-        [NSKeyedArchiver archiveRootObject:followingList toFile:docFile];
-    }];
-    
-    [APIHelper getUserFollowersListWithUsername:currentUser completion:^(NSArray *followingList) {
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *docDir = [paths objectAtIndex:0];
-        NSString* docFile = [docDir stringByAppendingPathComponent: @"followersTemp.plist"];
-        [NSKeyedArchiver archiveRootObject:followingList toFile:docFile];
-    }];
-    
-    
+	
     // Do any additional setup after loading the view, typically from a nib.
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -56,11 +38,33 @@
 //    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"file_name"] style:UIBarButtonItemStylePlain target:self action:@selector(rightButton:)];
 //    self.navigationItem.rightBarButtonItem = rightButton;
 	
+	[self getDataFromServer];
+	reloadTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(getDataFromServer) userInfo:nil repeats:YES];
+}
+
+- (void)getDataFromServer{
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+		MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
+		NSString *currentUser = [SSKeychain passwordForService:@"moments" account:@"username"];
+		
+		[APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *followingList) {
+			NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+			NSString *docDir = [paths objectAtIndex: 0];
+			NSString* docFile = [docDir stringByAppendingPathComponent: @"followingTemp.plist"];
+			[NSKeyedArchiver archiveRootObject:followingList toFile:docFile];
+		}];
+		
+		[APIHelper getUserFollowersListWithUsername:currentUser completion:^(NSArray *followingList) {
+			NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+			NSString *docDir = [paths objectAtIndex:0];
+			NSString* docFile = [docDir stringByAppendingPathComponent: @"followersTemp.plist"];
+			[NSKeyedArchiver archiveRootObject:followingList toFile:docFile];
+		}];
+		[self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+	});
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self numberOfRows];
-    reloadTimer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(numberOfRows) userInfo:nil repeats:YES];
 	UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"gear"] style:UIBarButtonItemStylePlain target:self action:@selector(showOptionsAndAbout)];
 	button.tintColor = [UIColor whiteColor];
 	self.navigationItem.rightBarButtonItem = button;
@@ -77,18 +81,6 @@
     } else {
         return 1;
     }
-}
-
-- (void)numberOfRows {
-    MomentsAPIUtilities *API = [MomentsAPIUtilities alloc];
-    NSString *user = [SSKeychain passwordForService:@"moments" account:@"username"];
-    [API getUserFollowingListWithUsername:user completion:^(NSArray *followingList) {
-        if ([followingArray isEqual:followingList]) {} else {
-            followingArray = followingList;
-            [self.tableView reloadData];
-        }
-    }];
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -359,7 +351,7 @@
     [self.videoPlayer removeFromParentViewController];
     [self.videoPlayer.view removeFromSuperview];
     self.navigationController.navigationBar.alpha = 1.0f;
-    reloadTimer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(numberOfRows) userInfo:nil repeats:YES];
+    reloadTimer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(getDataFromServer) userInfo:nil repeats:YES];
 }
 
 
@@ -382,7 +374,7 @@
     [player removeFromParentViewController];
     [player.view removeFromSuperview];
     self.navigationController.navigationBar.alpha = 1.0f;
-    reloadTimer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(numberOfRows) userInfo:nil repeats:YES];
+    reloadTimer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(getDataFromServer) userInfo:nil repeats:YES];
     taps = NO;
 }
 
