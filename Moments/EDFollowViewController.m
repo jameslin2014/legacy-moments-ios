@@ -60,7 +60,7 @@
 	self.searchBar = [[UISearchBar alloc] init];
 	self.searchBar.translatesAutoresizingMaskIntoConstraints = NO;
 	self.searchBar.barTintColor = [UIColor blackColor];
-	self.searchBar.tintColor = [UIColor whiteColor];
+	self.searchBar.tintColor = [UIColor blackColor];
 	self.searchBar.searchBarStyle = UISearchBarStyleDefault;
 	self.searchBar.delegate = self;
 	self.searchBar.placeholder = @"Search for a username";
@@ -78,7 +78,13 @@
 	self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
 	self.tableView.separatorColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:1.0];
 	self.tableView.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:1.0];
-//	[self.tableView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapOccurred:)]];
+	[self.tableView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapOccurred:)]];
+}
+
+- (void)tapOccurred: (UITapGestureRecognizer *)tapGesture{
+	if ([self.tableView indexPathForRowAtPoint:[tapGesture locationInView:self.tableView]] == nil){
+		[self showRegular];
+	}
 }
 
 - (void)tabsChanged: (JKSegmentedControl *) segmentedControl{

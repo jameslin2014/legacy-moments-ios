@@ -321,6 +321,7 @@ static NSString *CellIdentifier = @"CellID";
 		if (indexPath.section == 0){
             if (indexPath.row == 0) {
                 [UserVoice presentUserVoiceContactUsFormForParentViewController:self];
+				[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
             } else if (indexPath.row == 1){
 				NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/app/id%d?mt=8", 953901607];
 				[[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
@@ -328,10 +329,12 @@ static NSString *CellIdentifier = @"CellID";
 		} else if (indexPath.section == 1){
 			if (indexPath.row == 0){
 				NSLog(@"Follow <twitter account>");
+				//TODO
 			} else if (indexPath.row == 1){
 				NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/app/id%d?mt=8", 953901607];
 				NSURL *url = [NSURL URLWithString:urlString];
 				UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[url, @"SOME STRING"] applicationActivities:nil];
+				//TODO ^
 				[self presentViewController:activityViewController animated:YES completion:nil];
 			}
 		} else if (indexPath.section == 2){

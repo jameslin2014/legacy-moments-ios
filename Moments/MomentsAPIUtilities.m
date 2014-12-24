@@ -55,7 +55,6 @@
         NSLog(@"Error: %@",error);
         [Firebase goOffline];
     }];
-    
 }
 
 // Grabs a user's following list from Firebase from a username.
