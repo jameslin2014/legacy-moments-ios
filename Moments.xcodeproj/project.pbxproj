@@ -26,8 +26,17 @@
 		02C1E4BA1A30221C00F7EC6E /* DLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C1E4B61A30221C00F7EC6E /* DLImageView.m */; };
 		02C894471A29B89100B87592 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ECE1A298451001EDD2D /* Security.framework */; };
 		204BA45D1A4134BF00C1C05E /* EDSpinningBoxScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 204BA45C1A4134BF00C1C05E /* EDSpinningBoxScene.m */; };
-		20B821061A4B3250009E293B /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B821031A4B3250009E293B /* SVIndefiniteAnimatedView.m */; };
-		20B821071A4B3250009E293B /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B821051A4B3250009E293B /* SVProgressHUD.m */; };
+		20B821121A4B4ADA009E293B /* FrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B821091A4B4ADA009E293B /* FrameView.swift */; };
+		20B821131A4B4ADA009E293B /* HUDAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B8210A1A4B4ADA009E293B /* HUDAssets.swift */; };
+		20B821141A4B4ADA009E293B /* HUDContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B8210B1A4B4ADA009E293B /* HUDContentView.swift */; };
+		20B821151A4B4ADA009E293B /* HUDController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B8210C1A4B4ADA009E293B /* HUDController.swift */; };
+		20B821161A4B4ADA009E293B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20B8210D1A4B4ADA009E293B /* Images.xcassets */; };
+		20B821171A4B4ADA009E293B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20B8210E1A4B4ADA009E293B /* Info.plist */; };
+		20B821181A4B4ADA009E293B /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B821101A4B4ADA009E293B /* Window.swift */; };
+		20B821191A4B4ADA009E293B /* WindowRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B821111A4B4ADA009E293B /* WindowRootViewController.swift */; };
+		20B8211E1A4B4BD5009E293B /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B8211B1A4B4BD5009E293B /* SVIndefiniteAnimatedView.m */; };
+		20B8211F1A4B4BD5009E293B /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B8211D1A4B4BD5009E293B /* SVProgressHUD.m */; };
+		20B821211A4B5173009E293B /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 20B821201A4B5173009E293B /* SVProgressHUD.bundle */; };
 		20C077C31A47B9260092B7AA /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C077C21A47B9260092B7AA /* Twitter.framework */; };
 		20C077C61A48C6220092B7AA /* EDFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C077C51A48C6220092B7AA /* EDFollowViewController.m */; };
 		20D6E7D61A43C7DA00B6DF3F /* EDSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D6E7D51A43C7DA00B6DF3F /* EDSegmentedControl.m */; };
@@ -143,10 +152,20 @@
 		02C1E4B61A30221C00F7EC6E /* DLImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLImageView.m; sourceTree = "<group>"; };
 		204BA45B1A4134BF00C1C05E /* EDSpinningBoxScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDSpinningBoxScene.h; sourceTree = "<group>"; };
 		204BA45C1A4134BF00C1C05E /* EDSpinningBoxScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDSpinningBoxScene.m; sourceTree = "<group>"; };
-		20B821021A4B3250009E293B /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
-		20B821031A4B3250009E293B /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
-		20B821041A4B3250009E293B /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
-		20B821051A4B3250009E293B /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		20B821091A4B4ADA009E293B /* FrameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameView.swift; sourceTree = "<group>"; };
+		20B8210A1A4B4ADA009E293B /* HUDAssets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDAssets.swift; sourceTree = "<group>"; };
+		20B8210B1A4B4ADA009E293B /* HUDContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDContentView.swift; sourceTree = "<group>"; };
+		20B8210C1A4B4ADA009E293B /* HUDController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDController.swift; sourceTree = "<group>"; };
+		20B8210D1A4B4ADA009E293B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		20B8210E1A4B4ADA009E293B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20B8210F1A4B4ADA009E293B /* PKHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKHUD.h; sourceTree = "<group>"; };
+		20B821101A4B4ADA009E293B /* Window.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Window.swift; sourceTree = "<group>"; };
+		20B821111A4B4ADA009E293B /* WindowRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowRootViewController.swift; sourceTree = "<group>"; };
+		20B8211A1A4B4BD5009E293B /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		20B8211B1A4B4BD5009E293B /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		20B8211C1A4B4BD5009E293B /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		20B8211D1A4B4BD5009E293B /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		20B821201A4B5173009E293B /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		20C077C21A47B9260092B7AA /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		20C077C41A48C6220092B7AA /* EDFollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDFollowViewController.h; sourceTree = "<group>"; };
 		20C077C51A48C6220092B7AA /* EDFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDFollowViewController.m; sourceTree = "<group>"; };
@@ -353,6 +372,7 @@
 		020418451A296CC100134216 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				20B821201A4B5173009E293B /* SVProgressHUD.bundle */,
 				20FE2B191A4B1DAD000C0E86 /* Social.framework */,
 				20FE2B171A4B1D08000C0E86 /* Accounts.framework */,
 				20C077C21A47B9260092B7AA /* Twitter.framework */,
@@ -407,6 +427,22 @@
 				02C1E4B21A30221C00F7EC6E /* DLILOperation.m */,
 			);
 			path = DLILOperation;
+			sourceTree = "<group>";
+		};
+		20B821081A4B4ADA009E293B /* PKHUD */ = {
+			isa = PBXGroup;
+			children = (
+				20B821091A4B4ADA009E293B /* FrameView.swift */,
+				20B8210A1A4B4ADA009E293B /* HUDAssets.swift */,
+				20B8210B1A4B4ADA009E293B /* HUDContentView.swift */,
+				20B8210C1A4B4ADA009E293B /* HUDController.swift */,
+				20B8210D1A4B4ADA009E293B /* Images.xcassets */,
+				20B8210E1A4B4ADA009E293B /* Info.plist */,
+				20B8210F1A4B4ADA009E293B /* PKHUD.h */,
+				20B821101A4B4ADA009E293B /* Window.swift */,
+				20B821111A4B4ADA009E293B /* WindowRootViewController.swift */,
+			);
+			path = PKHUD;
 			sourceTree = "<group>";
 		};
 		A564D9DC1A476ED7003C99F3 /* UserVoiceSDK */ = {
@@ -527,10 +563,11 @@
 				20D6E7D51A43C7DA00B6DF3F /* EDSegmentedControl.m */,
 				20D6E7DA1A44D5BA00B6DF3F /* EDSegments.h */,
 				20D6E7DB1A44D5BA00B6DF3F /* EDSegments.m */,
-				20B821021A4B3250009E293B /* SVIndefiniteAnimatedView.h */,
-				20B821031A4B3250009E293B /* SVIndefiniteAnimatedView.m */,
-				20B821041A4B3250009E293B /* SVProgressHUD.h */,
-				20B821051A4B3250009E293B /* SVProgressHUD.m */,
+				20B8211A1A4B4BD5009E293B /* SVIndefiniteAnimatedView.h */,
+				20B8211B1A4B4BD5009E293B /* SVIndefiniteAnimatedView.m */,
+				20B8211C1A4B4BD5009E293B /* SVProgressHUD.h */,
+				20B8211D1A4B4BD5009E293B /* SVProgressHUD.m */,
+				20B821081A4B4ADA009E293B /* PKHUD */,
 				A5B31C3E1A287F26009734EE /* Main.storyboard */,
 				A5E01C941A2B34DC003ED753 /* Camera Utilities */,
 				A5C5EB851A2A835E002F1591 /* User interface */,
@@ -784,16 +821,19 @@
 				A5E01CDB1A2B3899003ED753 /* interface.xcassets in Resources */,
 				A5CAD78A1A29A0BF0023F948 /* SanFranciscoText-Heavy.otf in Resources */,
 				A564DA0E1A476ED7003C99F3 /* uv_article@2x.png in Resources */,
+				20B821161A4B4ADA009E293B /* Images.xcassets in Resources */,
 				A564DA0C1A476ED7003C99F3 /* UserVoice.strings in Resources */,
 				A5CAD7811A29A0BF0023F948 /* SanFranciscoDisplay-Heavy.otf in Resources */,
 				A5B31C401A287F26009734EE /* Main.storyboard in Resources */,
 				A564DA121A476ED7003C99F3 /* uv_idea@2x.png in Resources */,
+				20B821211A4B5173009E293B /* SVProgressHUD.bundle in Resources */,
 				A5CAD77F1A29A0BF0023F948 /* SanFrancisco-Black.otf in Resources */,
 				A5CAD78E1A29A0BF0023F948 /* SanFranciscoText-Medium.otf in Resources */,
 				A564DA0D1A476ED7003C99F3 /* uv_article.png in Resources */,
 				A5CAD7921A29A0BF0023F948 /* SanFranciscoText-Semibold.otf in Resources */,
 				A5E01CDD1A2B3C76003ED753 /* fundamentals.xcassets in Resources */,
 				A5CAD7801A29A0BF0023F948 /* SanFranciscoDisplay-Bold.otf in Resources */,
+				20B821171A4B4ADA009E293B /* Info.plist in Resources */,
 				A564DA351A4781AA003C99F3 /* SVWebViewController.bundle in Resources */,
 				A5CAD78C1A29A0BF0023F948 /* SanFranciscoText-Light.otf in Resources */,
 				A5CAD7941A29A0BF0023F948 /* SanFranciscoText-Thin.otf in Resources */,
@@ -829,9 +869,8 @@
 				02C1E4B71A30221C00F7EC6E /* DLILCacheManager.m in Sources */,
 				A5E01CD41A2B37F1003ED753 /* UIAlertView+AFNetworking.m in Sources */,
 				A5E01C9A1A2B37D7003ED753 /* JKSegmentedControl.m in Sources */,
-				20B821071A4B3250009E293B /* SVProgressHUD.m in Sources */,
+				20B821131A4B4ADA009E293B /* HUDAssets.swift in Sources */,
 				02567A011A2B0478002465CF /* MOFollowingViewController.m in Sources */,
-				20B821061A4B3250009E293B /* SVIndefiniteAnimatedView.m in Sources */,
 				204BA45D1A4134BF00C1C05E /* EDSpinningBoxScene.m in Sources */,
 				A5E01CC71A2B37F1003ED753 /* AFAmazonS3Manager.m in Sources */,
 				20EB172D1A4747A700DA1B16 /* MOSettingsViewController.m in Sources */,
@@ -846,6 +885,7 @@
 				02C1E4BA1A30221C00F7EC6E /* DLImageView.m in Sources */,
 				A5E01CCF1A2B37F1003ED753 /* AFURLConnectionOperation.m in Sources */,
 				20D6E7DC1A44D5BA00B6DF3F /* EDSegments.m in Sources */,
+				20B821121A4B4ADA009E293B /* FrameView.swift in Sources */,
 				A5E01CD21A2B37F1003ED753 /* AFURLSessionManager.m in Sources */,
 				A5E01CCA1A2B37F1003ED753 /* AFHTTPRequestOperationManager.m in Sources */,
 				A5E01C9B1A2B37D7003ED753 /* SSKeychain.m in Sources */,
@@ -861,13 +901,19 @@
 				A5E01CC91A2B37F1003ED753 /* AFHTTPRequestOperation.m in Sources */,
 				A5E01CCE1A2B37F1003ED753 /* AFSecurityPolicy.m in Sources */,
 				A5B31C371A287F25009734EE /* main.m in Sources */,
+				20B8211F1A4B4BD5009E293B /* SVProgressHUD.m in Sources */,
 				20C077C61A48C6220092B7AA /* EDFollowViewController.m in Sources */,
+				20B821191A4B4ADA009E293B /* WindowRootViewController.swift in Sources */,
 				A564DA441A4784A3003C99F3 /* SVModalWebViewController.m in Sources */,
 				A5E01CCB1A2B37F1003ED753 /* AFHTTPSessionManager.m in Sources */,
 				A5E01CD91A2B37F1003ED753 /* UIWebView+AFNetworking.m in Sources */,
+				20B8211E1A4B4BD5009E293B /* SVIndefiniteAnimatedView.m in Sources */,
 				02567A0D1A2B1B69002465CF /* MOFollowersViewController.m in Sources */,
+				20B821181A4B4ADA009E293B /* Window.swift in Sources */,
+				20B821141A4B4ADA009E293B /* HUDContentView.swift in Sources */,
 				0296067B1A3518A600FFA9AD /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
 				A5E01CD11A2B37F1003ED753 /* AFURLResponseSerialization.m in Sources */,
+				20B821151A4B4ADA009E293B /* HUDController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

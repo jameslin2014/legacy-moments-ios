@@ -353,14 +353,18 @@ static NSString *CellIdentifier = @"CellID";
 							NSLog(@"*******tempDict %@*******",tempDict);
 							
 							//requestForServiceType
-							[SVProgressHUD show];
+							dispatch_async(dispatch_get_main_queue(), ^{
+								[SVProgressHUD show];
+							});
 
 							SLRequest *postRequest = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodPOST URL:[NSURL URLWithString:@"https://api.twitter.com/1/friendships/create.json"] parameters:tempDict];
 							[postRequest setAccount:twitterAccount];
 							[postRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
 								NSString *output = [NSString stringWithFormat:@"HTTP response status: %li Error %ld", (long)[urlResponse statusCode],(long)error.code];
 								NSLog(@"%@error %@", output,error.description);
-								[SVProgressHUD showSuccessWithStatus:@"Now following @PickMoments"];
+								dispatch_async(dispatch_get_main_queue(), ^{
+									[SVProgressHUD showSuccessWithStatus:@"Now following @PickMoments"];
+								});
 							}];
 						} else if ([accountsArray count] > 1){
 							UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
@@ -375,15 +379,19 @@ static NSString *CellIdentifier = @"CellID";
 									NSLog(@"*******tempDict %@*******",tempDict);
 									
 									//requestForServiceType
+									dispatch_async(dispatch_get_main_queue(), ^{
+										[SVProgressHUD show];
+									});
 									
-									[SVProgressHUD show];
 									
 									SLRequest *postRequest = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodPOST URL:[NSURL URLWithString:@"https://api.twitter.com/1/friendships/create.json"] parameters:tempDict];
 									[postRequest setAccount:twitterAccount];
 									[postRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
 										NSString *output = [NSString stringWithFormat:@"HTTP response status: %li Error %ld", (long)[urlResponse statusCode],(long)error.code];
 										NSLog(@"%@error %@", output,error.description);
-										[SVProgressHUD showSuccessWithStatus:@"Now following @PickMoments"];
+										dispatch_async(dispatch_get_main_queue(), ^{
+											[SVProgressHUD showSuccessWithStatus:@"Now following @PickMoments"];
+										});
 									}];
 								}]];
 							}
