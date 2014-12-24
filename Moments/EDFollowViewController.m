@@ -32,8 +32,7 @@
 	[self.view addGestureRecognizer:self.tapper];
 	self.view.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:1.0];
 	
-	// Do any additional setup after loading the view.
-	self.navigationController.navigationBarHidden = NO;
+	// Do any additional setup after loading the view.???????
 	self.title = @"Following";
 	[self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.23 green:0.52 blue:0.68 alpha:0.39]];
 	[self.navigationController.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys: [UIFont fontWithName:@"Avenir-Book" size:17], NSFontAttributeName, nil]];
@@ -51,22 +50,22 @@
 	[self.segmentedControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:12]} forState:UIControlStateNormal];
 	self.segmentedControl.userInteractionEnabled = YES;
 	self.segmentedControl.tintColor = [UIColor whiteColor];
-	
-	
 	[self.segmentedControl addTarget:self action:@selector(tabsChanged:) forControlEvents:UIControlEventValueChanged];
-	self.subNavigationView.layer.zPosition = 0;
 	[self.segmentedControl setSelectedSegmentIndex:0];
 	self.segmentedControl.layer.zPosition = 1;
+	
 	self.subNavigationView.userInteractionEnabled = YES;
-//	self.searchBar = [[UISearchBar alloc] initWithFrame:self.segmentedControl.frame];
+	self.subNavigationView.layer.zPosition = 0;
+	
 	self.searchBar = [[UISearchBar alloc] init];
 	self.searchBar.translatesAutoresizingMaskIntoConstraints = NO;
-	self.searchBar.barTintColor = [UIColor whiteColor];
+	self.searchBar.barTintColor = [UIColor blackColor];
 	self.searchBar.tintColor = [UIColor whiteColor];
-	self.searchBar.searchBarStyle = UISearchBarStyleMinimal;
+	self.searchBar.searchBarStyle = UISearchBarStyleDefault;
 	self.searchBar.delegate = self;
 	self.searchBar.placeholder = @"Search for a username";
-	[[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor whiteColor]];
+	[[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor blackColor]];
+	[self.searchBar setBackgroundImage:[UIImage imageWithCGImage:(__bridge CGImageRef)([UIColor clearColor])]];
 	[self.subNavigationView addSubview:self.searchBar];
 	[self.subNavigationView addConstraints:@[
 											 [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.segmentedControl attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0],
@@ -75,13 +74,6 @@
 											 [NSLayoutConstraint constraintWithItem:self.searchBar attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.segmentedControl attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0],
 											 ]];
 	self.searchBar.alpha = 0.0f;
-	
-	for (UIView *v in self.searchBar.subviews) {
-		if ([v isKindOfClass:[UITextField class]]) {
-			((UITextField *)v).textColor = [UIColor whiteColor];
-			break;
-		}
-	}
 	
 	self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
 	self.tableView.separatorColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:1.0];
