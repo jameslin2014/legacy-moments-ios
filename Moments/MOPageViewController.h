@@ -12,11 +12,9 @@
 #import "MOCaptureViewController.h"
 #import "MOFollowingViewController.h"
 
-@interface MOPageViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+@interface MOPageViewController : UIViewController 
 
 // UIPageViewController properties
-@property (strong, nonatomic) UIPageViewController *pageController;
-@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
-@property (retain, nonatomic) NSArray *pages;
+@property (strong, nonatomic) UIScrollView *scrollView;
 
 @end

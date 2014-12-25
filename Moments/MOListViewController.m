@@ -134,38 +134,35 @@
         [cell addSubview:profileImageView];
         [profileImageView setImage:[UIImage imageNamed:@"capture-button"]];
         
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-            NSURL * imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.jpg",user]];
-            NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-            UIImage * image = [UIImage imageWithData:imageData];
-            dispatch_async(dispatch_get_main_queue(), ^(void){
-                [profileImageView setImage:image];
-                if (profileImageView.image == nil) {
-                    [profileImageView setImage:[UIImage imageNamed:@"capture-button"]];
-                }
-            });
-        });
-        
+		dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+			MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
+			NSString *currentUser = [SSKeychain passwordForService:@"moments" account:@"username"];
+			[APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *followedUsers) {
+				nameLabel.text = [followedUsers objectAtIndex:indexPath.row ];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					[profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",[followedUsers objectAtIndex:indexPath.row]]] placeholderImage:[UIImage imageNamed:@"capture-button.png"]];
+				});
+			}];
+		});
+		
         NSLog(@"%@",[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.jpg",user]);
     } else {
         UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 11, 35, 35)];
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
         profileImageView.clipsToBounds = YES;
         [cell addSubview:profileImageView];
-        [profileImageView setImage:[UIImage imageNamed:@"capture-button"]];
-        
+		
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-            NSURL * imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.jpg",[followingArray objectAtIndex:indexPath.row]]];
-            NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-            UIImage * image = [UIImage imageWithData:imageData];
-            dispatch_async(dispatch_get_main_queue(), ^(void){
-                [profileImageView setImage:image];
-                if (profileImageView.image == nil){
-                    [profileImageView setImage:[UIImage imageNamed:@"capture-button"]];
-                }
-            });
+			MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
+			NSString *currentUser = [SSKeychain passwordForService:@"moments" account:@"username"];
+			[APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *followedUsers) {
+				nameLabel.text = [followedUsers objectAtIndex:indexPath.row ];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					[profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",[followedUsers objectAtIndex:indexPath.row]]] placeholderImage:[UIImage imageNamed:@"capture-button.png"]];
+				});
+			}];
         });
-        
+		
         nameLabel.text = [followingArray objectAtIndex:indexPath.row];
     }
     
