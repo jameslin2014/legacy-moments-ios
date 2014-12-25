@@ -93,11 +93,17 @@
 	return section == 0 ? 1 : self.following.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+	return 55;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-	UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ReuseCell"];
-	cell.imageView.image = [UIImage imageNamed:@"capture-button.png"];
-
+	
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+	if (!cell){
+		cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+	}
+	cell.textLabel.font = [UIFont fontWithName:@"Avenir-Book" size:20];
 	if (indexPath.section == 0){
 		cell.textLabel.text = [SSKeychain passwordForService:@"moments" account:@"username"];
 		UIToolbar *toolbar = [[UIToolbar alloc] init];
@@ -120,17 +126,24 @@
 		cell.accessoryView = toolbar;
 		NSURL *imageURL = [NSURL URLWithString: [NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png", cell.textLabel.text]];
 		UIImage *placeholder = [UIImage imageNamed:@"capture-button.png"];
-		[cell.imageView setImageWithURL:imageURL placeholderImage:placeholder];
+		[cell.imageView	setImageWithURL:imageURL placeholderImage:placeholder];
+		__weak UITableViewCell *weakCell = cell;
+		[cell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png", cell.textLabel.text]]] placeholderImage:[UIImage imageNamed:@"capture-button.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+			weakCell.imageView.image = image;
+			weakCell.imageView.layer.cornerRadius = weakCell.imageView.frame.size.width / 2;
+			weakCell.imageView.clipsToBounds = YES;
+		} failure:nil];
 	} else{
 		cell.textLabel.text = self.following[indexPath.row];
-		dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-			MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
-			[APIHelper getUserFollowingListWithUsername:cell.textLabel.text completion:^(NSArray *followedUsers) {
-				dispatch_async(dispatch_get_main_queue(), ^{
-					[cell.imageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",[followedUsers objectAtIndex:indexPath.row]]] placeholderImage:[UIImage imageNamed:@"capture-button.png"]];
-				});
-			}];
-		});
+		cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width / 2;
+		cell.imageView.clipsToBounds = YES;
+		[cell addSubview:cell.imageView];
+		__weak UITableViewCell *weakCell = cell;
+		[cell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png", self.following[indexPath.row]]]] placeholderImage:[UIImage imageNamed:@"capture-button.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+			weakCell.imageView.image = image;
+			weakCell.imageView.layer.cornerRadius = weakCell.imageView.frame.size.width / 2;
+			weakCell.imageView.clipsToBounds = YES;
+		} failure:nil];
 	}
 	
 	cell.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:1.0];

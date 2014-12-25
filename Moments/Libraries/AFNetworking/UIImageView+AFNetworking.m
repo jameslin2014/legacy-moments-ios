@@ -174,6 +174,8 @@
 
         [[[self class] af_sharedImageRequestOperationQueue] addOperation:self.af_imageRequestOperation];
     }
+	self.layer.cornerRadius = self.frame.size.width / 2;
+	self.clipsToBounds = YES;
 }
 
 - (void)cancelImageRequestOperation {

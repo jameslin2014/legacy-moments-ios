@@ -115,10 +115,8 @@
         item.tintColor = [UIColor whiteColor];
         [toolbar setItems:[NSArray arrayWithObject:item] animated:NO];
         [toolbar setBarTintColor:[UIColor clearColor]];
-        for(UIView *view in [toolbar subviews])
-        {
-            if([view isKindOfClass:[UIImageView class]])
-            {
+        for(UIView *view in [toolbar subviews]){
+            if([view isKindOfClass:[UIImageView class]]){
                 [view setHidden:YES];
                 [view setAlpha:0.0f];
             }
