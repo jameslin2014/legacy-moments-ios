@@ -147,15 +147,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azg-Fi-Lly">
-                                                    <rect key="frame" x="8" y="18" width="46" height="38"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <state key="normal" title="Off" image="flash"/>
-                                                    <connections>
-                                                        <action selector="flashButtonAction:" destination="lzj-Vv-tF4" eventType="touchUpInside" id="EbC-KP-ofr"/>
-                                                    </connections>
-                                                </button>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dfv-j0-SdT">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                                    <color key="backgroundColor" red="0.14509803921568626" green="0.52156862745098043" blue="0.69019607843137254" alpha="0.51000000000000001" colorSpace="calibratedRGB"/>
+                                                </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fp-Rk-D9Y">
                                                     <rect key="frame" x="339" y="35" width="28" height="21"/>
                                                     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -173,14 +168,27 @@
                                                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azg-Fi-Lly">
+                                                    <rect key="frame" x="8" y="18" width="46" height="38"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="Off" image="flash"/>
+                                                    <connections>
+                                                        <action selector="flashButtonAction:" destination="lzj-Vv-tF4" eventType="touchUpInside" id="EbC-KP-ofr"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="BiE-2a-tzU" secondAttribute="bottom" constant="8" id="2r2-7i-VN7"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="8fp-Rk-D9Y" secondAttribute="trailing" id="5AF-Xe-cjK"/>
+                                                <constraint firstAttribute="trailing" secondItem="dfv-j0-SdT" secondAttribute="trailing" id="7Bf-dj-44e"/>
                                                 <constraint firstItem="8fp-Rk-D9Y" firstAttribute="bottom" secondItem="3bm-dB-Xu9" secondAttribute="bottomMargin" id="AkZ-g4-Wwk"/>
+                                                <constraint firstItem="dfv-j0-SdT" firstAttribute="leading" secondItem="3bm-dB-Xu9" secondAttribute="leading" id="Cdg-bV-eT2"/>
+                                                <constraint firstItem="dfv-j0-SdT" firstAttribute="top" secondItem="3bm-dB-Xu9" secondAttribute="top" id="NdH-aE-E5p"/>
                                                 <constraint firstAttribute="centerX" secondItem="BiE-2a-tzU" secondAttribute="centerX" constant="0.5" id="Q9e-e8-oUx"/>
                                                 <constraint firstItem="azg-Fi-Lly" firstAttribute="leading" secondItem="3bm-dB-Xu9" secondAttribute="leadingMargin" id="WSU-qw-p02"/>
                                                 <constraint firstItem="azg-Fi-Lly" firstAttribute="bottom" secondItem="3bm-dB-Xu9" secondAttribute="bottomMargin" id="X8F-Qb-gr7"/>
+                                                <constraint firstAttribute="bottom" secondItem="dfv-j0-SdT" secondAttribute="bottom" id="gzH-OC-Mwq"/>
                                             </constraints>
                                         </view>
                                         <constraints>
@@ -194,6 +202,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7mB-F1-xlE">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                                    <color key="backgroundColor" red="0.1450980392" green="0.52156862749999999" blue="0.69019607839999997" alpha="0.51000000000000001" colorSpace="calibratedRGB"/>
+                                                </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7L-6T-xkJ">
                                                     <rect key="frame" x="146" y="9" width="82" height="82"/>
                                                     <constraints>
@@ -232,11 +244,15 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="centerY" secondItem="q7L-6T-xkJ" secondAttribute="centerY" id="9qz-kB-jdd"/>
+                                                <constraint firstItem="7mB-F1-xlE" firstAttribute="leading" secondItem="RJx-Kv-F2f" secondAttribute="leading" id="CMO-5V-v0r"/>
                                                 <constraint firstItem="q7L-6T-xkJ" firstAttribute="leading" secondItem="o7R-sA-fSZ" secondAttribute="trailing" constant="8" id="RoZ-Or-jpc"/>
                                                 <constraint firstAttribute="centerX" secondItem="q7L-6T-xkJ" secondAttribute="centerX" id="Z9S-q2-HhE"/>
+                                                <constraint firstAttribute="bottom" secondItem="7mB-F1-xlE" secondAttribute="bottom" id="aOD-xp-4mu"/>
+                                                <constraint firstAttribute="trailing" secondItem="7mB-F1-xlE" secondAttribute="trailing" id="aPd-1X-G2h"/>
                                                 <constraint firstItem="84n-dZ-KSz" firstAttribute="top" secondItem="RJx-Kv-F2f" secondAttribute="top" constant="34" id="feN-kO-37I"/>
                                                 <constraint firstItem="84n-dZ-KSz" firstAttribute="trailing" secondItem="RJx-Kv-F2f" secondAttribute="trailingMargin" id="jNG-02-dyd"/>
                                                 <constraint firstItem="84n-dZ-KSz" firstAttribute="centerY" secondItem="q7L-6T-xkJ" secondAttribute="centerY" id="moa-zs-hhG"/>
+                                                <constraint firstItem="7mB-F1-xlE" firstAttribute="top" secondItem="RJx-Kv-F2f" secondAttribute="top" id="n54-yE-6R3"/>
                                                 <constraint firstAttribute="centerY" secondItem="o7R-sA-fSZ" secondAttribute="centerY" id="oly-01-1TZ"/>
                                                 <constraint firstItem="o7R-sA-fSZ" firstAttribute="leading" secondItem="RJx-Kv-F2f" secondAttribute="leading" constant="8" id="qa9-W0-shU"/>
                                                 <constraint firstItem="84n-dZ-KSz" firstAttribute="leading" secondItem="q7L-6T-xkJ" secondAttribute="trailing" constant="8" symbolic="YES" id="uip-Nr-aMX"/>
@@ -288,7 +304,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1142.5" y="367.5"/>
+            <point key="canvasLocation" x="1135.5" y="398.5"/>
         </scene>
         <!--Following View Controller-->
         <scene sceneID="7bc-1e-2xB">
