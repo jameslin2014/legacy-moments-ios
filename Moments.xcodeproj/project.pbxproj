@@ -29,6 +29,7 @@
 		20B8211E1A4B4BD5009E293B /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B8211B1A4B4BD5009E293B /* SVIndefiniteAnimatedView.m */; };
 		20B8211F1A4B4BD5009E293B /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B8211D1A4B4BD5009E293B /* SVProgressHUD.m */; };
 		20B821211A4B5173009E293B /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 20B821201A4B5173009E293B /* SVProgressHUD.bundle */; };
+		20B821241A4BA057009E293B /* EDTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B821231A4BA057009E293B /* EDTableViewController.m */; };
 		20C077C31A47B9260092B7AA /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C077C21A47B9260092B7AA /* Twitter.framework */; };
 		20C077C61A48C6220092B7AA /* EDFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C077C51A48C6220092B7AA /* EDFollowViewController.m */; };
 		20D6E7D61A43C7DA00B6DF3F /* EDSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D6E7D51A43C7DA00B6DF3F /* EDSegmentedControl.m */; };
@@ -149,6 +150,8 @@
 		20B8211C1A4B4BD5009E293B /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		20B8211D1A4B4BD5009E293B /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		20B821201A4B5173009E293B /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		20B821221A4BA057009E293B /* EDTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDTableViewController.h; sourceTree = "<group>"; };
+		20B821231A4BA057009E293B /* EDTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDTableViewController.m; sourceTree = "<group>"; };
 		20C077C21A47B9260092B7AA /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		20C077C41A48C6220092B7AA /* EDFollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDFollowViewController.h; sourceTree = "<group>"; };
 		20C077C51A48C6220092B7AA /* EDFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDFollowViewController.m; sourceTree = "<group>"; };
@@ -586,6 +589,8 @@
 			children = (
 				A5C5EB7F1A2A8358002F1591 /* MOPageViewController.h */,
 				A5C5EB801A2A8358002F1591 /* MOPageViewController.m */,
+				20B821221A4BA057009E293B /* EDTableViewController.h */,
+				20B821231A4BA057009E293B /* EDTableViewController.m */,
 				A5C5EB7D1A2A8358002F1591 /* MOListViewController.h */,
 				A5C5EB7E1A2A8358002F1591 /* MOListViewController.m */,
 				20C077C41A48C6220092B7AA /* EDFollowViewController.h */,
@@ -823,6 +828,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20B821241A4BA057009E293B /* EDTableViewController.m in Sources */,
 				A5E01CC81A2B37F1003ED753 /* AFAmazonS3RequestSerializer.m in Sources */,
 				A5E01CD31A2B37F1003ED753 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				A5B834431A34EAC7006ECBF8 /* MOTableViewController.m in Sources */,

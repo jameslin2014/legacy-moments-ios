@@ -132,13 +132,10 @@
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
         profileImageView.clipsToBounds = YES;
         [cell addSubview:profileImageView];
-        [profileImageView setImage:[UIImage imageNamed:@"capture-button"]];
-        
+		
 		dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
 			MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
-			NSString *currentUser = [SSKeychain passwordForService:@"moments" account:@"username"];
-			[APIHelper getUserFollowingListWithUsername:currentUser completion:^(NSArray *followedUsers) {
-				nameLabel.text = [followedUsers objectAtIndex:indexPath.row ];
+			[APIHelper getUserFollowingListWithUsername:user completion:^(NSArray *followedUsers) {
 				dispatch_async(dispatch_get_main_queue(), ^{
 					[profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",[followedUsers objectAtIndex:indexPath.row]]] placeholderImage:[UIImage imageNamed:@"capture-button.png"]];
 				});
@@ -163,7 +160,6 @@
 			}];
         });
 		
-        nameLabel.text = [followingArray objectAtIndex:indexPath.row];
     }
     
     return cell;

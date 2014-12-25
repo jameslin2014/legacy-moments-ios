@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "MOListViewController.h"
-#import "MOCaptureViewController.h"
-#import "MOFollowingViewController.h"
-
 @interface MOPageViewController : UIViewController 
 
 // UIPageViewController properties

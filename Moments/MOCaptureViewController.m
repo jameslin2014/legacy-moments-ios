@@ -13,7 +13,9 @@
 #import <SceneKit/SceneKit.h>
 #import "EDSpinningBoxScene.h"
 
-@implementation MOCaptureViewController
+@implementation MOCaptureViewController{
+	BOOL shouldCancel;
+}
 
 - (BOOL)isSessionRunningAndDeviceAuthorized {
     return [[self session] isRunning] && [self isDeviceAuthorized];
@@ -25,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+	shouldCancel = NO;
     // Create the AVCaptureSession
     AVCaptureSession *session = [[AVCaptureSession alloc] init];
     [self setSession:session];
@@ -280,7 +282,10 @@
     });
 }
 
-
+- (IBAction)cancelRecording{
+	shouldCancel = YES;
+	[self toggleMovieRecording:nil];
+}
 
 - (IBAction)focusAndExposeTap:(UIGestureRecognizer *)gestureRecognizer {
     CGPoint devicePoint = [(AVCaptureVideoPreviewLayer *)[[self previewView] layer] captureDevicePointOfInterestForPoint:[gestureRecognizer locationInView:[gestureRecognizer view]]];
@@ -475,6 +480,10 @@
 }
 
 - (void)captureOutput:(AVCaptureFileOutput *)captureOutput didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL fromConnections:(NSArray *)connections error:(NSError *)error {
+	if (shouldCancel){
+		shouldCancel = NO;
+		return;
+	}
     if (error) {
         NSLog(@"%@", error);
     }

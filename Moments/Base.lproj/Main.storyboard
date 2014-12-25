@@ -95,10 +95,10 @@
             </objects>
             <point key="canvasLocation" x="665.33333333333337" y="367.77999999999997"/>
         </scene>
-        <!--List View Controller-->
+        <!--Table View Controller-->
         <scene sceneID="2ya-ZD-ug0">
             <objects>
-                <tableViewController id="uEq-0C-VRb" customClass="MOListViewController" sceneMemberID="viewController">
+                <tableViewController id="uEq-0C-VRb" customClass="EDTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="vfg-3M-eWN">
                         <rect key="frame" x="0.0" y="-8" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -207,6 +207,17 @@
                                                         <action selector="toggleMovieRecording:" destination="lzj-Vv-tF4" eventType="touchUpInside" id="gWE-oD-nnQ"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o7R-sA-fSZ">
+                                                    <rect key="frame" x="8" y="35" width="130" height="30"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                                    <state key="normal" title="Cancel">
+                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="cancelRecording" destination="lzj-Vv-tF4" eventType="touchUpInside" id="Hdc-lW-KPQ"/>
+                                                    </connections>
+                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="84n-dZ-KSz">
                                                     <rect key="frame" x="236" y="34" width="131" height="32"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
@@ -221,10 +232,13 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="centerY" secondItem="q7L-6T-xkJ" secondAttribute="centerY" id="9qz-kB-jdd"/>
+                                                <constraint firstItem="q7L-6T-xkJ" firstAttribute="leading" secondItem="o7R-sA-fSZ" secondAttribute="trailing" constant="8" id="RoZ-Or-jpc"/>
                                                 <constraint firstAttribute="centerX" secondItem="q7L-6T-xkJ" secondAttribute="centerX" id="Z9S-q2-HhE"/>
                                                 <constraint firstItem="84n-dZ-KSz" firstAttribute="top" secondItem="RJx-Kv-F2f" secondAttribute="top" constant="34" id="feN-kO-37I"/>
                                                 <constraint firstItem="84n-dZ-KSz" firstAttribute="trailing" secondItem="RJx-Kv-F2f" secondAttribute="trailingMargin" id="jNG-02-dyd"/>
                                                 <constraint firstItem="84n-dZ-KSz" firstAttribute="centerY" secondItem="q7L-6T-xkJ" secondAttribute="centerY" id="moa-zs-hhG"/>
+                                                <constraint firstAttribute="centerY" secondItem="o7R-sA-fSZ" secondAttribute="centerY" id="oly-01-1TZ"/>
+                                                <constraint firstItem="o7R-sA-fSZ" firstAttribute="leading" secondItem="RJx-Kv-F2f" secondAttribute="leading" constant="8" id="qa9-W0-shU"/>
                                                 <constraint firstItem="84n-dZ-KSz" firstAttribute="leading" secondItem="q7L-6T-xkJ" secondAttribute="trailing" constant="8" symbolic="YES" id="uip-Nr-aMX"/>
                                                 <constraint firstAttribute="centerY" secondItem="q7L-6T-xkJ" secondAttribute="centerY" id="wfV-LG-gQ2"/>
                                             </constraints>
