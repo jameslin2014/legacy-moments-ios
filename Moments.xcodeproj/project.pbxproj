@@ -12,8 +12,6 @@
 		020418421A296CAF00134216 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 020418411A296CAF00134216 /* AVFoundation.framework */; };
 		020418441A296CB600134216 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 020418431A296CB600134216 /* CoreFoundation.framework */; };
 		0232A0631A2A8ABD00ABF2FB /* MomentsAPIUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0232A0621A2A8ABD00ABF2FB /* MomentsAPIUtilities.m */; };
-		02567A011A2B0478002465CF /* MOFollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02567A001A2B0478002465CF /* MOFollowingViewController.m */; };
-		02567A0D1A2B1B69002465CF /* MOFollowersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02567A0C1A2B1B69002465CF /* MOFollowersViewController.m */; };
 		02949EC91A298431001EDD2D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949EC81A298431001EDD2D /* libicucore.dylib */; };
 		02949ECB1A29843A001EDD2D /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ECA1A29843A001EDD2D /* libc++.dylib */; };
 		02949ECD1A298441001EDD2D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ECC1A298441001EDD2D /* CFNetwork.framework */; };
@@ -26,9 +24,9 @@
 		02C1E4BA1A30221C00F7EC6E /* DLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C1E4B61A30221C00F7EC6E /* DLImageView.m */; };
 		02C894471A29B89100B87592 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ECE1A298451001EDD2D /* Security.framework */; };
 		204BA45D1A4134BF00C1C05E /* EDSpinningBoxScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 204BA45C1A4134BF00C1C05E /* EDSpinningBoxScene.m */; };
-		20B821241A4BA057009E293B /* EDTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B821231A4BA057009E293B /* EDTableViewController.m */; };
+		20B821241A4BA057009E293B /* MOTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B821231A4BA057009E293B /* MOTableViewController.m */; };
 		20C077C31A47B9260092B7AA /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C077C21A47B9260092B7AA /* Twitter.framework */; };
-		20C077C61A48C6220092B7AA /* EDFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C077C51A48C6220092B7AA /* EDFollowViewController.m */; };
+		20C077C61A48C6220092B7AA /* MOFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C077C51A48C6220092B7AA /* MOFollowViewController.m */; };
 		20D6E7D61A43C7DA00B6DF3F /* EDSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D6E7D51A43C7DA00B6DF3F /* EDSegmentedControl.m */; };
 		20D6E7DC1A44D5BA00B6DF3F /* EDSegments.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D6E7DB1A44D5BA00B6DF3F /* EDSegments.m */; };
 		20EB172D1A4747A700DA1B16 /* MOSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20EB172C1A4747A700DA1B16 /* MOSettingsViewController.m */; };
@@ -64,11 +62,9 @@
 		A5B31C3A1A287F25009734EE /* MOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B31C391A287F25009734EE /* MOAppDelegate.m */; };
 		A5B31C401A287F26009734EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B31C3E1A287F26009734EE /* Main.storyboard */; };
 		A5B31C451A287F26009734EE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5B31C431A287F26009734EE /* LaunchScreen.xib */; };
-		A5B834431A34EAC7006ECBF8 /* MOTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B834421A34EAC7006ECBF8 /* MOTableViewController.m */; };
 		A5C29FF41A33C9F300E605F1 /* PBJVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C29FF11A33C9F300E605F1 /* PBJVideoPlayerController.m */; };
 		A5C29FF51A33C9F300E605F1 /* PBJVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C29FF31A33C9F300E605F1 /* PBJVideoView.m */; };
 		A5C5EB811A2A8358002F1591 /* MOCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5EB7A1A2A8358002F1591 /* MOCaptureViewController.m */; };
-		A5C5EB831A2A8358002F1591 /* MOListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5EB7E1A2A8358002F1591 /* MOListViewController.m */; };
 		A5C5EB841A2A8358002F1591 /* MOPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5EB801A2A8358002F1591 /* MOPageViewController.m */; };
 		A5CAD7511A299B480023F948 /* MOLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5CAD7501A299B480023F948 /* MOLoginViewController.m */; };
 		A5CAD77F1A29A0BF0023F948 /* SanFrancisco-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD7591A29A0BF0023F948 /* SanFrancisco-Black.otf */; };
@@ -121,10 +117,6 @@
 		020418431A296CB600134216 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		0232A0611A2A8ABD00ABF2FB /* MomentsAPIUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentsAPIUtilities.h; sourceTree = "<group>"; };
 		0232A0621A2A8ABD00ABF2FB /* MomentsAPIUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentsAPIUtilities.m; sourceTree = "<group>"; };
-		025679FF1A2B0478002465CF /* MOFollowingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOFollowingViewController.h; sourceTree = "<group>"; };
-		02567A001A2B0478002465CF /* MOFollowingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOFollowingViewController.m; sourceTree = "<group>"; };
-		02567A0B1A2B1B69002465CF /* MOFollowersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOFollowersViewController.h; sourceTree = "<group>"; };
-		02567A0C1A2B1B69002465CF /* MOFollowersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOFollowersViewController.m; sourceTree = "<group>"; };
 		02949EC81A298431001EDD2D /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		02949ECA1A29843A001EDD2D /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		02949ECC1A298441001EDD2D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -146,11 +138,11 @@
 		204BA45B1A4134BF00C1C05E /* EDSpinningBoxScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDSpinningBoxScene.h; sourceTree = "<group>"; };
 		204BA45C1A4134BF00C1C05E /* EDSpinningBoxScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDSpinningBoxScene.m; sourceTree = "<group>"; };
 		20B821201A4B5173009E293B /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
-		20B821221A4BA057009E293B /* EDTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDTableViewController.h; sourceTree = "<group>"; };
-		20B821231A4BA057009E293B /* EDTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDTableViewController.m; sourceTree = "<group>"; };
+		20B821221A4BA057009E293B /* MOTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOTableViewController.h; sourceTree = "<group>"; };
+		20B821231A4BA057009E293B /* MOTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOTableViewController.m; sourceTree = "<group>"; };
 		20C077C21A47B9260092B7AA /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
-		20C077C41A48C6220092B7AA /* EDFollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDFollowViewController.h; sourceTree = "<group>"; };
-		20C077C51A48C6220092B7AA /* EDFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDFollowViewController.m; sourceTree = "<group>"; };
+		20C077C41A48C6220092B7AA /* MOFollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOFollowViewController.h; sourceTree = "<group>"; };
+		20C077C51A48C6220092B7AA /* MOFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOFollowViewController.m; sourceTree = "<group>"; };
 		20D6E7D41A43C7DA00B6DF3F /* EDSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDSegmentedControl.h; sourceTree = "<group>"; };
 		20D6E7D51A43C7DA00B6DF3F /* EDSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDSegmentedControl.m; sourceTree = "<group>"; };
 		20D6E7DA1A44D5BA00B6DF3F /* EDSegments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDSegments.h; sourceTree = "<group>"; };
@@ -240,16 +232,12 @@
 		A5B31C391A287F25009734EE /* MOAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MOAppDelegate.m; sourceTree = "<group>"; };
 		A5B31C3F1A287F26009734EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A5B31C441A287F26009734EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		A5B834411A34EAC7006ECBF8 /* MOTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOTableViewController.h; sourceTree = "<group>"; };
-		A5B834421A34EAC7006ECBF8 /* MOTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOTableViewController.m; sourceTree = "<group>"; };
 		A5C29FF01A33C9F300E605F1 /* PBJVideoPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJVideoPlayerController.h; sourceTree = "<group>"; };
 		A5C29FF11A33C9F300E605F1 /* PBJVideoPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJVideoPlayerController.m; sourceTree = "<group>"; };
 		A5C29FF21A33C9F300E605F1 /* PBJVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJVideoView.h; sourceTree = "<group>"; };
 		A5C29FF31A33C9F300E605F1 /* PBJVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJVideoView.m; sourceTree = "<group>"; };
 		A5C5EB791A2A8358002F1591 /* MOCaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOCaptureViewController.h; sourceTree = "<group>"; };
 		A5C5EB7A1A2A8358002F1591 /* MOCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOCaptureViewController.m; sourceTree = "<group>"; };
-		A5C5EB7D1A2A8358002F1591 /* MOListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOListViewController.h; sourceTree = "<group>"; };
-		A5C5EB7E1A2A8358002F1591 /* MOListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOListViewController.m; sourceTree = "<group>"; };
 		A5C5EB7F1A2A8358002F1591 /* MOPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOPageViewController.h; sourceTree = "<group>"; };
 		A5C5EB801A2A8358002F1591 /* MOPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOPageViewController.m; sourceTree = "<group>"; };
 		A5CAD74F1A299B480023F948 /* MOLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOLoginViewController.h; sourceTree = "<group>"; };
@@ -416,6 +404,44 @@
 			path = DLILOperation;
 			sourceTree = "<group>";
 		};
+		20416ED11A4E1B8E009EC625 /* EDSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				20D6E7D41A43C7DA00B6DF3F /* EDSegmentedControl.h */,
+				20D6E7D51A43C7DA00B6DF3F /* EDSegmentedControl.m */,
+				20D6E7DA1A44D5BA00B6DF3F /* EDSegments.h */,
+				20D6E7DB1A44D5BA00B6DF3F /* EDSegments.m */,
+			);
+			name = EDSegmentedControl;
+			sourceTree = "<group>";
+		};
+		20416ED21A4E1C04009EC625 /* JKSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				A5E01C961A2B37D7003ED753 /* JKSegmentedControl.h */,
+				A5E01C971A2B37D7003ED753 /* JKSegmentedControl.m */,
+			);
+			name = JKSegmentedControl;
+			sourceTree = "<group>";
+		};
+		20416ED31A4E1C10009EC625 /* SSKeychain */ = {
+			isa = PBXGroup;
+			children = (
+				A5E01C981A2B37D7003ED753 /* SSKeychain.h */,
+				A5E01C991A2B37D7003ED753 /* SSKeychain.m */,
+			);
+			name = SSKeychain;
+			sourceTree = "<group>";
+		};
+		20416ED41A4E1C4D009EC625 /* EDSpinningBoxScene */ = {
+			isa = PBXGroup;
+			children = (
+				204BA45B1A4134BF00C1C05E /* EDSpinningBoxScene.h */,
+				204BA45C1A4134BF00C1C05E /* EDSpinningBoxScene.m */,
+			);
+			name = EDSpinningBoxScene;
+			sourceTree = "<group>";
+		};
 		A564D9DC1A476ED7003C99F3 /* UserVoiceSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -539,24 +565,14 @@
 			children = (
 				A5B31C381A287F25009734EE /* MOAppDelegate.h */,
 				A5B31C391A287F25009734EE /* MOAppDelegate.m */,
-				204BA45B1A4134BF00C1C05E /* EDSpinningBoxScene.h */,
-				204BA45C1A4134BF00C1C05E /* EDSpinningBoxScene.m */,
-				20EB172B1A4747A700DA1B16 /* MOSettingsViewController.h */,
-				20EB172C1A4747A700DA1B16 /* MOSettingsViewController.m */,
-				20D6E7D41A43C7DA00B6DF3F /* EDSegmentedControl.h */,
-				20D6E7D51A43C7DA00B6DF3F /* EDSegmentedControl.m */,
-				20D6E7DA1A44D5BA00B6DF3F /* EDSegments.h */,
-				20D6E7DB1A44D5BA00B6DF3F /* EDSegments.m */,
-				A5B31C3E1A287F26009734EE /* Main.storyboard */,
+				20416ED11A4E1B8E009EC625 /* EDSegmentedControl */,
+				20416ED41A4E1C4D009EC625 /* EDSpinningBoxScene */,
 				A5E01C941A2B34DC003ED753 /* Camera Utilities */,
 				A5C5EB851A2A835E002F1591 /* User interface */,
-				A5CAD74F1A299B480023F948 /* MOLoginViewController.h */,
-				A5CAD7501A299B480023F948 /* MOLoginViewController.m */,
 				A5E01CDA1A2B3899003ED753 /* interface.xcassets */,
 				A5E01CDC1A2B3C76003ED753 /* fundamentals.xcassets */,
 				02949ED71A2984F8001EDD2D /* API */,
 				A5B31C341A287F25009734EE /* Supporting Files */,
-				A5B834471A34EFBE006ECBF8 /* UITableView Subclass */,
 			);
 			path = Moments;
 			sourceTree = "<group>";
@@ -571,15 +587,6 @@
 				A5CAD7581A29A0BF0023F948 /* Fonts */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		A5B834471A34EFBE006ECBF8 /* UITableView Subclass */ = {
-			isa = PBXGroup;
-			children = (
-				A5B834411A34EAC7006ECBF8 /* MOTableViewController.h */,
-				A5B834421A34EAC7006ECBF8 /* MOTableViewController.m */,
-			);
-			name = "UITableView Subclass";
 			sourceTree = "<group>";
 		};
 		A5C29FEF1A33C9F300E605F1 /* PBJVideoPlayer */ = {
@@ -597,18 +604,17 @@
 		A5C5EB851A2A835E002F1591 /* User interface */ = {
 			isa = PBXGroup;
 			children = (
+				A5B31C3E1A287F26009734EE /* Main.storyboard */,
 				A5C5EB7F1A2A8358002F1591 /* MOPageViewController.h */,
 				A5C5EB801A2A8358002F1591 /* MOPageViewController.m */,
-				20B821221A4BA057009E293B /* EDTableViewController.h */,
-				20B821231A4BA057009E293B /* EDTableViewController.m */,
-				A5C5EB7D1A2A8358002F1591 /* MOListViewController.h */,
-				A5C5EB7E1A2A8358002F1591 /* MOListViewController.m */,
-				20C077C41A48C6220092B7AA /* EDFollowViewController.h */,
-				20C077C51A48C6220092B7AA /* EDFollowViewController.m */,
-				025679FF1A2B0478002465CF /* MOFollowingViewController.h */,
-				02567A001A2B0478002465CF /* MOFollowingViewController.m */,
-				02567A0B1A2B1B69002465CF /* MOFollowersViewController.h */,
-				02567A0C1A2B1B69002465CF /* MOFollowersViewController.m */,
+				20B821221A4BA057009E293B /* MOTableViewController.h */,
+				20B821231A4BA057009E293B /* MOTableViewController.m */,
+				20C077C41A48C6220092B7AA /* MOFollowViewController.h */,
+				20C077C51A48C6220092B7AA /* MOFollowViewController.m */,
+				20EB172B1A4747A700DA1B16 /* MOSettingsViewController.h */,
+				20EB172C1A4747A700DA1B16 /* MOSettingsViewController.m */,
+				A5CAD74F1A299B480023F948 /* MOLoginViewController.h */,
+				A5CAD7501A299B480023F948 /* MOLoginViewController.m */,
 			);
 			name = "User interface";
 			sourceTree = "<group>";
@@ -642,10 +648,8 @@
 				A564DA131A4781AA003C99F3 /* SVWebViewController */,
 				A564D9DC1A476ED7003C99F3 /* UserVoiceSDK */,
 				A5C29FEF1A33C9F300E605F1 /* PBJVideoPlayer */,
-				A5E01C961A2B37D7003ED753 /* JKSegmentedControl.h */,
-				A5E01C971A2B37D7003ED753 /* JKSegmentedControl.m */,
-				A5E01C981A2B37D7003ED753 /* SSKeychain.h */,
-				A5E01C991A2B37D7003ED753 /* SSKeychain.m */,
+				20416ED21A4E1C04009EC625 /* JKSegmentedControl */,
+				20416ED31A4E1C10009EC625 /* SSKeychain */,
 			);
 			name = "External Libraries";
 			sourceTree = "<group>";
@@ -839,10 +843,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20B821241A4BA057009E293B /* EDTableViewController.m in Sources */,
+				20B821241A4BA057009E293B /* MOTableViewController.m in Sources */,
 				A5E01CC81A2B37F1003ED753 /* AFAmazonS3RequestSerializer.m in Sources */,
 				A5E01CD31A2B37F1003ED753 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
-				A5B834431A34EAC7006ECBF8 /* MOTableViewController.m in Sources */,
 				A5E01CD81A2B37F1003ED753 /* UIRefreshControl+AFNetworking.m in Sources */,
 				A5C29FF51A33C9F300E605F1 /* PBJVideoView.m in Sources */,
 				A5E01CD51A2B37F1003ED753 /* UIButton+AFNetworking.m in Sources */,
@@ -850,14 +853,12 @@
 				02C1E4B71A30221C00F7EC6E /* DLILCacheManager.m in Sources */,
 				A5E01CD41A2B37F1003ED753 /* UIAlertView+AFNetworking.m in Sources */,
 				A5E01C9A1A2B37D7003ED753 /* JKSegmentedControl.m in Sources */,
-				02567A011A2B0478002465CF /* MOFollowingViewController.m in Sources */,
 				204BA45D1A4134BF00C1C05E /* EDSpinningBoxScene.m in Sources */,
 				A5E01CC71A2B37F1003ED753 /* AFAmazonS3Manager.m in Sources */,
 				20EB172D1A4747A700DA1B16 /* MOSettingsViewController.m in Sources */,
 				A5C5EB811A2A8358002F1591 /* MOCaptureViewController.m in Sources */,
 				A5E01CCD1A2B37F1003ED753 /* AFNetworkReachabilityManager.m in Sources */,
 				02C1E4B81A30221C00F7EC6E /* DLILOperation.m in Sources */,
-				A5C5EB831A2A8358002F1591 /* MOListViewController.m in Sources */,
 				A5AD89171A4D21350013D417 /* SVIndefiniteAnimatedView.m in Sources */,
 				02C1E4B91A30221C00F7EC6E /* DLImageLoader.m in Sources */,
 				A5E01CD01A2B37F1003ED753 /* AFURLRequestSerialization.m in Sources */,
@@ -882,11 +883,10 @@
 				A5E01CC91A2B37F1003ED753 /* AFHTTPRequestOperation.m in Sources */,
 				A5E01CCE1A2B37F1003ED753 /* AFSecurityPolicy.m in Sources */,
 				A5B31C371A287F25009734EE /* main.m in Sources */,
-				20C077C61A48C6220092B7AA /* EDFollowViewController.m in Sources */,
+				20C077C61A48C6220092B7AA /* MOFollowViewController.m in Sources */,
 				A564DA441A4784A3003C99F3 /* SVModalWebViewController.m in Sources */,
 				A5E01CCB1A2B37F1003ED753 /* AFHTTPSessionManager.m in Sources */,
 				A5E01CD91A2B37F1003ED753 /* UIWebView+AFNetworking.m in Sources */,
-				02567A0D1A2B1B69002465CF /* MOFollowersViewController.m in Sources */,
 				0296067B1A3518A600FFA9AD /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
 				A5E01CD11A2B37F1003ED753 /* AFURLResponseSerialization.m in Sources */,
 			);

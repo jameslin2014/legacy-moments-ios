@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Cosmic. All rights reserved.
 //
 
-#import "EDFollowViewController.h"
+#import "MOFollowViewController.h"
 #import "JKSegmentedControl.h"
 #import "MomentsAPIUtilities.h"
 #import "SSKeychain.h"
 #import "UIImageView+AFNetworking.h"
 
-@interface EDFollowViewController ()
+@interface MOFollowViewController ()
 
 @property (strong, nonatomic) UITapGestureRecognizer *tapper;
 @property (strong, nonatomic) JKSegmentedControl *segmentedControl;
@@ -22,7 +22,7 @@
 
 @end
 
-@implementation EDFollowViewController
+@implementation MOFollowViewController
 
 - (void)viewDidLoad{
 	[super viewDidLoad];

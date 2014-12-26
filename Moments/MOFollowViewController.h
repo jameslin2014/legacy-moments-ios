@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Cosmic. All rights reserved.
 //
 
-#import "MOTableViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface EDFollowViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate>
+@interface MOFollowViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate>
 
 @property IBOutlet UIBarButtonItem *searchButton;
 

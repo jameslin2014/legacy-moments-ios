@@ -1,8 +1,8 @@
 //
-//  MOTableView.h
+//  EDTableViewController.h
 //  Moments
 //
-//  Created by Douglas Bumby on 2014-12-07.
+//  Created by Evan Dekhayser on 12/24/14.
 //  Copyright (c) 2014 Cosmic. All rights reserved.
 //
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6246"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -98,7 +98,7 @@
         <!--Table View Controller-->
         <scene sceneID="2ya-ZD-ug0">
             <objects>
-                <tableViewController id="uEq-0C-VRb" customClass="EDTableViewController" sceneMemberID="viewController">
+                <tableViewController id="uEq-0C-VRb" customClass="MOTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="vfg-3M-eWN">
                         <rect key="frame" x="0.0" y="-8" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -364,7 +364,7 @@
         <!--Following-->
         <scene sceneID="cHo-Rt-l8K">
             <objects>
-                <viewController id="Ir5-Q8-lmG" customClass="EDFollowViewController" sceneMemberID="viewController">
+                <viewController id="Ir5-Q8-lmG" customClass="MOFollowViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DSE-HQ-je9"/>
                         <viewControllerLayoutGuide type="bottom" id="806-eM-FhV"/>
