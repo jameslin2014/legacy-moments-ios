@@ -1,5 +1,5 @@
 //
-//  EDTableViewController.m
+//  MOTableViewController.m
 //  Moments
 //
 //  Created by Evan Dekhayser on 12/22/14.
