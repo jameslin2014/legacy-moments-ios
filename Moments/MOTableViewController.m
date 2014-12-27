@@ -26,12 +26,18 @@
     self.navigationItem.title = @"Moments";
 	self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0];
 	self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
-	self.tableView.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:1.0];
+	self.tableView.backgroundColor = [UIColor colorWithRed:36/255.0 green: 36/255.0 blue:36/255.0 alpha:1.0];
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	
 	UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"gear"] style:UIBarButtonItemStylePlain target:self action:@selector(showOptionsAndAbout)];
 	button.tintColor = [UIColor whiteColor];
 	self.navigationItem.rightBarButtonItem = button;
+	
+	
+	[[[MomentsAPIUtilities alloc]init] getUserFollowingListWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] completion:^(NSArray *followedUsers) {
+		self.following = followedUsers;
+		[self.tableView reloadData];
+	}];
 }
 
 - (void)showOptionsAndAbout{
@@ -98,17 +104,31 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	
+
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
 	if (!cell){
 		cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
 	}
-	cell.textLabel.font = [UIFont fontWithName:@"Avenir-Book" size:20];
+	cell.backgroundColor = [UIColor colorWithRed:36/255.0 green: 36/255.0 blue:36/255.0 alpha:1.0];
+	cell.textLabel.font = [UIFont fontWithName:@"Avenir-Book" size:18];
+	cell.textLabel.textColor = [UIColor whiteColor];
+
+	UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 55 - 5*2, 55 - 5*2)];
+	profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
+	profileImageView.clipsToBounds = YES;
+	[cell.contentView addSubview:profileImageView];
+	
 	if (indexPath.section == 0){
-		cell.textLabel.text = [SSKeychain passwordForService:@"moments" account:@"username"];
+		cell.textLabel.text = [NSString stringWithFormat:@"\t\t%@",[SSKeychain passwordForService:@"moments" account:@"username"]];
+		__weak UIImageView *weakImageView = profileImageView;
+		[profileImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png", [SSKeychain passwordForService:@"moments" account:@"username"]]]] placeholderImage:[UIImage imageNamed:@"capture-button.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+			NSLog(@"Success!!!");
+			weakImageView.image = image;
+		} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+			NSLog(@"Failure: %@", error);
+		}];
 		UIToolbar *toolbar = [[UIToolbar alloc] init];
-		toolbar.barTintColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
-		
+		toolbar.barTintColor = [UIColor colorWithRed:36/255.0 green: 36/255.0 blue:36/255.0 alpha:1.0];
 		toolbar.translucent = false;
 		UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareMoment)];
 		toolbar.frame = CGRectMake(0, 0, 55, 55);
@@ -124,30 +144,18 @@
 			}
 		}
 		cell.accessoryView = toolbar;
-		NSURL *imageURL = [NSURL URLWithString: [NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png", cell.textLabel.text]];
-		UIImage *placeholder = [UIImage imageNamed:@"capture-button.png"];
-		[cell.imageView	setImageWithURL:imageURL placeholderImage:placeholder];
-		__weak UITableViewCell *weakCell = cell;
-		[cell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png", cell.textLabel.text]]] placeholderImage:[UIImage imageNamed:@"capture-button.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-			weakCell.imageView.image = image;
-			weakCell.imageView.layer.cornerRadius = weakCell.imageView.frame.size.width / 2;
-			weakCell.imageView.clipsToBounds = YES;
-		} failure:nil];
 	} else{
-		cell.textLabel.text = self.following[indexPath.row];
-		cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width / 2;
-		cell.imageView.clipsToBounds = YES;
-		[cell addSubview:cell.imageView];
-		__weak UITableViewCell *weakCell = cell;
-		[cell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png", self.following[indexPath.row]]]] placeholderImage:[UIImage imageNamed:@"capture-button.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-			weakCell.imageView.image = image;
-			weakCell.imageView.layer.cornerRadius = weakCell.imageView.frame.size.width / 2;
-			weakCell.imageView.clipsToBounds = YES;
-		} failure:nil];
+		cell.textLabel.text = [NSString stringWithFormat:@"\t\t%@",self.following[indexPath.row]];
+		__weak UIImageView *weakImageView = profileImageView;
+		[profileImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png", self.following[indexPath.row]]]] placeholderImage:[UIImage imageNamed:@"capture-button.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+			weakImageView.image = image;
+			weakImageView.layer.cornerRadius = weakImageView.frame.size.width / 2;
+			weakImageView.clipsToBounds = YES;
+			NSLog(@"Sucess..!!");
+		} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+			NSLog(@"Failure: %@", error);
+		}];
 	}
-	
-	cell.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:1.0];
-	cell.textLabel.textColor = [UIColor whiteColor];
     return cell;
 }
 

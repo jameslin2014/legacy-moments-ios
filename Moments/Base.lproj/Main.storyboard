@@ -149,7 +149,7 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dfv-j0-SdT">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
-                                                    <color key="backgroundColor" red="0.14509803921568626" green="0.52156862745098043" blue="0.69019607843137254" alpha="0.51000000000000001" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.14117647058823529" green="0.14117647058823529" blue="0.14117647058823529" alpha="0.5" colorSpace="calibratedRGB"/>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fp-Rk-D9Y">
                                                     <rect key="frame" x="339" y="35" width="28" height="21"/>
@@ -204,7 +204,7 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7mB-F1-xlE">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
-                                                    <color key="backgroundColor" red="0.1450980392" green="0.52156862749999999" blue="0.69019607839999997" alpha="0.51000000000000001" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.14117647058823529" green="0.14117647058823529" blue="0.14117647058823529" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7L-6T-xkJ">
                                                     <rect key="frame" x="146" y="9" width="82" height="82"/>

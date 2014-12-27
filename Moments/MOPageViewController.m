@@ -27,11 +27,13 @@
 	[self.view addSubview:self.scrollView];
 	int x = 0;
 	for (UIViewController *vc in self.viewControllers){
+		vc.view.hidden = YES;
 		[self addChildViewController:vc];
 		vc.view.frame = CGRectMake(x++*vc.view.frame.size.width, 0, vc.view.frame.size.width, vc.view.frame.size.height);
 		[self.scrollView addSubview:vc.view];
 		[vc didMoveToParentViewController:self];
 		self.scrollView.contentSize = CGSizeMake(self.viewControllers.count*vc.view.frame.size.width, vc.view.frame.size.height);
+		vc.view.hidden = NO;
 	}
 }
 
