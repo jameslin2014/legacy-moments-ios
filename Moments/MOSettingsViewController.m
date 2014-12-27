@@ -11,7 +11,7 @@
 #import <Accounts/Accounts.h>
 #import <Social/Social.h>
 #import "SVProgressHUD.h"
-
+#import "SSKeychain.h"
 static NSString *CellIdentifier = @"CellID";
 
 @interface MOSettingsViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -313,7 +313,9 @@ static NSString *CellIdentifier = @"CellID";
 			UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Are you sure you want to sign out?" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
 			[alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
 			[alertController addAction:[UIAlertAction actionWithTitle:@"Sign Out" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-				//TODO: log out!
+                [self dismissViewControllerAnimated:YES completion:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"signOut" object:nil];
+                [SSKeychain deletePasswordForService:@"moments" account:@"password"];
 			}]];
             
             [self presentViewController:alertController animated:YES completion:nil];

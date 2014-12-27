@@ -103,6 +103,20 @@
 	return 55;
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"signOut"
+                                                      object:nil
+                                                       queue:mainQueue
+                                                  usingBlock:^(NSNotification *note)
+     {
+         UIViewController *loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"login"];
+         [self presentViewController:loginVC animated:YES completion:nil];
+         
+         
+     }];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
