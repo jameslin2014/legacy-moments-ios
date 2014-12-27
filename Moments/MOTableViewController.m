@@ -198,4 +198,95 @@
 	}
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+	/*
+	if (taps == YES) {
+	} else {
+		taps = YES;
+		self.videoPlayer = [[PBJVideoPlayerController alloc] init];
+		self.videoPlayer.view.frame = self.view.bounds;
+		self.videoPlayer.delegate = self;
+		
+		// setup media
+		if (indexPath.section == 0) {
+			NSString *user = [SSKeychain passwordForService:@"moments" account:@"username"];
+			NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",user]]];
+			[request setHTTPMethod:@"HEAD"];
+			AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+			[op start];
+			[op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+				taps = NO;
+				[reloadTimer invalidate];
+				self.videoPlayer.videoPath = [NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",user];
+				[self addChildViewController:self.videoPlayer];
+				[self.view addSubview:self.videoPlayer.view];
+				[self.videoPlayer didMoveToParentViewController:self];
+				
+				UITapGestureRecognizer *dismissGesture = [[UITapGestureRecognizer alloc] init];
+				dismissGesture.numberOfTapsRequired = 1;
+				[dismissGesture setNumberOfTouchesRequired:1];
+				dismissGesture.delegate = self;
+				[self.videoPlayer.view addGestureRecognizer:dismissGesture];
+				
+				[dismissGesture addTarget:self action:@selector(dismissPlayer)];
+				
+				self.HUD1 = [[SCNView alloc] initWithFrame:self.view.bounds];
+				self.HUD1.scene = [[EDSpinningBoxScene alloc] init];
+				self.HUD1.alpha = 0.0;
+				self.HUD1.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+				[self.view addSubview:self.HUD1];
+				[UIView animateWithDuration:0.2 animations:^{
+					self.HUD1.alpha = 1.0;
+				}];
+				[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+				
+			} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+				taps = NO;
+			}];
+			[op setCacheResponseBlock:^NSCachedURLResponse *(NSURLConnection *connection, NSCachedURLResponse *cachedResponse) {
+				return nil;
+			}];
+			
+			
+		} else {
+			NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",[followingArray objectAtIndex:indexPath.row]]]];
+			[request setHTTPMethod:@"HEAD"];
+			AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+			[op start];
+			[op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+				taps = NO;
+				[reloadTimer invalidate];
+				self.videoPlayer.videoPath = [NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",[followingArray objectAtIndex:indexPath.row]];
+				[self addChildViewController:self.videoPlayer];
+				[self.view addSubview:self.videoPlayer.view];
+				[self.videoPlayer didMoveToParentViewController:self];
+				
+				UITapGestureRecognizer *dismissGesture = [[UITapGestureRecognizer alloc] init];
+				dismissGesture.numberOfTapsRequired = 1;
+				[dismissGesture setNumberOfTouchesRequired:1];
+				dismissGesture.delegate = self;
+				[self.videoPlayer.view addGestureRecognizer:dismissGesture];
+				[dismissGesture addTarget:self action:@selector(dismissPlayer)];
+				
+				self.HUD1 = [[SCNView alloc] initWithFrame:self.view.bounds];
+				self.HUD1.scene = [[EDSpinningBoxScene alloc] init];
+				self.HUD1.alpha = 0.0;
+				self.HUD1.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+				[self.view addSubview:self.HUD1];
+				[UIView animateWithDuration:0.2 animations:^{
+					self.HUD1.alpha = 1.0;
+				}];
+				[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+			} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+				taps = NO;
+				NSLog(@"fail");
+			}];
+			[op setCacheResponseBlock:^NSCachedURLResponse *(NSURLConnection *connection, NSCachedURLResponse *cachedResponse) {
+				return nil;
+			}];
+		}
+	}*/
+}
+
 @end
