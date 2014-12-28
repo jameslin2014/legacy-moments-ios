@@ -28,6 +28,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	[self.navigationController.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys: [UIFont fontWithName:@"Avenir-Book" size:17], NSFontAttributeName, nil]];
+	
     self.navigationItem.title = @"Moments";
 	self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0];
 	self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
@@ -137,10 +140,15 @@
 	cell.textLabel.font = [UIFont fontWithName:@"Avenir-Book" size:18];
 	cell.textLabel.textColor = [UIColor whiteColor];
 
-	UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 55 - 5*2, 55 - 5*2)];
+	UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 55 - 10*2, 55 - 10*2)];
 	profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
 	profileImageView.clipsToBounds = YES;
 	[cell.contentView addSubview:profileImageView];
+	
+	UIView *bgView = [[UIView alloc] init];
+	bgView.translatesAutoresizingMaskIntoConstraints = NO;
+	bgView.backgroundColor = [UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0];
+	cell.selectedBackgroundView = bgView;
 	
 	if (indexPath.section == 0){
 		cell.textLabel.text = [NSString stringWithFormat:@"\t\t%@",[SSKeychain passwordForService:@"moments" account:@"username"]];
@@ -153,7 +161,6 @@
 		}];
 		UIToolbar *toolbar = [[UIToolbar alloc] init];
 		toolbar.barTintColor = [UIColor colorWithRed:36/255.0 green: 36/255.0 blue:36/255.0 alpha:1.0];
-		toolbar.translucent = false;
 		UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareMoment)];
 		toolbar.frame = CGRectMake(0, 0, 55, 55);
 		item.tintColor = [UIColor whiteColor];
@@ -182,6 +189,29 @@
 	}
     return cell;
 }
+//
+//- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+//	// Add your Colour.
+//	UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+//	[self setCellColor:[UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0] forCell:cell];  //highlight colour
+//	
+//}
+//
+//- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+//	// Reset Colour.
+//	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//	[self setCellColor:[UIColor colorWithRed:36/255.0 green: 36/255.0 blue:36/255.0 alpha:1.0] forCell:cell]; //normal color
+//	
+//}
+
+//- (void)setCellColor:(UIColor *)color forCell:(UITableViewCell *)cell {
+//	cell.contentView.backgroundColor = color;
+//	cell.backgroundColor = color;
+//	if (cell.accessoryView){
+//		cell.accessoryView.backgroundColor = color;
+//	}
+//	cell.selectedBackgroundView
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 	if (section == 0) {
@@ -203,7 +233,7 @@
 		NSString *string =[NSString stringWithFormat:@"Recent Updates"];
 		[label setText:string];
 		[view addSubview:label];
-		[view setBackgroundColor:[UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0]]; //your background color...
+		[view setBackgroundColor:[UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0]];
 		return view;
 	}
 }
