@@ -49,10 +49,11 @@
     [Firebase goOnline];
     Firebase *UserPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/users/%@/password",username]];
     [UserPath observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        NSString *key = [self randomStringWithLength:50];
         NSString*password = [FBEncryptorAES encryptBase64String:snapshot.value
-                                                  keyString:@"+P18Kc2r;k@.S9O74356-I0dg"
+                                                  keyString:key
                                               separateLines:NO];
-        data([FBEncryptorAES decryptBase64String:password keyString:@"+P18Kc2r;k@.S9O74356-I0dg"
+        data([FBEncryptorAES decryptBase64String:password keyString:key
               ]);
         [Firebase goOffline];
     } withCancelBlock:^(NSError *error) {
@@ -61,6 +62,18 @@
     }];
 }
 
+NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+-(NSString *) randomStringWithLength: (int) len {
+    
+    NSMutableString *randomString = [NSMutableString stringWithCapacity: len];
+    
+    for (int i=0; i<len; i++) {
+        [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random_uniform([letters length])]];
+    }
+    
+    return randomString;
+}
 // Grabs a user's following list from Firebase from a username.
 - (void)getUserFollowingListWithUsername:(NSString *)username completion:(void (^)(NSArray *))data {
     [Firebase goOnline];
@@ -123,14 +136,16 @@
         } else {
             Firebase *passPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/users/%@/password",username]];
             [passPath observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+                NSString *key = [self randomStringWithLength:50];
+
                 NSString*pass = [FBEncryptorAES encryptBase64String:snapshot.value
-                                            keyString:@"+P18Kc2r;k@.S9O74356-I0dg"
+                                            keyString:key
                                                             separateLines:NO];
                 if (snapshot.value == [NSNull null]) {
                     data(false);
                     [Firebase goOffline];
                 } else {
-                    if ([[FBEncryptorAES decryptBase64String:pass keyString:@"+P18Kc2r;k@.S9O74356-I0dg"] isEqualToString:password]) {
+                    if ([[FBEncryptorAES decryptBase64String:pass keyString:key] isEqualToString:password]) {
                         data(true);
                         [Firebase goOffline];
                     } else {
@@ -246,6 +261,7 @@
                                                }
                                            }];
 }
+
 
 
 @end

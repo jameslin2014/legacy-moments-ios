@@ -28,6 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     self.navigationItem.title = @"Moments";
 	self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0];
 	self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
