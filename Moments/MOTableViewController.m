@@ -147,7 +147,7 @@
 	
 	UIView *bgView = [[UIView alloc] init];
 	bgView.translatesAutoresizingMaskIntoConstraints = NO;
-	bgView.backgroundColor = [UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0];
+	bgView.backgroundColor = [UIColor colorWithRed:20/255.0 green: 20/255.0 blue:20/255.0 alpha:1.0];
 	cell.selectedBackgroundView = bgView;
 	
 	if (indexPath.section == 0){
