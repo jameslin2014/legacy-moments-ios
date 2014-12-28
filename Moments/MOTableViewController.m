@@ -27,15 +27,11 @@
 @implementation MOTableViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-<<<<<<< HEAD
+	[super viewDidLoad];
 	
 	[self.navigationController.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys: [UIFont fontWithName:@"Avenir-Book" size:17], NSFontAttributeName, nil]];
 	
-=======
-
->>>>>>> FETCH_HEAD
-    self.navigationItem.title = @"Moments";
+	self.navigationItem.title = @"Moments";
 	self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0];
 	self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
 	self.tableView.backgroundColor = [UIColor colorWithRed:36/255.0 green: 36/255.0 blue:36/255.0 alpha:1.0];
@@ -107,12 +103,12 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return 2;
+	// Return the number of sections.
+	return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
+	// Return the number of rows in the section.
 	return section == 0 ? 1 : self.following.count;
 }
 
@@ -121,21 +117,21 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
-    [[NSNotificationCenter defaultCenter] addObserverForName:@"signOut"
-                                                      object:nil
-                                                       queue:mainQueue
-                                                  usingBlock:^(NSNotification *note)
-     {
-         UIViewController *loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"login"];
-         [self presentViewController:loginVC animated:YES completion:nil];
-         
-         
-     }];
+	NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
+	[[NSNotificationCenter defaultCenter] addObserverForName:@"signOut"
+													  object:nil
+													   queue:mainQueue
+												  usingBlock:^(NSNotification *note)
+	 {
+		 UIViewController *loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"login"];
+		 [self presentViewController:loginVC animated:YES completion:nil];
+		 
+		 
+	 }];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
+	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
 	if (!cell){
 		cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
@@ -143,7 +139,7 @@
 	cell.backgroundColor = [UIColor colorWithRed:36/255.0 green: 36/255.0 blue:36/255.0 alpha:1.0];
 	cell.textLabel.font = [UIFont fontWithName:@"Avenir-Book" size:18];
 	cell.textLabel.textColor = [UIColor whiteColor];
-
+	
 	UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 55 - 10*2, 55 - 10*2)];
 	profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
 	profileImageView.clipsToBounds = YES;
@@ -191,21 +187,21 @@
 			NSLog(@"Failure: %@", error);
 		}];
 	}
-    return cell;
+	return cell;
 }
 //
 //- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
 //	// Add your Colour.
 //	UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
 //	[self setCellColor:[UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0] forCell:cell];  //highlight colour
-//	
+//
 //}
 //
 //- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath {
 //	// Reset Colour.
 //	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 //	[self setCellColor:[UIColor colorWithRed:36/255.0 green: 36/255.0 blue:36/255.0 alpha:1.0] forCell:cell]; //normal color
-//	
+//
 //}
 
 //- (void)setCellColor:(UIColor *)color forCell:(UITableViewCell *)cell {
@@ -294,7 +290,7 @@
 		[op setCacheResponseBlock:^NSCachedURLResponse *(NSURLConnection *connection, NSCachedURLResponse *cachedResponse) {
 			return nil;
 		}];
-
+		
 	}
 }
 
