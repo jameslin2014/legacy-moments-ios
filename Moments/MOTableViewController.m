@@ -14,9 +14,14 @@
 #import <SceneKit/SceneKit.h>
 #import "EDSpinningBoxScene.h"
 #import "ALAssetsLibrary+CustomPhotoAlbum.h"
+#import "PBJVideoPlayerController.h"
 
-@interface MOTableViewController ()
+@interface MOTableViewController () <PBJVideoPlayerControllerDelegate>
 @property (strong, nonatomic) NSArray *following;
+@property (nonatomic) BOOL tableShouldRegisterTapEvents;
+@property (strong, nonatomic) PBJVideoPlayerController *videoPlayer;
+@property (strong, nonatomic) SCNView *loadingView;
+@property (strong, nonatomic) NSTimer *reloadTimer;
 @end
 
 @implementation MOTableViewController
@@ -33,11 +38,16 @@
 	button.tintColor = [UIColor whiteColor];
 	self.navigationItem.rightBarButtonItem = button;
 	
-	
-	[[[MomentsAPIUtilities alloc]init] getUserFollowingListWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] completion:^(NSArray *followedUsers) {
-		self.following = followedUsers;
-		[self.tableView reloadData];
-	}];
+	[self getDataFromServer];
+}
+
+- (void)getDataFromServer{
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+		[[[MomentsAPIUtilities alloc]init] getUserFollowingListWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] completion:^(NSArray *followedUsers) {
+			self.following = followedUsers;
+			[self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+		}];
+	});
 }
 
 - (void)showOptionsAndAbout{
@@ -200,93 +210,98 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-	/*
-	if (taps == YES) {
-	} else {
-		taps = YES;
+	if (!self.tableShouldRegisterTapEvents){
+		self.tableShouldRegisterTapEvents = YES;
 		self.videoPlayer = [[PBJVideoPlayerController alloc] init];
 		self.videoPlayer.view.frame = self.view.bounds;
 		self.videoPlayer.delegate = self;
 		
 		// setup media
+		NSString *username;
 		if (indexPath.section == 0) {
-			NSString *user = [SSKeychain passwordForService:@"moments" account:@"username"];
-			NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",user]]];
-			[request setHTTPMethod:@"HEAD"];
-			AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-			[op start];
-			[op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-				taps = NO;
-				[reloadTimer invalidate];
-				self.videoPlayer.videoPath = [NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",user];
-				[self addChildViewController:self.videoPlayer];
-				[self.view addSubview:self.videoPlayer.view];
-				[self.videoPlayer didMoveToParentViewController:self];
-				
-				UITapGestureRecognizer *dismissGesture = [[UITapGestureRecognizer alloc] init];
-				dismissGesture.numberOfTapsRequired = 1;
-				[dismissGesture setNumberOfTouchesRequired:1];
-				dismissGesture.delegate = self;
-				[self.videoPlayer.view addGestureRecognizer:dismissGesture];
-				
-				[dismissGesture addTarget:self action:@selector(dismissPlayer)];
-				
-				self.HUD1 = [[SCNView alloc] initWithFrame:self.view.bounds];
-				self.HUD1.scene = [[EDSpinningBoxScene alloc] init];
-				self.HUD1.alpha = 0.0;
-				self.HUD1.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
-				[self.view addSubview:self.HUD1];
-				[UIView animateWithDuration:0.2 animations:^{
-					self.HUD1.alpha = 1.0;
-				}];
-				[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-				
-			} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-				taps = NO;
-			}];
-			[op setCacheResponseBlock:^NSCachedURLResponse *(NSURLConnection *connection, NSCachedURLResponse *cachedResponse) {
-				return nil;
-			}];
-			
-			
+			username = [SSKeychain passwordForService:@"moments" account:@"username"];
 		} else {
-			NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",[followingArray objectAtIndex:indexPath.row]]]];
-			[request setHTTPMethod:@"HEAD"];
-			AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-			[op start];
-			[op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-				taps = NO;
-				[reloadTimer invalidate];
-				self.videoPlayer.videoPath = [NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",[followingArray objectAtIndex:indexPath.row]];
-				[self addChildViewController:self.videoPlayer];
-				[self.view addSubview:self.videoPlayer.view];
-				[self.videoPlayer didMoveToParentViewController:self];
-				
-				UITapGestureRecognizer *dismissGesture = [[UITapGestureRecognizer alloc] init];
-				dismissGesture.numberOfTapsRequired = 1;
-				[dismissGesture setNumberOfTouchesRequired:1];
-				dismissGesture.delegate = self;
-				[self.videoPlayer.view addGestureRecognizer:dismissGesture];
-				[dismissGesture addTarget:self action:@selector(dismissPlayer)];
-				
-				self.HUD1 = [[SCNView alloc] initWithFrame:self.view.bounds];
-				self.HUD1.scene = [[EDSpinningBoxScene alloc] init];
-				self.HUD1.alpha = 0.0;
-				self.HUD1.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
-				[self.view addSubview:self.HUD1];
-				[UIView animateWithDuration:0.2 animations:^{
-					self.HUD1.alpha = 1.0;
-				}];
-				[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-			} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-				taps = NO;
-				NSLog(@"fail");
-			}];
-			[op setCacheResponseBlock:^NSCachedURLResponse *(NSURLConnection *connection, NSCachedURLResponse *cachedResponse) {
-				return nil;
-			}];
+			username = self.following[indexPath.row];
 		}
-	}*/
+		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",username]]];
+		[request setHTTPMethod:@"HEAD"];
+		AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+		[op start];
+		[op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+			NSLog(@"Here");
+			self.tableShouldRegisterTapEvents = NO;
+			[self.reloadTimer invalidate];
+			self.videoPlayer.videoPath = [NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",username];
+			[self addChildViewController:self.videoPlayer];
+			[self.view addSubview:self.videoPlayer.view];
+			[self.videoPlayer didMoveToParentViewController:self];
+			
+			UITapGestureRecognizer *dismissGesture = [[UITapGestureRecognizer alloc] init];
+			dismissGesture.numberOfTapsRequired = 1;
+			[dismissGesture setNumberOfTouchesRequired:1];
+			[self.videoPlayer.view addGestureRecognizer:dismissGesture];
+			
+			[dismissGesture addTarget:self action:@selector(dismissPlayer)];
+			
+			self.loadingView = [[SCNView alloc] initWithFrame:self.view.bounds];
+			self.loadingView.scene = [[EDSpinningBoxScene alloc] init];
+			self.loadingView.alpha = 0.0;
+			self.loadingView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+			[self.view addSubview:self.loadingView];
+			[UIView animateWithDuration:0.2 animations:^{
+				self.loadingView.alpha = 1.0;
+			}];
+			[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+			
+		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+			NSLog(@"There");
+			self.tableShouldRegisterTapEvents = NO;
+		}];
+		[op setCacheResponseBlock:^NSCachedURLResponse *(NSURLConnection *connection, NSCachedURLResponse *cachedResponse) {
+			return nil;
+		}];
+
+	}
+}
+
+- (void)dismissPlayer{
+	self.tableShouldRegisterTapEvents = NO;
+	[self.videoPlayer removeFromParentViewController];
+	[self.videoPlayer.view removeFromSuperview];
+	self.navigationController.navigationBar.alpha = 1.0f;
+	self.reloadTimer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(getDataFromServer) userInfo:nil repeats:YES];
+}
+
+- (void)videoPlayerReady:(PBJVideoPlayerController *)player {
+	[player playFromBeginning];
+	self.navigationController.navigationBar.alpha = 0.0f;
+	[UIView animateWithDuration:0.2 animations:^{
+		self.loadingView.alpha = 0.0;
+	} completion:^(BOOL finished) {
+		[self.loadingView removeFromSuperview];
+		[[UIApplication sharedApplication]endIgnoringInteractionEvents];
+	}];
+}
+
+- (void)videoPlayerPlaybackDidEnd:(PBJVideoPlayerController *)player {
+	[player removeFromParentViewController];
+	[player.view removeFromSuperview];
+	self.navigationController.navigationBar.alpha = 1.0f;
+	self.reloadTimer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(getDataFromServer) userInfo:nil repeats:YES];
+	self.tableShouldRegisterTapEvents = NO;
+}
+
+-(void)videoPlayerPlaybackStateDidChange:(PBJVideoPlayerController *)videoPlayer {
+	//Dont remove this please
+}
+
+- (void)videoPlayerPlaybackWillStartFromBeginning:(PBJVideoPlayerController *)player {
+	[UIView animateWithDuration:0.2 animations:^{
+		self.loadingView.alpha = 0.0;
+	} completion:^(BOOL finished) {
+		[self.loadingView removeFromSuperview];
+		[[UIApplication sharedApplication]endIgnoringInteractionEvents];
+	}];
 }
 
 @end
