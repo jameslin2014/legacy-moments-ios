@@ -28,9 +28,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+<<<<<<< HEAD
 	
 	[self.navigationController.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys: [UIFont fontWithName:@"Avenir-Book" size:17], NSFontAttributeName, nil]];
 	
+=======
+
+>>>>>>> FETCH_HEAD
     self.navigationItem.title = @"Moments";
 	self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0];
 	self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
