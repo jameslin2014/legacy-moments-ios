@@ -8,6 +8,7 @@
 
 #import "MomentsAPIUtilities.h"
 #import "DLIL.h"
+#import "FBEncryptorAES.h"
 @implementation MomentsAPIUtilities {
     BOOL loginStatus;
     NSArray *followingArray;
@@ -48,8 +49,11 @@
     [Firebase goOnline];
     Firebase *UserPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/users/%@/password",username]];
     [UserPath observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-        NSString *password = snapshot.value;
-        data(password);
+        NSString*password = [FBEncryptorAES encryptBase64String:snapshot.value
+                                                  keyString:@"+P18Kc2r;k@.S9O74356-I0dg"
+                                              separateLines:NO];
+        data([FBEncryptorAES decryptBase64String:password keyString:@"+P18Kc2r;k@.S9O74356-I0dg"
+              ]);
         [Firebase goOffline];
     } withCancelBlock:^(NSError *error) {
         NSLog(@"Error: %@",error);
@@ -119,12 +123,14 @@
         } else {
             Firebase *passPath = [[Firebase alloc] initWithUrl: [NSString stringWithFormat:@"https://moments-users.firebaseio.com/users/%@/password",username]];
             [passPath observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-                NSString *pass = snapshot.value;
+                NSString*pass = [FBEncryptorAES encryptBase64String:snapshot.value
+                                            keyString:@"+P18Kc2r;k@.S9O74356-I0dg"
+                                                            separateLines:NO];
                 if (snapshot.value == [NSNull null]) {
                     data(false);
                     [Firebase goOffline];
                 } else {
-                    if ([pass isEqualToString:password]) {
+                    if ([[FBEncryptorAES decryptBase64String:pass keyString:@"+P18Kc2r;k@.S9O74356-I0dg"] isEqualToString:password]) {
                         data(true);
                         [Firebase goOffline];
                     } else {
