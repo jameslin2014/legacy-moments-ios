@@ -153,10 +153,8 @@
 		cell.textLabel.text = [NSString stringWithFormat:@"\t\t%@",[SSKeychain passwordForService:@"moments" account:@"username"]];
 		__weak UIImageView *weakImageView = profileImageView;
 		[profileImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png", [SSKeychain passwordForService:@"moments" account:@"username"]]]] placeholderImage:[UIImage imageNamed:@"capture-button.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-			NSLog(@"Success!!!");
 			weakImageView.image = image;
 		} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-			NSLog(@"Failure: %@", error);
 		}];
 		UIToolbar *toolbar = [[UIToolbar alloc] init];
 		toolbar.barTintColor = [UIColor colorWithRed:36/255.0 green: 36/255.0 blue:36/255.0 alpha:1.0];
@@ -181,36 +179,11 @@
 			weakImageView.image = image;
 			weakImageView.layer.cornerRadius = weakImageView.frame.size.width / 2;
 			weakImageView.clipsToBounds = YES;
-			NSLog(@"Sucess..!!");
 		} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-			NSLog(@"Failure: %@", error);
 		}];
 	}
 	return cell;
 }
-//
-//- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-//	// Add your Colour.
-//	UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-//	[self setCellColor:[UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0] forCell:cell];  //highlight colour
-//
-//}
-//
-//- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-//	// Reset Colour.
-//	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//	[self setCellColor:[UIColor colorWithRed:36/255.0 green: 36/255.0 blue:36/255.0 alpha:1.0] forCell:cell]; //normal color
-//
-//}
-
-//- (void)setCellColor:(UIColor *)color forCell:(UITableViewCell *)cell {
-//	cell.contentView.backgroundColor = color;
-//	cell.backgroundColor = color;
-//	if (cell.accessoryView){
-//		cell.accessoryView.backgroundColor = color;
-//	}
-//	cell.selectedBackgroundView
-//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 	if (section == 0) {
@@ -257,7 +230,6 @@
 		AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 		[op start];
 		[op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-			NSLog(@"Here");
 			self.tableShouldRegisterTapEvents = NO;
 			[self.reloadTimer invalidate];
 			self.videoPlayer.videoPath = [NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",username];
@@ -283,7 +255,6 @@
 			[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
 			
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-			NSLog(@"There");
 			self.tableShouldRegisterTapEvents = NO;
 		}];
 		[op setCacheResponseBlock:^NSCachedURLResponse *(NSURLConnection *connection, NSCachedURLResponse *cachedResponse) {
