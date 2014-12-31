@@ -333,7 +333,6 @@ static NSString *CellIdentifier = @"CellID";
 			}
 		} else if (indexPath.section == 1){
 			if (indexPath.row == 0){
-				//TODO
 				ACAccountStore *accountStore = [[ACAccountStore alloc] init];
 				
 				ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];

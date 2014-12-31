@@ -25,6 +25,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	if ([SSKeychain passwordForService:@"moments" account:@"username"]){
+		
+	}
+	
     // Do any additional setup after loading the view.
     tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
     tapper.cancelsTouchesInView = NO;
@@ -69,10 +74,8 @@
         if (login == true) {
             [SSKeychain setPassword:passwordField.text forService:@"moments" account:@"password"];
             [SSKeychain setPassword:usernameField.text forService:@"moments" account:@"username"];
-            NSLog(@"Login Succeeded");
-            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-            UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"pageView"];
-            [self presentViewController:vc animated:YES completion:nil];
+			[self dismissViewControllerAnimated:YES completion:nil];
+			[[NSNotificationCenter defaultCenter] postNotificationName:@"Reload" object:nil];
         } else {
             NSLog(@"Login Failed");
         }
@@ -81,7 +84,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.view.alpha = 0.0f;
+	[super viewWillAppear:animated];
+//    self.view.alpha = 0.0f;
     MomentsAPIUtilities *LoginAPI = [MomentsAPIUtilities alloc];
     [LoginAPI loginWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] andPassword:[SSKeychain passwordForService:@"moments" account:@"password"] completion:^(BOOL login) {
         if (login == true) {
