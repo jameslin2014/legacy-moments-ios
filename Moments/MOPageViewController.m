@@ -29,6 +29,7 @@
 	self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
 	self.scrollView.pagingEnabled = YES;
 	self.scrollView.bounces = NO;
+	self.scrollView.showsHorizontalScrollIndicator = NO;
 	[self.view addSubview:self.scrollView];
 	int x = 0;
 	for (UIViewController *vc in self.viewControllers){

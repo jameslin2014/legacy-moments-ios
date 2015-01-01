@@ -11,19 +11,21 @@
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "AVCamPreviewView.h"
+#import "EDRecordingFlashingView.h"
 
 static void *RecordingContext = &RecordingContext;
 static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDeviceAuthorizedContext;
 
 @interface MOCaptureViewController : UIViewController <AVCaptureFileOutputRecordingDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-@property (strong, nonatomic) IBOutlet UILabel *recordingLabel;
-@property (strong, nonatomic) NSTimer *blinkTimer;
+@property (strong, nonatomic) IBOutlet EDRecordingFlashingView *recordingFlashView;
 
 // For use in the storyboards.
 @property (nonatomic, weak) IBOutlet AVCamPreviewView *previewView;
 @property (nonatomic, weak) IBOutlet UIButton *recordButton;
 @property (nonatomic, weak) IBOutlet UIButton *cameraButton;
 @property (nonatomic, weak) IBOutlet UIButton *flashButton;
+@property (strong, nonatomic) IBOutlet UIButton *cancelButton;
+@property (strong, nonatomic) IBOutlet UIButton *libraryButton;
 
 - (IBAction)toggleMovieRecording:(id)sender;
 - (IBAction)changeCamera:(id)sender;

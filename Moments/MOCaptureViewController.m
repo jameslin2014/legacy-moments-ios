@@ -192,9 +192,10 @@
     
     dispatch_async([self sessionQueue], ^{
         if (![[self movieFileOutput] isRecording]) {
+			self.cancelButton.enabled = YES;
+			self.libraryButton.enabled = NO;
 			dispatch_async(dispatch_get_main_queue(), ^{
-				self.recordingLabel.hidden = NO;
-				self.blinkTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(blinkLabel) userInfo:nil repeats:YES];
+				[self.recordingFlashView show];
 			});
             [self setLockInterfaceRotation:YES];
             
@@ -212,21 +213,14 @@
             NSString *outputFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[@"movie" stringByAppendingPathExtension:@"mov"]];
             [[self movieFileOutput] startRecordingToOutputFileURL:[NSURL fileURLWithPath:outputFilePath] recordingDelegate:self];
         } else {
+			self.cancelButton.enabled = NO;
+			self.libraryButton.enabled = YES;
 			dispatch_async(dispatch_get_main_queue(), ^{
-				self.recordingLabel.hidden = true;
-				[self.blinkTimer invalidate];
-				self.blinkTimer = nil;
+				[self.recordingFlashView hide];
 			});
             [[self movieFileOutput] stopRecording];
         }
     });
-}
-
-- (void)blinkLabel{
-	self.recordingLabel.alpha = 0.0;
-	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-		self.recordingLabel.alpha = 1.0;
-	});
 }
 
 - (IBAction)changeCamera:(id)sender {

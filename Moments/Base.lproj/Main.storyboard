@@ -149,7 +149,20 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dfv-j0-SdT">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                                    <subviews>
+                                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LVL-17-8zM" customClass="EDRecordingFlashingView">
+                                                            <rect key="frame" x="118" y="39" width="122" height="14"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="14" id="tCl-4H-Fbl"/>
+                                                                <constraint firstAttribute="width" constant="122" id="wGN-Vy-yeg"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
                                                     <color key="backgroundColor" red="0.14117647058823529" green="0.14117647058823529" blue="0.14117647058823529" alpha="0.5" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="centerX" secondItem="LVL-17-8zM" secondAttribute="centerX" constant="8.5" id="huc-v7-jMo"/>
+                                                    </constraints>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fp-Rk-D9Y">
                                                     <rect key="frame" x="339" y="35" width="28" height="21"/>
@@ -159,15 +172,6 @@
                                                         <action selector="changeCamera:" destination="lzj-Vv-tF4" eventType="touchUpInside" id="eat-eg-MrT"/>
                                                     </connections>
                                                 </button>
-                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RECORDING" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BiE-2a-tzU">
-                                                    <rect key="frame" x="136" y="31" width="102" height="25"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="25" id="2rh-CN-aby"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azg-Fi-Lly">
                                                     <rect key="frame" x="8" y="18" width="46" height="38"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
@@ -179,15 +183,14 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="BiE-2a-tzU" secondAttribute="bottom" constant="8" id="2r2-7i-VN7"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="8fp-Rk-D9Y" secondAttribute="trailing" id="5AF-Xe-cjK"/>
                                                 <constraint firstAttribute="trailing" secondItem="dfv-j0-SdT" secondAttribute="trailing" id="7Bf-dj-44e"/>
                                                 <constraint firstItem="8fp-Rk-D9Y" firstAttribute="bottom" secondItem="3bm-dB-Xu9" secondAttribute="bottomMargin" id="AkZ-g4-Wwk"/>
                                                 <constraint firstItem="dfv-j0-SdT" firstAttribute="leading" secondItem="3bm-dB-Xu9" secondAttribute="leading" id="Cdg-bV-eT2"/>
                                                 <constraint firstItem="dfv-j0-SdT" firstAttribute="top" secondItem="3bm-dB-Xu9" secondAttribute="top" id="NdH-aE-E5p"/>
-                                                <constraint firstAttribute="centerX" secondItem="BiE-2a-tzU" secondAttribute="centerX" constant="0.5" id="Q9e-e8-oUx"/>
                                                 <constraint firstItem="azg-Fi-Lly" firstAttribute="leading" secondItem="3bm-dB-Xu9" secondAttribute="leadingMargin" id="WSU-qw-p02"/>
                                                 <constraint firstItem="azg-Fi-Lly" firstAttribute="bottom" secondItem="3bm-dB-Xu9" secondAttribute="bottomMargin" id="X8F-Qb-gr7"/>
+                                                <constraint firstItem="LVL-17-8zM" firstAttribute="centerY" secondItem="8fp-Rk-D9Y" secondAttribute="centerY" id="elq-vg-VII"/>
                                                 <constraint firstAttribute="bottom" secondItem="dfv-j0-SdT" secondAttribute="bottom" id="gzH-OC-Mwq"/>
                                             </constraints>
                                         </view>
@@ -291,10 +294,12 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="cameraButton" destination="8fp-Rk-D9Y" id="EV4-m7-vNK"/>
+                        <outlet property="cancelButton" destination="o7R-sA-fSZ" id="eAl-sW-2Wb"/>
                         <outlet property="flashButton" destination="azg-Fi-Lly" id="wLW-2v-jtK"/>
+                        <outlet property="libraryButton" destination="84n-dZ-KSz" id="Ozk-SQ-GUq"/>
                         <outlet property="previewView" destination="Sgs-dV-lyT" id="Vsn-Fj-Brz"/>
                         <outlet property="recordButton" destination="q7L-6T-xkJ" id="udx-i7-kQ5"/>
-                        <outlet property="recordingLabel" destination="BiE-2a-tzU" id="QVN-dh-vCk"/>
+                        <outlet property="recordingFlashView" destination="LVL-17-8zM" id="wV3-ro-9zg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Ac-vc-bKb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -304,7 +309,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1135.5" y="398.5"/>
+            <point key="canvasLocation" x="1154.5" y="396.5"/>
         </scene>
         <!--Following View Controller-->
         <scene sceneID="7bc-1e-2xB">
