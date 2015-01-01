@@ -11,6 +11,7 @@
 #import "MomentsAPIUtilities.h"
 #import "SSKeychain.h"
 #import "UIImageView+AFNetworking.h"
+#import "UIImage+Color.h"
 
 @interface MOFollowViewController ()
 
@@ -202,7 +203,7 @@
 	if (!profileImageView.superview){
 		[cell.contentView addSubview:profileImageView];
 	}
-	[profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",cell.textLabel.text]] placeholderImage:[UIImage imageNamed:@"capture-button.png"]];
+	[profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",cell.textLabel.text]] placeholderImage:[UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]]];
 	
 	return cell;
 }

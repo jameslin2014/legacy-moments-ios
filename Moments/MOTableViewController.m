@@ -15,6 +15,7 @@
 #import "EDSpinningBoxScene.h"
 #import "ALAssetsLibrary+CustomPhotoAlbum.h"
 #import "PBJVideoPlayerController.h"
+#import "UIImage+Color.h"
 
 @interface MOTableViewController () <PBJVideoPlayerControllerDelegate>
 @property (strong, nonatomic) NSArray *following;
@@ -152,7 +153,7 @@
 	if (indexPath.section == 0){
 		cell.textLabel.text = [NSString stringWithFormat:@"\t\t%@",[SSKeychain passwordForService:@"moments" account:@"username"] ?: @""];
 		__weak UIImageView *weakImageView = profileImageView;
-		[profileImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png", [SSKeychain passwordForService:@"moments" account:@"username"]]]] placeholderImage:[UIImage imageNamed:@"capture-button.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+		[profileImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png", [SSKeychain passwordForService:@"moments" account:@"username"]]]] placeholderImage:[UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
 			weakImageView.image = image;
 		} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
 		}];
@@ -175,7 +176,7 @@
 	} else{
 		cell.textLabel.text = [NSString stringWithFormat:@"\t\t%@",self.following[indexPath.row]];
 		__weak UIImageView *weakImageView = profileImageView;
-		[profileImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png", self.following[indexPath.row]]]] placeholderImage:[UIImage imageNamed:@"capture-button.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+		[profileImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png", self.following[indexPath.row]]]] placeholderImage:[UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
 			weakImageView.image = image;
 			weakImageView.layer.cornerRadius = weakImageView.frame.size.width / 2;
 			weakImageView.clipsToBounds = YES;
