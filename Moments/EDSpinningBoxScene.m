@@ -25,7 +25,7 @@
 		float longSide = 1;
 		float distanceBetween = longSide / 2 - shortSide / 2;
 		
-		UIColor *c = [UIColor colorWithRed:0.01 green:0.61 blue:0.91 alpha:1];
+		UIColor *c = [UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1];
 		UIColor *w = [UIColor whiteColor];
 		
 		SCNBox *boxZ = [SCNBox boxWithWidth:shortSide height:shortSide length:longSide chamferRadius:0];

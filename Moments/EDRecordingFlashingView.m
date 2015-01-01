@@ -48,6 +48,8 @@
 
 - (void)hide{
 	self.hidden = YES;
+	[self.flashTimer invalidate];
+	self.flashTimer = nil;
 }
 
 - (void)drawRect:(CGRect)rect {
