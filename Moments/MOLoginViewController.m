@@ -26,8 +26,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	if ([SSKeychain passwordForService:@"moments" account:@"username"]){
-		
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"UserHasLoggedInSuccessfullyVersion-1.0"] && [SSKeychain passwordForService:@"moments" account:@"username"]){
+		[[[[UIApplication sharedApplication] delegate] window] setRootViewController:[[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"pageView"]];
 	}
 	
     // Do any additional setup after loading the view.
@@ -76,6 +76,7 @@
             [SSKeychain setPassword:usernameField.text forService:@"moments" account:@"username"];
 			[self dismissViewControllerAnimated:YES completion:nil];
 			[[NSNotificationCenter defaultCenter] postNotificationName:@"Reload" object:nil];
+			[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"UserHasLoggedInSuccessfullyVersion-1.0"];
         } else {
             NSLog(@"Login Failed");
         }

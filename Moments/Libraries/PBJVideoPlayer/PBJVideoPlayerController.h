@@ -53,6 +53,8 @@ typedef NS_ENUM(NSInteger, PBJVideoPlayerBufferingState) {
 
 @property (nonatomic, readonly) NSTimeInterval maxDuration;
 
+- (instancetype)initWithAudioMuted: (BOOL) audioMuted;
+
 - (void)playFromBeginning;
 - (void)playFromCurrentTime;
 - (void)pause;

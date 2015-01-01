@@ -71,7 +71,9 @@ static NSString * const PBJVideoPlayerControllerReadyForDisplay = @"readyForDisp
 
     PBJVideoPlayerPlaybackState _playbackState;
     PBJVideoPlayerBufferingState _bufferingState;
-    
+	
+	BOOL _audioMuted;
+	
     // flags
     struct {
         unsigned int playbackLoops:1;
@@ -88,6 +90,13 @@ static NSString * const PBJVideoPlayerControllerReadyForDisplay = @"readyForDisp
 @synthesize playbackState = _playbackState;
 @synthesize bufferingState = _bufferingState;
 @synthesize videoFillMode = _videoFillMode;
+
+- (instancetype)initWithAudioMuted:(BOOL)audioMuted{
+	if (self = [super init]){
+		_audioMuted = audioMuted;
+	}
+	return self;
+}
 
 #pragma mark - getters/setters
 
@@ -280,6 +289,10 @@ static NSString * const PBJVideoPlayerControllerReadyForDisplay = @"readyForDisp
     // load the playerLayer view
     _videoView = [[PBJVideoView alloc] initWithFrame:CGRectZero];
     _videoView.videoFillMode = AVLayerVideoGravityResizeAspect;
+	if (_audioMuted){
+		_player.volume = 0.0;
+		_videoView.videoFillMode = AVLayerVideoGravityResizeAspectFill;
+	}
     _videoView.playerLayer.hidden = YES;
     self.view = _videoView;
 

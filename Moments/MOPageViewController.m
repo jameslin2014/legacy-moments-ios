@@ -21,7 +21,10 @@
 	[super viewDidLoad];
 	
     // Do any additional setup after loading the view.
-	self.viewControllers = @[[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"listView"],[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"captureView"],[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"followerStuff"]];
+	self.viewControllers = @[
+							 [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"listView"],
+							 [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"captureView"],
+							 [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"followerStuff"]];
 	
 	self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
 	self.scrollView.pagingEnabled = YES;

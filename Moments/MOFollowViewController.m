@@ -34,7 +34,7 @@
 	
 	// Do any additional setup after loading the view.???????
 	self.title = @"Following";
-	[self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.23 green:0.52 blue:0.68 alpha:0.39]];
+	[self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1]];
 	[self.navigationController.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys: [UIFont fontWithName:@"Avenir-Book" size:17], NSFontAttributeName, nil]];
 	
 	self.subNavigationView.alpha = 1;
@@ -228,7 +228,7 @@
 	label.text = [self tableView:tableView titleForHeaderInSection:section];
 	
 	[view addSubview:label];
-	[view setBackgroundColor:[UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0]]; 
+	[view setBackgroundColor:[UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1]];
 	return view;
 }
 

@@ -16,7 +16,7 @@ static NSString *CellIdentifier = @"CellID";
 
 @interface MOSettingsViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) UITableView *tableView;
-@property (strong, nonatomic) UITextField *phoneNumberField;
+@property (strong, nonatomic) UITextField *emailField;
 @property (strong, nonatomic) UITextField *passwordField;
 @property (strong, nonatomic) UITextField *usernameField;
 @property (strong, nonatomic) UIVisualEffectView *backgroundBlurView;
@@ -34,7 +34,7 @@ static NSString *CellIdentifier = @"CellID";
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	
-	[self.phoneNumberField resignFirstResponder];
+	[self.emailField resignFirstResponder];
 	[self.passwordField resignFirstResponder];
 	[self.usernameField resignFirstResponder];
 	
@@ -173,28 +173,28 @@ static NSString *CellIdentifier = @"CellID";
 			cell.textLabel.text = @"Change Profile Image";
 			cell.selectionStyle = UITableViewCellSelectionStyleGray;
 		} else if (indexPath.section == 1 && indexPath.row == 0){
-			cell.textLabel.text = @"Phone Number";
-			cell.imageView.image = [[UIImage imageNamed:@"phone"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-			self.phoneNumberField = [[UITextField alloc] init];
-			self.phoneNumberField.translatesAutoresizingMaskIntoConstraints = NO;
-			self.phoneNumberField.adjustsFontSizeToFitWidth = YES;
-			self.phoneNumberField.textColor = [UIColor whiteColor];
-			self.phoneNumberField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"987-654-3210" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor],NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
-			self.phoneNumberField.tintColor = [UIColor whiteColor];
-			self.phoneNumberField.keyboardType = UIKeyboardTypePhonePad;
-			self.phoneNumberField.returnKeyType = UIReturnKeyGo;
-			self.phoneNumberField.backgroundColor = [UIColor clearColor];
-			self.phoneNumberField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
-			self.phoneNumberField.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support
-			self.phoneNumberField.textAlignment = NSTextAlignmentRight;
-			self.phoneNumberField.tag = 0;
-			self.phoneNumberField.delegate = self;
-			[self.phoneNumberField setEnabled: YES];
-			[cell addSubview:self.phoneNumberField];
+			cell.textLabel.text = @"Email Address";
+			cell.imageView.image = [[UIImage imageNamed:@"mail"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+			self.emailField = [[UITextField alloc] init];
+			self.emailField.translatesAutoresizingMaskIntoConstraints = NO;
+			self.emailField.adjustsFontSizeToFitWidth = YES;
+			self.emailField.textColor = [UIColor whiteColor];
+			self.emailField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"j.doe@example.com" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor],NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
+			self.emailField.tintColor = [UIColor whiteColor];
+			self.emailField.keyboardType = UIKeyboardTypeEmailAddress;
+			self.emailField.returnKeyType = UIReturnKeyGo;
+			self.emailField.backgroundColor = [UIColor clearColor];
+			self.emailField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
+			self.emailField.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support
+			self.emailField.textAlignment = NSTextAlignmentRight;
+			self.emailField.tag = 0;
+			self.emailField.delegate = self;
+			[self.emailField setEnabled: YES];
+			[cell addSubview:self.emailField];
 			
 			[cell addConstraints:@[
-								   [NSLayoutConstraint constraintWithItem:self.phoneNumberField attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
-								   [NSLayoutConstraint constraintWithItem:self.phoneNumberField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:cell attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:0]
+								   [NSLayoutConstraint constraintWithItem:self.emailField attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
+								   [NSLayoutConstraint constraintWithItem:self.emailField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:cell attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:0]
 								   ]];
 			
 		} else if (indexPath.section == 1 && indexPath.row == 1){
@@ -290,7 +290,7 @@ static NSString *CellIdentifier = @"CellID";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-	[self.phoneNumberField resignFirstResponder];
+	[self.emailField resignFirstResponder];
 	[self.passwordField resignFirstResponder];
 	[self.usernameField resignFirstResponder];
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];

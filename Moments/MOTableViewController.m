@@ -32,7 +32,7 @@
 	self.navigationItem.title = @"Moments";
 	[self.navigationController.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys: [UIFont fontWithName:@"Avenir-Book" size:17], NSFontAttributeName, nil]];
 	self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:@"Avenir-Book" size:17], NSForegroundColorAttributeName : [UIColor whiteColor]};
-	self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0];
+	self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
 	self.tableView.backgroundColor = [UIColor colorWithRed:36/255.0 green: 36/255.0 blue:36/255.0 alpha:1.0];
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	
@@ -205,7 +205,7 @@
 		NSString *string =[NSString stringWithFormat:@"Recent Updates"];
 		[label setText:string];
 		[view addSubview:label];
-		[view setBackgroundColor:[UIColor colorWithRed:0.101 green:0.450 blue:0.635 alpha:1.0]];
+		[view setBackgroundColor:[UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1]];
 		return view;
 	}
 }
