@@ -63,7 +63,7 @@
 		NSMutableParagraphStyle* textStyle = NSMutableParagraphStyle.defaultParagraphStyle.mutableCopy;
 		textStyle.alignment = NSTextAlignmentLeft;
 		
-		NSDictionary* textFontAttributes = @{NSFontAttributeName: [UIFont fontWithName: @"Futura-Medium" size: UIFont.labelFontSize], NSForegroundColorAttributeName: UIColor.redColor, NSParagraphStyleAttributeName: textStyle};
+		NSDictionary* textFontAttributes = @{NSFontAttributeName: [UIFont fontWithName: @"Futura-Medium" size: UIFont.labelFontSize], NSForegroundColorAttributeName: [UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1], NSParagraphStyleAttributeName: textStyle};
 		
 		CGFloat textTextHeight = [textContent boundingRectWithSize: CGSizeMake(textRect.size.width, INFINITY)  options: NSStringDrawingUsesLineFragmentOrigin attributes: textFontAttributes context: nil].size.height;
 		CGContextSaveGState(context);
@@ -80,7 +80,7 @@
 		[ovalPath addLineToPoint: CGPointMake(CGRectGetMidX(ovalRect), CGRectGetMidY(ovalRect))];
 		[ovalPath closePath];
 		
-		[UIColor.redColor setFill];
+		[[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1] setFill];
 		[ovalPath fill];
 	}
 }
