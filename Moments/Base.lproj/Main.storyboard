@@ -151,7 +151,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                                     <subviews>
                                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LVL-17-8zM" customClass="EDRecordingFlashingView">
-                                                            <rect key="frame" x="118" y="39" width="122" height="14"/>
+                                                            <rect key="frame" x="118" y="37" width="122" height="14"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="14" id="tCl-4H-Fbl"/>
@@ -190,7 +190,7 @@
                                                 <constraint firstItem="dfv-j0-SdT" firstAttribute="top" secondItem="3bm-dB-Xu9" secondAttribute="top" id="NdH-aE-E5p"/>
                                                 <constraint firstItem="azg-Fi-Lly" firstAttribute="leading" secondItem="3bm-dB-Xu9" secondAttribute="leadingMargin" id="WSU-qw-p02"/>
                                                 <constraint firstItem="azg-Fi-Lly" firstAttribute="bottom" secondItem="3bm-dB-Xu9" secondAttribute="bottomMargin" id="X8F-Qb-gr7"/>
-                                                <constraint firstItem="LVL-17-8zM" firstAttribute="centerY" secondItem="8fp-Rk-D9Y" secondAttribute="centerY" id="elq-vg-VII"/>
+                                                <constraint firstItem="LVL-17-8zM" firstAttribute="centerY" secondItem="8fp-Rk-D9Y" secondAttribute="centerY" constant="-2" id="elq-vg-VII"/>
                                                 <constraint firstAttribute="bottom" secondItem="dfv-j0-SdT" secondAttribute="bottom" id="gzH-OC-Mwq"/>
                                             </constraints>
                                         </view>
