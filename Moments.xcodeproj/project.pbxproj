@@ -113,6 +113,7 @@
 		A5E01CD91A2B37F1003ED753 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E01CC61A2B37F1003ED753 /* UIWebView+AFNetworking.m */; };
 		A5E01CDB1A2B3899003ED753 /* interface.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5E01CDA1A2B3899003ED753 /* interface.xcassets */; };
 		A5E01CDD1A2B3C76003ED753 /* fundamentals.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5E01CDC1A2B3C76003ED753 /* fundamentals.xcassets */; };
+		E4A776691A566915003811D6 /* MOAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A776681A566915003811D6 /* MOAPI.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -322,6 +323,8 @@
 		A5E01CC61A2B37F1003ED753 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		A5E01CDA1A2B3899003ED753 /* interface.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = interface.xcassets; sourceTree = "<group>"; };
 		A5E01CDC1A2B3C76003ED753 /* fundamentals.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = fundamentals.xcassets; sourceTree = "<group>"; };
+		E4A776671A566915003811D6 /* MOAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOAPI.h; sourceTree = "<group>"; };
+		E4A776681A566915003811D6 /* MOAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOAPI.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -397,6 +400,8 @@
 				0232A0611A2A8ABD00ABF2FB /* MomentsAPIUtilities.h */,
 				0232A0621A2A8ABD00ABF2FB /* MomentsAPIUtilities.m */,
 				A5E01C9E1A2B37F0003ED753 /* Networking */,
+				E4A776671A566915003811D6 /* MOAPI.h */,
+				E4A776681A566915003811D6 /* MOAPI.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -928,6 +933,7 @@
 				A5CAD7511A299B480023F948 /* MOLoginViewController.m in Sources */,
 				A5E01CC91A2B37F1003ED753 /* AFHTTPRequestOperation.m in Sources */,
 				A5E01CCE1A2B37F1003ED753 /* AFSecurityPolicy.m in Sources */,
+				E4A776691A566915003811D6 /* MOAPI.m in Sources */,
 				A5B31C371A287F25009734EE /* main.m in Sources */,
 				20C077C61A48C6220092B7AA /* MOFollowViewController.m in Sources */,
 				A564DA441A4784A3003C99F3 /* SVModalWebViewController.m in Sources */,

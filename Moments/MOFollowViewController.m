@@ -8,7 +8,7 @@
 
 #import "MOFollowViewController.h"
 #import "JKSegmentedControl.h"
-#import "MomentsAPIUtilities.h"
+#import "MOAPI.h"
 #import "SSKeychain.h"
 #import "UIImageView+AFNetworking.h"
 #import "UIImage+EDExtras.h"
@@ -92,19 +92,36 @@
 	[self.tableView reloadData];
 	if ([segmentedControl selectedSegmentIndex] == 0) {
 		self.title = @"Following";
+        
 		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-			[[[MomentsAPIUtilities alloc]init]getUserFollowingListWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] completion:^(NSArray *following) {
+            /*
+            [[[MomentsAPIUtilities alloc]init]getUserFollowingListWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] completion:^(NSArray *following) {
 				self.following = following;
 				[self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 			}];
+            */
+            
+            MOAPI *api = [[MOAPI alloc] init];
+            [api getAllUserDataWithUsername:@"douglas" completion:^(NSDictionary * user) {
+                self.following = [user objectForKey:@"follows"];
+                [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+            }];
 		});
 	} else {
 		self.title = @"Followers";
 		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            /*
 			[[[MomentsAPIUtilities alloc]init]getUserFollowersListWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] completion:^(NSArray *followers) {
 				self.followers = followers;
 				[self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 			}];
+            */
+            
+            MOAPI *api = [[MOAPI alloc] init];
+            [api getAllUserDataWithUsername:@"douglas" completion:^(NSDictionary * user) {
+                self.followers = [user objectForKey:@"followers"];
+                [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+            }];
 		});
 	}
 }
@@ -146,19 +163,35 @@
 	if (self.segmentedControl.selectedSegmentIndex == 0){
 		if (!self.following){
 			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+                /*
 				[[[MomentsAPIUtilities alloc]init]getUserFollowingListWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] completion:^(NSArray *following) {
 					self.following = following;
 					[self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 				}];
+                */
+                
+                MOAPI *api = [[MOAPI alloc] init];
+                [api getAllUserDataWithUsername:@"douglas" completion:^(NSDictionary * user) {
+                    self.following = [user objectForKey:@"follows"];
+                    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+                }];
 			});
 		}
 	} else{
 		if (!self.followers){
 			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+                /*
 				[[[MomentsAPIUtilities alloc]init]getUserFollowersListWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] completion:^(NSArray *followers) {
 					self.followers = followers;
 					[self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 				}];
+                */
+                
+                MOAPI *api = [[MOAPI alloc] init];
+                [api getAllUserDataWithUsername:@"douglas" completion:^(NSDictionary * user) {
+                    self.followers = [user objectForKey:@"followers"];
+                    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+                }];
 			});
 		}
 	}
@@ -234,6 +267,11 @@
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    MOAPI *api = [[MOAPI alloc] init];
+    [api searchForUsersLikeUserName:searchText completion:^(NSArray *results) {
+        NSLog(@"Results: %@", results);
+    }];
+    
 //	MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
 	//API NEEDS TO SUPPORT MULTIPLE PEOPLE
 //	[APIHelper searchForUsersWithUserName:searchText completion:^(BOOL valid) {

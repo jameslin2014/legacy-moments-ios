@@ -69,6 +69,7 @@
     [self.view endEditing:YES];
     
     // Attempt to login
+    /*
     MomentsAPIUtilities *LoginAPI = [MomentsAPIUtilities alloc];
     [LoginAPI loginWithUsername:usernameField.text andPassword:passwordField.text completion:^(BOOL login) {
         if (login == true) {
@@ -82,11 +83,13 @@
         }
         
     }];
+    */
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 //    self.view.alpha = 0.0f;
+    /*
     MomentsAPIUtilities *LoginAPI = [MomentsAPIUtilities alloc];
     [LoginAPI loginWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] andPassword:[SSKeychain passwordForService:@"moments" account:@"password"] completion:^(BOOL login) {
         if (login == true) {
@@ -97,6 +100,7 @@
             self.view.alpha = 1;
         }
     }];
+    */
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

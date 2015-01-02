@@ -8,7 +8,8 @@
 
 #import "MOTableViewController.h"
 #import "SSKeychain.h"
-#import "MomentsAPIUtilities.h"
+#import "AFNetworking.h"
+#import "MOAPI.h"
 #import "UIImageView+AFNetworking.h"
 #import "MOSettingsViewController.h"
 #import <SceneKit/SceneKit.h>
@@ -46,10 +47,19 @@
 
 - (void)getDataFromServer{
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        /*
 		[[[MomentsAPIUtilities alloc]init] getUserFollowingListWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] completion:^(NSArray *followedUsers) {
 			self.following = followedUsers;
 			[self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 		}];
+        */
+        
+        MOAPI *api = [[MOAPI alloc] init];
+        [api getAllUserDataWithUsername:@"douglas" completion:^(NSDictionary * user) {
+            self.following = [user objectForKey:@"follows"];
+            [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+        }];
+        
 	});
 }
 

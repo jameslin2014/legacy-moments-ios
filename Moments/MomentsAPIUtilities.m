@@ -9,6 +9,8 @@
 #import "MomentsAPIUtilities.h"
 #import "DLIL.h"
 #import "FBEncryptorAES.h"
+#import <Firebase/Firebase.h>
+
 @implementation MomentsAPIUtilities {
     BOOL loginStatus;
     NSArray *followingArray;
