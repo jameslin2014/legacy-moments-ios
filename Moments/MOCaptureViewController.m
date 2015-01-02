@@ -28,6 +28,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	shouldCancel = NO;
+	
+	self.cancelButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     // Create the AVCaptureSession
     AVCaptureSession *session = [[AVCaptureSession alloc] init];
     [self setSession:session];
@@ -192,10 +194,11 @@
     
     dispatch_async([self sessionQueue], ^{
         if (![[self movieFileOutput] isRecording]) {
-			self.cancelButton.enabled = YES;
-			self.libraryButton.enabled = NO;
+			
 			dispatch_async(dispatch_get_main_queue(), ^{
 				[self.recordingFlashView show];
+				self.cancelButton.hidden = NO;
+				self.libraryButton.hidden = YES;
 			});
             [self setLockInterfaceRotation:YES];
             
@@ -213,9 +216,10 @@
             NSString *outputFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[@"movie" stringByAppendingPathExtension:@"mov"]];
             [[self movieFileOutput] startRecordingToOutputFileURL:[NSURL fileURLWithPath:outputFilePath] recordingDelegate:self];
         } else {
-			self.cancelButton.enabled = NO;
-			self.libraryButton.enabled = YES;
+			
 			dispatch_async(dispatch_get_main_queue(), ^{
+				self.cancelButton.hidden = YES;
+			self.libraryButton.hidden = NO;
 				[self.recordingFlashView hide];
 			});
             [[self movieFileOutput] stopRecording];

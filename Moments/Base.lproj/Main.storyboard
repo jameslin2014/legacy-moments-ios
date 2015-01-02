@@ -207,7 +207,25 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7mB-F1-xlE">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                                    <subviews>
+                                                        <button hidden="YES" opaque="NO" contentMode="center" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yza-zT-sFT">
+                                                            <rect key="frame" x="8" y="23" width="132" height="55"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="50" id="kwM-dG-4O0"/>
+                                                            </constraints>
+                                                            <state key="normal" image="cancel">
+                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="cancelRecording" destination="lzj-Vv-tF4" eventType="touchUpInside" id="UG6-HD-0wb"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
                                                     <color key="backgroundColor" red="0.14117647058823529" green="0.14117647058823529" blue="0.14117647058823529" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="centerY" secondItem="yza-zT-sFT" secondAttribute="centerY" constant="0.5" id="0nz-47-djy"/>
+                                                        <constraint firstItem="yza-zT-sFT" firstAttribute="leading" secondItem="7mB-F1-xlE" secondAttribute="leading" constant="8" id="0wy-BR-7nB"/>
+                                                    </constraints>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7L-6T-xkJ">
                                                     <rect key="frame" x="146" y="9" width="82" height="82"/>
@@ -220,17 +238,6 @@
                                                     </state>
                                                     <connections>
                                                         <action selector="toggleMovieRecording:" destination="lzj-Vv-tF4" eventType="touchUpInside" id="gWE-oD-nnQ"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o7R-sA-fSZ">
-                                                    <rect key="frame" x="8" y="32" width="130" height="37"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
-                                                    <state key="normal" title="Cancel">
-                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="cancelRecording" destination="lzj-Vv-tF4" eventType="touchUpInside" id="Hdc-lW-KPQ"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="84n-dZ-KSz">
@@ -248,7 +255,6 @@
                                             <constraints>
                                                 <constraint firstAttribute="centerY" secondItem="q7L-6T-xkJ" secondAttribute="centerY" id="9qz-kB-jdd"/>
                                                 <constraint firstItem="7mB-F1-xlE" firstAttribute="leading" secondItem="RJx-Kv-F2f" secondAttribute="leading" id="CMO-5V-v0r"/>
-                                                <constraint firstItem="q7L-6T-xkJ" firstAttribute="leading" secondItem="o7R-sA-fSZ" secondAttribute="trailing" constant="8" id="RoZ-Or-jpc"/>
                                                 <constraint firstAttribute="centerX" secondItem="q7L-6T-xkJ" secondAttribute="centerX" id="Z9S-q2-HhE"/>
                                                 <constraint firstAttribute="bottom" secondItem="7mB-F1-xlE" secondAttribute="bottom" id="aOD-xp-4mu"/>
                                                 <constraint firstAttribute="trailing" secondItem="7mB-F1-xlE" secondAttribute="trailing" id="aPd-1X-G2h"/>
@@ -256,8 +262,7 @@
                                                 <constraint firstItem="84n-dZ-KSz" firstAttribute="trailing" secondItem="RJx-Kv-F2f" secondAttribute="trailingMargin" id="jNG-02-dyd"/>
                                                 <constraint firstItem="84n-dZ-KSz" firstAttribute="centerY" secondItem="q7L-6T-xkJ" secondAttribute="centerY" id="moa-zs-hhG"/>
                                                 <constraint firstItem="7mB-F1-xlE" firstAttribute="top" secondItem="RJx-Kv-F2f" secondAttribute="top" id="n54-yE-6R3"/>
-                                                <constraint firstAttribute="centerY" secondItem="o7R-sA-fSZ" secondAttribute="centerY" id="oly-01-1TZ"/>
-                                                <constraint firstItem="o7R-sA-fSZ" firstAttribute="leading" secondItem="RJx-Kv-F2f" secondAttribute="leading" constant="8" id="qa9-W0-shU"/>
+                                                <constraint firstItem="q7L-6T-xkJ" firstAttribute="leading" secondItem="yza-zT-sFT" secondAttribute="trailing" constant="6" id="uBW-6v-Yan"/>
                                                 <constraint firstItem="84n-dZ-KSz" firstAttribute="leading" secondItem="q7L-6T-xkJ" secondAttribute="trailing" constant="8" symbolic="YES" id="uip-Nr-aMX"/>
                                                 <constraint firstAttribute="centerY" secondItem="q7L-6T-xkJ" secondAttribute="centerY" id="wfV-LG-gQ2"/>
                                             </constraints>
@@ -294,7 +299,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="cameraButton" destination="8fp-Rk-D9Y" id="EV4-m7-vNK"/>
-                        <outlet property="cancelButton" destination="o7R-sA-fSZ" id="eAl-sW-2Wb"/>
+                        <outlet property="cancelButton" destination="yza-zT-sFT" id="gJv-9m-yOk"/>
                         <outlet property="flashButton" destination="azg-Fi-Lly" id="wLW-2v-jtK"/>
                         <outlet property="libraryButton" destination="84n-dZ-KSz" id="Ozk-SQ-GUq"/>
                         <outlet property="previewView" destination="Sgs-dV-lyT" id="Vsn-Fj-Brz"/>
@@ -309,7 +314,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1154.5" y="396.5"/>
+            <point key="canvasLocation" x="1166.5" y="367.5"/>
         </scene>
         <!--Following View Controller-->
         <scene sceneID="7bc-1e-2xB">
@@ -511,6 +516,7 @@
     <resources>
         <image name="background" width="750" height="1334"/>
         <image name="camera-flip" width="28" height="21"/>
+        <image name="cancel" width="128" height="128"/>
         <image name="capture-button" width="164" height="165"/>
         <image name="flash" width="24" height="38"/>
         <image name="login-button" width="543" height="71"/>
