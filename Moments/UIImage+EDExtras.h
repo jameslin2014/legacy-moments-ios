@@ -16,4 +16,7 @@
 
 + (UIImage *)recordButton;
 
++ (NSArray *)transitionButtonImages: (BOOL) reversed;
+
 @end
+

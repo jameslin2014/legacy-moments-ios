@@ -202,7 +202,9 @@
 				[self.recordingFlashView show];
 				self.cancelButton.hidden = NO;
 				self.libraryButton.hidden = YES;
-				[self.mainCameraButton setImage:[UIImage recordButton] forState:UIControlStateNormal];
+				self.mainCameraButton.imageView.animationImages = [UIImage transitionButtonImages:YES];
+				self.mainCameraButton.imageView.animationDuration = 0.25;
+				[self.mainCameraButton.imageView startAnimating];
 			});
             [self setLockInterfaceRotation:YES];
             
@@ -225,7 +227,9 @@
 				self.cancelButton.hidden = YES;
 				self.libraryButton.hidden = NO;
 				[self.recordingFlashView hide];
-				[self.mainCameraButton setImage:[UIImage cameraButton] forState:UIControlStateNormal];
+				self.mainCameraButton.imageView.animationImages = [UIImage transitionButtonImages:NO];
+				self.mainCameraButton.imageView.animationDuration = 0.25;
+				[self.mainCameraButton.imageView startAnimating];
 			});
             [[self movieFileOutput] stopRecording];
         }
