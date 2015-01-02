@@ -71,7 +71,7 @@
 
 + (NSArray *)transitionButtonImages: (BOOL)reversed{
 	NSMutableArray *finalArray = [NSMutableArray array];
-	for (int i = 0; i < 10; i++){
+	for (float i = 0; i <= 10.0; i += 1.0){
 		CGRect rect = CGRectMake(0, 0, 86, 86);
 		UIGraphicsBeginImageContext(rect.size);
 		

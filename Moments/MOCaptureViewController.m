@@ -30,7 +30,7 @@
     [super viewDidLoad];
 	shouldCancel = NO;
 	
-	[self.mainCameraButton setImage:[UIImage cameraButton] forState:UIControlStateNormal];
+	[self.recordButton setImage:[UIImage cameraButton] forState:UIControlStateNormal];
 	
 	self.cancelButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     // Create the AVCaptureSession
@@ -193,8 +193,6 @@
 
 #pragma mark Actions
 - (IBAction)toggleMovieRecording:(id)sender {
-    [[self recordButton] setEnabled:NO];
-    
     dispatch_async([self sessionQueue], ^{
         if (![[self movieFileOutput] isRecording]) {
 			
@@ -202,10 +200,11 @@
 				[self.recordingFlashView show];
 				self.cancelButton.hidden = NO;
 				self.libraryButton.hidden = YES;
-				self.mainCameraButton.imageView.animationImages = [UIImage transitionButtonImages:NO];
-				self.mainCameraButton.imageView.animationDuration = 1.0;
-				self.mainCameraButton.imageView.animationRepeatCount = 0;
-				[self.mainCameraButton.imageView startAnimating];
+				self.recordButton.imageView.animationImages = [UIImage transitionButtonImages:NO];
+				self.recordButton.imageView.animationDuration = 0.25;
+				self.recordButton.imageView.animationRepeatCount = 1;
+				[self.recordButton setImage:[UIImage recordButton] forState:UIControlStateNormal];
+				[self.recordButton.imageView startAnimating];
 			});
             [self setLockInterfaceRotation:YES];
             
@@ -228,13 +227,11 @@
 				self.cancelButton.hidden = YES;
 				self.libraryButton.hidden = NO;
 				[self.recordingFlashView hide];
-				self.mainCameraButton.imageView.animationImages = [UIImage transitionButtonImages:YES];
-				self.mainCameraButton.imageView.animationDuration = 0.5;
-				[self.mainCameraButton.imageView startAnimating];
-				dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-					[self.mainCameraButton.imageView stopAnimating];
-					[self.mainCameraButton setImage:[UIImage cameraButton] forState:UIControlStateNormal];
-				});
+				self.recordButton.imageView.animationImages = [UIImage transitionButtonImages:YES];
+				self.recordButton.imageView.animationDuration = 0.25;
+				self.recordButton.imageView.animationRepeatCount = 1;
+				[self.recordButton setImage:[UIImage cameraButton] forState:UIControlStateNormal];
+				[self.recordButton.imageView startAnimating];
 			});
             [[self movieFileOutput] stopRecording];
         }

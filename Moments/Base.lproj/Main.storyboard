@@ -302,7 +302,6 @@
                         <outlet property="cancelButton" destination="yza-zT-sFT" id="gJv-9m-yOk"/>
                         <outlet property="flashButton" destination="azg-Fi-Lly" id="wLW-2v-jtK"/>
                         <outlet property="libraryButton" destination="84n-dZ-KSz" id="Ozk-SQ-GUq"/>
-                        <outlet property="mainCameraButton" destination="q7L-6T-xkJ" id="Ytc-p2-J9c"/>
                         <outlet property="previewView" destination="Sgs-dV-lyT" id="Vsn-Fj-Brz"/>
                         <outlet property="recordButton" destination="q7L-6T-xkJ" id="udx-i7-kQ5"/>
                         <outlet property="recordingFlashView" destination="LVL-17-8zM" id="wV3-ro-9zg"/>
