@@ -209,7 +209,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                                     <subviews>
                                                         <button hidden="YES" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yza-zT-sFT">
-                                                            <rect key="frame" x="8" y="25" width="132" height="50"/>
+                                                            <rect key="frame" x="8" y="25" width="138" height="50"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="50" id="kwM-dG-4O0"/>
                                                             </constraints>
@@ -228,10 +228,10 @@
                                                     </constraints>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7L-6T-xkJ">
-                                                    <rect key="frame" x="146" y="9" width="82" height="82"/>
+                                                    <rect key="frame" x="152" y="15" width="70" height="70"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="82" id="HfR-UR-EZ5"/>
-                                                        <constraint firstAttribute="height" constant="82" id="i1G-NK-nM6"/>
+                                                        <constraint firstAttribute="width" constant="70" id="HfR-UR-EZ5"/>
+                                                        <constraint firstAttribute="height" constant="70" id="i1G-NK-nM6"/>
                                                     </constraints>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -241,7 +241,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="84n-dZ-KSz">
-                                                    <rect key="frame" x="236" y="34" width="131" height="32"/>
+                                                    <rect key="frame" x="230" y="34" width="137" height="32"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <state key="normal" title="Library">
