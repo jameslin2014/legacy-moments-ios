@@ -10,6 +10,7 @@
 
 @interface MOAPI : NSObject
 
+- (void)createUserWithName:(NSString *)name andEmail:(NSString *)email completion:(void (^)(NSDictionary *))completion;
 - (void)getAllUserDataWithUsername:(NSString *)username completion:(void (^)(NSDictionary *))data;
 - (void)searchForUsersLikeUserName:(NSString *)searchText completion:(void (^)(NSArray *))completion;
 @end
