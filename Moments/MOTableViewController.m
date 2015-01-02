@@ -15,7 +15,7 @@
 #import "EDSpinningBoxScene.h"
 #import "ALAssetsLibrary+CustomPhotoAlbum.h"
 #import "PBJVideoPlayerController.h"
-#import "UIImage+Color.h"
+#import "UIImage+EDExtras.h"
 
 @interface MOTableViewController () <PBJVideoPlayerControllerDelegate>
 @property (strong, nonatomic) NSArray *following;

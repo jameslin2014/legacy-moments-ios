@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIImage (Color)
+@interface UIImage (EDExtras)
 
 + (UIImage *)circleImageWithColor:(UIColor *)color;
+
++ (UIImage *)cameraButton;
+
++ (UIImage *)recordButton;
 
 @end

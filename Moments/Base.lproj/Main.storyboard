@@ -208,8 +208,8 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7mB-F1-xlE">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                                     <subviews>
-                                                        <button hidden="YES" opaque="NO" contentMode="center" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yza-zT-sFT">
-                                                            <rect key="frame" x="8" y="23" width="132" height="55"/>
+                                                        <button hidden="YES" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yza-zT-sFT">
+                                                            <rect key="frame" x="8" y="25" width="132" height="50"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="50" id="kwM-dG-4O0"/>
                                                             </constraints>
@@ -233,7 +233,7 @@
                                                         <constraint firstAttribute="width" constant="82" id="HfR-UR-EZ5"/>
                                                         <constraint firstAttribute="height" constant="82" id="i1G-NK-nM6"/>
                                                     </constraints>
-                                                    <state key="normal" title="Button" image="capture-button">
+                                                    <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -302,6 +302,7 @@
                         <outlet property="cancelButton" destination="yza-zT-sFT" id="gJv-9m-yOk"/>
                         <outlet property="flashButton" destination="azg-Fi-Lly" id="wLW-2v-jtK"/>
                         <outlet property="libraryButton" destination="84n-dZ-KSz" id="Ozk-SQ-GUq"/>
+                        <outlet property="mainCameraButton" destination="q7L-6T-xkJ" id="Ytc-p2-J9c"/>
                         <outlet property="previewView" destination="Sgs-dV-lyT" id="Vsn-Fj-Brz"/>
                         <outlet property="recordButton" destination="q7L-6T-xkJ" id="udx-i7-kQ5"/>
                         <outlet property="recordingFlashView" destination="LVL-17-8zM" id="wV3-ro-9zg"/>
@@ -517,7 +518,6 @@
         <image name="background" width="750" height="1334"/>
         <image name="camera-flip" width="28" height="21"/>
         <image name="cancel" width="128" height="128"/>
-        <image name="capture-button" width="164" height="165"/>
         <image name="flash" width="24" height="38"/>
         <image name="login-button" width="543" height="71"/>
         <image name="login-field-background" width="543" height="179"/>

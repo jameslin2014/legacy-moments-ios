@@ -11,7 +11,7 @@
 #import "MomentsAPIUtilities.h"
 #import "SSKeychain.h"
 #import "UIImageView+AFNetworking.h"
-#import "UIImage+Color.h"
+#import "UIImage+EDExtras.h"
 
 @interface MOFollowViewController ()
 

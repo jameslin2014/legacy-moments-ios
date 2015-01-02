@@ -20,6 +20,7 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
 @property (strong, nonatomic) IBOutlet EDRecordingFlashingView *recordingFlashView;
 
 // For use in the storyboards.
+@property (strong, nonatomic) IBOutlet UIButton *mainCameraButton;
 @property (nonatomic, weak) IBOutlet AVCamPreviewView *previewView;
 @property (nonatomic, weak) IBOutlet UIButton *recordButton;
 @property (nonatomic, weak) IBOutlet UIButton *cameraButton;

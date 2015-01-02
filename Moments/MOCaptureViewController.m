@@ -12,6 +12,7 @@
 #import "SSKeychain.h"
 #import <SceneKit/SceneKit.h>
 #import "EDSpinningBoxScene.h"
+#import "UIImage+EDExtras.h"
 
 @implementation MOCaptureViewController{
 	BOOL shouldCancel;
@@ -28,6 +29,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	shouldCancel = NO;
+	
+	[self.mainCameraButton setImage:[UIImage cameraButton] forState:UIControlStateNormal];
 	
 	self.cancelButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     // Create the AVCaptureSession
@@ -199,6 +202,7 @@
 				[self.recordingFlashView show];
 				self.cancelButton.hidden = NO;
 				self.libraryButton.hidden = YES;
+				[self.mainCameraButton setImage:[UIImage recordButton] forState:UIControlStateNormal];
 			});
             [self setLockInterfaceRotation:YES];
             
@@ -219,8 +223,9 @@
 			
 			dispatch_async(dispatch_get_main_queue(), ^{
 				self.cancelButton.hidden = YES;
-			self.libraryButton.hidden = NO;
+				self.libraryButton.hidden = NO;
 				[self.recordingFlashView hide];
+				[self.mainCameraButton setImage:[UIImage cameraButton] forState:UIControlStateNormal];
 			});
             [[self movieFileOutput] stopRecording];
         }
