@@ -18,5 +18,13 @@
 
 + (NSArray *)transitionButtonImages: (BOOL) reversed;
 
+- (UIImage *)imageWithColor:(UIColor *)color;
+
++ (UIImage *)cancelButtonX;
+
++ (UIImage *)cancelButtonLine;
+
++ (NSArray *)transitionCancelButtonImages: (BOOL) reversed;
+
 @end
 

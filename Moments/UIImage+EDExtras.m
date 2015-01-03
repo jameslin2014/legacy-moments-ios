@@ -31,7 +31,7 @@
 	//// Oval Drawing
 	UIBezierPath* ovalPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(3, 3, 80, 80)];
 	[UIColor.whiteColor setStroke];
-	ovalPath.lineWidth = 6;
+	ovalPath.lineWidth = 4;
 	[ovalPath stroke];
 	
 	
@@ -55,14 +55,14 @@
 	//// Oval Drawing
 	UIBezierPath* ovalPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(3, 3, 80, 80)];
 	[UIColor.whiteColor setStroke];
-	ovalPath.lineWidth = 6;
+	ovalPath.lineWidth = 4;
 	[ovalPath stroke];
 	
 	//// Rectangle Drawing
 	UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(23, 23, 40, 40) cornerRadius: 10];
 	[color setFill];
 	[rectanglePath fill];
-
+	
 	
 	UIImage *returnImage = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
@@ -81,13 +81,136 @@
 		//// Oval Drawing
 		UIBezierPath* ovalPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(3, 3, 80, 80)];
 		[UIColor.whiteColor setStroke];
-		ovalPath.lineWidth = 6;
+		ovalPath.lineWidth = 4;
 		[ovalPath stroke];
 		
 		//// Rectangle Drawing
 		UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(13 + i, 13 + i, 60 - 2*i, 60 - 2*i) cornerRadius: 30.0 - 2*i];
 		[color setFill];
 		[rectanglePath fill];
+		
+		UIImage *returnImage = UIGraphicsGetImageFromCurrentImageContext();
+		UIGraphicsEndImageContext();
+		[finalArray addObject:returnImage];
+	}
+	if (reversed){
+		finalArray = [[[finalArray reverseObjectEnumerator]allObjects] mutableCopy];
+	}
+	return finalArray;
+}
+
+- (UIImage *)imageWithColor:(UIColor *)color
+{
+	UIGraphicsBeginImageContextWithOptions(self.size, NO, self.scale);
+	CGContextRef context = UIGraphicsGetCurrentContext();
+	CGContextTranslateCTM(context, 0, self.size.height);
+	CGContextScaleCTM(context, 1.0, -1.0);
+	CGContextSetBlendMode(context, kCGBlendModeNormal);
+	CGRect rect = CGRectMake(0, 0, self.size.width, self.size.height);
+	CGContextClipToMask(context, rect, self.CGImage);
+	[color setFill];
+	CGContextFillRect(context, rect);
+	UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	return newImage;
+}
+
++ (UIImage *)cancelButtonX{
+	CGRect rect = CGRectMake(0, 0, 40, 40);
+	UIGraphicsBeginImageContext(rect.size);
+	
+	//// Bezier Drawing
+	UIBezierPath* bezierPath = UIBezierPath.bezierPath;
+	[bezierPath moveToPoint: CGPointMake(2.5, 2.5)];
+	[bezierPath addLineToPoint: CGPointMake(37.5, 37.5)];
+	bezierPath.lineCapStyle = kCGLineCapRound;
+	
+	bezierPath.lineJoinStyle = kCGLineJoinRound;
+	
+	[UIColor.blackColor setStroke];
+	bezierPath.lineWidth = 4;
+	[bezierPath stroke];
+	
+	
+	//// Bezier 2 Drawing
+	UIBezierPath* bezier2Path = UIBezierPath.bezierPath;
+	[bezier2Path moveToPoint: CGPointMake(37.5, 2.5)];
+	[bezier2Path addLineToPoint: CGPointMake(2.5, 37.5)];
+	bezier2Path.lineCapStyle = kCGLineCapRound;
+	
+	bezier2Path.lineJoinStyle = kCGLineJoinRound;
+	
+	[UIColor.blackColor setStroke];
+	bezier2Path.lineWidth = 4;
+	[bezier2Path stroke];
+	
+	UIImage *returnImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	return returnImage;
+}
+
++ (UIImage *)cancelButtonLine{
+	CGRect rect = CGRectMake(0, 0, 40, 40);
+	UIGraphicsBeginImageContext(rect.size);
+	
+	//// Bezier Drawing
+	UIBezierPath* bezierPath = UIBezierPath.bezierPath;
+	[bezierPath moveToPoint: CGPointMake(2.5, 19.5)];
+	[bezierPath addLineToPoint: CGPointMake(37.5, 19.5)];
+	bezierPath.lineCapStyle = kCGLineCapRound;
+	
+	bezierPath.lineJoinStyle = kCGLineJoinRound;
+	
+	[UIColor.blackColor setStroke];
+	bezierPath.lineWidth = 4;
+	[bezierPath stroke];
+	
+	//// Bezier 2 Drawing
+	UIBezierPath* bezier2Path = UIBezierPath.bezierPath;
+	[bezier2Path moveToPoint: CGPointMake(37.5, 19.5)];
+	[bezier2Path addLineToPoint: CGPointMake(2.5, 19.5)];
+	bezier2Path.lineCapStyle = kCGLineCapRound;
+	
+	bezier2Path.lineJoinStyle = kCGLineJoinRound;
+	
+	[UIColor.blackColor setStroke];
+	bezier2Path.lineWidth = 4;
+	[bezier2Path stroke];
+	
+	UIImage *returnImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	return returnImage;
+}
+
++ (NSArray *)transitionCancelButtonImages:(BOOL)reversed{
+	NSMutableArray *finalArray = [NSMutableArray array];
+	for (float i = 0; i <= 10.0; i += 1.0){
+		CGRect rect = CGRectMake(0, 0, 40, 40);
+		UIGraphicsBeginImageContext(rect.size);
+		
+		//// Bezier Drawing
+		UIBezierPath* bezierPath = UIBezierPath.bezierPath;
+		[bezierPath moveToPoint: CGPointMake(2.5, 2.5 + (17.0 / 10.0) * i)];
+		[bezierPath addLineToPoint: CGPointMake(37.5, 37.5 - (17.0 / 10.0) * i)];
+		bezierPath.lineCapStyle = kCGLineCapRound;
+		
+		bezierPath.lineJoinStyle = kCGLineJoinRound;
+		
+		[UIColor.blackColor setStroke];
+		bezierPath.lineWidth = 4;
+		[bezierPath stroke];
+		
+		//// Bezier 2 Drawing
+		UIBezierPath* bezier2Path = UIBezierPath.bezierPath;
+		[bezier2Path moveToPoint: CGPointMake(37.5, 2.5 + (17.0 / 10.0) * i)];
+		[bezier2Path addLineToPoint: CGPointMake(2.5, 37.5 - (17.0 / 10.0) * i)];
+		bezier2Path.lineCapStyle = kCGLineCapRound;
+		
+		bezier2Path.lineJoinStyle = kCGLineJoinRound;
+		
+		[UIColor.blackColor setStroke];
+		bezier2Path.lineWidth = 4;
+		[bezier2Path stroke];
 		
 		UIImage *returnImage = UIGraphicsGetImageFromCurrentImageContext();
 		UIGraphicsEndImageContext();
