@@ -31,7 +31,7 @@
 	//// Oval Drawing
 	UIBezierPath* ovalPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(3, 3, 80, 80)];
 	[UIColor.whiteColor setStroke];
-	ovalPath.lineWidth = 4;
+	ovalPath.lineWidth = 3;
 	[ovalPath stroke];
 	
 	
@@ -55,7 +55,7 @@
 	//// Oval Drawing
 	UIBezierPath* ovalPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(3, 3, 80, 80)];
 	[UIColor.whiteColor setStroke];
-	ovalPath.lineWidth = 4;
+	ovalPath.lineWidth = 3;
 	[ovalPath stroke];
 	
 	//// Rectangle Drawing
@@ -81,7 +81,7 @@
 		//// Oval Drawing
 		UIBezierPath* ovalPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(3, 3, 80, 80)];
 		[UIColor.whiteColor setStroke];
-		ovalPath.lineWidth = 4;
+		ovalPath.lineWidth = 3;
 		[ovalPath stroke];
 		
 		//// Rectangle Drawing

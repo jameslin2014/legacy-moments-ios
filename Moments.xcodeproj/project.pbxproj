@@ -469,13 +469,13 @@
 			name = Onboarding;
 			sourceTree = "<group>";
 		};
-		205FA48F1A55F2CB0061C174 /* UIImage+Color */ = {
+		205FA48F1A55F2CB0061C174 /* UIImage+EDExtras */ = {
 			isa = PBXGroup;
 			children = (
 				205FA48C1A55F2C50061C174 /* UIImage+EDExtras.h */,
 				205FA48D1A55F2C50061C174 /* UIImage+EDExtras.m */,
 			);
-			name = "UIImage+Color";
+			name = "UIImage+EDExtras";
 			sourceTree = "<group>";
 		};
 		A564D9DC1A476ED7003C99F3 /* UserVoiceSDK */ = {
@@ -601,6 +601,7 @@
 			children = (
 				A5B31C381A287F25009734EE /* MOAppDelegate.h */,
 				A5B31C391A287F25009734EE /* MOAppDelegate.m */,
+				A5B31C3E1A287F26009734EE /* Main.storyboard */,
 				205FA4851A54E0770061C174 /* Onboarding */,
 				20416ED11A4E1B8E009EC625 /* EDSegmentedControl */,
 				20416ED41A4E1C4D009EC625 /* EDSpinningBoxScene */,
@@ -641,7 +642,6 @@
 		A5C5EB851A2A835E002F1591 /* User interface */ = {
 			isa = PBXGroup;
 			children = (
-				A5B31C3E1A287F26009734EE /* Main.storyboard */,
 				205FA4821A54DBF00061C174 /* MOSignUpViewController.h */,
 				205FA4831A54DBF00061C174 /* MOSignUpViewController.m */,
 				A5C5EB7F1A2A8358002F1591 /* MOPageViewController.h */,
@@ -691,7 +691,7 @@
 				A5C29FEF1A33C9F300E605F1 /* PBJVideoPlayer */,
 				20416ED21A4E1C04009EC625 /* JKSegmentedControl */,
 				20416ED31A4E1C10009EC625 /* SSKeychain */,
-				205FA48F1A55F2CB0061C174 /* UIImage+Color */,
+				205FA48F1A55F2CB0061C174 /* UIImage+EDExtras */,
 			);
 			name = "External Libraries";
 			sourceTree = "<group>";
