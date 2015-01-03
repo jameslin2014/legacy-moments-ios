@@ -22,21 +22,21 @@
 }
 
 + (UIImage *)cameraButton{
-	CGRect rect = CGRectMake(0, 0, 86*4, 86*4);
+	CGRect rect = CGRectMake(0, 0, 86*4.0, 86*4.0);
 	UIGraphicsBeginImageContext(rect.size);
 	
 	//// Color Declarations
 	UIColor* color = [UIColor colorWithRed: 0 green: 0.776 blue: 0.42 alpha: 1];
 	
 	//// Oval Drawing
-	UIBezierPath* ovalPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(3*4, 3*4, 80*4, 80*4)];
+	UIBezierPath* ovalPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(3*4.0, 3*4.0, 80*4.0, 80*4.0)];
 	[UIColor.whiteColor setStroke];
-	ovalPath.lineWidth = 3*4;
+	ovalPath.lineWidth = 3*4.0;
 	[ovalPath stroke];
 	
 	
 	//// Rectangle Drawing
-	UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(13*4, 13*4, 60*4, 60*4) cornerRadius: 30*4];
+	UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(13*4.0, 13*4.0, 60*4.0, 60*4.0) cornerRadius: 30*4.0];
 	[color setFill];
 	[rectanglePath fill];
 	
@@ -46,20 +46,20 @@
 }
 
 + (UIImage *)recordButton{
-	CGRect rect = CGRectMake(0, 0, 86*4, 86*4);
+	CGRect rect = CGRectMake(0, 0, 86*4.0, 86*4.0);
 	UIGraphicsBeginImageContext(rect.size);
 	
 	//// Color Declarations
 	UIColor* color = [UIColor colorWithRed: 0 green: 0.776 blue: 0.42 alpha: 1];
 	
 	//// Oval Drawing
-	UIBezierPath* ovalPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(3*4, 3*4, 80*4, 80*4)];
+	UIBezierPath* ovalPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(3*4.0, 3*4.0, 80*4.0, 80*4.0)];
 	[UIColor.whiteColor setStroke];
-	ovalPath.lineWidth = 3*4;
+	ovalPath.lineWidth = 3*4.0;
 	[ovalPath stroke];
 	
 	//// Rectangle Drawing
-	UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(23*4, 23*4, 40*4, 40*4) cornerRadius: 10*4];
+	UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(23*4.0, 23*4.0, 40*4.0, 40*4.0) cornerRadius: 10*4.0];
 	[color setFill];
 	[rectanglePath fill];
 	
@@ -71,19 +71,19 @@
 + (NSArray *)transitionButtonImages: (BOOL)reversed{
 	NSMutableArray *finalArray = [NSMutableArray array];
 	for (float i = 0; i <= 20.0; i += 1.0){
-		CGRect rect = CGRectMake(0, 0, 86*4, 86*4);
+		CGRect rect = CGRectMake(0, 0, 86*4.0, 86*4.0);
 		UIGraphicsBeginImageContext(rect.size);
 		
 		//// Color Declarations
 		UIColor* color = [UIColor colorWithRed: 0 green: 0.776 blue: 0.42 alpha: 1];
 		
 		//// Oval Drawing
-		UIBezierPath* ovalPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(3*4, 3*4, 80*4, 80*4)];
+		UIBezierPath* ovalPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(3*4.0, 3*4.0, 80*4.0, 80*4.0)];
 		[UIColor.whiteColor setStroke];
-		ovalPath.lineWidth = 3*4;
+		ovalPath.lineWidth = 3*4.0;
 		[ovalPath stroke];
 		//// Rectangle Drawing
-		UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake((13 + 0.5*i)*4, (13 + 0.5*i)*4, (60 - i)*4, (60 - i)*4) cornerRadius: (30.0 - i)*4];
+		UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake((13.0 + 0.5*i)*4.0, (13.0 + 0.5*i)*4.0, (60.0 - i)*4.0, (60.0 - i)*4.0) cornerRadius: (30.0 - i)*4.0];
 		[color setFill];
 		[rectanglePath fill];
 		
