@@ -12,12 +12,23 @@
 
 static NSString *apiEndpoint = @"http://pickmoments.io/api/users/";
 
+static const NSString *apiUsername = @"moments";
+static const NSString *apiPassword = @"douglasbumby";
+
+- (NSString *)encodedCredentials {
+    return [[[NSString stringWithFormat:@"%@:%@", apiUsername, apiPassword] dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0];
+}
+
 - (void)loginWithUsername:(NSString *)username andPassword:(NSString *)password completion:(void (^)(BOOL))data {
 }
 
 - (void)getAllUserDataWithUsername:(NSString *)username completion:(void (^)(NSDictionary *))completion {
     NSURL *url = [[NSURL alloc] initWithString:[apiEndpoint stringByAppendingString:username]];
-    [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:url] queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+    
+    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:url];
+    [urlRequest setValue:[NSString stringWithFormat:@"Basic %@", [self encodedCredentials]] forHTTPHeaderField:@"Authorization"];
+    
+    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (error) {
             NSLog(@"%@", error);
         } else {
@@ -29,7 +40,11 @@ static NSString *apiEndpoint = @"http://pickmoments.io/api/users/";
 
 - (void)searchForUsersLikeUserName:(NSString *)searchText completion:(void (^)(NSArray *))completion {
     NSURL *url = [[NSURL alloc] initWithString:[[apiEndpoint stringByAppendingString:@"search/"] stringByAppendingString:searchText]];
-    [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:url] queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+
+    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:url];
+    [urlRequest setValue:[NSString stringWithFormat:@"Basic %@", [self encodedCredentials]] forHTTPHeaderField:@"Authorization"];
+    
+    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (error) {
             NSLog(@"%@", error);
         } else {
@@ -50,6 +65,7 @@ static NSString *apiEndpoint = @"http://pickmoments.io/api/users/";
     
     [urlRequest setValue:[NSString stringWithFormat:@"%lu", (unsigned long) postData.length] forHTTPHeaderField:@"Content-Length"];
     [urlRequest setValue:@"application/x-www-form-urlencoded charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [urlRequest setValue:[NSString stringWithFormat:@"Basic %@", [self encodedCredentials]] forHTTPHeaderField:@"Authorization"];
     [urlRequest setHTTPBody:postData];
     
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
