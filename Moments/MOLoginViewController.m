@@ -68,39 +68,41 @@
 - (void)handleSingleTap:(UITapGestureRecognizer *) sender {
     [self.view endEditing:YES];
     
-    // Attempt to login
-    /*
     MomentsAPIUtilities *LoginAPI = [MomentsAPIUtilities alloc];
     [LoginAPI loginWithUsername:usernameField.text andPassword:passwordField.text completion:^(BOOL login) {
-        if (login == true) {
-            [SSKeychain setPassword:passwordField.text forService:@"moments" account:@"password"];
-            [SSKeychain setPassword:usernameField.text forService:@"moments" account:@"username"];
-			[self dismissViewControllerAnimated:YES completion:nil];
-			[[NSNotificationCenter defaultCenter] postNotificationName:@"Reload" object:nil];
-			[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"UserHasLoggedInSuccessfullyVersion-1.0"];
-        } else {
-            NSLog(@"Login Failed");
-        }
         
+        if (true == login) {
+            
+            [SSKeychain setPassword:usernameField.text forService:@"moments" account:@"username"];
+            [SSKeychain setPassword:passwordField.text forService:@"moments" account:@"password"];
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"Reload" object:nil];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"UserHasLoggedInSuccessfullyVersion-1.0"];
+    
+        } else {
+            NSLog(@"Login has failed for some reason.");
+        }
     }];
-    */
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-//    self.view.alpha = 0.0f;
-    /*
+    self.view.alpha = 0.0f;
+    
     MomentsAPIUtilities *LoginAPI = [MomentsAPIUtilities alloc];
     [LoginAPI loginWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] andPassword:[SSKeychain passwordForService:@"moments" account:@"password"] completion:^(BOOL login) {
-        if (login == true) {
-            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-            UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"pageView"];
-            [self presentViewController:vc animated:NO completion:nil];
+        
+        if (true == login) {
+            
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"pageView"];
+            [self presentViewController:viewController animated:NO completion:nil];
         } else {
             self.view.alpha = 1;
         }
+        
     }];
-    */
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
