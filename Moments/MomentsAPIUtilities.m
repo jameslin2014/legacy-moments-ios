@@ -65,6 +65,26 @@ static const NSString *apiPassword = @"douglasbumby";
     }];
 }
 
+- (void)followUser:(NSString *)user withFollower:(NSString *)follower completion:(void (^)(NSDictionary *))completion {
+    NSMutableURLRequest *urlRequest = [MomentsAPIUtilities signedURLRequestForEndpoint:@"/follow/" withHTTPMethod:@"POST" andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:user, @"user", follower, @"follower", nil]];
+    
+    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if (!error) {
+            completion([NSJSONSerialization JSONObjectWithData:data options:0 error:&error]);
+        }
+    }];
+}
+
+- (void)unfollowUser:(NSString *)user withFollower:(NSString *)follower completion:(void (^)(NSDictionary *))completion {
+    NSMutableURLRequest *urlRequest = [MomentsAPIUtilities signedURLRequestForEndpoint:@"/follow/" withHTTPMethod:@"DELETE" andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:user, @"user", follower, @"follower", nil]];
+    
+    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if (!error) {
+            completion([NSJSONSerialization JSONObjectWithData:data options:0 error:&error]);
+        }
+    }];
+}
+
 + (NSString *)encodedCredentials {
     return [[[NSString stringWithFormat:@"%@:%@", apiUsername, apiPassword] dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0];
 }
