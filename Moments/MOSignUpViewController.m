@@ -18,16 +18,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    /*
-
-    EXAMPLE CODE
-    MOAPI *api = [[MOAPI alloc] init];
-    [api createUserWithName:@"colton" andEmail:@"colton01@icloud.com" completion:^(NSDictionary * user) {
-        NSLog(@"%@", user);
-    }];
-     
-    */
 }
 
 - (void)didReceiveMemoryWarning {

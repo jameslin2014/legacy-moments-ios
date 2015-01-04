@@ -54,8 +54,7 @@
 		}];
         */
         
-        MOAPI *api = [[MOAPI alloc] init];
-        [api getAllUserDataWithUsername:@"douglas" completion:^(NSDictionary * user) {
+        [[[MOAPI alloc] init] getAllUserDataWithUsername:@"douglas" completion:^(NSDictionary * user) {
             self.following = [user objectForKey:@"follows"];
             [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
         }];

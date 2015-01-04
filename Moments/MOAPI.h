@@ -10,7 +10,10 @@
 
 @interface MOAPI : NSObject
 
-- (void)createUserWithName:(NSString *)name andEmail:(NSString *)email completion:(void (^)(NSDictionary *))completion;
-- (void)getAllUserDataWithUsername:(NSString *)username completion:(void (^)(NSDictionary *))data;
-- (void)searchForUsersLikeUserName:(NSString *)searchText completion:(void (^)(NSArray *))completion;
+- (void)checkIsTakenUsername:(NSString *)username completion:(void (^)(BOOL))data;
+- (void)loginWithUsername:(NSString *)username andPassword:(NSString *)password completion:(void (^)(BOOL))data;
+- (void)getAllUserDataWithUsername:(NSString *)username completion:(void (^)(NSDictionary *))completion;
+- (void)searchForUsersLikeUsername:(NSString *)searchText completion:(void (^)(NSArray *))completion;
+- (void)createUserWithUsername:(NSString *)name email:(NSString *)email andPassword:(NSString *)password completion:(void (^)(NSDictionary *))completion;
+
 @end

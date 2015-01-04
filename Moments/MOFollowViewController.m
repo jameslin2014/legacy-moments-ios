@@ -101,8 +101,7 @@
 			}];
             */
             
-            MOAPI *api = [[MOAPI alloc] init];
-            [api getAllUserDataWithUsername:@"douglas" completion:^(NSDictionary * user) {
+            [[[MOAPI alloc] init] getAllUserDataWithUsername:@"douglas" completion:^(NSDictionary * user) {
                 self.following = [user objectForKey:@"follows"];
                 [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
             }];
@@ -117,8 +116,7 @@
 			}];
             */
             
-            MOAPI *api = [[MOAPI alloc] init];
-            [api getAllUserDataWithUsername:@"douglas" completion:^(NSDictionary * user) {
+            [[[MOAPI alloc] init] getAllUserDataWithUsername:@"douglas" completion:^(NSDictionary * user) {
                 self.followers = [user objectForKey:@"followers"];
                 [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
             }];
@@ -170,8 +168,7 @@
 				}];
                 */
                 
-                MOAPI *api = [[MOAPI alloc] init];
-                [api getAllUserDataWithUsername:@"douglas" completion:^(NSDictionary * user) {
+                [[[MOAPI alloc] init] getAllUserDataWithUsername:@"douglas" completion:^(NSDictionary * user) {
                     self.following = [user objectForKey:@"follows"];
                     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
                 }];
@@ -187,8 +184,7 @@
 				}];
                 */
                 
-                MOAPI *api = [[MOAPI alloc] init];
-                [api getAllUserDataWithUsername:@"douglas" completion:^(NSDictionary * user) {
+                [[[MOAPI alloc] init] getAllUserDataWithUsername:@"douglas" completion:^(NSDictionary * user) {
                     self.followers = [user objectForKey:@"followers"];
                     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
                 }];
@@ -267,8 +263,7 @@
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    MOAPI *api = [[MOAPI alloc] init];
-    [api searchForUsersLikeUserName:searchText completion:^(NSArray *results) {
+    [[[MOAPI alloc] init] searchForUsersLikeUsername:searchText completion:^(NSArray *results) {
         NSLog(@"Results: %@", results);
     }];
     
