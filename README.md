@@ -1,6 +1,6 @@
 # Moments
 
-Moments is an application that [Douglas Bumby](http://www.github.com/istx25) dreamt up early in the morning on Friday, November 28th. Since those few days I have pitched my idea to [Colton Anglin](http://www.github.com/colton) and we decided to make this product together as fast as possible, and work on fixing minor bugs and user interface improvements to the end.
+Moments is an application that [Douglas Bumby](http://www.github.com/istx25) dreamt up early in the morning on Friday, November 28th. Over the last month I have pitched and got [Damon Jones](http://www.github.com/damonjones) and [Evan Dekhayser](https://github.com/edekhayser) to help in the development of the product and [George Streten](https://twitter.com/gstreten) to help with public relations.
 
 ## The Idea
 
@@ -9,18 +9,5 @@ We're wanting Moments to be:
 
 # Licensing
 
-All code written for the Moments project is the sole property of Cosmic Engineering unless directly stated otherwise.
-Copyright 2014 (c) - Cosmic Engineering
-
-### Open Source
-
-Moments uses multiple open source libraries and technologies that have assisted in the engineering and development of the product.
-
-#### Libraries
-- [AFNetworking](http://www.github.com/AFNetworking/AFNetworking)
-- [SSKeychain](http://www.github.com/soffes/SSKeychain)
-- JKSegmentedControl from [Colton Anglin](http://www.github.com/colton)
-
-#### Services
-- [Firebase](https://www.firebase.com)
-- [Amazon Web Services](http://aws.amazon.com)
+All code written for the Moments project is the sole property of Douglas Bumby and Crew; unless directly stated otherwise.
+Copyright 2015 (c) - Douglas Bumby and Crew
