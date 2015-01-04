@@ -70,15 +70,12 @@
     
     MomentsAPIUtilities *LoginAPI = [MomentsAPIUtilities alloc];
     [LoginAPI loginWithUsername:usernameField.text andPassword:passwordField.text completion:^(BOOL login) {
-        
-        if (true == login) {
-            
+        if (login) {
             [SSKeychain setPassword:usernameField.text forService:@"moments" account:@"username"];
             [SSKeychain setPassword:passwordField.text forService:@"moments" account:@"password"];
             [self dismissViewControllerAnimated:YES completion:nil];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"Reload" object:nil];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"UserHasLoggedInSuccessfullyVersion-1.0"];
-    
         } else {
             NSLog(@"Login has failed for some reason.");
         }
@@ -92,16 +89,13 @@
     
     MomentsAPIUtilities *LoginAPI = [MomentsAPIUtilities alloc];
     [LoginAPI loginWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] andPassword:[SSKeychain passwordForService:@"moments" account:@"password"] completion:^(BOOL login) {
-        
-        if (true == login) {
-            
+        if (login) {
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
             UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"pageView"];
             [self presentViewController:viewController animated:NO completion:nil];
         } else {
             self.view.alpha = 1;
         }
-        
     }];
 }
 
