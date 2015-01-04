@@ -397,11 +397,11 @@
 		02949ED71A2984F8001EDD2D /* API */ = {
 			isa = PBXGroup;
 			children = (
-				A5EDE0D41A59178D00DA8B8B /* MOS3APIUtilities.h */,
-				A5EDE0D51A59178D00DA8B8B /* MOS3APIUtilities.m */,
-				A5E01C9E1A2B37F0003ED753 /* Networking */,
 				E4A776671A566915003811D6 /* MomentsAPIUtilities.h */,
 				E4A776681A566915003811D6 /* MomentsAPIUtilities.m */,
+				A5E01C9E1A2B37F0003ED753 /* Networking */,
+				A5EDE0D41A59178D00DA8B8B /* MOS3APIUtilities.h */,
+				A5EDE0D51A59178D00DA8B8B /* MOS3APIUtilities.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
