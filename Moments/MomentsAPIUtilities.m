@@ -11,7 +11,7 @@
 @implementation MomentsAPIUtilities
 
 //static const NSString *apiEndpoint = @"http://pickmoments.io/api/users/";
-static const NSString *apiEndpoint = @"http://107.170.194.151/app.php/api/users/";
+static const NSString *apiEndpoint = @"http://107.170.194.151/api/users/";
 static const NSString *apiUsername = @"moments";
 static const NSString *apiPassword = @"qHCLgGKUcKGcEf8avrKRr9JqygeohXJZ";
 
