@@ -11,7 +11,6 @@
 @interface MOFollowViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate>
 
 @property IBOutlet UIBarButtonItem *searchButton;
-
 @property (nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIView *subNavigationView;
 

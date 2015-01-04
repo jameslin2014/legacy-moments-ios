@@ -7,11 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UserVoice.h"
-
-#import "SVModalWebViewController.h"
-#import "SVWebViewController.h"
 
 @interface MOSettingsViewController : UIViewController
-
 @end

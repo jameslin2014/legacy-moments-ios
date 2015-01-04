@@ -7,11 +7,17 @@
 //
 
 #import "MOSettingsViewController.h"
+#import "SVModalWebViewController.h"
 #import "EDSegmentedControl.h"
+
+#import "SSKeychain.h"
+#import "SVWebViewController.h"
+#import "SVProgressHUD.h"
+#import "UserVoice.h"
+
 #import <Accounts/Accounts.h>
 #import <Social/Social.h>
-#import "SVProgressHUD.h"
-#import "SSKeychain.h"
+
 static NSString *CellIdentifier = @"CellID";
 
 @interface MOSettingsViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
