@@ -7,7 +7,7 @@
 //
 
 #import "MOSignUpViewController.h"
-#import "MOAPI.h"
+#import "MomentsAPIUtilities.h"
 
 @interface MOSignUpViewController ()
 

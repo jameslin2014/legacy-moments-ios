@@ -8,7 +8,7 @@
 
 #import "MOFollowViewController.h"
 #import "JKSegmentedControl.h"
-#import "MOAPI.h"
+#import "MomentsAPIUtilities.h"
 #import "SSKeychain.h"
 #import "UIImageView+AFNetworking.h"
 #import "UIImage+EDExtras.h"
@@ -94,14 +94,8 @@
 		self.title = @"Following";
         
 		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-            /*
-            [[[MomentsAPIUtilities alloc]init]getUserFollowingListWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] completion:^(NSArray *following) {
-				self.following = following;
-				[self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-			}];
-            */
             
-            [[[MOAPI alloc] init] getAllUserDataWithUsername:@"douglas" completion:^(NSDictionary * user) {
+            [[[MomentsAPIUtilities alloc] init] getAllUserDataWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] completion:^(NSDictionary * user) {
                 self.following = [user objectForKey:@"follows"];
                 [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
             }];
@@ -109,14 +103,8 @@
 	} else {
 		self.title = @"Followers";
 		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-            /*
-			[[[MomentsAPIUtilities alloc]init]getUserFollowersListWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] completion:^(NSArray *followers) {
-				self.followers = followers;
-				[self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-			}];
-            */
             
-            [[[MOAPI alloc] init] getAllUserDataWithUsername:@"douglas" completion:^(NSDictionary * user) {
+            [[[MomentsAPIUtilities alloc] init] getAllUserDataWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] completion:^(NSDictionary * user) {
                 self.followers = [user objectForKey:@"followers"];
                 [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
             }];
@@ -161,30 +149,19 @@
 	if (self.segmentedControl.selectedSegmentIndex == 0){
 		if (!self.following){
 			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-                /*
-				[[[MomentsAPIUtilities alloc]init]getUserFollowingListWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] completion:^(NSArray *following) {
-					self.following = following;
-					[self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-				}];
-                */
                 
-                [[[MOAPI alloc] init] getAllUserDataWithUsername:@"douglas" completion:^(NSDictionary * user) {
+                [[[MomentsAPIUtilities alloc] init] getAllUserDataWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] completion:^(NSDictionary * user) {
                     self.following = [user objectForKey:@"follows"];
                     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
                 }];
+                
 			});
 		}
 	} else{
 		if (!self.followers){
 			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-                /*
-				[[[MomentsAPIUtilities alloc]init]getUserFollowersListWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] completion:^(NSArray *followers) {
-					self.followers = followers;
-					[self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-				}];
-                */
-                
-                [[[MOAPI alloc] init] getAllUserDataWithUsername:@"douglas" completion:^(NSDictionary * user) {
+
+                [[[MomentsAPIUtilities alloc] init] getAllUserDataWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] completion:^(NSDictionary * user) {
                     self.followers = [user objectForKey:@"followers"];
                     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
                 }];
@@ -263,48 +240,10 @@
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    [[[MOAPI alloc] init] searchForUsersLikeUsername:searchText completion:^(NSArray *results) {
+    [[[MomentsAPIUtilities alloc] init] searchForUsersLikeUsername:searchText completion:^(NSArray *results) {
         NSLog(@"Results: %@", results);
     }];
     
-//	MomentsAPIUtilities *APIHelper = [MomentsAPIUtilities alloc];
-	//API NEEDS TO SUPPORT MULTIPLE PEOPLE
-//	[APIHelper searchForUsersWithUserName:searchText completion:^(BOOL valid) {
-//		
-//		if (valid) {
-//			
-//			view1.backgroundColor = tableView.backgroundColor;
-//			view1.backgroundColor = [UIColor redColor];
-//			[self.view addSubview:view1];
-//			
-//			view2.backgroundColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
-//			[view1 addSubview:view2];
-//			
-//			nameLabel.font = [UIFont fontWithName:@"Avenir-Book" size:24];
-//			nameLabel.textColor = [UIColor whiteColor];
-//			[view2 addSubview:nameLabel];
-//			nameLabel.text = @"Loading..";
-//			nameLabel.text = searchText;
-//			profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
-//			profileImageView.clipsToBounds = YES;
-//			[view2 addSubview:profileImageView];
-//			
-//			[profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",nameLabel.text]] placeholderImage:[UIImage imageNamed:@"capture-button.png"]];
-//			
-//		} else {
-//			view1.backgroundColor = tableView.backgroundColor;
-//			[self.view addSubview:view1];
-//			view2.backgroundColor = [UIColor colorWithRed:(38/255.0) green:(37/255.0) blue:(36/255.0) alpha:100];
-//			[view1 addSubview:view2];
-//			
-//			nameLabel.font = [UIFont fontWithName:@"Avenir-Book" size:25];
-//			nameLabel.textColor = [UIColor whiteColor];
-//			nameLabel.text = @"User Not Found";
-//			[view2 addSubview:nameLabel];
-//			[profileImageView removeFromSuperview];
-//		}
-//		
-//	}];
 }
 
 @end

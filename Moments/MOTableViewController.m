@@ -9,7 +9,7 @@
 #import "MOTableViewController.h"
 #import "SSKeychain.h"
 #import "AFNetworking.h"
-#import "MOAPI.h"
+#import "MomentsAPIUtilities.h"
 #import "UIImageView+AFNetworking.h"
 #import "MOSettingsViewController.h"
 #import <SceneKit/SceneKit.h>
@@ -47,14 +47,8 @@
 
 - (void)getDataFromServer{
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        /*
-		[[[MomentsAPIUtilities alloc]init] getUserFollowingListWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] completion:^(NSArray *followedUsers) {
-			self.following = followedUsers;
-			[self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-		}];
-        */
         
-        [[[MOAPI alloc] init] getAllUserDataWithUsername:@"douglas" completion:^(NSDictionary * user) {
+        [[[MomentsAPIUtilities alloc] init] getAllUserDataWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] completion:^(NSDictionary * user) {
             self.following = [user objectForKey:@"follows"];
             [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
         }];
@@ -86,7 +80,7 @@
 		v.alpha = 1.0;
 	}];
 	[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-	//    [LoadingHUD.textLabel setText:@"Exporting..."];
+
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		NSData *videoData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",user]]];
 		[videoData writeToFile:imagePath atomically:NO];

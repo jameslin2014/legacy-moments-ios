@@ -7,7 +7,7 @@
 //
 
 #import "MOPageViewController.h"
-#import "MOAPI.h"
+#import "MomentsAPIUtilities.h"
 #import "SSKeychain.h"
 
 @interface MOPageViewController ()
