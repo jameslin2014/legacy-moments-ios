@@ -15,5 +15,6 @@
 - (void)getAllUserDataWithUsername:(NSString *)username completion:(void (^)(NSDictionary *))completion;
 - (void)searchForUsersLikeUsername:(NSString *)searchText completion:(void (^)(NSArray *))completion;
 - (void)createUserWithUsername:(NSString *)name email:(NSString *)email andPassword:(NSString *)password completion:(void (^)(NSDictionary *))completion;
-
+- (void)followUser:(NSString *)user withFollower:(NSString *)follower completion:(void (^)(NSDictionary *))completion;
+- (void)unfollowUser:(NSString *)user withFollower:(NSString *)follower completion:(void (^)(NSDictionary *))completion;
 @end

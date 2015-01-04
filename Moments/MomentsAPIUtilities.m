@@ -12,7 +12,7 @@
 
 static const NSString *apiEndpoint = @"http://pickmoments.io/api/users/";
 static const NSString *apiUsername = @"moments";
-static const NSString *apiPassword = @"douglasbumby";
+static const NSString *apiPassword = @"qHCLgGKUcKGcEf8avrKRr9JqygeohXJZ";
 
 - (void)checkIsTakenUsername:(NSString *)username completion:(void (^)(BOOL))completion {
     NSMutableURLRequest *urlRequest = [MomentsAPIUtilities signedURLRequestForEndpoint:@"/exists/" withHTTPMethod:@"GET" andDictionary:nil];
