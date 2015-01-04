@@ -14,7 +14,6 @@
 /**
  Grabs a user's profile picture from S3 from a username.
  */
-
 - (void)getUserProfilePictureWithUsername:(NSString *)username completion:(void(^)(UIImage *profilePicture))data;
 
 @end

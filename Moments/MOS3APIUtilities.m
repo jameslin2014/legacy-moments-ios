@@ -14,7 +14,6 @@
 /**
  Grabs a user's profile picture from S3 from a username.
  */
-
 - (void)getUserProfilePictureWithUsername:(NSString *)username completion:(void (^)(UIImage *))data {
     [[DLImageLoader sharedInstance] loadImageFromUrl:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",username]
                                            completed:^(NSError *error, UIImage *image) {

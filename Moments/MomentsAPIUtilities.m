@@ -15,6 +15,9 @@ static const NSString *apiEndpoint = @"http://107.170.194.151/api/users/";
 static const NSString *apiUsername = @"moments";
 static const NSString *apiPassword = @"qHCLgGKUcKGcEf8avrKRr9JqygeohXJZ";
 
+/**
+ Sends a request to droplet to check if the username is available
+ */
 - (void)checkIsTakenUsername:(NSString *)username completion:(void (^)(BOOL))completion {
     NSMutableURLRequest *urlRequest = [MomentsAPIUtilities signedURLRequestForEndpoint:@"/exists/" withHTTPMethod:@"GET" andDictionary:nil];
     
@@ -26,6 +29,9 @@ static const NSString *apiPassword = @"qHCLgGKUcKGcEf8avrKRr9JqygeohXJZ";
     }];
 }
 
+/**
+ Authenticates user into Moments with pre-determined username and password
+ */
 - (void)loginWithUsername:(NSString *)username andPassword:(NSString *)password completion:(void (^)(BOOL))completion {
     NSMutableURLRequest *urlRequest = [MomentsAPIUtilities signedURLRequestForEndpoint:@"/login/" withHTTPMethod:@"POST" andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:username, @"name", password, @"password", nil]];
     
@@ -37,6 +43,9 @@ static const NSString *apiPassword = @"qHCLgGKUcKGcEf8avrKRr9JqygeohXJZ";
     }];
 }
 
+/**
+ Grabs every piece of data from a user from a username
+ */
 - (void)getAllUserDataWithUsername:(NSString *)username completion:(void (^)(NSDictionary *))completion {
     NSMutableURLRequest *urlRequest = [MomentsAPIUtilities signedURLRequestForEndpoint:username withHTTPMethod:@"GET" andDictionary:nil];
     
@@ -47,6 +56,9 @@ static const NSString *apiPassword = @"qHCLgGKUcKGcEf8avrKRr9JqygeohXJZ";
     }];
 }
 
+/**
+ Search user records for other users based on UISearchBar contents
+ */
 - (void)searchForUsersLikeUsername:(NSString *)searchText completion:(void (^)(NSArray *))completion {
     NSMutableURLRequest *urlRequest = [MomentsAPIUtilities signedURLRequestForEndpoint:[NSString stringWithFormat:@"search/%@", searchText] withHTTPMethod:@"GET" andDictionary:nil];
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
@@ -56,6 +68,9 @@ static const NSString *apiPassword = @"qHCLgGKUcKGcEf8avrKRr9JqygeohXJZ";
     }];
 }
 
+/**
+ Creates a new user instance during registration
+ */
 - (void)createUserWithUsername:(NSString *)name email:(NSString *)email andPassword:(NSString *)password completion:(void (^)(NSDictionary *))completion {
     NSMutableURLRequest *urlRequest = [MomentsAPIUtilities signedURLRequestForEndpoint:@"" withHTTPMethod:@"POST" andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:name, @"name", email, @"email", password, @"password", nil]];
     
@@ -66,6 +81,9 @@ static const NSString *apiPassword = @"qHCLgGKUcKGcEf8avrKRr9JqygeohXJZ";
     }];
 }
 
+/**
+ Subscribe to a user's video content
+ */
 - (void)followUser:(NSString *)user withFollower:(NSString *)follower completion:(void (^)(NSDictionary *))completion {
     NSMutableURLRequest *urlRequest = [MomentsAPIUtilities signedURLRequestForEndpoint:@"/follow/" withHTTPMethod:@"POST" andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:user, @"user", follower, @"follower", nil]];
     
@@ -76,6 +94,9 @@ static const NSString *apiPassword = @"qHCLgGKUcKGcEf8avrKRr9JqygeohXJZ";
     }];
 }
 
+/**
+ Unsubscribe from a user's video content
+ */
 - (void)unfollowUser:(NSString *)user withFollower:(NSString *)follower completion:(void (^)(NSDictionary *))completion {
     NSMutableURLRequest *urlRequest = [MomentsAPIUtilities signedURLRequestForEndpoint:@"/follow/" withHTTPMethod:@"DELETE" andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:user, @"user", follower, @"follower", nil]];
     
@@ -86,10 +107,16 @@ static const NSString *apiPassword = @"qHCLgGKUcKGcEf8avrKRr9JqygeohXJZ";
     }];
 }
 
+/**
+ Encoding user credentials using base64 encryption
+ */
 + (NSString *)encodedCredentials {
     return [[[NSString stringWithFormat:@"%@:%@", apiUsername, apiPassword] dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0];
 }
 
+/**
+ Encoding dictionaries using base64 encryption
+ */
 + (NSData *)encodeDictionary:(NSDictionary *)dictionary {
     NSMutableArray *parts = [[NSMutableArray alloc] init];
     for (NSString *key in dictionary) {
@@ -103,6 +130,9 @@ static const NSString *apiPassword = @"qHCLgGKUcKGcEf8avrKRr9JqygeohXJZ";
     return [encodedDictionary dataUsingEncoding:NSUTF8StringEncoding];
 }
 
+/**
+ Signing the URL request for server endpoints using a mutable url request.
+ */
 + (NSMutableURLRequest *)signedURLRequestForEndpoint:(NSString *)endpoint withHTTPMethod:(NSString *)method andDictionary:(NSDictionary *)dictionary {
     NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:[apiEndpoint stringByAppendingString:endpoint]]];
     [urlRequest setValue:[NSString stringWithFormat:@"Basic %@", [MomentsAPIUtilities encodedCredentials]] forHTTPHeaderField:@"Authorization"];
