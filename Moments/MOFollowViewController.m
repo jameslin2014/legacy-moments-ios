@@ -21,6 +21,8 @@
 @property (strong, nonatomic) NSArray *following;
 @property (strong, nonatomic) NSArray *searchUsers;
 
+@property (nonatomic) BOOL textFieldSelected;
+
 @end
 
 @implementation MOFollowViewController
@@ -120,7 +122,7 @@
 		self.segmentedControl.userInteractionEnabled = false;
 		self.searchBar.alpha = 1.0;
 		[self.searchBar becomeFirstResponder];
-		
+		self.textFieldSelected = YES;
 	} completion:^(BOOL finished) {}];
 }
 
@@ -130,7 +132,7 @@
 	[UIView animateWithDuration:0.1 animations:^{
 		self.searchBar.alpha = 0.0f;
 		self.segmentedControl.userInteractionEnabled = true;
-		
+		self.textFieldSelected = NO;
 	} completion:^(BOOL finished) {
 		if (finished) {
 			[UIView animateWithDuration:0.3 animations:^{
@@ -147,7 +149,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-	if (self.segmentedControl.isFirstResponder){
+	if (self.textFieldSelected){
 		return self.searchUsers.count;
 	}
 	return self.segmentedControl.selectedSegmentIndex == 0 ? self.following.count : self.followers.count;
@@ -158,8 +160,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-	UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DaCell"];
-	
+//	UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DaCell"];
+	UITableViewCell *cell = [[UITableViewCell alloc]init];
 	UILabel *nameLabel;
 	UIImageView *profileImageView;
 	
@@ -177,7 +179,6 @@
 	if (!nameLabel) {nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 7, cell.frame.size.width, cell.frame.size.height)];}
 	nameLabel.font = [UIFont fontWithName:@"Avenir-Book" size:18];
 	nameLabel.textColor = [UIColor whiteColor];
-	nameLabel.text = self.segmentedControl.selectedSegmentIndex == 0 ? self.following[indexPath.row] : self.followers[indexPath.row];
 	if (!nameLabel.superview){
 		[cell.contentView addSubview:nameLabel];
 	}
@@ -188,23 +189,29 @@
 		[cell.contentView addSubview:profileImageView];
 	}
 	NSString *username;
-	if (self.searchBar.isFirstResponder){
+	if (self.textFieldSelected && self.searchUsers.count > indexPath.row){
 		username = self.searchUsers[indexPath.row];
 	} else if (self.segmentedControl.selectedSegmentIndex == 0){
 		username = self.following[indexPath.row];
 	} else{
 		username = self.followers[indexPath.row];
 	}
+	nameLabel.text = username;
+	__weak UIImageView *weakImageView = profileImageView;
+	[profileImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png", username]]] placeholderImage:[UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+		weakImageView.image = image;
+	} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+	}];
 	
 	return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-	return self.searchBar.isFirstResponder ? 0 : 21.5;
+	return self.textFieldSelected ? 0 : 21.5;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	if (self.searchBar.isFirstResponder){
+	if (self.textFieldSelected){
 		return @"";
 	} else if (self.segmentedControl.selectedSegmentIndex == 0){
 		return [NSString stringWithFormat:@"Following %lu user%@", (unsigned long)self.following.count, self.following.count == 1 ? @"" : @"s"];
@@ -228,9 +235,15 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     [[MomentsAPIUtilities sharedInstance] searchForUsersLikeUsername:searchText completion:^(NSArray *results) {
-		self.searchUsers = results;
-		NSLog(@"%@", results);
-		[self.tableView performSelectorInBackground:@selector(reloadData) withObject:nil];
+		NSMutableArray *usernames = [NSMutableArray array];
+		if ([results isKindOfClass:[NSArray class]]){
+			for (NSDictionary *d in results){
+				[usernames addObject:d[@"name"]];
+			}
+		}
+		self.searchUsers = nil;
+		self.searchUsers = usernames;
+		[self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
     }];
 }
 
@@ -238,8 +251,7 @@
     MOUser *user = [MomentsAPIUtilities sharedInstance].user;
     self.following = user.following;
     self.followers = user.followers;
-	NSLog(@"%@", user);
-    [self.tableView performSelectorInBackground:@selector(reloadData) withObject:nil];
+    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 
 @end
