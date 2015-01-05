@@ -40,7 +40,7 @@
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (!error) {
             NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-            completion([dictionary objectForKey:@"exists"]);
+            completion([[dictionary objectForKey:@"exists"] boolValue]);
         }
     }];
 }
@@ -58,7 +58,7 @@
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (!error) {
             NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-            completion([dictionary objectForKey:@"login"]);
+            completion([[dictionary objectForKey:@"login"] boolValue]);
         } else {
             NSLog(@"%@", error);
         }
