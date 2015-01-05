@@ -68,7 +68,12 @@
     self.password = nil;
     self.apiKey = nil;
     
+    self.following = nil;
+    self.followers = nil;
+    
     [self saveToKeychain];
+    
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"dataLoaded" object:nil]];
 }
 
 - (void)reload {
