@@ -79,12 +79,13 @@
 	self.tableView.separatorColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:1.0];
 	self.tableView.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:1.0];
 	[self.tableView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapOccurred:)]];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataLoaded) name:@"dataLoaded" object:nil];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [self dataLoaded];
+- (void)viewWillAppear:(BOOL)animated {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(dataLoaded)
+                                                     name:@"dataLoaded"
+                                                   object:nil];
 }
 
 - (void)tapOccurred: (UITapGestureRecognizer *)tapGesture{
@@ -96,7 +97,8 @@
 - (void)tabsChanged: (JKSegmentedControl *) segmentedControl{
     [self dataLoaded];
     [[MomentsAPIUtilities sharedInstance].user reload];
-	if ([segmentedControl selectedSegmentIndex] == 0) {
+	
+    if ([segmentedControl selectedSegmentIndex] == 0) {
 		self.title = @"Following";
 	} else {
 		self.title = @"Followers";

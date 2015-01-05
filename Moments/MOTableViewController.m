@@ -40,14 +40,6 @@
 	UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"gear"] style:UIBarButtonItemStylePlain target:self action:@selector(showOptionsAndAbout)];
 	button.tintColor = [UIColor whiteColor];
 	self.navigationItem.rightBarButtonItem = button;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataLoaded) name:@"dataLoaded" object:nil];
-    
-    self.following = [MomentsAPIUtilities sharedInstance].user.following;
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [self dataLoaded];
 }
 
 - (void)getDataFromServer{
@@ -126,9 +118,14 @@
 	 {
 		 UIViewController *loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"login"];
 		 [self presentViewController:loginVC animated:YES completion:nil];
-		 
-		 
 	 }];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(dataLoaded)
+                                                 name:@"dataLoaded"
+                                               object:nil];
+    
+    self.following = [MomentsAPIUtilities sharedInstance].user.following;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
