@@ -82,10 +82,13 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(dataLoaded)
-                                                     name:@"dataLoaded"
-                                                   object:nil];
+    NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"dataLoaded"
+                                                      object:nil
+                                                       queue:mainQueue
+                                                  usingBlock:^(NSNotification *note) {
+      [self dataLoaded];
+    }];
 }
 
 - (void)tapOccurred: (UITapGestureRecognizer *)tapGesture{

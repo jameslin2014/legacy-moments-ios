@@ -120,10 +120,12 @@
 		 [self presentViewController:loginVC animated:YES completion:nil];
 	 }];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(dataLoaded)
-                                                 name:@"dataLoaded"
-                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"dataLoaded"
+                                                      object:nil
+                                                       queue:mainQueue
+                                                  usingBlock:^(NSNotification *note) {
+      [self dataLoaded];
+    }];
     
     self.following = [MomentsAPIUtilities sharedInstance].user.following;
 }
