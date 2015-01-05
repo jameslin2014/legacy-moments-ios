@@ -62,7 +62,7 @@
     passwordField.returnKeyType = UIReturnKeyDone;
     passwordField.secureTextEntry = YES;
     [self.view addSubview:passwordField];
-    passwordField.text = [MomentsAPIUtilities sharedInstance].user.password;
+    passwordField.text = @"";
 }
 
 - (void)handleSingleTap:(UITapGestureRecognizer *) sender {

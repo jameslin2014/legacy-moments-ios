@@ -152,7 +152,7 @@
 	cell.selectedBackgroundView = bgView;
 	
 	if (indexPath.section == 0){
-		cell.textLabel.text = [NSString stringWithFormat:@"\t\t%@", [MomentsAPIUtilities sharedInstance].user.password ?: @""];
+		cell.textLabel.text = [NSString stringWithFormat:@"\t\t%@", [MomentsAPIUtilities sharedInstance].user.name ?: @""];
 		__weak UIImageView *weakImageView = profileImageView;
 		[profileImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png", [MomentsAPIUtilities sharedInstance].user.name]]] placeholderImage:[UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
 			weakImageView.image = image;
