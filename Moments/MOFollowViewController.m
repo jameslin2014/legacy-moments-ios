@@ -19,6 +19,7 @@
 @property (strong, nonatomic) UISearchBar *searchBar;
 @property (strong, nonatomic) NSArray *followers;
 @property (strong, nonatomic) NSArray *following;
+@property (strong, nonatomic) NSArray *searchUsers;
 
 @end
 
@@ -146,6 +147,9 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+	if (self.segmentedControl.isFirstResponder){
+		return self.searchUsers.count;
+	}
 	return self.segmentedControl.selectedSegmentIndex == 0 ? self.following.count : self.followers.count;
 }
 
@@ -183,17 +187,26 @@
 	if (!profileImageView.superview){
 		[cell.contentView addSubview:profileImageView];
 	}
-	[profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",self.segmentedControl.selectedSegmentIndex == 0 ? self.following[indexPath.row] : self.followers[indexPath.row]]] placeholderImage:[UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]]];
+	NSString *username;
+	if (self.searchBar.isFirstResponder){
+		username = self.searchUsers[indexPath.row];
+	} else if (self.segmentedControl.selectedSegmentIndex == 0){
+		username = self.following[indexPath.row];
+	} else{
+		username = self.followers[indexPath.row];
+	}
 	
 	return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-	return 21.5;
+	return self.searchBar.isFirstResponder ? 0 : 21.5;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	if (self.segmentedControl.selectedSegmentIndex == 0){
+	if (self.searchBar.isFirstResponder){
+		return @"";
+	} else if (self.segmentedControl.selectedSegmentIndex == 0){
 		return [NSString stringWithFormat:@"Following %lu user%@", (unsigned long)self.following.count, self.following.count == 1 ? @"" : @"s"];
 	} else {
 		BOOL oneUser = self.followers.count == 1;
@@ -215,9 +228,9 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     [[MomentsAPIUtilities sharedInstance] searchForUsersLikeUsername:searchText completion:^(NSArray *results) {
-        for (NSString *name in results) {
-            NSLog(@"%@", name);
-        }
+		self.searchUsers = results;
+		NSLog(@"%@", results);
+		[self.tableView performSelectorInBackground:@selector(reloadData) withObject:nil];
     }];
 }
 
@@ -225,8 +238,8 @@
     MOUser *user = [MomentsAPIUtilities sharedInstance].user;
     self.following = user.following;
     self.followers = user.followers;
-    
-    [self.tableView reloadData];
+	NSLog(@"%@", user);
+    [self.tableView performSelectorInBackground:@selector(reloadData) withObject:nil];
 }
 
 @end
