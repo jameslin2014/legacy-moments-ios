@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MomentsAPIUtilities.h"
 #import "UserVoice.h"
-
 
 @interface MOAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) MomentsAPIUtilities *api;
 
 @end
 

@@ -10,15 +10,32 @@
 
 @implementation MomentsAPIUtilities
 
-static const NSString *apiEndpoint = @"http://pickmoments.io/api/users/";
-static const NSString *apiUsername = @"moments";
-static const NSString *apiPassword = @"qHCLgGKUcKGcEf8avrKRr9JqygeohXJZ";
++ (instancetype)sharedInstance
+{
+    static dispatch_once_t pred;
+    static id sharedInstance = nil;
+    dispatch_once(&pred, ^{
+        sharedInstance = [[[self class] alloc] init];
+    });
+    return sharedInstance;
+}
+
+- (void)dealloc
+{
+    // implement -dealloc & remove abort() when refactoring for
+    // non-singleton use.
+    abort();
+}
 
 /**
  * Sends a request to the API to check if the intended username has already been registered
  */
-- (void)checkIsTakenUsername:(NSString *)username completion:(void (^)(BOOL))completion {
-    NSMutableURLRequest *urlRequest = [MomentsAPIUtilities signedURLRequestForEndpoint:@"/exists/" withHTTPMethod:@"GET" andDictionary:nil];
+- (void)isRegisteredUsername:(NSString *)username completion:(void (^)(BOOL))completion {
+    NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:@"/exists/"
+                                                   withHTTPMethod:@"GET"
+                                                    andDictionary:nil];
+    
+    [self addAuthHeaderWithUsername:self.apiUsername password:self.apiPassword request:urlRequest];
     
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (!error) {
@@ -31,13 +48,19 @@ static const NSString *apiPassword = @"qHCLgGKUcKGcEf8avrKRr9JqygeohXJZ";
 /**
  * Sends a request to the API to check if the user can login with this username and password
  */
-- (void)loginWithUsername:(NSString *)username andPassword:(NSString *)password completion:(void (^)(BOOL))completion {
-    NSMutableURLRequest *urlRequest = [MomentsAPIUtilities signedURLRequestForEndpoint:@"/login/" withHTTPMethod:@"POST" andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:username, @"name", password, @"password", nil]];
+- (void)verifyUsername:(NSString *)username andPassword:(NSString *)password completion:(void (^)(BOOL))completion {
+    NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:@"/login/"
+                                                   withHTTPMethod:@"POST"
+                                                    andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:username, @"name", password, @"password", nil]];
+
+    [self addAuthHeaderWithUsername:self.apiUsername password:self.apiPassword request:urlRequest];
     
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (!error) {
             NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
             completion([dictionary objectForKey:@"login"]);
+        } else {
+            NSLog(@"%@", error);
         }
     }];
 }
@@ -46,7 +69,14 @@ static const NSString *apiPassword = @"qHCLgGKUcKGcEf8avrKRr9JqygeohXJZ";
  * Sends a request to the API which returns the data for a given user
  */
 - (void)getAllUserDataWithUsername:(NSString *)username completion:(void (^)(NSDictionary *))completion {
-    NSMutableURLRequest *urlRequest = [MomentsAPIUtilities signedURLRequestForEndpoint:username withHTTPMethod:@"GET" andDictionary:nil];
+    NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:[NSString stringWithFormat:@"/%@", username]
+                                                   withHTTPMethod:@"GET"
+                                                    andDictionary:nil];
+    
+    // TODO: Change authentication back to user-based once the server allows it
+//    [self addAuthHeaderWithApiKey:self.user.apiKey request:urlRequest];
+    [self addAuthHeaderWithUsername:self.apiUsername password:self.apiPassword request:urlRequest];
+
     
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (!error) {
@@ -59,7 +89,12 @@ static const NSString *apiPassword = @"qHCLgGKUcKGcEf8avrKRr9JqygeohXJZ";
  * Sends a request to the API which returns an array of usernames which contain the search text
  */
 - (void)searchForUsersLikeUsername:(NSString *)searchText completion:(void (^)(NSArray *))completion {
-    NSMutableURLRequest *urlRequest = [MomentsAPIUtilities signedURLRequestForEndpoint:[NSString stringWithFormat:@"search/%@", searchText] withHTTPMethod:@"GET" andDictionary:nil];
+    NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:[NSString stringWithFormat:@"/search/%@", searchText]
+                                                   withHTTPMethod:@"GET"
+                                                    andDictionary:nil];
+    
+    [self addAuthHeaderWithUsername:self.apiUsername password:self.apiPassword request:urlRequest];
+    
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (!error) {
             completion([NSJSONSerialization JSONObjectWithData:data options:0 error:&error]);
@@ -71,7 +106,11 @@ static const NSString *apiPassword = @"qHCLgGKUcKGcEf8avrKRr9JqygeohXJZ";
  * Sends a request to the API to create a new user with the username, e-mail and password provided
  */
 - (void)createUserWithUsername:(NSString *)name email:(NSString *)email andPassword:(NSString *)password completion:(void (^)(NSDictionary *))completion {
-    NSMutableURLRequest *urlRequest = [MomentsAPIUtilities signedURLRequestForEndpoint:@"" withHTTPMethod:@"POST" andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:name, @"name", email, @"email", password, @"password", nil]];
+    NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:@""
+                                                   withHTTPMethod:@"POST"
+                                                    andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:name, @"name", email, @"email", password, @"password", nil]];
+    
+    [self addAuthHeaderWithUsername:self.apiUsername password:self.apiPassword request:urlRequest];
     
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (!error) {
@@ -83,8 +122,12 @@ static const NSString *apiPassword = @"qHCLgGKUcKGcEf8avrKRr9JqygeohXJZ";
 /**
  * Sends a request to the API to subscribe to a user's video content
  */
-- (void)followUser:(NSString *)user withFollower:(NSString *)follower completion:(void (^)(NSDictionary *))completion {
-    NSMutableURLRequest *urlRequest = [MomentsAPIUtilities signedURLRequestForEndpoint:@"/follow/" withHTTPMethod:@"POST" andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:user, @"user", follower, @"follower", nil]];
+- (void)followUser:(NSString *)user completion:(void (^)(NSDictionary *))completion {
+    NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:@"/follow/"
+                                                   withHTTPMethod:@"POST"
+                                                    andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:user, @"user", self.user.name, @"follower", nil]];
+    
+    [self addAuthHeaderWithApiKey:self.user.apiKey request:urlRequest];
     
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (!error) {
@@ -96,8 +139,12 @@ static const NSString *apiPassword = @"qHCLgGKUcKGcEf8avrKRr9JqygeohXJZ";
 /**
  * Sends a request to the API to unsubscribe from a user's video content
  */
-- (void)unfollowUser:(NSString *)user withFollower:(NSString *)follower completion:(void (^)(NSDictionary *))completion {
-    NSMutableURLRequest *urlRequest = [MomentsAPIUtilities signedURLRequestForEndpoint:@"/follow/" withHTTPMethod:@"DELETE" andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:user, @"user", follower, @"follower", nil]];
+- (void)unfollowUser:(NSString *)user completion:(void (^)(NSDictionary *))completion {
+    NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:@"/follow/"
+                                                   withHTTPMethod:@"DELETE"
+                                                    andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:user, @"user", self.user.name, @"follower", nil]];
+    
+    [self addAuthHeaderWithApiKey:self.user.apiKey request:urlRequest];
     
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (!error) {
@@ -107,16 +154,24 @@ static const NSString *apiPassword = @"qHCLgGKUcKGcEf8avrKRr9JqygeohXJZ";
 }
 
 /**
- * Encode user credentials using base64 encoding (for HTTP Basic Authentication)
+ * Encode credentials using base64 encoding (for HTTP Basic Authentication)
  */
-+ (NSString *)encodedCredentials {
-    return [[[NSString stringWithFormat:@"%@:%@", apiUsername, apiPassword] dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0];
+- (void)addAuthHeaderWithUsername:(NSString *)username password:(NSString *)password request:(NSMutableURLRequest *)request {
+    NSString *credentials = [NSString stringWithFormat:@"%@:%@", username, password];
+    NSString *encodedCredentials = [[credentials dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0];
+    NSString *authHeader = [NSString stringWithFormat:@"Basic %@", encodedCredentials];
+    
+    [request setValue:authHeader forHTTPHeaderField:@"Authorization"];
+}
+
+- (void)addAuthHeaderWithApiKey:(NSString *)apiKey request:(NSMutableURLRequest *)request {
+    [request setValue:apiKey forHTTPHeaderField:@"apikey"];
 }
 
 /**
  * Encode a dictionary into a percent-encoded query string name=value&name2=value2, etc.
  */
-+ (NSData *)encodeDictionary:(NSDictionary *)dictionary {
+- (NSData *)encodeDictionary:(NSDictionary *)dictionary {
     NSMutableArray *parts = [[NSMutableArray alloc] init];
     for (NSString *key in dictionary) {
         NSString *encodedValue = [[dictionary objectForKey:key] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -130,16 +185,23 @@ static const NSString *apiPassword = @"qHCLgGKUcKGcEf8avrKRr9JqygeohXJZ";
 }
 
 /**
- * Return a signed URL request for server endpoints (with HTTP method and optional body data)
+ * Return a URL request for server endpoints (with HTTP method and optional body data)
  */
-+ (NSMutableURLRequest *)signedURLRequestForEndpoint:(NSString *)endpoint withHTTPMethod:(NSString *)method andDictionary:(NSDictionary *)dictionary {
-    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:[apiEndpoint stringByAppendingString:endpoint]]];
-    [urlRequest setValue:[NSString stringWithFormat:@"Basic %@", [MomentsAPIUtilities encodedCredentials]] forHTTPHeaderField:@"Authorization"];
+- (NSMutableURLRequest *)URLRequestForEndpoint:(NSString *)endpoint withHTTPMethod:(NSString *)method andDictionary:(NSDictionary *)dictionary {
+    
+    // Create a URL from the base URL and the endpoint
+    NSString *urlString = [self.apiUrl stringByAppendingString:endpoint];
+    NSURL *url = [[NSURL alloc] initWithString:urlString];
+    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:url];
+    
+    // Set the HTTP Method (defaults to GET)
     urlRequest.HTTPMethod = method ? method : @"GET";
     
+    // If the HTTP Method is POST, set the request body from the dictionary
     if ([method isEqual:@"POST"]) {
-        [urlRequest setHTTPBody:[self encodeDictionary:dictionary]];
-        [urlRequest setValue:[NSString stringWithFormat:@"%lu", (unsigned long) urlRequest.HTTPBody.length] forHTTPHeaderField:@"Content-Length"];
+        NSData *bodyData = [self encodeDictionary:dictionary];
+        [urlRequest setHTTPBody:bodyData];
+        [urlRequest setValue:[NSString stringWithFormat:@"%lu", (unsigned long) bodyData.length] forHTTPHeaderField:@"Content-Length"];
         [urlRequest setValue:@"application/x-www-form-urlencoded charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     }
     

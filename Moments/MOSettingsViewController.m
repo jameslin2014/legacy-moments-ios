@@ -9,8 +9,7 @@
 #import "MOSettingsViewController.h"
 #import "SVModalWebViewController.h"
 #import "EDSegmentedControl.h"
-
-#import "SSKeychain.h"
+#import "MomentsAPIUtilities.h"
 #import "SVWebViewController.h"
 #import "SVProgressHUD.h"
 #import "UserVoice.h"
@@ -321,7 +320,7 @@ static NSString *CellIdentifier = @"CellID";
 			[alertController addAction:[UIAlertAction actionWithTitle:@"Sign Out" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
                 [self dismissViewControllerAnimated:YES completion:nil];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"signOut" object:nil];
-                [SSKeychain deletePasswordForService:@"moments" account:@"password"];
+                [[MomentsAPIUtilities sharedInstance].user logout];
 			}]];
             
             [self presentViewController:alertController animated:YES completion:nil];

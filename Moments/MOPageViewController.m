@@ -7,8 +7,6 @@
 //
 
 #import "MOPageViewController.h"
-#import "MomentsAPIUtilities.h"
-#import "SSKeychain.h"
 
 @interface MOPageViewController ()
 @property (strong, nonatomic) NSArray *viewControllers;
@@ -40,20 +38,6 @@
 		[vc didMoveToParentViewController:self];
 	}
 	self.scrollView.contentSize = CGSizeMake(self.viewControllers.count * self.view.frame.size.width, self.view.frame.size.height);
-    
-    NSLog(@"%@", [SSKeychain passwordForService:@"moments" account:@"username"]);
-    NSLog(@"%@", [SSKeychain passwordForService:@"moments" account:@"password"]);
-    
-    /*
-	MomentsAPIUtilities *LoginAPI = [MomentsAPIUtilities alloc];
-	[LoginAPI loginWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] andPassword:[SSKeychain passwordForService:@"moments" account:@"password"] completion:^(BOOL login) {
-		if (login == NO) {
-			UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-			UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"login"];
-			[self presentViewController:vc animated:YES completion:nil];
-		}
-	}];
-    */
 }
 
 - (void)viewWillAppear:(BOOL)animated{

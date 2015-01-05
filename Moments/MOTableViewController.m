@@ -7,7 +7,6 @@
 //
 
 #import "MOTableViewController.h"
-#import "SSKeychain.h"
 #import "AFNetworking.h"
 #import "MomentsAPIUtilities.h"
 #import "UIImageView+AFNetworking.h"
@@ -41,19 +40,18 @@
 	UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"gear"] style:UIBarButtonItemStylePlain target:self action:@selector(showOptionsAndAbout)];
 	button.tintColor = [UIColor whiteColor];
 	self.navigationItem.rightBarButtonItem = button;
-	
-	[self getDataFromServer];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataLoaded) name:@"dataLoaded" object:nil];
+    
+    self.following = [MomentsAPIUtilities sharedInstance].user.following;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self dataLoaded];
 }
 
 - (void)getDataFromServer{
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        
-        [[[MomentsAPIUtilities alloc] init] getAllUserDataWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] completion:^(NSDictionary * user) {
-            self.following = [user objectForKey:@"follows"];
-            [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-        }];
-        
-	});
+    [[MomentsAPIUtilities sharedInstance].user reload];
 }
 
 - (void)showOptionsAndAbout{
@@ -66,7 +64,7 @@
 }
 
 - (void)shareMoment {
-	NSString *user = [SSKeychain passwordForService:@"moments" account:@"username"];
+    NSString *user = [MomentsAPIUtilities sharedInstance].user.name;
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [paths objectAtIndex:0];
 	NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:@"saved.mp4"];
@@ -154,9 +152,9 @@
 	cell.selectedBackgroundView = bgView;
 	
 	if (indexPath.section == 0){
-		cell.textLabel.text = [NSString stringWithFormat:@"\t\t%@",[SSKeychain passwordForService:@"moments" account:@"username"] ?: @""];
+		cell.textLabel.text = [NSString stringWithFormat:@"\t\t%@", [MomentsAPIUtilities sharedInstance].user.password ?: @""];
 		__weak UIImageView *weakImageView = profileImageView;
-		[profileImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png", [SSKeychain passwordForService:@"moments" account:@"username"]]]] placeholderImage:[UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+		[profileImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png", [MomentsAPIUtilities sharedInstance].user.name]]] placeholderImage:[UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
 			weakImageView.image = image;
 		} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
 		}];
@@ -225,7 +223,7 @@
 		// setup media
 		NSString *username;
 		if (indexPath.section == 0) {
-			username = [SSKeychain passwordForService:@"moments" account:@"username"];
+			username = [MomentsAPIUtilities sharedInstance].user.name;
 		} else {
 			username = self.following[indexPath.row];
 		}
@@ -306,6 +304,12 @@
 		[self.loadingView removeFromSuperview];
 		[[UIApplication sharedApplication]endIgnoringInteractionEvents];
 	}];
+}
+
+- (void)dataLoaded {
+    self.following = [MomentsAPIUtilities sharedInstance].user.following;
+    
+    [self.tableView reloadData];
 }
 
 @end

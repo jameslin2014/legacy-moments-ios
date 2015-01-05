@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"UserHasLoggedInSuccessfullyVersion-1.0"] && [SSKeychain passwordForService:@"moments" account:@"username"]){
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"UserHasLoggedInSuccessfullyVersion-1.0"] && [MomentsAPIUtilities sharedInstance].user.name){
 		[[[[UIApplication sharedApplication] delegate] window] setRootViewController:[[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"pageView"]];
 	}
 	
@@ -47,7 +47,7 @@
     usernameField.returnKeyType = UIReturnKeyNext;
     usernameField.tintColor = [UIColor whiteColor];
     [self.view addSubview:usernameField];
-    usernameField.text = [SSKeychain passwordForService:@"moments" account:@"username"];
+    usernameField.text = [MomentsAPIUtilities sharedInstance].user.name;
     
     // Password Field
     passwordField.borderStyle = UITextBorderStyleNone;
@@ -62,24 +62,17 @@
     passwordField.returnKeyType = UIReturnKeyDone;
     passwordField.secureTextEntry = YES;
     [self.view addSubview:passwordField];
-    passwordField.text = [SSKeychain passwordForService:@"moments" account:@"username"];
+    passwordField.text = [MomentsAPIUtilities sharedInstance].user.password;
 }
 
 - (void)handleSingleTap:(UITapGestureRecognizer *) sender {
     [self.view endEditing:YES];
     
-    MomentsAPIUtilities *LoginAPI = [MomentsAPIUtilities alloc];
-    [LoginAPI loginWithUsername:usernameField.text andPassword:passwordField.text completion:^(BOOL login) {
-        if (login) {
-            [SSKeychain setPassword:usernameField.text forService:@"moments" account:@"username"];
-            [SSKeychain setPassword:passwordField.text forService:@"moments" account:@"password"];
-            [self dismissViewControllerAnimated:YES completion:nil];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"Reload" object:nil];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"UserHasLoggedInSuccessfullyVersion-1.0"];
-        } else {
-            NSLog(@"Login has failed for some reason.");
-        }
-    }];
+    [[MomentsAPIUtilities sharedInstance].user loginWithUsername:usernameField.text password:passwordField.text];
+     
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Reload" object:nil];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"UserHasLoggedInSuccessfullyVersion-1.0"];
 
 }
 
@@ -87,16 +80,10 @@
 	[super viewWillAppear:animated];
     self.view.alpha = 0.0f;
     
-    MomentsAPIUtilities *LoginAPI = [MomentsAPIUtilities alloc];
-    [LoginAPI loginWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] andPassword:[SSKeychain passwordForService:@"moments" account:@"password"] completion:^(BOOL login) {
-        if (login) {
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-            UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"pageView"];
-            [self presentViewController:viewController animated:NO completion:nil];
-        } else {
-            self.view.alpha = 1;
-        }
-    }];
+    [[MomentsAPIUtilities sharedInstance].user loginWithUsername:usernameField.text password:passwordField.text];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"pageView"];
+    [self presentViewController:viewController animated:NO completion:nil];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

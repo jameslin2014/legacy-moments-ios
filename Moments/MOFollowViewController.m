@@ -9,7 +9,6 @@
 #import "MOFollowViewController.h"
 #import "JKSegmentedControl.h"
 #import "MomentsAPIUtilities.h"
-#import "SSKeychain.h"
 #import "UIImageView+AFNetworking.h"
 #import "UIImage+EDExtras.h"
 
@@ -80,6 +79,12 @@
 	self.tableView.separatorColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:1.0];
 	self.tableView.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:1.0];
 	[self.tableView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapOccurred:)]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataLoaded) name:@"dataLoaded" object:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self dataLoaded];
 }
 
 - (void)tapOccurred: (UITapGestureRecognizer *)tapGesture{
@@ -89,26 +94,12 @@
 }
 
 - (void)tabsChanged: (JKSegmentedControl *) segmentedControl{
-	[self.tableView reloadData];
+    [self dataLoaded];
+    [[MomentsAPIUtilities sharedInstance].user reload];
 	if ([segmentedControl selectedSegmentIndex] == 0) {
 		self.title = @"Following";
-        
-		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-            
-            [[[MomentsAPIUtilities alloc] init] getAllUserDataWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] completion:^(NSDictionary * user) {
-                self.following = [user objectForKey:@"follows"];
-                [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-            }];
-		});
 	} else {
 		self.title = @"Followers";
-		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-            
-            [[[MomentsAPIUtilities alloc] init] getAllUserDataWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] completion:^(NSDictionary * user) {
-                self.followers = [user objectForKey:@"followers"];
-                [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-            }];
-		});
 	}
 }
 
@@ -145,29 +136,7 @@
 
 #pragma mark - UITableView Data Source and Delegate
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-	if (self.segmentedControl.selectedSegmentIndex == 0){
-		if (!self.following){
-			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-                
-                [[[MomentsAPIUtilities alloc] init] getAllUserDataWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] completion:^(NSDictionary * user) {
-                    self.following = [user objectForKey:@"follows"];
-                    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-                }];
-                
-			});
-		}
-	} else{
-		if (!self.followers){
-			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-
-                [[[MomentsAPIUtilities alloc] init] getAllUserDataWithUsername:[SSKeychain passwordForService:@"moments" account:@"username"] completion:^(NSDictionary * user) {
-                    self.followers = [user objectForKey:@"followers"];
-                    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-                }];
-			});
-		}
-	}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	return 1;
 }
 
@@ -218,7 +187,7 @@
 	return 21.5;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	if (self.segmentedControl.selectedSegmentIndex == 0){
 		return [NSString stringWithFormat:@"Following %lu user%@", (unsigned long)self.following.count, self.following.count == 1 ? @"" : @"s"];
 	} else {
@@ -240,10 +209,19 @@
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    [[[MomentsAPIUtilities alloc] init] searchForUsersLikeUsername:searchText completion:^(NSArray *results) {
-        NSLog(@"Results: %@", results);
+    [[MomentsAPIUtilities sharedInstance] searchForUsersLikeUsername:searchText completion:^(NSArray *results) {
+        for (NSString *name in results) {
+            NSLog(@"%@", name);
+        }
     }];
+}
+
+- (void)dataLoaded {
+    MOUser *user = [MomentsAPIUtilities sharedInstance].user;
+    self.following = user.following;
+    self.followers = user.followers;
     
+    [self.tableView reloadData];
 }
 
 @end

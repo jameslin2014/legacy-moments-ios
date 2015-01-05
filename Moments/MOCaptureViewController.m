@@ -9,7 +9,7 @@
 #import "MOCaptureViewController.h"
 #import "AFAmazonS3Manager.h"
 #import "AFAmazonS3RequestSerializer.h"
-#import "SSKeychain.h"
+#import "MomentsAPIUtilities.h"
 #import <SceneKit/SceneKit.h>
 #import "EDSpinningBoxScene.h"
 #import "UIImage+EDExtras.h"
@@ -317,7 +317,7 @@
 		v.alpha = 1.0;
 	}];
 	[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-	NSString *user = [NSString stringWithFormat:@"%@.mp4",[SSKeychain passwordForService:@"moments" account:@"username"]];
+	NSString *user = [NSString stringWithFormat:@"%@.mp4", [MomentsAPIUtilities sharedInstance].user.name];
 	AVAsset *firstVid = [AVAsset assetWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@",user]]];
 	AVAsset *secondVid = [AVAsset assetWithURL:videoURL];
 	NSArray *assets = @[firstVid, secondVid];
@@ -401,7 +401,7 @@
 		s3Manager.requestSerializer.bucket = @"moments-videos";
 		
 		
-		NSString *user = [NSString stringWithFormat:@"%@.mp4",[SSKeychain passwordForService:@"moments" account:@"username"]];
+		NSString *user = [NSString stringWithFormat:@"%@.mp4", [MomentsAPIUtilities sharedInstance].user.name];
 		NSURL *url = [s3Manager.baseURL URLByAppendingPathComponent:user];
 		NSMutableURLRequest *originalRequest = [[NSMutableURLRequest alloc] initWithURL:url];
 		originalRequest.HTTPMethod = @"PUT";
@@ -435,7 +435,7 @@
 		UIImage *cropped = [UIImage imageWithCGImage:imageRef];
 		CGImageRelease(imageRef2);
 		
-		NSString *user2 = [NSString stringWithFormat:@"%@.jpg",[SSKeychain passwordForService:@"moments" account:@"username"]];
+		NSString *user2 = [NSString stringWithFormat:@"%@.jpg", [MomentsAPIUtilities sharedInstance].user.name];
 		NSURL *url2 = [s3Manager.baseURL URLByAppendingPathComponent:user2];
 		NSMutableURLRequest *originalRequest2 = [[NSMutableURLRequest alloc] initWithURL:url2];
 		originalRequest2.HTTPMethod = @"PUT";

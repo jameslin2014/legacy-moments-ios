@@ -7,42 +7,51 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MOUser.h"
 
 @interface MomentsAPIUtilities : NSObject
 
-/**
- Sends a request to droplet to check if the username is available
- */
-- (void)checkIsTakenUsername:(NSString *)username completion:(void (^)(BOOL))data;
+@property (nonatomic, strong) NSString *apiUrl;
+@property (nonatomic, strong) NSString *apiUsername;
+@property (nonatomic, strong) NSString *apiPassword;
+
+@property (nonatomic, strong) MOUser *user;
+
++ (instancetype)sharedInstance;
 
 /**
- Authenticates user into Moments with pre-determined username and password
+ * Sends a request to the API to check if the intended username has already been registered
  */
-- (void)loginWithUsername:(NSString *)username andPassword:(NSString *)password completion:(void (^)(BOOL))data;
+- (void)isRegisteredUsername:(NSString *)username completion:(void (^)(BOOL))completion;
 
 /**
- Grabs every piece of data from a user from a username
+ * Sends a request to the API to check if the user can login with this username and password
+ */
+- (void)verifyUsername:(NSString *)username andPassword:(NSString *)password completion:(void (^)(BOOL))completion;
+
+/**
+ * Sends a request to the API which returns the data for a given user
  */
 - (void)getAllUserDataWithUsername:(NSString *)username completion:(void (^)(NSDictionary *))completion;
 
 /**
- Search user records for other users based on UISearchBar contents
+ * Sends a request to the API which returns an array of usernames which contain the search text
  */
 - (void)searchForUsersLikeUsername:(NSString *)searchText completion:(void (^)(NSArray *))completion;
 
 /**
- Creates a new user instance during registration
+ * Sends a request to the API to create a new user with the username, e-mail and password provided
  */
 - (void)createUserWithUsername:(NSString *)name email:(NSString *)email andPassword:(NSString *)password completion:(void (^)(NSDictionary *))completion;
 
 /**
- Subscribe to a user's video content
+ * Sends a request to the API to subscribe to a user's video content
  */
-- (void)followUser:(NSString *)user withFollower:(NSString *)follower completion:(void (^)(NSDictionary *))completion;
+- (void)followUser:(NSString *)user completion:(void (^)(NSDictionary *))completion;
 
 /**
- Unsubscribe from a user's video content
+ * Sends a request to the API to unsubscribe from a user's video content
  */
-- (void)unfollowUser:(NSString *)user withFollower:(NSString *)follower completion:(void (^)(NSDictionary *))completion;
+- (void)unfollowUser:(NSString *)user completion:(void (^)(NSDictionary *))completion;
 
 @end
