@@ -133,6 +133,7 @@
 		self.searchBar.alpha = 0.0f;
 		self.segmentedControl.userInteractionEnabled = true;
 		self.textFieldSelected = NO;
+		[self tabsChanged:self.segmentedControl];
 	} completion:^(BOOL finished) {
 		if (finished) {
 			[UIView animateWithDuration:0.3 animations:^{
