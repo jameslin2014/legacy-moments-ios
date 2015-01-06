@@ -13,7 +13,7 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSString *password;
-@property (nonatomic, strong) NSString *apiKey;
+@property (nonatomic, strong) NSString *token;
 @property (nonatomic, copy) NSArray *followers;
 @property (nonatomic, copy) NSArray *following;
 @property (nonatomic, assign) BOOL loggedIn;
