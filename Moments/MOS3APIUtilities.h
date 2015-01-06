@@ -1,5 +1,5 @@
 //
-//  MOAWSUtilities.h
+//  MOS3APIUtilities.h
 //  Moments
 //
 //  Created by Douglas Bumby on 2015-01-03.
@@ -7,13 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AFNetworking.h"
+#import <UIKit/UIKit.h>
 
-@interface MOS3APIUtilities : NSObject {}
+@interface MOS3APIUtilities : NSObject
 
-/**
- Grabs a user's profile picture from S3 from a username.
- */
-- (void)getUserProfilePictureWithUsername:(NSString *)username completion:(void(^)(UIImage *profilePicture))data;
+@property (nonatomic, strong) NSString *accessKey;
+@property (nonatomic, strong) NSString *secret;
+@property (nonatomic, strong) NSString *bucket;
+
++ (instancetype)sharedInstance;
+
+- (NSURLRequest *)getSignedRequestForFilename:(NSString *)filename;
 
 @end

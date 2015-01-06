@@ -9,6 +9,7 @@
 #import "MOTableViewController.h"
 #import "AFNetworking.h"
 #import "MomentsAPIUtilities.h"
+#import "MOS3APIUtilities.h"
 #import "UIImageView+AFNetworking.h"
 #import "MOSettingsViewController.h"
 #import <SceneKit/SceneKit.h>
@@ -152,11 +153,15 @@
 	
 	if (indexPath.section == 0){
 		cell.textLabel.text = [NSString stringWithFormat:@"\t\t%@", [MomentsAPIUtilities sharedInstance].user.name ?: @""];
-		__weak UIImageView *weakImageView = profileImageView;
-		[profileImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png", [MomentsAPIUtilities sharedInstance].user.name]]] placeholderImage:[UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-			weakImageView.image = image;
-		} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-		}];
+
+        __weak UIImageView *weakImageView = profileImageView;
+        [profileImageView setImageWithURLRequest:[[MOS3APIUtilities sharedInstance] getSignedRequestForFilename:[NSString stringWithFormat:@"avatars/%@.png", [MomentsAPIUtilities sharedInstance].user.name]] placeholderImage:[UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+            weakImageView.image = image;
+            weakImageView.layer.cornerRadius = weakImageView.frame.size.width / 2;
+            weakImageView.clipsToBounds = YES;
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        }];
+        
 		UIToolbar *toolbar = [[UIToolbar alloc] init];
 		toolbar.barTintColor = [UIColor colorWithRed:36/255.0 green: 36/255.0 blue:36/255.0 alpha:1.0];
 		UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareMoment)];
@@ -174,14 +179,15 @@
 		}
 		cell.accessoryView = toolbar;
 	} else{
-		cell.textLabel.text = [NSString stringWithFormat:@"\t\t%@",self.following[indexPath.row]];
-		__weak UIImageView *weakImageView = profileImageView;
-		[profileImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png", self.following[indexPath.row]]]] placeholderImage:[UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-			weakImageView.image = image;
-			weakImageView.layer.cornerRadius = weakImageView.frame.size.width / 2;
-			weakImageView.clipsToBounds = YES;
-		} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-		}];
+		cell.textLabel.text = [NSString stringWithFormat:@"\t\t%@", self.following[indexPath.row]];
+        
+        __weak UIImageView *weakImageView = profileImageView;
+        [profileImageView setImageWithURLRequest:[[MOS3APIUtilities sharedInstance] getSignedRequestForFilename:[NSString stringWithFormat:@"avatars/%@.png", self.following[indexPath.row]]] placeholderImage:[UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+            weakImageView.image = image;
+            weakImageView.layer.cornerRadius = weakImageView.frame.size.width / 2;
+            weakImageView.clipsToBounds = YES;
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        }];
 	}
 	return cell;
 }

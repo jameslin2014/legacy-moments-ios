@@ -1,5 +1,5 @@
 //
-//  MOAPI.m
+//  MomentsAPIUtilities.m
 //  Moments
 //
 //  Created by Damon Jones on 1/2/15.

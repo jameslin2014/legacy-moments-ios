@@ -27,7 +27,6 @@
     self.email = [SSKeychain passwordForService:@"moments" account:@"email"];
     self.password = [SSKeychain passwordForService:@"moments" account:@"password"];
     self.token = [SSKeychain passwordForService:@"moments" account:@"token"];
-    [self log];
 }
 
 - (void)saveToKeychain {
@@ -52,11 +51,8 @@
 
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password {
     [[MomentsAPIUtilities sharedInstance] verifyUsername:username andPassword:password completion:^(NSDictionary *dictionary) {
-        NSLog(@"%@", dictionary);
-        
         BOOL valid = [[dictionary objectForKey:@"login"] boolValue];
         if (valid) {
-            NSLog(@"Login succeeded");
             self.loggedIn = YES;
             self.token = [dictionary objectForKey:@"token"];
             [self reload];
@@ -89,9 +85,6 @@
     }
     
     [[MomentsAPIUtilities sharedInstance] getAllUserDataWithUsername:self.name completion:^(NSDictionary *dictionary) {
-        
-        NSLog(@"%@", dictionary);
-
         self.email = [dictionary objectForKey:@"email"];
         self.token = [dictionary objectForKey:@"token"];
         self.followers = [dictionary objectForKey:@"followers"];
