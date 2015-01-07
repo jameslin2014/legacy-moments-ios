@@ -1,5 +1,5 @@
 //
-//  MOAPI.m
+//  MomentsAPIUtilities.m
 //  Moments
 //
 //  Created by Damon Jones on 1/2/15.
@@ -38,6 +38,7 @@
     [self addAuthHeaderWithUsername:self.apiUsername password:self.apiPassword request:urlRequest];
     
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        NSLog(@"%@", response);
         if (!error) {
             NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
             completion([[dictionary objectForKey:@"exists"] boolValue]);
@@ -48,7 +49,7 @@
 /**
  * Sends a request to the API to check if the user can login with this username and password
  */
-- (void)verifyUsername:(NSString *)username andPassword:(NSString *)password completion:(void (^)(BOOL))completion {
+- (void)verifyUsername:(NSString *)username andPassword:(NSString *)password completion:(void (^)(NSDictionary *))completion {
     NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:@"/login/"
                                                    withHTTPMethod:@"POST"
                                                     andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:username, @"name", password, @"password", nil]];
@@ -58,9 +59,7 @@
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (!error) {
             NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-            completion([[dictionary objectForKey:@"login"] boolValue]);
-        } else {
-            NSLog(@"%@", error);
+            completion(dictionary);
         }
     }];
 }
@@ -73,10 +72,7 @@
                                                    withHTTPMethod:@"GET"
                                                     andDictionary:nil];
     
-    // TODO: Change authentication back to user-based once the server allows it
-//    [self addAuthHeaderWithApiKey:self.user.apiKey request:urlRequest];
-    [self addAuthHeaderWithUsername:self.apiUsername password:self.apiPassword request:urlRequest];
-
+    [self addAuthHeaderWithToken:self.user.token request:urlRequest];
     
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (!error) {
@@ -125,9 +121,9 @@
 - (void)followUser:(NSString *)user completion:(void (^)(NSDictionary *))completion {
     NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:@"/follow/"
                                                    withHTTPMethod:@"POST"
-                                                    andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:user, @"user", self.user.name, @"follower", nil]];
+                                                    andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:user, @"user", nil]];
     
-    [self addAuthHeaderWithApiKey:self.user.apiKey request:urlRequest];
+    [self addAuthHeaderWithToken:self.user.token request:urlRequest];
     
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (!error) {
@@ -142,9 +138,9 @@
 - (void)unfollowUser:(NSString *)user completion:(void (^)(NSDictionary *))completion {
     NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:@"/follow/"
                                                    withHTTPMethod:@"DELETE"
-                                                    andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:user, @"user", self.user.name, @"follower", nil]];
+                                                    andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:user, @"user", nil]];
     
-    [self addAuthHeaderWithApiKey:self.user.apiKey request:urlRequest];
+    [self addAuthHeaderWithToken:self.user.token request:urlRequest];
     
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (!error) {
@@ -164,8 +160,9 @@
     [request setValue:authHeader forHTTPHeaderField:@"Authorization"];
 }
 
-- (void)addAuthHeaderWithApiKey:(NSString *)apiKey request:(NSMutableURLRequest *)request {
-    [request setValue:apiKey forHTTPHeaderField:@"apikey"];
+- (void)addAuthHeaderWithToken:(NSString *)token request:(NSMutableURLRequest *)request {
+    NSString *authHeader = [NSString stringWithFormat:@"Token %@", token];
+    [request setValue:authHeader forHTTPHeaderField:@"Authorization"];
 }
 
 /**

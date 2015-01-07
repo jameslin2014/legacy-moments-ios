@@ -9,6 +9,7 @@
 #import "MOFollowViewController.h"
 #import "JKSegmentedControl.h"
 #import "MomentsAPIUtilities.h"
+#import "MOS3APIUtilities.h"
 #import "UIImageView+AFNetworking.h"
 #import "UIImage+EDExtras.h"
 
@@ -198,11 +199,12 @@
 		username = self.followers[indexPath.row];
 	}
 	nameLabel.text = username;
-	__weak UIImageView *weakImageView = profileImageView;
-	[profileImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png", username]]] placeholderImage:[UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-		weakImageView.image = image;
-	} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-	}];
+    
+    __weak UIImageView *weakImageView = profileImageView;
+    [profileImageView setImageWithURLRequest:[[MOS3APIUtilities sharedInstance] getSignedRequestForFilename:[NSString stringWithFormat:@"avatars/%@.png", username]] placeholderImage:[UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        weakImageView.image = image;
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+    }];
 	
 	return cell;
 }

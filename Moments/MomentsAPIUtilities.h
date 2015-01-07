@@ -1,5 +1,5 @@
 //
-//  MOAPI.h
+//  MomentsAPIUtilities.h
 //  Moments
 //
 //  Created by Damon Jones on 1/2/15.
@@ -27,7 +27,7 @@
 /**
  * Sends a request to the API to check if the user can login with this username and password
  */
-- (void)verifyUsername:(NSString *)username andPassword:(NSString *)password completion:(void (^)(BOOL))completion;
+- (void)verifyUsername:(NSString *)username andPassword:(NSString *)password completion:(void (^)(NSDictionary *))completion;
 
 /**
  * Sends a request to the API which returns the data for a given user

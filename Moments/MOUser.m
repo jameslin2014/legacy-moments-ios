@@ -26,14 +26,14 @@
     self.name = [SSKeychain passwordForService:@"moments" account:@"username"];
     self.email = [SSKeychain passwordForService:@"moments" account:@"email"];
     self.password = [SSKeychain passwordForService:@"moments" account:@"password"];
-    self.apiKey = [SSKeychain passwordForService:@"moments" account:@"apiKey"];
+    self.token = [SSKeychain passwordForService:@"moments" account:@"token"];
 }
 
 - (void)saveToKeychain {
     [SSKeychain setPassword:self.name forService:@"moments" account:@"username"];
     [SSKeychain setPassword:self.email forService:@"moments" account:@"email"];
     [SSKeychain setPassword:self.password forService:@"moments" account:@"password"];
-    [SSKeychain setPassword:self.apiKey forService:@"moments" account:@"apiKey"];
+    [SSKeychain setPassword:self.token forService:@"moments" account:@"token"];
 }
 
 - (void)registerWithUsername:(NSString *)username email:(NSString *)email password:(NSString *)password {
@@ -41,7 +41,7 @@
         self.name = username;
         self.email = email;
         self.password = password;
-        self.apiKey = [dictionary objectForKey:@"apiKey"];
+        self.token = [dictionary objectForKey:@"token"];
 
         self.loggedIn = YES;
         
@@ -50,9 +50,11 @@
 }
 
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password {
-    [[MomentsAPIUtilities sharedInstance] verifyUsername:username andPassword:password completion:^(BOOL valid) {
+    [[MomentsAPIUtilities sharedInstance] verifyUsername:username andPassword:password completion:^(NSDictionary *dictionary) {
+        BOOL valid = [[dictionary objectForKey:@"login"] boolValue];
         if (valid) {
             self.loggedIn = YES;
+            self.token = [dictionary objectForKey:@"token"];
             [self reload];
         } else {
             NSLog(@"Login failed");
@@ -66,7 +68,7 @@
     self.name = nil;
     self.email = nil;
     self.password = nil;
-    self.apiKey = nil;
+    self.token = nil;
     
     self.following = nil;
     self.followers = nil;
@@ -83,11 +85,8 @@
     }
     
     [[MomentsAPIUtilities sharedInstance] getAllUserDataWithUsername:self.name completion:^(NSDictionary *dictionary) {
-        
-        NSLog(@"%@", dictionary);
-
         self.email = [dictionary objectForKey:@"email"];
-        self.apiKey = [dictionary objectForKey:@"apikey"];
+        self.token = [dictionary objectForKey:@"token"];
         self.followers = [dictionary objectForKey:@"followers"];
         self.following = [dictionary objectForKey:@"follows"];
         
@@ -99,7 +98,7 @@
     NSLog(@"Name: %@", self.name);
     NSLog(@"Email: %@", self.email);
     NSLog(@"Password: %@", self.password);
-    NSLog(@"ApiKey: %@", self.apiKey);
+    NSLog(@"Token: %@", self.token);
 }
 
 @end
