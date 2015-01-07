@@ -26,5 +26,15 @@
 
 + (NSArray *)transitionCancelButtonImages: (BOOL) reversed;
 
++ (UIImage *)backButtonOpen;
+
++ (UIImage *)backButtonClosed;
+
++ (NSArray *)transitionBackButtonImages: (BOOL) reversed;
+
++ (UIImage *)plusButton;
+
++ (UIImage *)plusButtonHighlighted;
+
 @end
 

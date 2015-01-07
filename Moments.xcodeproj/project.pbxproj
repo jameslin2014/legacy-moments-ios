@@ -27,13 +27,27 @@
 		204BA45D1A4134BF00C1C05E /* EDSpinningBoxScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 204BA45C1A4134BF00C1C05E /* EDSpinningBoxScene.m */; };
 		205FA4841A54DBF00061C174 /* MOSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 205FA4831A54DBF00061C174 /* MOSignUpViewController.m */; };
 		205FA4881A54E1970061C174 /* PBJVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 205FA4871A54E1970061C174 /* PBJVideoPlayerController.m */; };
-		205FA48E1A55F2C50061C174 /* UIImage+EDExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 205FA48D1A55F2C50061C174 /* UIImage+EDExtras.m */; };
 		205FA4921A5600410061C174 /* EDRecordingFlashingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 205FA4911A5600410061C174 /* EDRecordingFlashingView.m */; };
 		20B821241A4BA057009E293B /* MOTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B821231A4BA057009E293B /* MOTableViewController.m */; };
 		20C077C31A47B9260092B7AA /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C077C21A47B9260092B7AA /* Twitter.framework */; };
 		20C077C61A48C6220092B7AA /* MOFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C077C51A48C6220092B7AA /* MOFollowViewController.m */; };
 		20D6E7D61A43C7DA00B6DF3F /* EDSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D6E7D51A43C7DA00B6DF3F /* EDSegmentedControl.m */; };
 		20D6E7DC1A44D5BA00B6DF3F /* EDSegments.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D6E7DB1A44D5BA00B6DF3F /* EDSegments.m */; };
+		20E5957A1A5B83FA00202C21 /* EDPagingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E595671A5B83FA00202C21 /* EDPagingViewController.m */; };
+		20E5957B1A5B83FA00202C21 /* MOSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E595681A5B83FA00202C21 /* MOSignInViewController.m */; };
+		20E5957C1A5B83FA00202C21 /* MORegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E5956A1A5B83FA00202C21 /* MORegisterViewController.m */; };
+		20E5957D1A5B83FA00202C21 /* beach.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 20E5956B1A5B83FA00202C21 /* beach.mp4 */; };
+		20E5957E1A5B83FA00202C21 /* DJMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E5956D1A5B83FA00202C21 /* DJMusicPlayer.m */; };
+		20E5957F1A5B83FA00202C21 /* Funk 2 - 100 - P1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 20E5956F1A5B83FA00202C21 /* Funk 2 - 100 - P1.wav */; };
+		20E595801A5B83FA00202C21 /* Funk 2 - 100 - P2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 20E595701A5B83FA00202C21 /* Funk 2 - 100 - P2.wav */; };
+		20E595811A5B83FA00202C21 /* Funk 2 - 100 - P3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 20E595711A5B83FA00202C21 /* Funk 2 - 100 - P3.wav */; };
+		20E595821A5B83FA00202C21 /* Late.mov in Resources */ = {isa = PBXBuildFile; fileRef = 20E595721A5B83FA00202C21 /* Late.mov */; };
+		20E595851A5B83FA00202C21 /* Thinko.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 20E595781A5B83FA00202C21 /* Thinko.mp4 */; };
+		20E595861A5B83FA00202C21 /* vancouver-city.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 20E595791A5B83FA00202C21 /* vancouver-city.mp4 */; };
+		20E5958B1A5B849800202C21 /* MODecisionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E5958A1A5B849800202C21 /* MODecisionViewController.m */; };
+		20E5958E1A5B8AEC00202C21 /* UIImage+EDExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E5958D1A5B8AEC00202C21 /* UIImage+EDExtras.m */; };
+		20E595A71A5CCB1000202C21 /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20E595A21A5CCAE700202C21 /* pop.framework */; };
+		20E595A81A5CCB1000202C21 /* pop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 20E595A21A5CCAE700202C21 /* pop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		20EB172D1A4747A700DA1B16 /* MOSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20EB172C1A4747A700DA1B16 /* MOSettingsViewController.m */; };
 		20FE2B181A4B1D08000C0E86 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20FE2B171A4B1D08000C0E86 /* Accounts.framework */; };
 		20FE2B1A1A4B1DAD000C0E86 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20FE2B191A4B1DAD000C0E86 /* Social.framework */; };
@@ -70,7 +84,6 @@
 		A5C29FF51A33C9F300E605F1 /* PBJVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C29FF31A33C9F300E605F1 /* PBJVideoView.m */; };
 		A5C5EB811A2A8358002F1591 /* MOCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5EB7A1A2A8358002F1591 /* MOCaptureViewController.m */; };
 		A5C5EB841A2A8358002F1591 /* MOPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5EB801A2A8358002F1591 /* MOPageViewController.m */; };
-		A5CAD7511A299B480023F948 /* MOLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5CAD7501A299B480023F948 /* MOLoginViewController.m */; };
 		A5CAD77F1A29A0BF0023F948 /* SanFrancisco-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD7591A29A0BF0023F948 /* SanFrancisco-Black.otf */; };
 		A5CAD7801A29A0BF0023F948 /* SanFranciscoDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD75A1A29A0BF0023F948 /* SanFranciscoDisplay-Bold.otf */; };
 		A5CAD7811A29A0BF0023F948 /* SanFranciscoDisplay-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD75B1A29A0BF0023F948 /* SanFranciscoDisplay-Heavy.otf */; };
@@ -117,6 +130,65 @@
 		E4A776691A566915003811D6 /* MomentsAPIUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A776681A566915003811D6 /* MomentsAPIUtilities.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		20E5959D1A5CCAE700202C21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20E595951A5CCAE700202C21 /* pop.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EC191218162FB53A00E0CC76;
+			remoteInfo = pop;
+		};
+		20E5959F1A5CCAE700202C21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20E595951A5CCAE700202C21 /* pop.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EC68857F18C7B60000C6194C;
+			remoteInfo = "pop-osx";
+		};
+		20E595A11A5CCAE700202C21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20E595951A5CCAE700202C21 /* pop.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0B6BE74819FFD3B900762101;
+			remoteInfo = "pop-embedded";
+		};
+		20E595A31A5CCAE700202C21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20E595951A5CCAE700202C21 /* pop.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = ECF01ED318C92B7F009E0AD1;
+			remoteInfo = "pop-tests";
+		};
+		20E595A51A5CCAE700202C21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20E595951A5CCAE700202C21 /* pop.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EC7E319918C93D6500B38170;
+			remoteInfo = "pop-tests-osx";
+		};
+		20E595A91A5CCB1100202C21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20E595951A5CCAE700202C21 /* pop.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0B6BE74719FFD3B900762101;
+			remoteInfo = "pop-embedded";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		20E595931A5B8B0500202C21 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				20E595A81A5CCB1000202C21 /* pop.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0204183D1A296C9300134216 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		0204183F1A296C9B00134216 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -150,8 +222,6 @@
 		205FA4831A54DBF00061C174 /* MOSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOSignUpViewController.m; sourceTree = "<group>"; };
 		205FA4861A54E1970061C174 /* PBJVideoPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJVideoPlayerController.h; sourceTree = "<group>"; };
 		205FA4871A54E1970061C174 /* PBJVideoPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJVideoPlayerController.m; sourceTree = "<group>"; };
-		205FA48C1A55F2C50061C174 /* UIImage+EDExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+EDExtras.h"; sourceTree = "<group>"; };
-		205FA48D1A55F2C50061C174 /* UIImage+EDExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+EDExtras.m"; sourceTree = "<group>"; };
 		205FA4901A5600410061C174 /* EDRecordingFlashingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDRecordingFlashingView.h; sourceTree = "<group>"; };
 		205FA4911A5600410061C174 /* EDRecordingFlashingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDRecordingFlashingView.m; sourceTree = "<group>"; };
 		20B821201A4B5173009E293B /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
@@ -164,6 +234,26 @@
 		20D6E7D51A43C7DA00B6DF3F /* EDSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDSegmentedControl.m; sourceTree = "<group>"; };
 		20D6E7DA1A44D5BA00B6DF3F /* EDSegments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDSegments.h; sourceTree = "<group>"; };
 		20D6E7DB1A44D5BA00B6DF3F /* EDSegments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDSegments.m; sourceTree = "<group>"; };
+		20E595671A5B83FA00202C21 /* EDPagingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDPagingViewController.m; sourceTree = "<group>"; };
+		20E595681A5B83FA00202C21 /* MOSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOSignInViewController.m; sourceTree = "<group>"; };
+		20E595691A5B83FA00202C21 /* MORegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MORegisterViewController.h; sourceTree = "<group>"; };
+		20E5956A1A5B83FA00202C21 /* MORegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MORegisterViewController.m; sourceTree = "<group>"; };
+		20E5956B1A5B83FA00202C21 /* beach.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = beach.mp4; sourceTree = "<group>"; };
+		20E5956C1A5B83FA00202C21 /* DJMusicPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJMusicPlayer.h; sourceTree = "<group>"; };
+		20E5956D1A5B83FA00202C21 /* DJMusicPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJMusicPlayer.m; sourceTree = "<group>"; };
+		20E5956E1A5B83FA00202C21 /* EDPagingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDPagingViewController.h; sourceTree = "<group>"; };
+		20E5956F1A5B83FA00202C21 /* Funk 2 - 100 - P1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Funk 2 - 100 - P1.wav"; sourceTree = "<group>"; };
+		20E595701A5B83FA00202C21 /* Funk 2 - 100 - P2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Funk 2 - 100 - P2.wav"; sourceTree = "<group>"; };
+		20E595711A5B83FA00202C21 /* Funk 2 - 100 - P3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Funk 2 - 100 - P3.wav"; sourceTree = "<group>"; };
+		20E595721A5B83FA00202C21 /* Late.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Late.mov; sourceTree = "<group>"; };
+		20E595731A5B83FA00202C21 /* MOSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOSignInViewController.h; sourceTree = "<group>"; };
+		20E595781A5B83FA00202C21 /* Thinko.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Thinko.mp4; sourceTree = "<group>"; };
+		20E595791A5B83FA00202C21 /* vancouver-city.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "vancouver-city.mp4"; sourceTree = "<group>"; };
+		20E595891A5B849800202C21 /* MODecisionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MODecisionViewController.h; sourceTree = "<group>"; };
+		20E5958A1A5B849800202C21 /* MODecisionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MODecisionViewController.m; sourceTree = "<group>"; };
+		20E5958C1A5B8AEC00202C21 /* UIImage+EDExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+EDExtras.h"; sourceTree = "<group>"; };
+		20E5958D1A5B8AEC00202C21 /* UIImage+EDExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+EDExtras.m"; sourceTree = "<group>"; };
+		20E595951A5CCAE700202C21 /* pop.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = pop.xcodeproj; path = "../../../Desktop/pop-master/pop.xcodeproj"; sourceTree = "<group>"; };
 		20EB172B1A4747A700DA1B16 /* MOSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOSettingsViewController.h; sourceTree = "<group>"; };
 		20EB172C1A4747A700DA1B16 /* MOSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOSettingsViewController.m; sourceTree = "<group>"; };
 		20FE2B171A4B1D08000C0E86 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -255,8 +345,6 @@
 		A5C5EB7A1A2A8358002F1591 /* MOCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOCaptureViewController.m; sourceTree = "<group>"; };
 		A5C5EB7F1A2A8358002F1591 /* MOPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOPageViewController.h; sourceTree = "<group>"; };
 		A5C5EB801A2A8358002F1591 /* MOPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOPageViewController.m; sourceTree = "<group>"; };
-		A5CAD74F1A299B480023F948 /* MOLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOLoginViewController.h; sourceTree = "<group>"; };
-		A5CAD7501A299B480023F948 /* MOLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOLoginViewController.m; sourceTree = "<group>"; };
 		A5CAD7591A29A0BF0023F948 /* SanFrancisco-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFrancisco-Black.otf"; sourceTree = "<group>"; };
 		A5CAD75A1A29A0BF0023F948 /* SanFranciscoDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoDisplay-Bold.otf"; sourceTree = "<group>"; };
 		A5CAD75B1A29A0BF0023F948 /* SanFranciscoDisplay-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoDisplay-Heavy.otf"; sourceTree = "<group>"; };
@@ -347,6 +435,7 @@
 				A564D9CD1A476844003C99F3 /* UIKit.framework in Frameworks */,
 				A564D9CB1A476838003C99F3 /* QuartzCore.framework in Frameworks */,
 				A564D9C91A476821003C99F3 /* AudioToolbox.framework in Frameworks */,
+				20E595A71A5CCB1000202C21 /* pop.framework in Frameworks */,
 				A564D9C71A476812003C99F3 /* CoreTelephony.framework in Frameworks */,
 				A564DA0B1A476ED7003C99F3 /* libUserVoice.a in Frameworks */,
 				A564D9C51A476808003C99F3 /* CoreMotion.framework in Frameworks */,
@@ -468,6 +557,15 @@
 		205FA4851A54E0770061C174 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				20E5956E1A5B83FA00202C21 /* EDPagingViewController.h */,
+				20E595671A5B83FA00202C21 /* EDPagingViewController.m */,
+				20E595891A5B849800202C21 /* MODecisionViewController.h */,
+				20E5958A1A5B849800202C21 /* MODecisionViewController.m */,
+				20E595731A5B83FA00202C21 /* MOSignInViewController.h */,
+				20E595681A5B83FA00202C21 /* MOSignInViewController.m */,
+				20E595691A5B83FA00202C21 /* MORegisterViewController.h */,
+				20E5956A1A5B83FA00202C21 /* MORegisterViewController.m */,
+				20E595871A5B842300202C21 /* Media */,
 			);
 			name = Onboarding;
 			sourceTree = "<group>";
@@ -475,10 +573,45 @@
 		205FA48F1A55F2CB0061C174 /* UIImage+EDExtras */ = {
 			isa = PBXGroup;
 			children = (
-				205FA48C1A55F2C50061C174 /* UIImage+EDExtras.h */,
-				205FA48D1A55F2C50061C174 /* UIImage+EDExtras.m */,
+				20E5958C1A5B8AEC00202C21 /* UIImage+EDExtras.h */,
+				20E5958D1A5B8AEC00202C21 /* UIImage+EDExtras.m */,
 			);
 			name = "UIImage+EDExtras";
+			sourceTree = "<group>";
+		};
+		20E595871A5B842300202C21 /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				20E595781A5B83FA00202C21 /* Thinko.mp4 */,
+				20E595791A5B83FA00202C21 /* vancouver-city.mp4 */,
+				20E5956B1A5B83FA00202C21 /* beach.mp4 */,
+				20E595721A5B83FA00202C21 /* Late.mov */,
+				20E5956F1A5B83FA00202C21 /* Funk 2 - 100 - P1.wav */,
+				20E595701A5B83FA00202C21 /* Funk 2 - 100 - P2.wav */,
+				20E595711A5B83FA00202C21 /* Funk 2 - 100 - P3.wav */,
+			);
+			name = Media;
+			sourceTree = "<group>";
+		};
+		20E595881A5B844600202C21 /* DJMusicPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				20E5956C1A5B83FA00202C21 /* DJMusicPlayer.h */,
+				20E5956D1A5B83FA00202C21 /* DJMusicPlayer.m */,
+			);
+			name = DJMusicPlayer;
+			sourceTree = "<group>";
+		};
+		20E595961A5CCAE700202C21 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20E5959E1A5CCAE700202C21 /* libpop.a */,
+				20E595A01A5CCAE700202C21 /* pop.framework */,
+				20E595A21A5CCAE700202C21 /* pop.framework */,
+				20E595A41A5CCAE700202C21 /* pop-tests.octest */,
+				20E595A61A5CCAE700202C21 /* pop-tests-osx.octest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		A564D9DC1A476ED7003C99F3 /* UserVoiceSDK */ = {
@@ -656,8 +789,6 @@
 				20C077C51A48C6220092B7AA /* MOFollowViewController.m */,
 				20EB172B1A4747A700DA1B16 /* MOSettingsViewController.h */,
 				20EB172C1A4747A700DA1B16 /* MOSettingsViewController.m */,
-				A5CAD74F1A299B480023F948 /* MOLoginViewController.h */,
-				A5CAD7501A299B480023F948 /* MOLoginViewController.m */,
 			);
 			name = "User interface";
 			sourceTree = "<group>";
@@ -689,6 +820,8 @@
 		A5E01C951A2B3531003ED753 /* External Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				20E595951A5CCAE700202C21 /* pop.xcodeproj */,
+				20E595881A5B844600202C21 /* DJMusicPlayer */,
 				A5AD89111A4D21350013D417 /* SVProgressHUD */,
 				A564DA131A4781AA003C99F3 /* SVWebViewController */,
 				A564D9DC1A476ED7003C99F3 /* UserVoiceSDK */,
@@ -782,10 +915,12 @@
 				A5B31C2D1A287F25009734EE /* Sources */,
 				A5B31C2E1A287F25009734EE /* Frameworks */,
 				A5B31C2F1A287F25009734EE /* Resources */,
+				20E595931A5B8B0500202C21 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				20E595AA1A5CCB1100202C21 /* PBXTargetDependency */,
 			);
 			name = Moments;
 			productName = Moments;
@@ -849,12 +984,56 @@
 			mainGroup = A5B31C281A287F25009734EE;
 			productRefGroup = A5B31C321A287F25009734EE /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 20E595961A5CCAE700202C21 /* Products */;
+					ProjectRef = 20E595951A5CCAE700202C21 /* pop.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				A5B31C301A287F25009734EE /* Moments */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		20E5959E1A5CCAE700202C21 /* libpop.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libpop.a;
+			remoteRef = 20E5959D1A5CCAE700202C21 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		20E595A01A5CCAE700202C21 /* pop.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = pop.framework;
+			remoteRef = 20E5959F1A5CCAE700202C21 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		20E595A21A5CCAE700202C21 /* pop.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = pop.framework;
+			remoteRef = 20E595A11A5CCAE700202C21 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		20E595A41A5CCAE700202C21 /* pop-tests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "pop-tests.octest";
+			remoteRef = 20E595A31A5CCAE700202C21 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		20E595A61A5CCAE700202C21 /* pop-tests-osx.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "pop-tests-osx.octest";
+			remoteRef = 20E595A51A5CCAE700202C21 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A5B31C2F1A287F25009734EE /* Resources */ = {
@@ -871,6 +1050,7 @@
 				A5B31C401A287F26009734EE /* Main.storyboard in Resources */,
 				A564DA121A476ED7003C99F3 /* uv_idea@2x.png in Resources */,
 				A5CAD77F1A29A0BF0023F948 /* SanFrancisco-Black.otf in Resources */,
+				20E595821A5B83FA00202C21 /* Late.mov in Resources */,
 				A5CAD78E1A29A0BF0023F948 /* SanFranciscoText-Medium.otf in Resources */,
 				A564DA0D1A476ED7003C99F3 /* uv_article.png in Resources */,
 				A5CAD7921A29A0BF0023F948 /* SanFranciscoText-Semibold.otf in Resources */,
@@ -879,19 +1059,25 @@
 				A564DA351A4781AA003C99F3 /* SVWebViewController.bundle in Resources */,
 				A5CAD78C1A29A0BF0023F948 /* SanFranciscoText-Light.otf in Resources */,
 				A5CAD7941A29A0BF0023F948 /* SanFranciscoText-Thin.otf in Resources */,
+				20E5957F1A5B83FA00202C21 /* Funk 2 - 100 - P1.wav in Resources */,
 				A5CAD7831A29A0BF0023F948 /* SanFranciscoDisplay-Medium.otf in Resources */,
 				A5CAD7901A29A0BF0023F948 /* SanFranciscoText-Regular.otf in Resources */,
 				A564DA111A476ED7003C99F3 /* uv_idea.png in Resources */,
 				A564DA101A476ED7003C99F3 /* uv_heart@2x.png in Resources */,
+				20E595801A5B83FA00202C21 /* Funk 2 - 100 - P2.wav in Resources */,
 				A5B31C451A287F26009734EE /* LaunchScreen.xib in Resources */,
 				A5CAD7851A29A0BF0023F948 /* SanFranciscoDisplay-Semibold.otf in Resources */,
 				A5CAD7821A29A0BF0023F948 /* SanFranciscoDisplay-Light.otf in Resources */,
 				A564DA471A478A8A003C99F3 /* privacy.html in Resources */,
+				20E595851A5B83FA00202C21 /* Thinko.mp4 in Resources */,
 				A5AD89181A4D21350013D417 /* SVProgressHUD.bundle in Resources */,
 				A5CAD7881A29A0BF0023F948 /* SanFranciscoText-Bold.otf in Resources */,
+				20E595861A5B83FA00202C21 /* vancouver-city.mp4 in Resources */,
 				A564DA0F1A476ED7003C99F3 /* uv_heart.png in Resources */,
 				A5CAD7841A29A0BF0023F948 /* SanFranciscoDisplay-Regular.otf in Resources */,
+				20E595811A5B83FA00202C21 /* Funk 2 - 100 - P3.wav in Resources */,
 				A5CAD7871A29A0BF0023F948 /* SanFranciscoDisplay-Ultralight.otf in Resources */,
+				20E5957D1A5B83FA00202C21 /* beach.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -915,7 +1101,9 @@
 				A5E01C9A1A2B37D7003ED753 /* JKSegmentedControl.m in Sources */,
 				204BA45D1A4134BF00C1C05E /* EDSpinningBoxScene.m in Sources */,
 				A5E01CC71A2B37F1003ED753 /* AFAmazonS3Manager.m in Sources */,
+				20E5957A1A5B83FA00202C21 /* EDPagingViewController.m in Sources */,
 				20EB172D1A4747A700DA1B16 /* MOSettingsViewController.m in Sources */,
+				20E5957E1A5B83FA00202C21 /* DJMusicPlayer.m in Sources */,
 				A5C5EB811A2A8358002F1591 /* MOCaptureViewController.m in Sources */,
 				A5E01CCD1A2B37F1003ED753 /* AFNetworkReachabilityManager.m in Sources */,
 				02C1E4B81A30221C00F7EC6E /* DLILOperation.m in Sources */,
@@ -936,17 +1124,19 @@
 				A5E01CCC1A2B37F1003ED753 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				20D6E7D61A43C7DA00B6DF3F /* EDSegmentedControl.m in Sources */,
 				A5EDE0D61A59178D00DA8B8B /* MOS3APIUtilities.m in Sources */,
+				20E5957C1A5B83FA00202C21 /* MORegisterViewController.m in Sources */,
+				20E5957B1A5B83FA00202C21 /* MOSignInViewController.m in Sources */,
 				A5C5EB841A2A8358002F1591 /* MOPageViewController.m in Sources */,
 				A5B31C3A1A287F25009734EE /* MOAppDelegate.m in Sources */,
 				A5E01CD61A2B37F1003ED753 /* UIImageView+AFNetworking.m in Sources */,
+				20E5958B1A5B849800202C21 /* MODecisionViewController.m in Sources */,
 				A5E01C2A1A2AF811003ED753 /* AVCamPreviewView.m in Sources */,
 				023F976F1A50C251001381B3 /* NSData+Base64.m in Sources */,
-				205FA48E1A55F2C50061C174 /* UIImage+EDExtras.m in Sources */,
 				A5AD89191A4D21350013D417 /* SVProgressHUD.m in Sources */,
 				02C1E4A31A2E9AAE00F7EC6E /* JCDHTTPConnection.m in Sources */,
-				A5CAD7511A299B480023F948 /* MOLoginViewController.m in Sources */,
 				A5E01CC91A2B37F1003ED753 /* AFHTTPRequestOperation.m in Sources */,
 				A5E01CCE1A2B37F1003ED753 /* AFSecurityPolicy.m in Sources */,
+				20E5958E1A5B8AEC00202C21 /* UIImage+EDExtras.m in Sources */,
 				E4A776691A566915003811D6 /* MomentsAPIUtilities.m in Sources */,
 				A5B31C371A287F25009734EE /* main.m in Sources */,
 				20C077C61A48C6220092B7AA /* MOFollowViewController.m in Sources */,
@@ -959,6 +1149,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		20E595AA1A5CCB1100202C21 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "pop-embedded";
+			targetProxy = 20E595A91A5CCB1100202C21 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A564D9E41A476ED7003C99F3 /* UserVoice.strings */ = {
