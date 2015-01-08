@@ -185,18 +185,16 @@
     [[MomentsAPIUtilities sharedInstance] verifyUsername:usernameField.text andPassword:passwordField.text completion:^(NSDictionary *dictionary) {
         BOOL valid = [[dictionary objectForKey:@"login"] boolValue];
         if (valid) {
-            user.loggedIn = YES;
-            user.token = [dictionary objectForKey:@"token"];
-            [user reload];
-            // TODO: Go to the normal view controller
+            [user loginAs:usernameField.text
+                 password:passwordField.text
+                    token:[dictionary objectForKey:@"token"]];
+            
+            UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
+            [self presentViewController:destinationViewController animated:YES completion:nil];
         } else {
             NSLog(@"Login failed");
         }
         [v removeFromSuperview];
-        
-        // TODO: Go to the MOTableViewController
-        UIStoryboardSegue *segue = [[UIStoryboardSegue alloc] initWithIdentifier:@"main" source:self destination:[[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]]instantiateInitialViewController]];
-        [self performSegueWithIdentifier:@"main" sender:nil];
     }];
 }
 

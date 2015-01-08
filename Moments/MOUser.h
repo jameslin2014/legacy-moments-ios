@@ -20,6 +20,7 @@
 
 - (void)registerWithUsername:(NSString *)username email:(NSString *)email password:(NSString *)password;
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password;
+- (void)loginAs:(NSString *)name password:(NSString *)password token:(NSString *)token;
 - (void)reload;
 - (void)logout;
 
