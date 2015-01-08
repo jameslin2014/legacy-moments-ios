@@ -100,7 +100,7 @@
 	roundSignInContainer.translatesAutoresizingMaskIntoConstraints = NO;
 	roundSignInContainer.backgroundColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
 	roundSignInContainer.layer.cornerRadius = 20;
-//	[roundSignInContainer addTarget:self action:@selector(signIn) forControlEvents:UIControlEventTouchUpInside];
+	[roundSignInContainer addTarget:self action:@selector(signIn) forControlEvents:UIControlEventTouchUpInside];
 	[containerView addSubview:roundSignInContainer];
 	[containerView addConstraints:@[
 							   [NSLayoutConstraint constraintWithItem:roundSignInContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:containerView attribute:NSLayoutAttributeWidth multiplier:0.7 constant:0],
@@ -161,6 +161,11 @@
 								   [NSLayoutConstraint constraintWithItem:cancelImage attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:25],
 								   [NSLayoutConstraint constraintWithItem:cancelImage attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:25]
 								   ]];
+}
+
+- (void)signIn {
+    [[MomentsAPIUtilities sharedInstance].user loginWithUsername:usernameField.text password:passwordField.text];
+    // TODO: Go to the normal view controller
 }
 
 - (void)cancelButtonPressed{
