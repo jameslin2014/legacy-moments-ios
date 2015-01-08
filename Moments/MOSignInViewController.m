@@ -195,6 +195,8 @@
         [v removeFromSuperview];
         
         // TODO: Go to the MOTableViewController
+        UIStoryboardSegue *segue = [[UIStoryboardSegue alloc] initWithIdentifier:@"main" source:self destination:[[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]]instantiateInitialViewController]];
+        [self performSegueWithIdentifier:@"main" sender:nil];
     }];
 }
 
