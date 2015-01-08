@@ -9,16 +9,11 @@
 #import "MOSignInViewController.h"
 #import "UIImage+EDExtras.h"
 #import "EDPagingViewController.h"
-<<<<<<< HEAD
-#import "EDSpinningBoxScene.h"
-#import "MOUser.h"
 #import "MOAppDelegate.h"
-=======
 #import "MomentsAPIUtilities.h"
 #import "MOUser.h"
 #import <SceneKit/SceneKit.h>
 #import "EDSpinningBoxScene.h"
->>>>>>> FETCH_HEAD
 
 @interface MOSignInViewController ()
 
@@ -110,7 +105,7 @@
 	roundSignInContainer.translatesAutoresizingMaskIntoConstraints = NO;
 	roundSignInContainer.backgroundColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
 	roundSignInContainer.layer.cornerRadius = 20;
-	[roundSignInContainer addTarget:self action:@selector(signIn) forControlEvents:UIControlEventTouchUpInside];
+	[roundSignInContainer addTarget:self action:@selector(signInButtonPressed) forControlEvents:UIControlEventTouchUpInside];
 	[containerView addSubview:roundSignInContainer];
 	[containerView addConstraints:@[
 							   [NSLayoutConstraint constraintWithItem:roundSignInContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:containerView attribute:NSLayoutAttributeWidth multiplier:0.7 constant:0],
@@ -175,7 +170,7 @@
     [usernameField becomeFirstResponder];
 }
 
-- (void)signIn {
+- (void)signInButtonPressed {
     [self resignAllResponders];
     
     SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
@@ -204,36 +199,6 @@
     }];
 }
 
-- (void)signInButtonPressed{
-	if (usernameField.text.length == 0) {
-		//Show error message
-		return;
-	}
-	if (passwordField.text.length < 6){
-		//Show error message
-		return;
-	}
-	SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
-	v.scene = [[EDSpinningBoxScene alloc] init];
-	v.alpha = 0.0;
-	v.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
-	[self.view addSubview:v];
-	[UIView animateWithDuration:0.2 animations:^{
-		v.alpha = 1.0;
-	}];
-	[((MOAppDelegate *)[UIApplication sharedApplication].delegate).api.user loginWithUsername:usernameField.text password:passwordField.text completion:^(BOOL isValid) {
-		if (isValid){
-			[UIView animateWithDuration:0.2 animations:^{
-				v.alpha = 0.0;
-			} completion:^(BOOL finished) {
-				[v removeFromSuperview];
-			}];
-		} else{
-			//Error message
-		}
-	}];
-}
-
 - (void)cancelButtonPressed{
 	cancelImage.image = [UIImage cancelButtonLine];
 	cancelImage.animationImages = [UIImage transitionCancelButtonImages:NO];
@@ -256,7 +221,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-    [self signIn];
+    [self signInButtonPressed];
     
     return YES;
 }

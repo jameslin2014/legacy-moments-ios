@@ -18,13 +18,9 @@
 @property (nonatomic, copy) NSArray *following;
 @property (nonatomic, assign) BOOL loggedIn;
 
-- (void)registerWithUsername:(NSString *)username email:(NSString *)email password:(NSString *)password;
-<<<<<<< HEAD
-- (void)loginWithUsername:(NSString *)username password:(NSString *)password completion: (void (^)(BOOL))completion;
-=======
-- (void)loginWithUsername:(NSString *)username password:(NSString *)password;
+- (void)registerWithUsername:(NSString *)username email:(NSString *)email password:(NSString *)password completion:(void (^)(BOOL))completion;
+- (void)loginWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)(BOOL))completion;
 - (void)loginAs:(NSString *)name password:(NSString *)password token:(NSString *)token;
->>>>>>> FETCH_HEAD
 - (void)reload;
 - (void)logout;
 

@@ -36,7 +36,7 @@
     [SSKeychain setPassword:self.token forService:@"moments" account:@"token"];
 }
 
-- (void)registerWithUsername:(NSString *)username email:(NSString *)email password:(NSString *)password {
+- (void)registerWithUsername:(NSString *)username email:(NSString *)email password:(NSString *)password completion:(void (^)(BOOL))completion {
     [[MomentsAPIUtilities sharedInstance] createUserWithUsername:username email:email andPassword:password completion:^(NSDictionary *dictionary) {
         self.name = username;
         self.email = email;
@@ -46,10 +46,12 @@
         self.loggedIn = YES;
         
         [self saveToKeychain];
+        
+        completion(dictionary);
     }];
 }
 
-- (void)loginWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)(BOOL))completion{
+- (void)loginWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)(BOOL))completion {
     [[MomentsAPIUtilities sharedInstance] verifyUsername:username andPassword:password completion:^(NSDictionary *dictionary) {
         BOOL valid = [[dictionary objectForKey:@"login"] boolValue];
         if (valid) {
@@ -59,15 +61,10 @@
             self.token = [dictionary objectForKey:@"token"];
             
             [self reload];
-<<<<<<< HEAD
-			completion(valid);
-=======
             
             [self saveToKeychain];
->>>>>>> FETCH_HEAD
         } else {
             NSLog(@"Login failed");
-			completion(valid);
         }
     }];
 }
