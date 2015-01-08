@@ -31,7 +31,7 @@
  * Sends a request to the API to check if the intended username has already been registered
  */
 - (void)isRegisteredUsername:(NSString *)username completion:(void (^)(BOOL))completion {
-    NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:@"/exists/"
+    NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:[NSString stringWithFormat:@"/exists/%@", username]
                                                    withHTTPMethod:@"GET"
                                                     andDictionary:nil];
     
@@ -102,7 +102,7 @@
  * Sends a request to the API to create a new user with the username, e-mail and password provided
  */
 - (void)createUserWithUsername:(NSString *)name email:(NSString *)email andPassword:(NSString *)password completion:(void (^)(NSDictionary *))completion {
-    NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:@""
+    NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:@"/"
                                                    withHTTPMethod:@"POST"
                                                     andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:name, @"name", email, @"email", password, @"password", nil]];
     

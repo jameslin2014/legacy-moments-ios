@@ -9,6 +9,8 @@
 #import "MOSignInViewController.h"
 #import "UIImage+EDExtras.h"
 #import "EDPagingViewController.h"
+#import "MomentsAPIUtilities.h"
+#import "MOUser.h"
 
 @interface MOSignInViewController ()
 
