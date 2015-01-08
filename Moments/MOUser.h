@@ -19,7 +19,7 @@
 @property (nonatomic, assign) BOOL loggedIn;
 
 - (void)registerWithUsername:(NSString *)username email:(NSString *)email password:(NSString *)password;
-- (void)loginWithUsername:(NSString *)username password:(NSString *)password;
+- (void)loginWithUsername:(NSString *)username password:(NSString *)password completion: (void (^)(BOOL))completion;
 - (void)reload;
 - (void)logout;
 

@@ -9,6 +9,9 @@
 #import "MOSignInViewController.h"
 #import "UIImage+EDExtras.h"
 #import "EDPagingViewController.h"
+#import "EDSpinningBoxScene.h"
+#import "MOUser.h"
+#import "MOAppDelegate.h"
 
 @interface MOSignInViewController ()
 
@@ -159,6 +162,36 @@
 								   [NSLayoutConstraint constraintWithItem:cancelImage attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:25],
 								   [NSLayoutConstraint constraintWithItem:cancelImage attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:25]
 								   ]];
+}
+
+- (void)signInButtonPressed{
+	if (usernameField.text.length == 0) {
+		//Show error message
+		return;
+	}
+	if (passwordField.text.length < 6){
+		//Show error message
+		return;
+	}
+	SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
+	v.scene = [[EDSpinningBoxScene alloc] init];
+	v.alpha = 0.0;
+	v.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+	[self.view addSubview:v];
+	[UIView animateWithDuration:0.2 animations:^{
+		v.alpha = 1.0;
+	}];
+	[((MOAppDelegate *)[UIApplication sharedApplication].delegate).api.user loginWithUsername:usernameField.text password:passwordField.text completion:^(BOOL isValid) {
+		if (isValid){
+			[UIView animateWithDuration:0.2 animations:^{
+				v.alpha = 0.0;
+			} completion:^(BOOL finished) {
+				[v removeFromSuperview];
+			}];
+		} else{
+			//Error message
+		}
+	}];
 }
 
 - (void)cancelButtonPressed{

@@ -49,15 +49,17 @@
     }];
 }
 
-- (void)loginWithUsername:(NSString *)username password:(NSString *)password {
+- (void)loginWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)(BOOL))completion{
     [[MomentsAPIUtilities sharedInstance] verifyUsername:username andPassword:password completion:^(NSDictionary *dictionary) {
         BOOL valid = [[dictionary objectForKey:@"login"] boolValue];
         if (valid) {
             self.loggedIn = YES;
             self.token = [dictionary objectForKey:@"token"];
             [self reload];
+			completion(valid);
         } else {
             NSLog(@"Login failed");
+			completion(valid);
         }
     }];
 }

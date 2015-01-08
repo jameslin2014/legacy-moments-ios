@@ -25,7 +25,6 @@
 		02C1E4BA1A30221C00F7EC6E /* DLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C1E4B61A30221C00F7EC6E /* DLImageView.m */; };
 		02C894471A29B89100B87592 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02949ECE1A298451001EDD2D /* Security.framework */; };
 		204BA45D1A4134BF00C1C05E /* EDSpinningBoxScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 204BA45C1A4134BF00C1C05E /* EDSpinningBoxScene.m */; };
-		205FA4841A54DBF00061C174 /* MOSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 205FA4831A54DBF00061C174 /* MOSignUpViewController.m */; };
 		205FA4881A54E1970061C174 /* PBJVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 205FA4871A54E1970061C174 /* PBJVideoPlayerController.m */; };
 		205FA4921A5600410061C174 /* EDRecordingFlashingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 205FA4911A5600410061C174 /* EDRecordingFlashingView.m */; };
 		20B821241A4BA057009E293B /* MOTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B821231A4BA057009E293B /* MOTableViewController.m */; };
@@ -218,8 +217,6 @@
 		02C1E4B61A30221C00F7EC6E /* DLImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLImageView.m; sourceTree = "<group>"; };
 		204BA45B1A4134BF00C1C05E /* EDSpinningBoxScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDSpinningBoxScene.h; sourceTree = "<group>"; };
 		204BA45C1A4134BF00C1C05E /* EDSpinningBoxScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDSpinningBoxScene.m; sourceTree = "<group>"; };
-		205FA4821A54DBF00061C174 /* MOSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOSignUpViewController.h; sourceTree = "<group>"; };
-		205FA4831A54DBF00061C174 /* MOSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOSignUpViewController.m; sourceTree = "<group>"; };
 		205FA4861A54E1970061C174 /* PBJVideoPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJVideoPlayerController.h; sourceTree = "<group>"; };
 		205FA4871A54E1970061C174 /* PBJVideoPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJVideoPlayerController.m; sourceTree = "<group>"; };
 		205FA4901A5600410061C174 /* EDRecordingFlashingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDRecordingFlashingView.h; sourceTree = "<group>"; };
@@ -779,8 +776,6 @@
 		A5C5EB851A2A835E002F1591 /* User interface */ = {
 			isa = PBXGroup;
 			children = (
-				205FA4821A54DBF00061C174 /* MOSignUpViewController.h */,
-				205FA4831A54DBF00061C174 /* MOSignUpViewController.m */,
 				A5C5EB7F1A2A8358002F1591 /* MOPageViewController.h */,
 				A5C5EB801A2A8358002F1591 /* MOPageViewController.m */,
 				20B821221A4BA057009E293B /* MOTableViewController.h */,
@@ -1117,7 +1112,6 @@
 				A5E01CCF1A2B37F1003ED753 /* AFURLConnectionOperation.m in Sources */,
 				20D6E7DC1A44D5BA00B6DF3F /* EDSegments.m in Sources */,
 				A5E01CD21A2B37F1003ED753 /* AFURLSessionManager.m in Sources */,
-				205FA4841A54DBF00061C174 /* MOSignUpViewController.m in Sources */,
 				A5E01CCA1A2B37F1003ED753 /* AFHTTPRequestOperationManager.m in Sources */,
 				A5E01C9B1A2B37D7003ED753 /* SSKeychain.m in Sources */,
 				E410DF3B1A59FFE100D5C040 /* MOUser.m in Sources */,
