@@ -54,14 +54,33 @@
         BOOL valid = [[dictionary objectForKey:@"login"] boolValue];
         if (valid) {
             self.loggedIn = YES;
+            self.name = username;
+            self.password = password;
             self.token = [dictionary objectForKey:@"token"];
+            
             [self reload];
+<<<<<<< HEAD
 			completion(valid);
+=======
+            
+            [self saveToKeychain];
+>>>>>>> FETCH_HEAD
         } else {
             NSLog(@"Login failed");
 			completion(valid);
         }
     }];
+}
+
+- (void)loginAs:(NSString *)name password:(NSString *)password token:(NSString *)token {
+    self.loggedIn = YES;
+    self.name = name;
+    self.password = password;
+    self.token = token;
+    
+    [self reload];
+
+    [self saveToKeychain];
 }
 
 - (void)logout {
@@ -91,6 +110,8 @@
         self.token = [dictionary objectForKey:@"token"];
         self.followers = [dictionary objectForKey:@"followers"];
         self.following = [dictionary objectForKey:@"follows"];
+        
+        [self log];
         
         [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"dataLoaded" object:nil]];
     }];

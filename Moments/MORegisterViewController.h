@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MORegisterViewController : UIViewController
+@interface MORegisterViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @end

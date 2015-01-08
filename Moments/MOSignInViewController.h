@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MOSignInViewController : UIViewController
+@interface MOSignInViewController : UIViewController <UITextFieldDelegate>
 
 @end

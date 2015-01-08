@@ -41,12 +41,9 @@
 		20E595801A5B83FA00202C21 /* Funk 2 - 100 - P2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 20E595701A5B83FA00202C21 /* Funk 2 - 100 - P2.wav */; };
 		20E595811A5B83FA00202C21 /* Funk 2 - 100 - P3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 20E595711A5B83FA00202C21 /* Funk 2 - 100 - P3.wav */; };
 		20E595821A5B83FA00202C21 /* Late.mov in Resources */ = {isa = PBXBuildFile; fileRef = 20E595721A5B83FA00202C21 /* Late.mov */; };
-		20E595851A5B83FA00202C21 /* Thinko.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 20E595781A5B83FA00202C21 /* Thinko.mp4 */; };
 		20E595861A5B83FA00202C21 /* vancouver-city.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 20E595791A5B83FA00202C21 /* vancouver-city.mp4 */; };
 		20E5958B1A5B849800202C21 /* MODecisionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E5958A1A5B849800202C21 /* MODecisionViewController.m */; };
 		20E5958E1A5B8AEC00202C21 /* UIImage+EDExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E5958D1A5B8AEC00202C21 /* UIImage+EDExtras.m */; };
-		20E595A71A5CCB1000202C21 /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20E595A21A5CCAE700202C21 /* pop.framework */; };
-		20E595A81A5CCB1000202C21 /* pop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 20E595A21A5CCAE700202C21 /* pop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		20EB172D1A4747A700DA1B16 /* MOSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20EB172C1A4747A700DA1B16 /* MOSettingsViewController.m */; };
 		20FE2B181A4B1D08000C0E86 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20FE2B171A4B1D08000C0E86 /* Accounts.framework */; };
 		20FE2B1A1A4B1DAD000C0E86 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20FE2B191A4B1DAD000C0E86 /* Social.framework */; };
@@ -99,6 +96,8 @@
 		A5CAD7901A29A0BF0023F948 /* SanFranciscoText-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD76A1A29A0BF0023F948 /* SanFranciscoText-Regular.otf */; };
 		A5CAD7921A29A0BF0023F948 /* SanFranciscoText-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD76C1A29A0BF0023F948 /* SanFranciscoText-Semibold.otf */; };
 		A5CAD7941A29A0BF0023F948 /* SanFranciscoText-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = A5CAD76E1A29A0BF0023F948 /* SanFranciscoText-Thin.otf */; };
+		A5DAC9CB1A5E4E3C00145AEE /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5DAC9C21A5E4E0600145AEE /* pop.framework */; };
+		A5DAC9CC1A5E4E3C00145AEE /* pop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A5DAC9C21A5E4E0600145AEE /* pop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A5E01C2A1A2AF811003ED753 /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E01C291A2AF811003ED753 /* AVCamPreviewView.m */; };
 		A5E01C9A1A2B37D7003ED753 /* JKSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E01C971A2B37D7003ED753 /* JKSegmentedControl.m */; };
 		A5E01C9B1A2B37D7003ED753 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E01C991A2B37D7003ED753 /* SSKeychain.m */; };
@@ -130,44 +129,44 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		20E5959D1A5CCAE700202C21 /* PBXContainerItemProxy */ = {
+		A5DAC9BD1A5E4E0600145AEE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 20E595951A5CCAE700202C21 /* pop.xcodeproj */;
+			containerPortal = A5DAC9B51A5E4E0600145AEE /* pop.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = EC191218162FB53A00E0CC76;
 			remoteInfo = pop;
 		};
-		20E5959F1A5CCAE700202C21 /* PBXContainerItemProxy */ = {
+		A5DAC9BF1A5E4E0600145AEE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 20E595951A5CCAE700202C21 /* pop.xcodeproj */;
+			containerPortal = A5DAC9B51A5E4E0600145AEE /* pop.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = EC68857F18C7B60000C6194C;
 			remoteInfo = "pop-osx";
 		};
-		20E595A11A5CCAE700202C21 /* PBXContainerItemProxy */ = {
+		A5DAC9C11A5E4E0600145AEE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 20E595951A5CCAE700202C21 /* pop.xcodeproj */;
+			containerPortal = A5DAC9B51A5E4E0600145AEE /* pop.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 0B6BE74819FFD3B900762101;
 			remoteInfo = "pop-embedded";
 		};
-		20E595A31A5CCAE700202C21 /* PBXContainerItemProxy */ = {
+		A5DAC9C31A5E4E0600145AEE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 20E595951A5CCAE700202C21 /* pop.xcodeproj */;
+			containerPortal = A5DAC9B51A5E4E0600145AEE /* pop.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = ECF01ED318C92B7F009E0AD1;
 			remoteInfo = "pop-tests";
 		};
-		20E595A51A5CCAE700202C21 /* PBXContainerItemProxy */ = {
+		A5DAC9C51A5E4E0600145AEE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 20E595951A5CCAE700202C21 /* pop.xcodeproj */;
+			containerPortal = A5DAC9B51A5E4E0600145AEE /* pop.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = EC7E319918C93D6500B38170;
 			remoteInfo = "pop-tests-osx";
 		};
-		20E595A91A5CCB1100202C21 /* PBXContainerItemProxy */ = {
+		A5DAC9CD1A5E4E3C00145AEE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 20E595951A5CCAE700202C21 /* pop.xcodeproj */;
+			containerPortal = A5DAC9B51A5E4E0600145AEE /* pop.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 0B6BE74719FFD3B900762101;
 			remoteInfo = "pop-embedded";
@@ -181,7 +180,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				20E595A81A5CCB1000202C21 /* pop.framework in Embed Frameworks */,
+				A5DAC9CC1A5E4E3C00145AEE /* pop.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,13 +243,11 @@
 		20E595711A5B83FA00202C21 /* Funk 2 - 100 - P3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Funk 2 - 100 - P3.wav"; sourceTree = "<group>"; };
 		20E595721A5B83FA00202C21 /* Late.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Late.mov; sourceTree = "<group>"; };
 		20E595731A5B83FA00202C21 /* MOSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOSignInViewController.h; sourceTree = "<group>"; };
-		20E595781A5B83FA00202C21 /* Thinko.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Thinko.mp4; sourceTree = "<group>"; };
 		20E595791A5B83FA00202C21 /* vancouver-city.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "vancouver-city.mp4"; sourceTree = "<group>"; };
 		20E595891A5B849800202C21 /* MODecisionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MODecisionViewController.h; sourceTree = "<group>"; };
 		20E5958A1A5B849800202C21 /* MODecisionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MODecisionViewController.m; sourceTree = "<group>"; };
 		20E5958C1A5B8AEC00202C21 /* UIImage+EDExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+EDExtras.h"; sourceTree = "<group>"; };
 		20E5958D1A5B8AEC00202C21 /* UIImage+EDExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+EDExtras.m"; sourceTree = "<group>"; };
-		20E595951A5CCAE700202C21 /* pop.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = pop.xcodeproj; path = "../../../Desktop/pop-master/pop.xcodeproj"; sourceTree = "<group>"; };
 		20EB172B1A4747A700DA1B16 /* MOSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOSettingsViewController.h; sourceTree = "<group>"; };
 		20EB172C1A4747A700DA1B16 /* MOSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOSettingsViewController.m; sourceTree = "<group>"; };
 		20FE2B171A4B1D08000C0E86 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -358,6 +355,7 @@
 		A5CAD76A1A29A0BF0023F948 /* SanFranciscoText-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-Regular.otf"; sourceTree = "<group>"; };
 		A5CAD76C1A29A0BF0023F948 /* SanFranciscoText-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-Semibold.otf"; sourceTree = "<group>"; };
 		A5CAD76E1A29A0BF0023F948 /* SanFranciscoText-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-Thin.otf"; sourceTree = "<group>"; };
+		A5DAC9B51A5E4E0600145AEE /* pop.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = pop.xcodeproj; path = "Libraries/pop-master/pop.xcodeproj"; sourceTree = "<group>"; };
 		A5E01C281A2AF811003ED753 /* AVCamPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamPreviewView.h; sourceTree = "<group>"; };
 		A5E01C291A2AF811003ED753 /* AVCamPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamPreviewView.m; sourceTree = "<group>"; };
 		A5E01C961A2B37D7003ED753 /* JKSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JKSegmentedControl.h; path = Libraries/JKSegmentedControl.h; sourceTree = "<group>"; };
@@ -428,11 +426,11 @@
 				A564D9D31A476860003C99F3 /* GLKit.framework in Frameworks */,
 				A564D9D11A47685B003C99F3 /* OpenGLES.framework in Frameworks */,
 				02949ED11A298458001EDD2D /* SystemConfiguration.framework in Frameworks */,
+				A5DAC9CB1A5E4E3C00145AEE /* pop.framework in Frameworks */,
 				A564D9CF1A476849003C99F3 /* MessageUI.framework in Frameworks */,
 				A564D9CD1A476844003C99F3 /* UIKit.framework in Frameworks */,
 				A564D9CB1A476838003C99F3 /* QuartzCore.framework in Frameworks */,
 				A564D9C91A476821003C99F3 /* AudioToolbox.framework in Frameworks */,
-				20E595A71A5CCB1000202C21 /* pop.framework in Frameworks */,
 				A564D9C71A476812003C99F3 /* CoreTelephony.framework in Frameworks */,
 				A564DA0B1A476ED7003C99F3 /* libUserVoice.a in Frameworks */,
 				A564D9C51A476808003C99F3 /* CoreMotion.framework in Frameworks */,
@@ -579,7 +577,6 @@
 		20E595871A5B842300202C21 /* Media */ = {
 			isa = PBXGroup;
 			children = (
-				20E595781A5B83FA00202C21 /* Thinko.mp4 */,
 				20E595791A5B83FA00202C21 /* vancouver-city.mp4 */,
 				20E5956B1A5B83FA00202C21 /* beach.mp4 */,
 				20E595721A5B83FA00202C21 /* Late.mov */,
@@ -597,18 +594,6 @@
 				20E5956D1A5B83FA00202C21 /* DJMusicPlayer.m */,
 			);
 			name = DJMusicPlayer;
-			sourceTree = "<group>";
-		};
-		20E595961A5CCAE700202C21 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				20E5959E1A5CCAE700202C21 /* libpop.a */,
-				20E595A01A5CCAE700202C21 /* pop.framework */,
-				20E595A21A5CCAE700202C21 /* pop.framework */,
-				20E595A41A5CCAE700202C21 /* pop-tests.octest */,
-				20E595A61A5CCAE700202C21 /* pop-tests-osx.octest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		A564D9DC1A476ED7003C99F3 /* UserVoiceSDK */ = {
@@ -799,6 +784,18 @@
 			path = Assets/Fonts;
 			sourceTree = "<group>";
 		};
+		A5DAC9B61A5E4E0600145AEE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A5DAC9BE1A5E4E0600145AEE /* libpop.a */,
+				A5DAC9C01A5E4E0600145AEE /* pop.framework */,
+				A5DAC9C21A5E4E0600145AEE /* pop.framework */,
+				A5DAC9C41A5E4E0600145AEE /* pop-tests.octest */,
+				A5DAC9C61A5E4E0600145AEE /* pop-tests-osx.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		A5E01C941A2B34DC003ED753 /* Camera Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -815,7 +812,7 @@
 		A5E01C951A2B3531003ED753 /* External Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				20E595951A5CCAE700202C21 /* pop.xcodeproj */,
+				A5DAC9B51A5E4E0600145AEE /* pop.xcodeproj */,
 				20E595881A5B844600202C21 /* DJMusicPlayer */,
 				A5AD89111A4D21350013D417 /* SVProgressHUD */,
 				A564DA131A4781AA003C99F3 /* SVWebViewController */,
@@ -915,7 +912,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				20E595AA1A5CCB1100202C21 /* PBXTargetDependency */,
+				A5DAC9CE1A5E4E3C00145AEE /* PBXTargetDependency */,
 			);
 			name = Moments;
 			productName = Moments;
@@ -933,6 +930,7 @@
 				TargetAttributes = {
 					A5B31C301A287F25009734EE = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 7NE79LP6VD;
 					};
 				};
 			};
@@ -981,8 +979,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 20E595961A5CCAE700202C21 /* Products */;
-					ProjectRef = 20E595951A5CCAE700202C21 /* pop.xcodeproj */;
+					ProductGroup = A5DAC9B61A5E4E0600145AEE /* Products */;
+					ProjectRef = A5DAC9B51A5E4E0600145AEE /* pop.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -993,39 +991,39 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		20E5959E1A5CCAE700202C21 /* libpop.a */ = {
+		A5DAC9BE1A5E4E0600145AEE /* libpop.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libpop.a;
-			remoteRef = 20E5959D1A5CCAE700202C21 /* PBXContainerItemProxy */;
+			remoteRef = A5DAC9BD1A5E4E0600145AEE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		20E595A01A5CCAE700202C21 /* pop.framework */ = {
+		A5DAC9C01A5E4E0600145AEE /* pop.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = pop.framework;
-			remoteRef = 20E5959F1A5CCAE700202C21 /* PBXContainerItemProxy */;
+			remoteRef = A5DAC9BF1A5E4E0600145AEE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		20E595A21A5CCAE700202C21 /* pop.framework */ = {
+		A5DAC9C21A5E4E0600145AEE /* pop.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = pop.framework;
-			remoteRef = 20E595A11A5CCAE700202C21 /* PBXContainerItemProxy */;
+			remoteRef = A5DAC9C11A5E4E0600145AEE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		20E595A41A5CCAE700202C21 /* pop-tests.octest */ = {
+		A5DAC9C41A5E4E0600145AEE /* pop-tests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "pop-tests.octest";
-			remoteRef = 20E595A31A5CCAE700202C21 /* PBXContainerItemProxy */;
+			remoteRef = A5DAC9C31A5E4E0600145AEE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		20E595A61A5CCAE700202C21 /* pop-tests-osx.octest */ = {
+		A5DAC9C61A5E4E0600145AEE /* pop-tests-osx.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "pop-tests-osx.octest";
-			remoteRef = 20E595A51A5CCAE700202C21 /* PBXContainerItemProxy */;
+			remoteRef = A5DAC9C51A5E4E0600145AEE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1064,7 +1062,6 @@
 				A5CAD7851A29A0BF0023F948 /* SanFranciscoDisplay-Semibold.otf in Resources */,
 				A5CAD7821A29A0BF0023F948 /* SanFranciscoDisplay-Light.otf in Resources */,
 				A564DA471A478A8A003C99F3 /* privacy.html in Resources */,
-				20E595851A5B83FA00202C21 /* Thinko.mp4 in Resources */,
 				A5AD89181A4D21350013D417 /* SVProgressHUD.bundle in Resources */,
 				A5CAD7881A29A0BF0023F948 /* SanFranciscoText-Bold.otf in Resources */,
 				20E595861A5B83FA00202C21 /* vancouver-city.mp4 in Resources */,
@@ -1145,10 +1142,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		20E595AA1A5CCB1100202C21 /* PBXTargetDependency */ = {
+		A5DAC9CE1A5E4E3C00145AEE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "pop-embedded";
-			targetProxy = 20E595A91A5CCB1100202C21 /* PBXContainerItemProxy */;
+			targetProxy = A5DAC9CD1A5E4E3C00145AEE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1311,6 +1308,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Moments",
@@ -1335,6 +1333,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Moments",

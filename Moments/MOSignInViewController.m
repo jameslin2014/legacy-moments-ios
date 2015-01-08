@@ -9,9 +9,16 @@
 #import "MOSignInViewController.h"
 #import "UIImage+EDExtras.h"
 #import "EDPagingViewController.h"
+<<<<<<< HEAD
 #import "EDSpinningBoxScene.h"
 #import "MOUser.h"
 #import "MOAppDelegate.h"
+=======
+#import "MomentsAPIUtilities.h"
+#import "MOUser.h"
+#import <SceneKit/SceneKit.h>
+#import "EDSpinningBoxScene.h"
+>>>>>>> FETCH_HEAD
 
 @interface MOSignInViewController ()
 
@@ -71,6 +78,7 @@
 	usernameField.placeholder = @"username";
 	usernameField.backgroundColor = [UIColor colorWithRed:0.96 green:0.97 blue:0.98 alpha:1];
 	usernameField.font = [UIFont fontWithName:@"Avenir-Book" size:17];
+    usernameField.delegate = self;
 	[containerView addSubview:usernameField];
 	[containerView addConstraints:@[
 								 [NSLayoutConstraint constraintWithItem:usernameField attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:descriptionLabel attribute:NSLayoutAttributeBottom multiplier:1.0 constant:20],
@@ -89,6 +97,7 @@
 	passwordField.secureTextEntry = YES;
 	passwordField.backgroundColor = [UIColor colorWithRed:0.96 green:0.97 blue:0.98 alpha:1];
 	passwordField.font = [UIFont fontWithName:@"Avenir-Book" size:17];
+    passwordField.delegate = self;
 	[containerView addSubview:passwordField];
 	[containerView addConstraints:@[
 								 [NSLayoutConstraint constraintWithItem:passwordField attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:usernameField attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0],
@@ -101,7 +110,7 @@
 	roundSignInContainer.translatesAutoresizingMaskIntoConstraints = NO;
 	roundSignInContainer.backgroundColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
 	roundSignInContainer.layer.cornerRadius = 20;
-//	[roundSignInContainer addTarget:self action:@selector(signIn) forControlEvents:UIControlEventTouchUpInside];
+	[roundSignInContainer addTarget:self action:@selector(signIn) forControlEvents:UIControlEventTouchUpInside];
 	[containerView addSubview:roundSignInContainer];
 	[containerView addConstraints:@[
 							   [NSLayoutConstraint constraintWithItem:roundSignInContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:containerView attribute:NSLayoutAttributeWidth multiplier:0.7 constant:0],
@@ -162,6 +171,37 @@
 								   [NSLayoutConstraint constraintWithItem:cancelImage attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:25],
 								   [NSLayoutConstraint constraintWithItem:cancelImage attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:25]
 								   ]];
+
+    [usernameField becomeFirstResponder];
+}
+
+- (void)signIn {
+    [self resignAllResponders];
+    
+    SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
+    v.scene = [[EDSpinningBoxScene alloc] init];
+    v.alpha = 0.0;
+    v.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+    [self.view addSubview:v];
+    [UIView animateWithDuration:0.2 animations:^{
+        v.alpha = 1.0;
+    }];
+    
+    MOUser *user = [MomentsAPIUtilities sharedInstance].user;
+    [[MomentsAPIUtilities sharedInstance] verifyUsername:usernameField.text andPassword:passwordField.text completion:^(NSDictionary *dictionary) {
+        BOOL valid = [[dictionary objectForKey:@"login"] boolValue];
+        if (valid) {
+            [user loginAs:usernameField.text
+                 password:passwordField.text
+                    token:[dictionary objectForKey:@"token"]];
+            
+            UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
+            [self presentViewController:destinationViewController animated:YES completion:nil];
+        } else {
+            NSLog(@"Login failed");
+        }
+        [v removeFromSuperview];
+    }];
 }
 
 - (void)signInButtonPressed{
@@ -211,6 +251,14 @@
 - (void)resignAllResponders{
 	[usernameField resignFirstResponder];
 	[passwordField resignFirstResponder];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    [self signIn];
+    
+    return YES;
 }
 
 @end

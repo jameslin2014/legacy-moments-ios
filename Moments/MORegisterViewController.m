@@ -9,6 +9,8 @@
 #import "MORegisterViewController.h"
 #import "UIImage+EDExtras.h"
 #import "EDPagingViewController.h"
+#import "MomentsAPIUtilities.h"
+#import "MOUser.h"
 
 #import <pop/POP.h>
 
@@ -388,6 +390,14 @@
 }
 
 - (void)continueButton1Pressed{
+
+    // TODO: Check the intended username is not already taken
+//    [[MomentsAPIUtilities sharedInstance] isRegisteredUsername:usernameField1.text completion:^(BOOL used) {
+//        NSLog(@"%@", !used ? @"YES" : @"NO");
+//    }];
+    
+    // TODO: Check the e-mail address is not empty
+    
 	[self resignAllResponders];
 	backButtonImage.image = [UIImage backButtonClosed];
 	backButtonImage.animationImages = [UIImage transitionCancelButtonImages:NO];
@@ -427,6 +437,10 @@
 }
 
 - (void)continueButton2Pressed{
+    // TODO: Check the passwords are the same
+    
+    [[MomentsAPIUtilities sharedInstance].user registerWithUsername:usernameField1.text email:emailField1.text password:passwordField2.text];
+    
 	[self resignAllResponders];
 	_leftmostLayoutConstraint.constant = 2 * -self.view.frame.size.width;
 	backButtonImage.image = [UIImage backButtonClosed];
@@ -507,6 +521,7 @@
 }
 
 - (void)imageButtonPressed{
+    
 	//present action sheet
 	[imageButton3.imageView.layer pop_removeAnimationForKey:@"rotationAnim"];
 	POPSpringAnimation *rotationAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerRotation];
@@ -516,6 +531,39 @@
 	rotationAnimation.springBounciness = 0;
 	rotationAnimation.springSpeed = 0;
 	[imageButton3.imageView.layer pop_addAnimation:rotationAnimation forKey:@"rotationAnim"];
+    
+    // temporary design for what would look like a UIAlertController.
+    // damon needs to implement the backend on this. :)
+    UIAlertController *sheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *cameraButton = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+
+        UIImagePickerControllerSourceType type = UIImagePickerControllerSourceTypeCamera;
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.allowsEditing = NO;
+        picker.delegate = self;
+        picker.sourceType = type;
+        [self presentViewController:picker animated:YES completion:nil];
+        
+    }];
+    
+    UIAlertAction *photoLibraryButton = [UIAlertAction actionWithTitle:@"Photo Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+        UIImagePickerControllerSourceType type = UIImagePickerControllerSourceTypePhotoLibrary;
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.allowsEditing = NO;
+        picker.delegate = self;
+        picker.sourceType = type;
+        [self presentViewController:picker animated:YES completion:nil];
+        
+    }];
+    
+    [sheet addAction:cameraButton];
+    [sheet addAction:photoLibraryButton];
+    [sheet addAction:cancelButton];
+    [self presentViewController:sheet animated:YES completion:nil];
+    
+    
 }
 
 @end
