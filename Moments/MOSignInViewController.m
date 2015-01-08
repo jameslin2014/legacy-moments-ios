@@ -72,6 +72,7 @@
 	usernameField.placeholder = @"username";
 	usernameField.backgroundColor = [UIColor colorWithRed:0.96 green:0.97 blue:0.98 alpha:1];
 	usernameField.font = [UIFont fontWithName:@"Avenir-Book" size:17];
+    usernameField.delegate = self;
 	[containerView addSubview:usernameField];
 	[containerView addConstraints:@[
 								 [NSLayoutConstraint constraintWithItem:usernameField attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:descriptionLabel attribute:NSLayoutAttributeBottom multiplier:1.0 constant:20],
@@ -90,6 +91,7 @@
 	passwordField.secureTextEntry = YES;
 	passwordField.backgroundColor = [UIColor colorWithRed:0.96 green:0.97 blue:0.98 alpha:1];
 	passwordField.font = [UIFont fontWithName:@"Avenir-Book" size:17];
+    passwordField.delegate = self;
 	[containerView addSubview:passwordField];
 	[containerView addConstraints:@[
 								 [NSLayoutConstraint constraintWithItem:passwordField attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:usernameField attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0],
@@ -163,9 +165,13 @@
 								   [NSLayoutConstraint constraintWithItem:cancelImage attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:25],
 								   [NSLayoutConstraint constraintWithItem:cancelImage attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:25]
 								   ]];
+
+    [usernameField becomeFirstResponder];
 }
 
 - (void)signIn {
+    [self resignAllResponders];
+    
     SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
     v.scene = [[EDSpinningBoxScene alloc] init];
     v.alpha = 0.0;
@@ -209,6 +215,14 @@
 - (void)resignAllResponders{
 	[usernameField resignFirstResponder];
 	[passwordField resignFirstResponder];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    [self signIn];
+    
+    return YES;
 }
 
 @end
