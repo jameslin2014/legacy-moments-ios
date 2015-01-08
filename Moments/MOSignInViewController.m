@@ -11,6 +11,8 @@
 #import "EDPagingViewController.h"
 #import "MomentsAPIUtilities.h"
 #import "MOUser.h"
+#import <SceneKit/SceneKit.h>
+#import "EDSpinningBoxScene.h"
 
 @interface MOSignInViewController ()
 
@@ -164,8 +166,30 @@
 }
 
 - (void)signIn {
-    [[MomentsAPIUtilities sharedInstance].user loginWithUsername:usernameField.text password:passwordField.text];
-    // TODO: Go to the normal view controller
+    SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
+    v.scene = [[EDSpinningBoxScene alloc] init];
+    v.alpha = 0.0;
+    v.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+    [self.view addSubview:v];
+    [UIView animateWithDuration:0.2 animations:^{
+        v.alpha = 1.0;
+    }];
+    
+    MOUser *user = [MomentsAPIUtilities sharedInstance].user;
+    [[MomentsAPIUtilities sharedInstance] verifyUsername:usernameField.text andPassword:passwordField.text completion:^(NSDictionary *dictionary) {
+        BOOL valid = [[dictionary objectForKey:@"login"] boolValue];
+        if (valid) {
+            user.loggedIn = YES;
+            user.token = [dictionary objectForKey:@"token"];
+            [user reload];
+            // TODO: Go to the normal view controller
+        } else {
+            NSLog(@"Login failed");
+        }
+        [v removeFromSuperview];
+        
+        // TODO: Go to the MOTableViewController
+    }];
 }
 
 - (void)cancelButtonPressed{
