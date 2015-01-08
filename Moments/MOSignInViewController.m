@@ -191,7 +191,12 @@
                     token:[dictionary objectForKey:@"token"]];
             
             UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
+
+//            Doesn't work
+//            [UIApplication sharedApplication].delegate.window.rootViewController = destinationViewController;
+            
             [self presentViewController:destinationViewController animated:YES completion:nil];
+
         } else {
             NSLog(@"Login failed");
         }

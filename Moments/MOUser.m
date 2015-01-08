@@ -47,7 +47,7 @@
         
         [self saveToKeychain];
         
-        completion(dictionary);
+        completion(YES);
     }];
 }
 

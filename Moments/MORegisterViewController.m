@@ -11,6 +11,8 @@
 #import "EDPagingViewController.h"
 #import "MomentsAPIUtilities.h"
 #import "MOUser.h"
+#import <SceneKit/SceneKit.h>
+#import "EDSpinningBoxScene.h"
 
 #import <pop/POP.h>
 
@@ -439,8 +441,6 @@
 - (void)continueButton2Pressed{
     // TODO: Check the passwords are the same
     
-    [[MomentsAPIUtilities sharedInstance].user registerWithUsername:usernameField1.text email:emailField1.text password:passwordField2.text];
-    
 	[self resignAllResponders];
 	_leftmostLayoutConstraint.constant = 2 * -self.view.frame.size.width;
 	backButtonImage.image = [UIImage backButtonClosed];
@@ -461,6 +461,26 @@
 		[backButton removeTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchUpInside];
 		[backButton addTarget:self action:@selector(backButton3Pressed) forControlEvents:UIControlEventTouchUpInside];
 	}];
+    
+    SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
+    v.scene = [[EDSpinningBoxScene alloc] init];
+    v.alpha = 0.0;
+    v.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+    [self.view addSubview:v];
+    [UIView animateWithDuration:0.2 animations:^{
+        v.alpha = 1.0;
+    }];
+    
+    MOUser *user = [MomentsAPIUtilities sharedInstance].user;
+    [user registerWithUsername:usernameField1.text email:emailField1.text password:passwordField2.text completion:^(BOOL valid) {
+        if (valid) {
+            UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
+            [self presentViewController:destinationViewController animated:YES completion:nil];
+        } else {
+            NSLog(@"Registration failed");
+        }
+        [v removeFromSuperview];
+    }];
 }
 
 - (void)backButton2Pressed{
