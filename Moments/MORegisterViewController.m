@@ -22,7 +22,7 @@
 
 @end
 
-@implementation MORegisterViewController <UIImagePickerControllerDelegate> {
+@implementation MORegisterViewController {
 	NSLayoutConstraint *_leftmostLayoutConstraint;
 	
 	UIButton *backButton;
@@ -600,7 +600,7 @@
     NSLog(@"%@", image);
 }
 
-- (void)imagePickerControllerDidCancel {
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
