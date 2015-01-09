@@ -74,26 +74,29 @@ static const float kSampleRate = 44100.00;
 
 - (void)fading{
 	BOOL playersAllAtZero = YES;
-	if (self.player1.volume > 0.1){
+	
+    if (self.player1.volume > 0.1) {
 		self.player1.volume -= 0.1;
 		playersAllAtZero = NO;
-	}else{
+	} else {
 		[self.player1 stop];
 	}
-	if (self.player2.volume > 0.1){
+    
+	if (self.player2.volume > 0.1) {
 		self.player2.volume -= 0.1;
 		playersAllAtZero = NO;
-	} else{
+	} else {
 		[self.player2 stop];
 	}
-	if (self.player3.volume > 0.1){
+    
+	if (self.player3.volume > 0.1) {
 		self.player3.volume -= 0.1;
 		playersAllAtZero = NO;
-	} else{
+	} else {
 		[self.player3 stop];
 	}
 	
-	if (playersAllAtZero){
+	if (playersAllAtZero) {
 		[self.engine stop];
 		[fadeTimer invalidate];
 	}

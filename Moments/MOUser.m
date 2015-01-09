@@ -50,7 +50,7 @@
         
         [self saveToKeychain];
         
-        completion(YES);
+        completion(nil != dictionary);
     }];
 }
 
@@ -69,18 +69,8 @@
         } else {
             NSLog(@"Login failed");
         }
+        completion(valid);
     }];
-}
-
-- (void)loginAs:(NSString *)name password:(NSString *)password token:(NSString *)token {
-    self.loggedIn = YES;
-    self.name = name;
-    self.password = password;
-    self.token = token;
-    
-    [self reload];
-
-    [self saveToKeychain];
 }
 
 - (void)logout {

@@ -184,18 +184,14 @@
 	} completion:nil];
 	
     MOUser *user = [MomentsAPIUtilities sharedInstance].user;
-    [[MomentsAPIUtilities sharedInstance] verifyUsername:usernameField.text andPassword:passwordField.text completion:^(NSDictionary *dictionary) {
+    [user loginWithUsername:usernameField.text password:passwordField.text completion:^(BOOL success) {
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[UIView animateWithDuration:0.2 animations:^{
 				v.alpha = 0;
 			} completion:^(BOOL finished) {
 				[v removeFromSuperview];
 			}];
-			BOOL valid = [[dictionary objectForKey:@"login"] boolValue];
-			if (valid) {
-				[user loginAs:usernameField.text
-					 password:passwordField.text
-						token:[dictionary objectForKey:@"token"]];
+			if (success) {
 				[user setIntroShown:YES];
 				
 				UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
@@ -205,9 +201,7 @@
 					[pagingViewController.player stop];
 					pagingViewController = nil;
 				}];
-			} else {
-				NSLog(@"Login failed");
-			}
+            }
 		});
     }];
 }

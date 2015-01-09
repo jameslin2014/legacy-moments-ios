@@ -462,9 +462,9 @@
 	} completion:nil];
     
     MOUser *user = [MomentsAPIUtilities sharedInstance].user;
-    [user registerWithUsername:usernameField1.text email:emailField1.text password:passwordField2.text completion:^(BOOL valid) {
+    [user registerWithUsername:usernameField1.text email:emailField1.text password:passwordField2.text completion:^(BOOL success) {
 		dispatch_async(dispatch_get_main_queue(), ^{
-			if (valid) {
+			if (success) {
 				[user setIntroShown:YES];
 				_leftmostLayoutConstraint.constant = 2 * -self.view.frame.size.width;
 				backButtonImage.image = [UIImage backButtonClosed];
@@ -493,7 +493,6 @@
 				} completion:^(BOOL finished) {
 					[v removeFromSuperview];
 				}];
-				NSLog(@"Registration failed");
 			}
 		});
     }];
