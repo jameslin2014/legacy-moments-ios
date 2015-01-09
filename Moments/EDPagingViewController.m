@@ -37,6 +37,10 @@
 	NSLayoutConstraint *_pageBottomConstraint;
 }
 
+- (BOOL)prefersStatusBarHidden {
+    return NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
@@ -231,6 +235,8 @@
 	[self.view addConstraint: [NSLayoutConstraint constraintWithItem:self.pageControl attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
 	_pageBottomConstraint = [NSLayoutConstraint constraintWithItem:self.pageControl attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-0];
 	[self.view addConstraint:_pageBottomConstraint];
+    
+    [self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (void)presentSignIn{

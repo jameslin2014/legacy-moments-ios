@@ -26,6 +26,10 @@
 	UILabel *registerLabel;
 }
 
+- (BOOL)prefersStatusBarHidden {
+    return NO;
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
@@ -145,6 +149,8 @@
 											 [NSLayoutConstraint constraintWithItem:registerLabel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:roundRegisterContainer attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0],
 											 [NSLayoutConstraint constraintWithItem:registerLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:roundRegisterContainer attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
 											 ]];
+
+    [self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (void)presentSignIn{
