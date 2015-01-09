@@ -234,8 +234,11 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-    [self signInButtonPressed];
-    
+	if (textField == usernameField){
+		[passwordField becomeFirstResponder];
+	} else{
+		[self signInButtonPressed];
+	}
     return YES;
 }
 

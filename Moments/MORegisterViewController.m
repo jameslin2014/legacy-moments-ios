@@ -101,6 +101,7 @@
 	usernameField1 = [[UITextField alloc]init];
 	usernameField1.translatesAutoresizingMaskIntoConstraints = NO;
 	usernameField1.leftView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"user"] imageWithColor:[UIColor colorWithRed:0.76 green:0.78 blue:0.79 alpha:1]]];
+	usernameField1.delegate = self;
 	usernameField1.leftView.frame = CGRectMake(0, 0, 42, 42);
 	usernameField1.leftView.contentMode = UIViewContentModeCenter;
 	usernameField1.leftViewMode = UITextFieldViewModeAlways;
@@ -119,6 +120,7 @@
 	emailField1 = [[UITextField alloc]init];
 	emailField1.translatesAutoresizingMaskIntoConstraints = NO;
 	emailField1.leftView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"mail"] imageWithColor:[UIColor colorWithRed:0.76 green:0.78 blue:0.79 alpha:1]]];
+	emailField1.delegate = self;
 	emailField1.leftView.frame = CGRectMake(0, 0, 42, 42);
 	emailField1.leftView.contentMode = UIViewContentModeCenter;
 	emailField1.leftViewMode = UITextFieldViewModeAlways;
@@ -238,6 +240,7 @@
 	passwordField2 = [[UITextField alloc]init];
 	passwordField2.translatesAutoresizingMaskIntoConstraints = NO;
 	passwordField2.leftView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"lock"] imageWithColor:[UIColor colorWithRed:0.76 green:0.78 blue:0.79 alpha:1]]];
+	passwordField2.delegate = self;
 	passwordField2.leftView.frame = CGRectMake(0, 0, 42, 42);
 	passwordField2.leftView.contentMode = UIViewContentModeCenter;
 	passwordField2.leftViewMode = UITextFieldViewModeAlways;
@@ -257,6 +260,7 @@
 	confirmPasswordField2 = [[UITextField alloc]init];
 	confirmPasswordField2.translatesAutoresizingMaskIntoConstraints = NO;
 	confirmPasswordField2.leftView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"lock"] imageWithColor:[UIColor colorWithRed:0.76 green:0.78 blue:0.79 alpha:1]]];
+	confirmPasswordField2.delegate = self;
 	confirmPasswordField2.leftView.frame = CGRectMake(0, 0, 42, 42);
 	confirmPasswordField2.leftView.contentMode = UIViewContentModeCenter;
 	confirmPasswordField2.leftViewMode = UITextFieldViewModeAlways;
@@ -611,19 +615,14 @@
     UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
 
     [picker dismissViewControllerAnimated:YES completion:^{
-        // Upload to S3
+        //TODO: Upload to S3
 
 		[imageButton3 setImage:image forState:UIControlStateNormal];
 		imageButton3.imageView.layer.cornerRadius = imageButton3.imageView.layer.frame.size.height / 2.0;
 		imageButton3.imageView.layer.masksToBounds = YES;
 		imageButton3.imageView.layer.borderWidth = 0;
 		imageButton3.imageView.contentMode = UIViewContentModeScaleAspectFill;
-//        UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageButton3.frame];
-//        imageView.image = image;
-//        imageView.layer.cornerRadius = imageView.image.size.width / 2.0;
-//        [self.view addSubview:imageView];
-//        imageButton3.userInteractionEnabled = NO;
-//        imageButton3.alpha = 0.0;
+
     }];
 }
 
@@ -633,6 +632,18 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
+	
+	if (textField == usernameField1){
+		[emailField1 becomeFirstResponder];
+	} else if (textField == emailField1){
+		[self continueButton1Pressed];
+		[passwordField2 becomeFirstResponder];
+	} else if (textField == passwordField2){
+		[confirmPasswordField2 becomeFirstResponder];
+	} else if (textField == confirmPasswordField2){
+		[self continueButton2Pressed];
+	}
+	
     return YES;
 }
 
