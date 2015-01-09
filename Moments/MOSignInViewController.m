@@ -186,6 +186,9 @@
     
     MOUser *user = [MomentsAPIUtilities sharedInstance].user;
     [[MomentsAPIUtilities sharedInstance] verifyUsername:usernameField.text andPassword:passwordField.text completion:^(NSDictionary *dictionary) {
+		[UIView animateWithDuration:0.2 animations:^{
+			v.alpha = 0;
+		}];
         BOOL valid = [[dictionary objectForKey:@"login"] boolValue];
         if (valid) {
             [user loginAs:usernameField.text

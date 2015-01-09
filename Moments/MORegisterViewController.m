@@ -453,37 +453,45 @@
     v.alpha = 0.0;
     v.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
     [self.view addSubview:v];
-    [UIView animateWithDuration:0.2 animations:^{
-        v.alpha = 1.0;
-    }];
+    [UIView animateWithDuration:0.2 delay:0.05 options:0 animations:^{
+		v.alpha = 1.0;
+	} completion:nil];
     
     MOUser *user = [MomentsAPIUtilities sharedInstance].user;
     [user registerWithUsername:usernameField1.text email:emailField1.text password:passwordField2.text completion:^(BOOL valid) {
-        if (valid) {
-            [user setIntroShown:YES];
-            _leftmostLayoutConstraint.constant = 2 * -self.view.frame.size.width;
-            backButtonImage.image = [UIImage backButtonClosed];
-            backButtonImage.animationImages = [UIImage transitionBackButtonImages:NO];
-            backButtonImage.animationDuration = 0.25;
-            backButtonImage.animationRepeatCount = 1;
-            [backButtonImage startAnimating];
-            backButton.enabled = NO;
-            [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                [self.view layoutIfNeeded];
-            } completion:^(BOOL finished) {
-                backButtonImage.image = [UIImage backButtonOpen];
-                backButtonImage.animationImages = [UIImage transitionBackButtonImages:YES];
-                backButtonImage.animationDuration = 0.25;
-                backButtonImage.animationRepeatCount = 1;
-                [backButtonImage startAnimating];
-                backButton.enabled = YES;
-                [backButton removeTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchUpInside];
-                [backButton addTarget:self action:@selector(backButton3Pressed) forControlEvents:UIControlEventTouchUpInside];
-            }];
-        } else {
-            NSLog(@"Registration failed");
-        }
-        [v removeFromSuperview];
+		dispatch_async(dispatch_get_main_queue(), ^{
+			if (valid) {
+				[user setIntroShown:YES];
+				_leftmostLayoutConstraint.constant = 2 * -self.view.frame.size.width;
+				backButtonImage.image = [UIImage backButtonClosed];
+				backButtonImage.animationImages = [UIImage transitionBackButtonImages:NO];
+				backButtonImage.animationDuration = 0.25;
+				backButtonImage.animationRepeatCount = 1;
+				[backButtonImage startAnimating];
+				backButton.enabled = NO;
+				[UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+					[self.view layoutIfNeeded];
+					v.alpha = 0;
+				} completion:^(BOOL finished) {
+					backButtonImage.image = [UIImage backButtonOpen];
+					backButtonImage.animationImages = [UIImage transitionBackButtonImages:YES];
+					backButtonImage.animationDuration = 0.25;
+					backButtonImage.animationRepeatCount = 1;
+					[backButtonImage startAnimating];
+					backButton.enabled = YES;
+					[backButton removeTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchUpInside];
+					[backButton addTarget:self action:@selector(backButton3Pressed) forControlEvents:UIControlEventTouchUpInside];
+					[v removeFromSuperview];
+				}];
+			} else {
+				[UIView animateWithDuration:0.2 animations:^{
+					v.alpha = 0;
+				} completion:^(BOOL finished) {
+					[v removeFromSuperview];
+				}];
+				NSLog(@"Registration failed");
+			}
+		});
     }];
 }
 
@@ -554,6 +562,10 @@
 
 - (void)imageButtonPressed {
 	//present action sheet
+	[imageButton3 setImage:[UIImage plusButton] forState:UIControlStateNormal];
+	imageButton3.imageView.layer.cornerRadius = 0;
+	imageButton3.imageView.layer.masksToBounds = NO;
+	
 	[imageButton3.imageView.layer pop_removeAnimationForKey:@"rotationAnim"];
 	POPSpringAnimation *rotationAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerRotation];
 	imageButton3.imageView.layer.transform = CATransform3DMakeRotation(0, 0, 0, 0);
@@ -600,13 +612,18 @@
 
     [picker dismissViewControllerAnimated:YES completion:^{
         // Upload to S3
-        
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageButton3.frame];
-        imageView.image = image;
-        imageView.layer.cornerRadius = imageView.image.size.width / 2.0;
-        [self.view addSubview:imageView];
-        imageButton3.userInteractionEnabled = NO;
-        imageButton3.alpha = 0.0;
+
+		[imageButton3 setImage:image forState:UIControlStateNormal];
+		imageButton3.imageView.layer.cornerRadius = imageButton3.imageView.layer.frame.size.height / 2.0;
+		imageButton3.imageView.layer.masksToBounds = YES;
+		imageButton3.imageView.layer.borderWidth = 0;
+		imageButton3.imageView.contentMode = UIViewContentModeScaleAspectFill;
+//        UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageButton3.frame];
+//        imageView.image = image;
+//        imageView.layer.cornerRadius = imageView.image.size.width / 2.0;
+//        [self.view addSubview:imageView];
+//        imageButton3.userInteractionEnabled = NO;
+//        imageButton3.alpha = 0.0;
     }];
 }
 

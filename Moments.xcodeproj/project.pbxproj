@@ -136,33 +136,12 @@
 			remoteGlobalIDString = EC191218162FB53A00E0CC76;
 			remoteInfo = pop;
 		};
-		A5DAC9BF1A5E4E0600145AEE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5DAC9B51A5E4E0600145AEE /* pop.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EC68857F18C7B60000C6194C;
-			remoteInfo = "pop-osx";
-		};
 		A5DAC9C11A5E4E0600145AEE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A5DAC9B51A5E4E0600145AEE /* pop.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 0B6BE74819FFD3B900762101;
 			remoteInfo = "pop-embedded";
-		};
-		A5DAC9C31A5E4E0600145AEE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5DAC9B51A5E4E0600145AEE /* pop.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = ECF01ED318C92B7F009E0AD1;
-			remoteInfo = "pop-tests";
-		};
-		A5DAC9C51A5E4E0600145AEE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5DAC9B51A5E4E0600145AEE /* pop.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EC7E319918C93D6500B38170;
-			remoteInfo = "pop-tests-osx";
 		};
 		A5DAC9CD1A5E4E3C00145AEE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -721,6 +700,7 @@
 				A5C5EB851A2A835E002F1591 /* User interface */,
 				A5E01CDA1A2B3899003ED753 /* interface.xcassets */,
 				A5E01CDC1A2B3C76003ED753 /* fundamentals.xcassets */,
+				205FA48F1A55F2CB0061C174 /* UIImage+EDExtras */,
 				02949ED71A2984F8001EDD2D /* API */,
 				A5B31C341A287F25009734EE /* Supporting Files */,
 			);
@@ -781,10 +761,7 @@
 			isa = PBXGroup;
 			children = (
 				A5DAC9BE1A5E4E0600145AEE /* libpop.a */,
-				A5DAC9C01A5E4E0600145AEE /* pop.framework */,
 				A5DAC9C21A5E4E0600145AEE /* pop.framework */,
-				A5DAC9C41A5E4E0600145AEE /* pop-tests.octest */,
-				A5DAC9C61A5E4E0600145AEE /* pop-tests-osx.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -812,7 +789,6 @@
 				A5C29FEF1A33C9F300E605F1 /* PBJVideoPlayer */,
 				20416ED21A4E1C04009EC625 /* JKSegmentedControl */,
 				20416ED31A4E1C10009EC625 /* SSKeychain */,
-				205FA48F1A55F2CB0061C174 /* UIImage+EDExtras */,
 			);
 			name = "External Libraries";
 			sourceTree = "<group>";
@@ -922,7 +898,7 @@
 				TargetAttributes = {
 					A5B31C301A287F25009734EE = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 7NE79LP6VD;
+						DevelopmentTeam = 44SYMBLN5U;
 					};
 				};
 			};
@@ -990,32 +966,11 @@
 			remoteRef = A5DAC9BD1A5E4E0600145AEE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A5DAC9C01A5E4E0600145AEE /* pop.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = pop.framework;
-			remoteRef = A5DAC9BF1A5E4E0600145AEE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		A5DAC9C21A5E4E0600145AEE /* pop.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = pop.framework;
 			remoteRef = A5DAC9C11A5E4E0600145AEE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A5DAC9C41A5E4E0600145AEE /* pop-tests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "pop-tests.octest";
-			remoteRef = A5DAC9C31A5E4E0600145AEE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A5DAC9C61A5E4E0600145AEE /* pop-tests-osx.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "pop-tests-osx.octest";
-			remoteRef = A5DAC9C51A5E4E0600145AEE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
