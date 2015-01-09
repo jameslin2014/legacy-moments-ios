@@ -50,7 +50,9 @@
         
         [self saveToKeychain];
         
-        completion(nil != dictionary);
+        NSLog(@"%@", dictionary);
+        
+        completion(nil != dictionary && nil == [dictionary objectForKey:@"error"]);
     }];
 }
 

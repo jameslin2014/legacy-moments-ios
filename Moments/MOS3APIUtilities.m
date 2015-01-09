@@ -28,63 +28,59 @@
     abort();
 }
 
-/**
- * Grabs a user's profile picture from S3 from a username.
- */
-//- (void)getUserProfilePictureWithUsername:(NSString *)username completion:(void (^)(UIImage *profilePicture))completion {
-//    AFAmazonS3Manager *s3 = [[AFAmazonS3Manager alloc]
-//                             initWithAccessKeyID:self.accessKey
-//                             secret:self.secret];
-//    s3.requestSerializer.region = AFAmazonS3USStandardRegion;
-//    s3.requestSerializer.bucket = self.bucket;
-//    s3.responseSerializer = [[AFImageResponseSerializer alloc] init];
-//    
-//    NSString *filename = [NSString stringWithFormat:@"avatars/%@.png", username];
-//    NSURL *url = [s3.baseURL URLByAppendingPathComponent:filename];
-//    NSMutableURLRequest *originalRequest = [[NSMutableURLRequest alloc] initWithURL:url];
-//    NSURLRequest *request = [s3.requestSerializer
-//                             requestBySettingAuthorizationHeadersForRequest:originalRequest
-//                             error:nil];
-//    AFHTTPRequestOperation *operation = [s3 HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        completion((UIImage *)responseObject);
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"Error %@", error);
-//    }];
-//    [s3.operationQueue addOperation:operation];
-//}
-
-- (NSURLRequest *)getSignedRequestForFilename:(NSString *)filename {
-        AFAmazonS3Manager *s3 = [[AFAmazonS3Manager alloc]
-                                 initWithAccessKeyID:self.accessKey
-                                 secret:self.secret];
-        s3.requestSerializer.region = AFAmazonS3USStandardRegion;
-        s3.requestSerializer.bucket = self.bucket;
-        s3.responseSerializer = [[AFImageResponseSerializer alloc] init];
+- (void)putAvatarForUsername:(NSString *)username image:(UIImage *)image {
+    NSURLRequest *request = [self URLRequestForPath:[self pathForUsername:username] withHTTPMethod:@"PUT" data:UIImagePNGRepresentation(image) responseSerializer:nil];
     
-        NSURL *url = [s3.baseURL URLByAppendingPathComponent:filename];
-        NSMutableURLRequest *originalRequest = [[NSMutableURLRequest alloc] initWithURL:url];
-        NSURLRequest *request = [s3.requestSerializer
-                                 requestBySettingAuthorizationHeadersForRequest:originalRequest
-                                 error:nil];
-
-        return request;
+    NSLog(@"%@", request.HTTPMethod);
+    
+    AFAmazonS3Manager *s3 = [self getManager];
+    AFHTTPRequestOperation *operation = [s3 HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Avatar uploaded");
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error %@", error);
+    }];
+    [s3.operationQueue addOperation:operation];
 }
 
-/*
-- (void)getUserProfilePictureWithUsername:(NSString *)username completion:(void (^)(UIImage *))data {
-    [[DLImageLoader sharedInstance] loadImageFromUrl:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-avatars/%@.png",username]
-                                           completed:^(NSError *error, UIImage *image) {
-                                               
-                                               if (nil == error) {
-                                                   data(image);
-                                                   
-                                               } else {
-                                                   NSLog(@"Error: %@",error);
-                                                   UIImage *errorImage = [UIImage imageNamed:@"captue-button"];
-                                                   data(errorImage);
-                                               }
-                                           }];
+- (NSURLRequest *)avatarRequestForUsername:(NSString *)username {
+    return [self URLRequestForPath:[self pathForUsername:username] withHTTPMethod:@"GET" data:nil responseSerializer:[[AFImageResponseSerializer alloc] init]];
 }
-*/
+
+- (NSString *)pathForUsername:(NSString *)username {
+    return [NSString stringWithFormat:@"avatars/%@.png", username];
+}
+
+- (AFAmazonS3Manager *)getManager {
+    AFAmazonS3Manager *s3 = [[AFAmazonS3Manager alloc]
+                             initWithAccessKeyID:self.accessKey
+                             secret:self.secret];
+    s3.requestSerializer.region = AFAmazonS3USStandardRegion;
+    s3.requestSerializer.bucket = self.bucket;
+    
+    return s3;
+}
+
+- (NSURLRequest *)URLRequestForPath:(NSString *)path withHTTPMethod:(NSString *)method data:(NSData *)data responseSerializer:(AFHTTPResponseSerializer *)responseSerializer {
+    AFAmazonS3Manager *s3 = [self getManager];
+    
+    if (responseSerializer) {
+        s3.responseSerializer = responseSerializer;
+    }
+    
+    NSURL *url = [s3.baseURL URLByAppendingPathComponent:path];
+    NSMutableURLRequest *originalRequest = [[NSMutableURLRequest alloc] initWithURL:url];
+    
+    originalRequest.HTTPMethod = method ? method : @"GET";
+    
+    if (data) {
+        originalRequest.HTTPBody = data;
+    }
+    
+    NSURLRequest *request = [s3.requestSerializer
+                             requestBySettingAuthorizationHeadersForRequest:originalRequest
+                             error:nil];
+
+    return request;
+}
 
 @end

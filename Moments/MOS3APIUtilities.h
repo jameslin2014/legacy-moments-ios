@@ -17,6 +17,7 @@
 
 + (instancetype)sharedInstance;
 
-- (NSURLRequest *)getSignedRequestForFilename:(NSString *)filename;
+- (NSURLRequest *)avatarRequestForUsername:(NSString *)username;
+- (void)putAvatarForUsername:(NSString *)username image:(UIImage *)image;
 
 @end
