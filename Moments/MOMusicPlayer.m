@@ -1,14 +1,14 @@
 //
-//  DJMusicPlayer.m
+//  MOMusicPlayer.m
 //  Onboarding
 //
 //  Created by Damon Jones on 12/28/14.
 //  Copyright (c) 2014 Xappox, LLC. All rights reserved.
 //
 
-#import "DJMusicPlayer.h"
+#import "MOMusicPlayer.h"
 
-@interface DJMusicPlayer()
+@interface MOMusicPlayer()
 
 @property (nonatomic, strong) AVAudioEngine *engine;
 
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation DJMusicPlayer
+@implementation MOMusicPlayer
 
 static const float kPlayer1Volume = 0.66;
 static const float kPlayer2Volume = 1.00;
@@ -48,20 +48,31 @@ static const float kSampleRate = 44100.00;
                                             extension:@"wav"
                                                engine:self.engine
                                                  time:time3];
-        
-        self.player1.volume = 1.00 * kPlayer1Volume; // full
-        self.player2.volume = 0.00; // off
-        self.player3.volume = 0.00; // off
-        
-        NSError *error = nil;
-        [self.engine startAndReturnError:&error];
-        
-		[self.player1 play];
-		[self.player2 play];
-		[self.player3 play];
     }
     
     return self;
+}
+
+- (void)start {
+    self.player1.volume = 1.00 * kPlayer1Volume; // full
+    self.player2.volume = 0.00; // off
+    self.player3.volume = 0.00; // off
+    
+    NSError *error = nil;
+    [self.engine startAndReturnError:&error];
+    
+    [self.player1 play];
+    [self.player2 play];
+    [self.player3 play];
+}
+
+- (void)stop {
+    // TODO: Fade out audio with a timer?
+    [self.player1 stop];
+    [self.player2 stop];
+    [self.player3 stop];
+    
+    [self.engine stop];
 }
 
 - (AVAudioPlayerNode *)createPlayerWithFilename:(NSString *)filename extension:(NSString *)extension engine:(AVAudioEngine *)engine time:(AVAudioTime *)time {

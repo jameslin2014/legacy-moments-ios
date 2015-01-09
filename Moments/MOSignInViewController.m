@@ -191,12 +191,12 @@
                     token:[dictionary objectForKey:@"token"]];
             
             UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
-
-//            Doesn't work
-//            [UIApplication sharedApplication].delegate.window.rootViewController = destinationViewController;
             
-            [self presentViewController:destinationViewController animated:YES completion:nil];
-
+            [self presentViewController:destinationViewController animated:YES completion:^{
+                EDPagingViewController *pagingViewController = (EDPagingViewController *) self.presentingViewController;
+                [pagingViewController.player stop];
+                pagingViewController = nil;
+            }];
         } else {
             NSLog(@"Login failed");
         }

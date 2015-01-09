@@ -475,7 +475,12 @@
     [user registerWithUsername:usernameField1.text email:emailField1.text password:passwordField2.text completion:^(BOOL valid) {
         if (valid) {
             UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
-            [self presentViewController:destinationViewController animated:YES completion:nil];
+            
+            [self presentViewController:destinationViewController animated:YES completion:^{
+                EDPagingViewController *pagingViewController = (EDPagingViewController *) self.presentingViewController;
+                [pagingViewController.player stop];
+                pagingViewController = nil;
+            }];
         } else {
             NSLog(@"Registration failed");
         }

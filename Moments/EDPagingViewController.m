@@ -15,7 +15,6 @@
 
 @property (strong, nonatomic) UIPageControl *pageControl;
 @property (strong, nonatomic) UIScrollView *scrollView;
-@property (strong, nonatomic) DJMusicPlayer *player;
 
 @end
 
@@ -46,7 +45,7 @@
 	
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:nil];
     if (![[AVAudioSession sharedInstance] isOtherAudioPlaying]) {
-        self.player = [[DJMusicPlayer alloc] init];
+        self.player = [[MOMusicPlayer alloc] init];
     }
 	
 	self.scrollView = [[UIScrollView alloc]init];
@@ -276,6 +275,8 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated{
+    [self.player start];
+    
 	[super viewDidAppear:animated];
 	[self performSelector:@selector(bounceScrollView) withObject:nil afterDelay:0.5];
 }

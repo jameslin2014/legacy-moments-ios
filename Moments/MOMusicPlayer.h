@@ -1,5 +1,5 @@
 //
-//  DJMusicPlayer.h
+//  MOMusicPlayer.h
 //  Onboarding
 //
 //  Created by Damon Jones on 12/28/14.
@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "AVFoundation/AVFoundation.h"
 
-@interface DJMusicPlayer : NSObject
+@interface MOMusicPlayer : NSObject
 
+- (void)start;
+- (void)stop;
 - (void)setPage:(int)page fade:(float)fade;
 
 @end

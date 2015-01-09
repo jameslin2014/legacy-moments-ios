@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DJMusicPlayer.h"
+#import "MOMusicPlayer.h"
 
 @interface EDPagingViewController : UIViewController
 
 - (void)pageControlToggleOnScreen;
-
+    @property (strong, nonatomic) MOMusicPlayer *player;
 @end

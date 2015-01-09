@@ -36,7 +36,7 @@
 		20E5957B1A5B83FA00202C21 /* MOSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E595681A5B83FA00202C21 /* MOSignInViewController.m */; };
 		20E5957C1A5B83FA00202C21 /* MORegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E5956A1A5B83FA00202C21 /* MORegisterViewController.m */; };
 		20E5957D1A5B83FA00202C21 /* beach.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 20E5956B1A5B83FA00202C21 /* beach.mp4 */; };
-		20E5957E1A5B83FA00202C21 /* DJMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E5956D1A5B83FA00202C21 /* DJMusicPlayer.m */; };
+		20E5957E1A5B83FA00202C21 /* MOMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E5956D1A5B83FA00202C21 /* MOMusicPlayer.m */; };
 		20E5957F1A5B83FA00202C21 /* Funk 2 - 100 - P1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 20E5956F1A5B83FA00202C21 /* Funk 2 - 100 - P1.wav */; };
 		20E595801A5B83FA00202C21 /* Funk 2 - 100 - P2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 20E595701A5B83FA00202C21 /* Funk 2 - 100 - P2.wav */; };
 		20E595811A5B83FA00202C21 /* Funk 2 - 100 - P3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 20E595711A5B83FA00202C21 /* Funk 2 - 100 - P3.wav */; };
@@ -235,8 +235,8 @@
 		20E595691A5B83FA00202C21 /* MORegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MORegisterViewController.h; sourceTree = "<group>"; };
 		20E5956A1A5B83FA00202C21 /* MORegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MORegisterViewController.m; sourceTree = "<group>"; };
 		20E5956B1A5B83FA00202C21 /* beach.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = beach.mp4; sourceTree = "<group>"; };
-		20E5956C1A5B83FA00202C21 /* DJMusicPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJMusicPlayer.h; sourceTree = "<group>"; };
-		20E5956D1A5B83FA00202C21 /* DJMusicPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJMusicPlayer.m; sourceTree = "<group>"; };
+		20E5956C1A5B83FA00202C21 /* MOMusicPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOMusicPlayer.h; sourceTree = "<group>"; };
+		20E5956D1A5B83FA00202C21 /* MOMusicPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOMusicPlayer.m; sourceTree = "<group>"; };
 		20E5956E1A5B83FA00202C21 /* EDPagingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDPagingViewController.h; sourceTree = "<group>"; };
 		20E5956F1A5B83FA00202C21 /* Funk 2 - 100 - P1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Funk 2 - 100 - P1.wav"; sourceTree = "<group>"; };
 		20E595701A5B83FA00202C21 /* Funk 2 - 100 - P2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Funk 2 - 100 - P2.wav"; sourceTree = "<group>"; };
@@ -552,6 +552,8 @@
 		205FA4851A54E0770061C174 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				20E5956C1A5B83FA00202C21 /* MOMusicPlayer.h */,
+				20E5956D1A5B83FA00202C21 /* MOMusicPlayer.m */,
 				20E5956E1A5B83FA00202C21 /* EDPagingViewController.h */,
 				20E595671A5B83FA00202C21 /* EDPagingViewController.m */,
 				20E595891A5B849800202C21 /* MODecisionViewController.h */,
@@ -585,15 +587,6 @@
 				20E595711A5B83FA00202C21 /* Funk 2 - 100 - P3.wav */,
 			);
 			name = Media;
-			sourceTree = "<group>";
-		};
-		20E595881A5B844600202C21 /* DJMusicPlayer */ = {
-			isa = PBXGroup;
-			children = (
-				20E5956C1A5B83FA00202C21 /* DJMusicPlayer.h */,
-				20E5956D1A5B83FA00202C21 /* DJMusicPlayer.m */,
-			);
-			name = DJMusicPlayer;
 			sourceTree = "<group>";
 		};
 		A564D9DC1A476ED7003C99F3 /* UserVoiceSDK */ = {
@@ -813,7 +806,6 @@
 			isa = PBXGroup;
 			children = (
 				A5DAC9B51A5E4E0600145AEE /* pop.xcodeproj */,
-				20E595881A5B844600202C21 /* DJMusicPlayer */,
 				A5AD89111A4D21350013D417 /* SVProgressHUD */,
 				A564DA131A4781AA003C99F3 /* SVWebViewController */,
 				A564D9DC1A476ED7003C99F3 /* UserVoiceSDK */,
@@ -1095,7 +1087,7 @@
 				A5E01CC71A2B37F1003ED753 /* AFAmazonS3Manager.m in Sources */,
 				20E5957A1A5B83FA00202C21 /* EDPagingViewController.m in Sources */,
 				20EB172D1A4747A700DA1B16 /* MOSettingsViewController.m in Sources */,
-				20E5957E1A5B83FA00202C21 /* DJMusicPlayer.m in Sources */,
+				20E5957E1A5B83FA00202C21 /* MOMusicPlayer.m in Sources */,
 				A5C5EB811A2A8358002F1591 /* MOCaptureViewController.m in Sources */,
 				A5E01CCD1A2B37F1003ED753 /* AFNetworkReachabilityManager.m in Sources */,
 				02C1E4B81A30221C00F7EC6E /* DLILOperation.m in Sources */,
