@@ -29,6 +29,8 @@
 	UIButton *backButton;
 	UIImageView *backButtonImage;
 	
+	UIView *backgroundNegative1;
+	
 	UIView *background1;
 	UIView *containerView1;
 	UILabel *descriptionLabel1;
@@ -53,6 +55,8 @@
 	UIButton *roundWelcomeLabel3;
 	UIImageView *carrot3;
 	UILabel *welcomeLabel3;
+	
+	UIView *background4;
 }
 
 - (void)viewDidLoad {
@@ -73,6 +77,17 @@
 								[NSLayoutConstraint constraintWithItem:background1 attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0],
 								[NSLayoutConstraint constraintWithItem:background1 attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:0],
 								[NSLayoutConstraint constraintWithItem:background1 attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0],
+								]];
+	
+	background2 = [[UIView alloc]init];
+	background2.translatesAutoresizingMaskIntoConstraints = NO;
+	background2.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+	[self.view addSubview:background2];
+	[self.view addConstraints:@[
+								[NSLayoutConstraint constraintWithItem:background2 attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:background1 attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0],
+								[NSLayoutConstraint constraintWithItem:background2 attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0],
+								[NSLayoutConstraint constraintWithItem:background2 attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:0],
+								[NSLayoutConstraint constraintWithItem:background2 attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0],
 								]];
 	
 	containerView1 = [[UIView alloc] init];
@@ -398,6 +413,18 @@
 											   [NSLayoutConstraint constraintWithItem:welcomeLabel3 attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:roundWelcomeLabel3 attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0],
 											   [NSLayoutConstraint constraintWithItem:welcomeLabel3 attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:roundWelcomeLabel3 attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
 											   ]];
+	
+	background4 = [[UIView alloc]init];
+	background4.translatesAutoresizingMaskIntoConstraints = NO;
+	background4.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+	[self.view addSubview:background4];
+	[self.view addConstraints:@[
+								[NSLayoutConstraint constraintWithItem:background4 attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:background3 attribute:NSLayoutAttributeRight multiplier:1.0 constant:0],
+								[NSLayoutConstraint constraintWithItem:background4 attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0],
+								[NSLayoutConstraint constraintWithItem:background4 attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:0],
+								[NSLayoutConstraint constraintWithItem:background4 attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0],
+								]];
+	
 	[self.view bringSubviewToFront:backButton];
 }
 
@@ -417,10 +444,14 @@
 	backButtonImage.animationRepeatCount = 1;
 	[backButtonImage startAnimating];
 	backButton.enabled = NO;
-	_leftmostLayoutConstraint.constant = -self.view.frame.size.width;
-	[UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-		[self.view layoutIfNeeded];
-	} completion:^(BOOL finished) {
+
+	POPSpringAnimation *layoutAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayoutConstraintConstant];
+	layoutAnimation.springSpeed = 5.0f;
+	layoutAnimation.springBounciness = 5.0f;
+	layoutAnimation.toValue = @(-self.view.bounds.size.width);
+	layoutAnimation.beginTime = CACurrentMediaTime();
+	[_leftmostLayoutConstraint pop_addAnimation:layoutAnimation forKey:@"detailsContainerWidthAnimate"];
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 		backButtonImage.image = [UIImage backButtonOpen];
 		backButtonImage.animationImages = [UIImage transitionBackButtonImages:YES];
 		backButtonImage.animationDuration = 0.25;
@@ -429,7 +460,7 @@
 		backButton.enabled = YES;
 		[backButton removeTarget:self action:@selector(cancelButtonPressed) forControlEvents:UIControlEventTouchUpInside];
 		[backButton addTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchUpInside];
-	}];
+	});
 }
 
 - (void)cancelButtonPressed{
@@ -453,25 +484,29 @@
     
 	[self resignAllResponders];
     
-    _leftmostLayoutConstraint.constant = 2 * -self.view.frame.size.width;
     backButtonImage.image = [UIImage backButtonClosed];
     backButtonImage.animationImages = [UIImage transitionBackButtonImages:NO];
     backButtonImage.animationDuration = 0.25;
     backButtonImage.animationRepeatCount = 1;
     [backButtonImage startAnimating];
     backButton.enabled = NO;
-    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        [self.view layoutIfNeeded];
-    } completion:^(BOOL finished) {
-        backButtonImage.image = [UIImage backButtonOpen];
-        backButtonImage.animationImages = [UIImage transitionBackButtonImages:YES];
-        backButtonImage.animationDuration = 0.25;
-        backButtonImage.animationRepeatCount = 1;
-        [backButtonImage startAnimating];
-        backButton.enabled = YES;
-        [backButton removeTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchUpInside];
-        [backButton addTarget:self action:@selector(backButton3Pressed) forControlEvents:UIControlEventTouchUpInside];
-    }];
+	
+	POPSpringAnimation *layoutAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayoutConstraintConstant];
+	layoutAnimation.springSpeed = 5.0f;
+	layoutAnimation.springBounciness = 5.0f;
+	layoutAnimation.toValue = @(2 * -self.view.bounds.size.width);
+	layoutAnimation.beginTime = CACurrentMediaTime();
+	[_leftmostLayoutConstraint pop_addAnimation:layoutAnimation forKey:@"detailsContainerWidthAnimate"];
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+		backButtonImage.image = [UIImage backButtonOpen];
+		backButtonImage.animationImages = [UIImage transitionBackButtonImages:YES];
+		backButtonImage.animationDuration = 0.25;
+		backButtonImage.animationRepeatCount = 1;
+		[backButtonImage startAnimating];
+		backButton.enabled = YES;
+		[backButton removeTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchUpInside];
+		[backButton addTarget:self action:@selector(backButton3Pressed) forControlEvents:UIControlEventTouchUpInside];
+	});
 }
 
 - (void)backButton2Pressed{
@@ -482,10 +517,14 @@
 	backButtonImage.animationRepeatCount = 1;
 	[backButtonImage startAnimating];
 	backButton.enabled = NO;
-	_leftmostLayoutConstraint.constant = 0;
-	[UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-		[self.view layoutIfNeeded];
-	} completion:^(BOOL finished) {
+	
+	POPSpringAnimation *layoutAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayoutConstraintConstant];
+	layoutAnimation.springSpeed = 5.0f;
+	layoutAnimation.springBounciness = 5.0f;
+	layoutAnimation.toValue = @(0);
+	layoutAnimation.beginTime = CACurrentMediaTime();
+	[_leftmostLayoutConstraint pop_addAnimation:layoutAnimation forKey:@"detailsContainerWidthAnimate"];
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 		backButtonImage.image = [UIImage cancelButtonX];
 		backButtonImage.animationImages = [UIImage transitionCancelButtonImages:YES];
 		backButtonImage.animationDuration = 0.25;
@@ -494,7 +533,7 @@
 		backButton.enabled = YES;
 		[backButton removeTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchUpInside];
 		[backButton addTarget:self action:@selector(cancelButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-	}];
+	});
 }
 
 - (void)welcomeButton3Pressed{
@@ -537,8 +576,7 @@
                     backButtonImage.animationRepeatCount = 1;
                     [backButtonImage startAnimating];
                     backButton.enabled = YES;
-                    [backButton removeTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchUpInside];
-                    [backButton addTarget:self action:@selector(backButton3Pressed) forControlEvents:UIControlEventTouchUpInside];
+                    [backButton removeTarget:self action:@selector(backButton3Pressed) forControlEvents:UIControlEventTouchUpInside];
                     [v removeFromSuperview];
                     
                     UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
@@ -568,19 +606,23 @@
 	backButtonImage.animationRepeatCount = 1;
 	[backButtonImage startAnimating];
 	backButton.enabled = NO;
-	_leftmostLayoutConstraint.constant = -self.view.frame.size.width;
-	[UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-		[self.view layoutIfNeeded];
-	} completion:^(BOOL finished) {
-		backButtonImage.image = [UIImage backButtonOpen];
-		backButtonImage.animationImages = [UIImage transitionBackButtonImages:YES];
+	
+	POPSpringAnimation *layoutAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayoutConstraintConstant];
+	layoutAnimation.springSpeed = 5.0f;
+	layoutAnimation.springBounciness = 5.0f;
+	layoutAnimation.toValue = @(-self.view.bounds.size.width);
+	layoutAnimation.beginTime = CACurrentMediaTime();
+	[_leftmostLayoutConstraint pop_addAnimation:layoutAnimation forKey:@"detailsContainerWidthAnimate"];
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+		backButtonImage.image = [UIImage cancelButtonX];
+		backButtonImage.animationImages = [UIImage transitionCancelButtonImages:YES];
 		backButtonImage.animationDuration = 0.25;
 		backButtonImage.animationRepeatCount = 1;
 		[backButtonImage startAnimating];
 		backButton.enabled = YES;
 		[backButton removeTarget:self action:@selector(backButton3Pressed) forControlEvents:UIControlEventTouchUpInside];
 		[backButton addTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchUpInside];
-	}];
+	});
 }
 
 - (void)resignAllResponders{
