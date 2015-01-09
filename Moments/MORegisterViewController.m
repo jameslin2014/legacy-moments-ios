@@ -402,12 +402,12 @@
 
 - (void)continueButton1Pressed{
 
-    // TODO: Check the intended username is not already taken
+#warning TODO: Check the intended username is not already taken
 //    [[MomentsAPIUtilities sharedInstance] isRegisteredUsername:usernameField1.text completion:^(BOOL used) {
 //        NSLog(@"%@", !used ? @"YES" : @"NO");
 //    }];
     
-    // TODO: Check the e-mail address is not empty
+#warning TODO: Check the e-mail address is not empty
     
 	[self resignAllResponders];
 	backButtonImage.image = [UIImage backButtonClosed];
@@ -448,7 +448,7 @@
 }
 
 - (void)continueButton2Pressed{
-    // TODO: Check the passwords are the same
+#warning TODO: Check the passwords are the same
     
 	[self resignAllResponders];
     
@@ -615,8 +615,7 @@
     UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
 
     [picker dismissViewControllerAnimated:YES completion:^{
-        //TODO: Upload to S3
-
+#warning TODO: Upload to S3
 		[imageButton3 setImage:image forState:UIControlStateNormal];
 		imageButton3.imageView.layer.cornerRadius = imageButton3.imageView.layer.frame.size.height / 2.0;
 		imageButton3.imageView.layer.masksToBounds = YES;

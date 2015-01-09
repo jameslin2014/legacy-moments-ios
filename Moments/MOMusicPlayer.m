@@ -67,7 +67,7 @@ static const float kSampleRate = 44100.00;
 }
 
 - (void)stop {
-    // TODO: Fade out audio with a timer?
+#warning TODO: Fade out audio with a timer?
     [self.player1 stop];
     [self.player2 stop];
     [self.player3 stop];

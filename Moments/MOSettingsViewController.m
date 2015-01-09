@@ -411,7 +411,7 @@ static NSString *CellIdentifier = @"CellID";
 				NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/app/id%d?mt=8", 953901607];
 				NSURL *url = [NSURL URLWithString:urlString];
 				UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[url, @"SOME STRING"] applicationActivities:nil];
-				//TODO ^
+#warning TODO         ^
 				[self presentViewController:activityViewController animated:YES completion:nil];
 			}
 		} else if (indexPath.section == 2){
@@ -500,7 +500,7 @@ static NSString *CellIdentifier = @"CellID";
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
 	[picker dismissViewControllerAnimated:YES completion:nil];
-	//TODO: Set profile image
+#warning TODO: Set profile image
 }
 
 @end
