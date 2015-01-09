@@ -169,7 +169,6 @@
 								   [NSLayoutConstraint constraintWithItem:cancelImage attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:25]
 								   ]];
 
-    [usernameField becomeFirstResponder];
 }
 
 - (void)signInButtonPressed {
