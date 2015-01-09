@@ -186,27 +186,30 @@
 	
     MOUser *user = [MomentsAPIUtilities sharedInstance].user;
     [[MomentsAPIUtilities sharedInstance] verifyUsername:usernameField.text andPassword:passwordField.text completion:^(NSDictionary *dictionary) {
-		[UIView animateWithDuration:0.2 animations:^{
-			v.alpha = 0;
-		}];
-        BOOL valid = [[dictionary objectForKey:@"login"] boolValue];
-        if (valid) {
-            [user loginAs:usernameField.text
-                 password:passwordField.text
-                    token:[dictionary objectForKey:@"token"]];
-            [user setIntroShown:YES];
-            
-            UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
-            
-            [self presentViewController:destinationViewController animated:YES completion:^{
-                EDPagingViewController *pagingViewController = (EDPagingViewController *) self.presentingViewController;
-                [pagingViewController.player stop];
-                pagingViewController = nil;
-            }];
-        } else {
-            NSLog(@"Login failed");
-        }
-        [v removeFromSuperview];
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[UIView animateWithDuration:0.2 animations:^{
+				v.alpha = 0;
+			} completion:^(BOOL finished) {
+				[v removeFromSuperview];
+			}];
+			BOOL valid = [[dictionary objectForKey:@"login"] boolValue];
+			if (valid) {
+				[user loginAs:usernameField.text
+					 password:passwordField.text
+						token:[dictionary objectForKey:@"token"]];
+				[user setIntroShown:YES];
+				
+				UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
+				
+				[self presentViewController:destinationViewController animated:YES completion:^{
+					EDPagingViewController *pagingViewController = (EDPagingViewController *) self.presentingViewController;
+					[pagingViewController.player stop];
+					pagingViewController = nil;
+				}];
+			} else {
+				NSLog(@"Login failed");
+			}
+		});
     }];
 }
 
