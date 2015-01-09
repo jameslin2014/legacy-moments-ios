@@ -474,6 +474,7 @@
     MOUser *user = [MomentsAPIUtilities sharedInstance].user;
     [user registerWithUsername:usernameField1.text email:emailField1.text password:passwordField2.text completion:^(BOOL valid) {
         if (valid) {
+            [user setIntroShown:YES];
             UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
             
             [self presentViewController:destinationViewController animated:YES completion:^{

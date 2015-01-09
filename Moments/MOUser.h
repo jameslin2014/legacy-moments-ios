@@ -23,5 +23,7 @@
 - (void)loginAs:(NSString *)name password:(NSString *)password token:(NSString *)token;
 - (void)reload;
 - (void)logout;
+- (void)setIntroShown:(BOOL)introShown;
+- (BOOL)introShown;
 
 @end

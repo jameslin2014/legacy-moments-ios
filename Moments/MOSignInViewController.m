@@ -189,6 +189,7 @@
             [user loginAs:usernameField.text
                  password:passwordField.text
                     token:[dictionary objectForKey:@"token"]];
+            [user setIntroShown:YES];
             
             UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
             

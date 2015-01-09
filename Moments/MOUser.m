@@ -18,6 +18,9 @@
     if (self) {
         self.loggedIn = NO;
         [self loadFromKeychain];
+        if (self.token) {
+            self.loggedIn = YES;
+        }
     }
     return self;
 }
@@ -112,6 +115,14 @@
         
         [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"dataLoaded" object:nil]];
     }];
+}
+
+- (void)setIntroShown:(BOOL)introShown {
+    [[NSUserDefaults standardUserDefaults] setBool:introShown forKey:@"IntroHasShown"];
+}
+
+- (BOOL)introShown {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"IntroHasShown"];
 }
 
 - (void)log {

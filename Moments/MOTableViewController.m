@@ -28,6 +28,10 @@
 
 @implementation MOTableViewController
 
+- (BOOL)prefersStatusBarHidden {
+    return NO;
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
@@ -41,6 +45,9 @@
 	UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"gear"] style:UIBarButtonItemStylePlain target:self action:@selector(showOptionsAndAbout)];
 	button.tintColor = [UIColor whiteColor];
 	self.navigationItem.rightBarButtonItem = button;
+    
+    [self getDataFromServer];
+    [self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (void)getDataFromServer{
