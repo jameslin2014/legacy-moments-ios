@@ -18,7 +18,9 @@
 
 @end
 
-@implementation MOMusicPlayer
+@implementation MOMusicPlayer{
+	NSTimer *fadeTimer;
+}
 
 static const float kPlayer1Volume = 0.66;
 static const float kPlayer2Volume = 1.00;
@@ -67,12 +69,34 @@ static const float kSampleRate = 44100.00;
 }
 
 - (void)stop {
-#warning TODO: Fade out audio with a timer?
-    [self.player1 stop];
-    [self.player2 stop];
-    [self.player3 stop];
-    
-    [self.engine stop];
+	fadeTimer = [NSTimer scheduledTimerWithTimeInterval:.15 target:self selector:@selector(fading) userInfo:nil repeats:YES];
+}
+
+- (void)fading{
+	BOOL playersAllAtZero = YES;
+	if (self.player1.volume > 0.1){
+		self.player1.volume -= 0.1;
+		playersAllAtZero = NO;
+	}else{
+		[self.player1 stop];
+	}
+	if (self.player2.volume > 0.1){
+		self.player2.volume -= 0.1;
+		playersAllAtZero = NO;
+	} else{
+		[self.player2 stop];
+	}
+	if (self.player3.volume > 0.1){
+		self.player3.volume -= 0.1;
+		playersAllAtZero = NO;
+	} else{
+		[self.player3 stop];
+	}
+	
+	if (playersAllAtZero){
+		[self.engine stop];
+		[fadeTimer invalidate];
+	}
 }
 
 - (AVAudioPlayerNode *)createPlayerWithFilename:(NSString *)filename extension:(NSString *)extension engine:(AVAudioEngine *)engine time:(AVAudioTime *)time {
