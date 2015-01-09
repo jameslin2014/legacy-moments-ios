@@ -74,9 +74,9 @@
 	v.alpha = 0.0;
 	v.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
 	[self.view addSubview:v];
-	[UIView animateWithDuration:0.2 animations:^{
+	[UIView animateWithDuration:0.2 delay:0.05 options:0 animations:^{
 		v.alpha = 1.0;
-	}];
+	} completion:nil];
 	[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
 
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
