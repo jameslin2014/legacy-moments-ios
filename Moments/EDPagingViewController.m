@@ -342,10 +342,6 @@
 	
 }
 
-- (BOOL)prefersStatusBarHidden{
-	return YES;
-}
-
 - (void)playVideos{
 	[v1 playFromCurrentTime];
 	[v2 playFromCurrentTime];

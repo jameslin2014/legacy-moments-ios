@@ -73,6 +73,7 @@
 	usernameField.placeholder = @"username";
 	usernameField.backgroundColor = [UIColor colorWithRed:0.96 green:0.97 blue:0.98 alpha:1];
 	usernameField.font = [UIFont fontWithName:@"Avenir-Book" size:17];
+    usernameField.autocorrectionType = UITextAutocorrectionTypeNo;
     usernameField.delegate = self;
 	[containerView addSubview:usernameField];
 	[containerView addConstraints:@[
@@ -92,6 +93,7 @@
 	passwordField.secureTextEntry = YES;
 	passwordField.backgroundColor = [UIColor colorWithRed:0.96 green:0.97 blue:0.98 alpha:1];
 	passwordField.font = [UIFont fontWithName:@"Avenir-Book" size:17];
+    passwordField.autocorrectionType = UITextAutocorrectionTypeNo;
     passwordField.delegate = self;
 	[containerView addSubview:passwordField];
 	[containerView addConstraints:@[

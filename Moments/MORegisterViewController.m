@@ -107,6 +107,7 @@
 	usernameField1.placeholder = @"username";
 	usernameField1.backgroundColor = [UIColor colorWithRed:0.96 green:0.97 blue:0.98 alpha:1];
 	usernameField1.font = [UIFont fontWithName:@"Avenir-Book" size:17];
+    usernameField1.autocorrectionType = UITextAutocorrectionTypeNo;
 	[containerView1 addSubview:usernameField1];
 	[containerView1 addConstraints:@[
 								 [NSLayoutConstraint constraintWithItem:usernameField1 attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:descriptionLabel1 attribute:NSLayoutAttributeBottom multiplier:1.0 constant:20],
@@ -124,6 +125,7 @@
 	emailField1.placeholder = @"email address";
 	emailField1.backgroundColor = [UIColor colorWithRed:0.96 green:0.97 blue:0.98 alpha:1];
 	emailField1.font = [UIFont fontWithName:@"Avenir-Book" size:17];
+    emailField1.autocorrectionType = UITextAutocorrectionTypeNo;
 	[containerView1 addSubview:emailField1];
 	[containerView1 addConstraints:@[
 								 [NSLayoutConstraint constraintWithItem:emailField1 attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:usernameField1 attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0],
@@ -243,6 +245,7 @@
 	passwordField2.secureTextEntry = YES;
 	passwordField2.backgroundColor = [UIColor colorWithRed:0.96 green:0.97 blue:0.98 alpha:1];
 	passwordField2.font = [UIFont fontWithName:@"Avenir-Book" size:17];
+    passwordField2.autocorrectionType = UITextAutocorrectionTypeNo;
 	[containerView2 addSubview:passwordField2];
 	[containerView2 addConstraints:@[
 									 [NSLayoutConstraint constraintWithItem:passwordField2 attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:descriptionLabel2 attribute:NSLayoutAttributeBottom multiplier:1.0 constant:20],
@@ -261,6 +264,7 @@
 	confirmPasswordField2.secureTextEntry = YES;
 	confirmPasswordField2.backgroundColor = [UIColor colorWithRed:0.96 green:0.97 blue:0.98 alpha:1];
 	confirmPasswordField2.font = [UIFont fontWithName:@"Avenir-Book" size:17];
+    confirmPasswordField2.autocorrectionType = UITextAutocorrectionTypeNo;
 	[containerView2 addSubview:confirmPasswordField2];
 	[containerView2 addConstraints:@[
 									 [NSLayoutConstraint constraintWithItem:confirmPasswordField2 attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:passwordField2 attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0],
