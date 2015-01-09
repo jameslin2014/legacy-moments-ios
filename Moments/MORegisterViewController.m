@@ -22,7 +22,7 @@
 
 @end
 
-@implementation MORegisterViewController{
+@implementation MORegisterViewController <UIImagePickerControllerDelegate> {
 	NSLayoutConstraint *_leftmostLayoutConstraint;
 	
 	UIButton *backButton;
@@ -592,8 +592,16 @@
     [sheet addAction:photoLibraryButton];
     [sheet addAction:cancelButton];
     [self presentViewController:sheet animated:YES completion:nil];
-    
-    
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"%@", image);
+}
+
+- (void)imagePickerControllerDidCancel {
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
