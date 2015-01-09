@@ -355,6 +355,7 @@
 	roundWelcomeLabel3.translatesAutoresizingMaskIntoConstraints = NO;
 	roundWelcomeLabel3.backgroundColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
 	roundWelcomeLabel3.layer.cornerRadius = 20;
+    [roundWelcomeLabel3 addTarget:self action:@selector(welcomeButton3Pressed) forControlEvents:UIControlEventTouchUpInside];
 	//	[roundSignInContainer addTarget:self action:@selector(signIn) forControlEvents:UIControlEventTouchUpInside];
 	[containerView3 addSubview:roundWelcomeLabel3];
 	[containerView3 addConstraints:@[
@@ -446,25 +447,6 @@
     // TODO: Check the passwords are the same
     
 	[self resignAllResponders];
-	_leftmostLayoutConstraint.constant = 2 * -self.view.frame.size.width;
-	backButtonImage.image = [UIImage backButtonClosed];
-	backButtonImage.animationImages = [UIImage transitionBackButtonImages:NO];
-	backButtonImage.animationDuration = 0.25;
-	backButtonImage.animationRepeatCount = 1;
-	[backButtonImage startAnimating];
-	backButton.enabled = NO;
-	[UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-		[self.view layoutIfNeeded];
-	} completion:^(BOOL finished) {
-		backButtonImage.image = [UIImage backButtonOpen];
-		backButtonImage.animationImages = [UIImage transitionBackButtonImages:YES];
-		backButtonImage.animationDuration = 0.25;
-		backButtonImage.animationRepeatCount = 1;
-		[backButtonImage startAnimating];
-		backButton.enabled = YES;
-		[backButton removeTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchUpInside];
-		[backButton addTarget:self action:@selector(backButton3Pressed) forControlEvents:UIControlEventTouchUpInside];
-	}];
     
     SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
     v.scene = [[EDSpinningBoxScene alloc] init];
@@ -479,12 +461,24 @@
     [user registerWithUsername:usernameField1.text email:emailField1.text password:passwordField2.text completion:^(BOOL valid) {
         if (valid) {
             [user setIntroShown:YES];
-            UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
-            
-            [self presentViewController:destinationViewController animated:YES completion:^{
-                EDPagingViewController *pagingViewController = (EDPagingViewController *) self.presentingViewController;
-                [pagingViewController.player stop];
-                pagingViewController = nil;
+            _leftmostLayoutConstraint.constant = 2 * -self.view.frame.size.width;
+            backButtonImage.image = [UIImage backButtonClosed];
+            backButtonImage.animationImages = [UIImage transitionBackButtonImages:NO];
+            backButtonImage.animationDuration = 0.25;
+            backButtonImage.animationRepeatCount = 1;
+            [backButtonImage startAnimating];
+            backButton.enabled = NO;
+            [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                [self.view layoutIfNeeded];
+            } completion:^(BOOL finished) {
+                backButtonImage.image = [UIImage backButtonOpen];
+                backButtonImage.animationImages = [UIImage transitionBackButtonImages:YES];
+                backButtonImage.animationDuration = 0.25;
+                backButtonImage.animationRepeatCount = 1;
+                [backButtonImage startAnimating];
+                backButton.enabled = YES;
+                [backButton removeTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchUpInside];
+                [backButton addTarget:self action:@selector(backButton3Pressed) forControlEvents:UIControlEventTouchUpInside];
             }];
         } else {
             NSLog(@"Registration failed");
@@ -518,6 +512,14 @@
 
 - (void)welcomeButton3Pressed{
 	[self resignAllResponders];
+    
+     UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
+     
+     [self presentViewController:destinationViewController animated:YES completion:^{
+         EDPagingViewController *pagingViewController = (EDPagingViewController *) self.presentingViewController;
+         [pagingViewController.player stop];
+         pagingViewController = nil;
+     }];
 }
 
 - (void)backButton3Pressed{
@@ -550,8 +552,7 @@
 	[confirmPasswordField2 resignFirstResponder];
 }
 
-- (void)imageButtonPressed{
-    
+- (void)imageButtonPressed {
 	//present action sheet
 	[imageButton3.imageView.layer pop_removeAnimationForKey:@"rotationAnim"];
 	POPSpringAnimation *rotationAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerRotation];
@@ -596,8 +597,17 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    NSLog(@"%@", image);
+
+    [picker dismissViewControllerAnimated:YES completion:^{
+        // Upload to S3
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageButton3.frame];
+        imageView.image = image;
+        imageView.layer.cornerRadius = imageView.image.size.width / 2.0;
+        [self.view addSubview:imageView];
+        imageButton3.userInteractionEnabled = NO;
+        imageButton3.alpha = 0.0;
+    }];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
