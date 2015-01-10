@@ -161,13 +161,17 @@
 	if (indexPath.section == 0){
 		cell.textLabel.text = [NSString stringWithFormat:@"\t\t%@", [MomentsAPIUtilities sharedInstance].user.name ?: @""];
 
-        __weak UIImageView *weakImageView = profileImageView;
-        [profileImageView setImageWithURLRequest:[[MOS3APIUtilities sharedInstance] avatarRequestForUsername:[[MomentsAPIUtilities sharedInstance].user.name lowercaseString]] placeholderImage:[UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-            weakImageView.image = image;
-            weakImageView.layer.cornerRadius = weakImageView.frame.size.width / 2;
-            weakImageView.clipsToBounds = YES;
-        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-        }];
+//        NSURLRequest *req = [[MOS3APIUtilities sharedInstance] avatarRequestForUsername:[MomentsAPIUtilities sharedInstance].user.name];
+        
+//        __weak UIImageView *weakImageView = profileImageView;
+//        [profileImageView setImageWithURLRequest:req placeholderImage:[UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+//            weakImageView.image = image;
+//            weakImageView.layer.cornerRadius = weakImageView.frame.size.width / 2;
+//            weakImageView.clipsToBounds = YES;
+//        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+//        }];
+        
+        profileImageView.image = [MomentsAPIUtilities sharedInstance].user.avatar;
         
 		UIToolbar *toolbar = [[UIToolbar alloc] init];
 		toolbar.barTintColor = [UIColor colorWithRed:36/255.0 green: 36/255.0 blue:36/255.0 alpha:1.0];

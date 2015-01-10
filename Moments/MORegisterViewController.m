@@ -585,7 +585,8 @@
             if (success) {
                 [user setIntroShown:YES];
                 
-                [[MOS3APIUtilities sharedInstance] putAvatarForUsername:user.name image:imageButton3.imageView.image];
+                user.avatar = imageButton3.imageView.image;
+                [[MOS3APIUtilities sharedInstance] putAvatarForUsername:user.name image:user.avatar];
                 
                 _leftmostLayoutConstraint.constant = 2 * -self.view.frame.size.width;
                 backButtonImage.image = [UIImage backButtonClosed];
@@ -707,6 +708,7 @@
 		imageButton3.imageView.layer.masksToBounds = YES;
 		imageButton3.imageView.layer.borderWidth = 0;
 		imageButton3.imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageButton3.imageView.transform = CGAffineTransformIdentity;
     }];
 }
 
@@ -728,17 +730,13 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
 	
-	if (textField == usernameField1){
-		[usernameField1 resignFirstResponder];
+	if (textField == usernameField1) {
 		[emailField1 becomeFirstResponder];
-	} else if (textField == emailField1){
-		[emailField1 resignFirstResponder];
+	} else if (textField == emailField1) {
 		[self continueButton1Pressed];
-	} else if (textField == passwordField2){
-		[passwordField2 resignFirstResponder];
+	} else if (textField == passwordField2) {
 		[confirmPasswordField2 becomeFirstResponder];
-	} else if (textField == confirmPasswordField2){
-		[passwordField2 resignFirstResponder];
+	} else if (textField == confirmPasswordField2) {
 		[self continueButton2Pressed];
 	}
 	

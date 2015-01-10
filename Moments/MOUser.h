@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface MOUser : NSObject
 
@@ -17,6 +18,7 @@
 @property (nonatomic, copy) NSArray *followers;
 @property (nonatomic, copy) NSArray *following;
 @property (nonatomic, assign) BOOL loggedIn;
+@property (nonatomic, strong) UIImage *avatar;
 
 - (void)registerWithUsername:(NSString *)username email:(NSString *)email password:(NSString *)password completion:(void (^)(BOOL))completion;
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)(BOOL))completion;

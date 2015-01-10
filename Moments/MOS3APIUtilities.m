@@ -31,8 +31,6 @@
 - (void)putAvatarForUsername:(NSString *)username image:(UIImage *)image {
     NSURLRequest *request = [self URLRequestForPath:[self pathForUsername:username] withHTTPMethod:@"PUT" data:UIImagePNGRepresentation(image) responseSerializer:nil];
     
-    NSLog(@"%@", request.HTTPMethod);
-    
     AFAmazonS3Manager *s3 = [self getManager];
     AFHTTPRequestOperation *operation = [s3 HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Avatar uploaded");
@@ -47,7 +45,7 @@
 }
 
 - (NSString *)pathForUsername:(NSString *)username {
-    return [NSString stringWithFormat:@"avatars/%@.png", username];
+    return [NSString stringWithFormat:@"avatars/%@.png", [username lowercaseString]];
 }
 
 - (AFAmazonS3Manager *)getManager {
