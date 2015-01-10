@@ -14,6 +14,10 @@
 
 @implementation MOPageViewController
 
+- (BOOL)prefersStatusBarHidden{
+	return NO;
+}
+
 - (void)viewDidLoad {
 	
 	[super viewDidLoad];
@@ -38,6 +42,15 @@
 		[vc didMoveToParentViewController:self];
 	}
 	self.scrollView.contentSize = CGSizeMake(self.viewControllers.count * self.view.frame.size.width, self.view.frame.size.height);
+	
+	[self.viewControllers[1] view].alpha = 0;
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+	[super viewDidAppear:animated];
+	[UIView animateWithDuration:0.15 delay:1 options:UIViewAnimationOptionCurveEaseOut animations:^{
+		[self.viewControllers[1] view].alpha = 1;
+	} completion:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

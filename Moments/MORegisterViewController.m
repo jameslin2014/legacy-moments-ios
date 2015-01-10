@@ -59,6 +59,10 @@
 	UIView *background4;
 }
 
+- (BOOL)prefersStatusBarHidden{
+	return YES;
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
@@ -446,7 +450,7 @@
 	backButton.enabled = NO;
 
 	POPSpringAnimation *layoutAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayoutConstraintConstant];
-	layoutAnimation.springSpeed = 5.0f;
+	layoutAnimation.springSpeed = 10.0f;
 	layoutAnimation.springBounciness = 5.0f;
 	layoutAnimation.toValue = @(-self.view.bounds.size.width);
 	layoutAnimation.beginTime = CACurrentMediaTime();
@@ -492,7 +496,7 @@
     backButton.enabled = NO;
 	
 	POPSpringAnimation *layoutAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayoutConstraintConstant];
-	layoutAnimation.springSpeed = 5.0f;
+	layoutAnimation.springSpeed = 10.0f;
 	layoutAnimation.springBounciness = 5.0f;
 	layoutAnimation.toValue = @(2 * -self.view.bounds.size.width);
 	layoutAnimation.beginTime = CACurrentMediaTime();
@@ -519,7 +523,7 @@
 	backButton.enabled = NO;
 	
 	POPSpringAnimation *layoutAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayoutConstraintConstant];
-	layoutAnimation.springSpeed = 5.0f;
+	layoutAnimation.springSpeed = 10.0f;
 	layoutAnimation.springBounciness = 5.0f;
 	layoutAnimation.toValue = @(0);
 	layoutAnimation.beginTime = CACurrentMediaTime();
@@ -608,14 +612,14 @@
 	backButton.enabled = NO;
 	
 	POPSpringAnimation *layoutAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayoutConstraintConstant];
-	layoutAnimation.springSpeed = 5.0f;
+	layoutAnimation.springSpeed = 10.0f;
 	layoutAnimation.springBounciness = 5.0f;
 	layoutAnimation.toValue = @(-self.view.bounds.size.width);
 	layoutAnimation.beginTime = CACurrentMediaTime();
 	[_leftmostLayoutConstraint pop_addAnimation:layoutAnimation forKey:@"detailsContainerWidthAnimate"];
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-		backButtonImage.image = [UIImage cancelButtonX];
-		backButtonImage.animationImages = [UIImage transitionCancelButtonImages:YES];
+		backButtonImage.image = [UIImage backButtonOpen];
+		backButtonImage.animationImages = [UIImage transitionBackButtonImages:YES];
 		backButtonImage.animationDuration = 0.25;
 		backButtonImage.animationRepeatCount = 1;
 		[backButtonImage startAnimating];

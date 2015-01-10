@@ -162,7 +162,7 @@
 		cell.textLabel.text = [NSString stringWithFormat:@"\t\t%@", [MomentsAPIUtilities sharedInstance].user.name ?: @""];
 
         __weak UIImageView *weakImageView = profileImageView;
-        [profileImageView setImageWithURLRequest:[[MOS3APIUtilities sharedInstance] avatarRequestForUsername:[MomentsAPIUtilities sharedInstance].user.name] placeholderImage:[UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        [profileImageView setImageWithURLRequest:[[MOS3APIUtilities sharedInstance] avatarRequestForUsername:[[MomentsAPIUtilities sharedInstance].user.name lowercaseString]] placeholderImage:[UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
             weakImageView.image = image;
             weakImageView.layer.cornerRadius = weakImageView.frame.size.width / 2;
             weakImageView.clipsToBounds = YES;

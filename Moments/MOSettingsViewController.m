@@ -33,6 +33,10 @@ static NSString *CellIdentifier = @"CellID";
 
 @implementation MOSettingsViewController
 
+- (BOOL)prefersStatusBarHidden{
+	return NO;
+}
+
 - (UIStatusBarStyle)preferredStatusBarStyle{
 	return UIStatusBarStyleLightContent;
 }

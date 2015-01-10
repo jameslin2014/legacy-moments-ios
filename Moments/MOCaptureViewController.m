@@ -18,6 +18,10 @@
 	BOOL shouldCancel;
 }
 
+- (BOOL)prefersStatusBarHidden{
+	return NO;
+}
+
 - (BOOL)isSessionRunningAndDeviceAuthorized {
     return [[self session] isRunning] && [self isDeviceAuthorized];
 }

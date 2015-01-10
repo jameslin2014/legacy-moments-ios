@@ -32,6 +32,10 @@
 	UIImageView *cancelImage;
 }
 
+- (BOOL)prefersStatusBarHidden{
+	return YES;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -195,12 +199,15 @@
 				[user setIntroShown:YES];
 				
 				UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
-				
-				[self presentViewController:destinationViewController animated:YES completion:^{
-					EDPagingViewController *pagingViewController = (EDPagingViewController *) self.presentingViewController;
-					[pagingViewController.player stop];
-					pagingViewController = nil;
-				}];
+				[[[UIApplication sharedApplication] delegate] window].rootViewController = destinationViewController;
+				[[[[UIApplication sharedApplication] delegate] window] makeKeyAndVisible];
+				EDPagingViewController *pagingViewController = (EDPagingViewController *) self.presentingViewController;
+				[pagingViewController.player stop];
+//				[self presentViewController:destinationViewController animated:YES completion:^{
+//					EDPagingViewController *pagingViewController = (EDPagingViewController *) self.presentingViewController;
+//					[pagingViewController.player stop];
+//					pagingViewController = nil;
+//				}];
             }
 		});
     }];
@@ -212,7 +219,7 @@
 	cancelImage.animationDuration = 0.15;
 	cancelImage.animationRepeatCount = 1;
 	[cancelImage startAnimating];
-	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 		if ([self.presentingViewController isKindOfClass:[EDPagingViewController class]]){
 			[((EDPagingViewController *)self.presentingViewController) pageControlToggleOnScreen];
 		}
