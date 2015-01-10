@@ -487,12 +487,6 @@
 #warning TODO: Check the passwords are the same
     
 	[self resignAllResponders];
-    
-    backButtonImage.image = [UIImage backButtonClosed];
-    backButtonImage.animationImages = [UIImage transitionBackButtonImages:NO];
-    backButtonImage.animationDuration = 0.25;
-    backButtonImage.animationRepeatCount = 1;
-    [backButtonImage startAnimating];
     backButton.enabled = NO;
 	
 	POPSpringAnimation *layoutAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayoutConstraintConstant];
@@ -502,11 +496,6 @@
 	layoutAnimation.beginTime = CACurrentMediaTime();
 	[_leftmostLayoutConstraint pop_addAnimation:layoutAnimation forKey:@"detailsContainerWidthAnimate"];
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-		backButtonImage.image = [UIImage backButtonOpen];
-		backButtonImage.animationImages = [UIImage transitionBackButtonImages:YES];
-		backButtonImage.animationDuration = 0.25;
-		backButtonImage.animationRepeatCount = 1;
-		[backButtonImage startAnimating];
 		backButton.enabled = YES;
 		[backButton removeTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchUpInside];
 		[backButton addTarget:self action:@selector(backButton3Pressed) forControlEvents:UIControlEventTouchUpInside];
@@ -604,11 +593,6 @@
 
 - (void)backButton3Pressed{
 	[self resignAllResponders];
-	backButtonImage.image = [UIImage backButtonClosed];
-	backButtonImage.animationImages = [UIImage transitionBackButtonImages:NO];
-	backButtonImage.animationDuration = 0.25;
-	backButtonImage.animationRepeatCount = 1;
-	[backButtonImage startAnimating];
 	backButton.enabled = NO;
 	
 	POPSpringAnimation *layoutAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayoutConstraintConstant];
@@ -618,11 +602,6 @@
 	layoutAnimation.beginTime = CACurrentMediaTime();
 	[_leftmostLayoutConstraint pop_addAnimation:layoutAnimation forKey:@"detailsContainerWidthAnimate"];
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-		backButtonImage.image = [UIImage backButtonOpen];
-		backButtonImage.animationImages = [UIImage transitionBackButtonImages:YES];
-		backButtonImage.animationDuration = 0.25;
-		backButtonImage.animationRepeatCount = 1;
-		[backButtonImage startAnimating];
 		backButton.enabled = YES;
 		[backButton removeTarget:self action:@selector(backButton3Pressed) forControlEvents:UIControlEventTouchUpInside];
 		[backButton addTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchUpInside];
