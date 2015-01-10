@@ -78,16 +78,22 @@
 		//// Color Declarations
 		UIColor* color = [UIColor colorWithRed: 0 green: 0.776 blue: 0.42 alpha: 1];
 		
+		CGFloat cornerRadius = reversed ? 30 : 10;
+		//// Rectangle Drawing
+		CGRect r = CGRectMake(13 + i, 13 + i, 60 - 2*i, 60 - 2*i);
+		if (!reversed){
+			r = CGRectMake(MIN(13+i+5, 23), MIN(13+i+5, 23), MAX(60-2*i-10, 40), MAX(60-2*i-10, 40));
+		}
+		NSLog(@"%@", NSStringFromCGRect(r));
+		UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect: r cornerRadius: cornerRadius];
+		[color setFill];
+		[rectanglePath fill];
+		
 		//// Oval Drawing
 		UIBezierPath* ovalPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(3, 3, 80, 80)];
 		[UIColor.whiteColor setStroke];
 		ovalPath.lineWidth = 4;
 		[ovalPath stroke];
-		
-		//// Rectangle Drawing
-		UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(13 + i, 13 + i, 60 - 2*i, 60 - 2*i) cornerRadius: 30.0 - 2*i];
-		[color setFill];
-		[rectanglePath fill];
 		
 		UIImage *returnImage = UIGraphicsGetImageFromCurrentImageContext();
 		UIGraphicsEndImageContext();
