@@ -12,6 +12,5 @@
 @interface MOAvatarCache : NSObject
 
 - (void)getAvatarForUsername:(NSString *)username completion:(void (^)(UIImage *))completion;
-- (void)putAvatarForUsername:(NSString *)username;
 
 @end

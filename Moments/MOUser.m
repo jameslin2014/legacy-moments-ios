@@ -9,6 +9,7 @@
 #import "MOUser.h"
 #import "MomentsAPIUtilities.h"
 #import "MOS3APIUtilities.h"
+#import "MOAvatarCache.h"
 #import "SSKeychain.h"
 
 @implementation MOUser
@@ -21,7 +22,7 @@
         [self loadFromKeychain];
         if (self.token) {
             self.loggedIn = YES;
-            [[MOS3APIUtilities sharedInstance] getAvatarForUsername:self.name completion:^(UIImage *avatar) {
+            [[[MOAvatarCache alloc] init] getAvatarForUsername:self.name completion:^(UIImage *avatar) {
                 self.avatar = avatar;
             }];
         }
@@ -53,8 +54,6 @@
         self.loggedIn = YES;
         
         [self saveToKeychain];
-        
-        NSLog(@"%@", dictionary);
         
         completion(nil != dictionary && nil == [dictionary objectForKey:@"error"]);
     }];
