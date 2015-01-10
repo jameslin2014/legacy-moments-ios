@@ -12,6 +12,7 @@
 #import "MOS3APIUtilities.h"
 #import "UIImageView+AFNetworking.h"
 #import "UIImage+EDExtras.h"
+#import "MOAvatarCache.h"
 
 @interface MOFollowViewController ()
 
@@ -204,11 +205,15 @@
 	}
 	nameLabel.text = username;
     
-    __weak UIImageView *weakImageView = profileImageView;
-    [profileImageView setImageWithURLRequest:[[MOS3APIUtilities sharedInstance] avatarRequestForUsername:username] placeholderImage:[UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-        weakImageView.image = image;
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+    [[[MOAvatarCache alloc] init] getAvatarForUsername:username completion:^(UIImage *avatar) {
+        profileImageView.image = avatar;
     }];
+    
+//    __weak UIImageView *weakImageView = profileImageView;
+//    [profileImageView setImageWithURLRequest:[[MOS3APIUtilities sharedInstance] avatarRequestForUsername:username] placeholderImage:[UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+//        weakImageView.image = image;
+//    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+//    }];
 	
 	return cell;
 }

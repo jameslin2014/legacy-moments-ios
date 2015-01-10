@@ -17,6 +17,7 @@
 #import "ALAssetsLibrary+CustomPhotoAlbum.h"
 #import "PBJVideoPlayerController.h"
 #import "UIImage+EDExtras.h"
+#import "MOAvatarCache.h"
 
 @interface MOTableViewController () <PBJVideoPlayerControllerDelegate>
 @property (strong, nonatomic) NSArray *following;
@@ -160,16 +161,6 @@
 	
 	if (indexPath.section == 0){
 		cell.textLabel.text = [NSString stringWithFormat:@"\t\t%@", [MomentsAPIUtilities sharedInstance].user.name ?: @""];
-
-//        NSURLRequest *req = [[MOS3APIUtilities sharedInstance] avatarRequestForUsername:[MomentsAPIUtilities sharedInstance].user.name];
-        
-//        __weak UIImageView *weakImageView = profileImageView;
-//        [profileImageView setImageWithURLRequest:req placeholderImage:[UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-//            weakImageView.image = image;
-//            weakImageView.layer.cornerRadius = weakImageView.frame.size.width / 2;
-//            weakImageView.clipsToBounds = YES;
-//        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-//        }];
         
         profileImageView.image = [MomentsAPIUtilities sharedInstance].user.avatar;
         
@@ -192,13 +183,17 @@
 	} else{
 		cell.textLabel.text = [NSString stringWithFormat:@"\t\t%@", self.following[indexPath.row]];
         
-        __weak UIImageView *weakImageView = profileImageView;
-        [profileImageView setImageWithURLRequest:[[MOS3APIUtilities sharedInstance] avatarRequestForUsername:self.following[indexPath.row]] placeholderImage:[UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-            weakImageView.image = image;
-            weakImageView.layer.cornerRadius = weakImageView.frame.size.width / 2;
-            weakImageView.clipsToBounds = YES;
-        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        [[[MOAvatarCache alloc] init] getAvatarForUsername:self.following[indexPath.row] completion:^(UIImage *avatar) {
+            profileImageView.image = avatar;
         }];
+        
+//        __weak UIImageView *weakImageView = profileImageView;
+//        [profileImageView setImageWithURLRequest:[[MOS3APIUtilities sharedInstance] avatarRequestForUsername:self.following[indexPath.row]] placeholderImage:[UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+//            weakImageView.image = image;
+//            weakImageView.layer.cornerRadius = weakImageView.frame.size.width / 2;
+//            weakImageView.clipsToBounds = YES;
+//        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+//        }];
 	}
 	return cell;
 }
