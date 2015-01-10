@@ -16,6 +16,7 @@
 
 @implementation MOCaptureViewController{
 	BOOL shouldCancel;
+	NSTimer	*progressTimer;
 }
 
 - (BOOL)prefersStatusBarHidden{
@@ -33,6 +34,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	shouldCancel = NO;
+	
+	self.progressView.hidden = YES;
 	
 	[self.recordButton setImage:[UIImage cameraButton] forState:UIControlStateNormal];
 	
@@ -202,6 +205,9 @@
 			
 			dispatch_async(dispatch_get_main_queue(), ^{
 				[self.recordingFlashView show];
+				self.progressView.hidden = NO;
+				self.progressView.progress = 0;
+				progressTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
 				self.cancelButton.hidden = NO;
 				self.libraryButton.hidden = YES;
 				self.recordButton.imageView.animationImages = [UIImage transitionButtonImages:NO];
@@ -230,6 +236,8 @@
 			dispatch_async(dispatch_get_main_queue(), ^{
 				self.cancelButton.hidden = YES;
 				self.libraryButton.hidden = NO;
+				self.progressView.hidden = YES;
+				[progressTimer invalidate];
 				[self.recordingFlashView hide];
 				self.recordButton.imageView.animationImages = [UIImage transitionButtonImages:YES];
 				self.recordButton.imageView.animationDuration = 0.25;
@@ -240,6 +248,19 @@
             [[self movieFileOutput] stopRecording];
         }
     });
+}
+
+- (void)updateTimer{
+	if(self.progressView.progress >= 1.0f)
+	{
+		//Invalidate timer when time reaches 0
+		[progressTimer invalidate];
+		[self toggleMovieRecording:self];
+	}
+	else
+	{
+		self.progressView.progress += 0.01;
+	}
 }
 
 - (IBAction)changeCamera:(id)sender {
@@ -317,7 +338,7 @@
 	v.alpha = 0.0;
 	v.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
 	[self.view addSubview:v];
-	[UIView animateWithDuration:0.2 delay:0.05 options:0 animations:^{
+	[UIView animateWithDuration:0.2 delay:0.1 options:0 animations:^{
 		v.alpha = 1.0;
 	} completion:nil];
 	[[UIApplication sharedApplication] beginIgnoringInteractionEvents];

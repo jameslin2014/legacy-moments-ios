@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Page View Controller-->
@@ -202,6 +203,9 @@
                                         </constraints>
                                         <blurEffect style="light"/>
                                     </visualEffectView>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bb0-iM-yeZ">
+                                        <rect key="frame" x="93" y="557" width="188" height="2"/>
+                                    </progressView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
@@ -211,7 +215,10 @@
                                     <constraint firstAttribute="trailing" secondItem="nCf-zl-Vub" secondAttribute="trailing" id="FTk-TK-FJ2"/>
                                     <constraint firstItem="nCf-zl-Vub" firstAttribute="leading" secondItem="Sgs-dV-lyT" secondAttribute="leading" id="H55-Mp-z56"/>
                                     <constraint firstAttribute="bottom" secondItem="BbI-SI-tag" secondAttribute="bottom" id="QG2-Fd-IPv"/>
+                                    <constraint firstItem="bb0-iM-yeZ" firstAttribute="width" secondItem="Sgs-dV-lyT" secondAttribute="width" multiplier="0.5" id="bka-MC-XlJ"/>
+                                    <constraint firstAttribute="centerX" secondItem="bb0-iM-yeZ" secondAttribute="centerX" id="dJ2-eG-hTq"/>
                                     <constraint firstItem="nCf-zl-Vub" firstAttribute="top" secondItem="Sgs-dV-lyT" secondAttribute="top" id="elq-KK-dWM"/>
+                                    <constraint firstItem="BbI-SI-tag" firstAttribute="top" secondItem="bb0-iM-yeZ" secondAttribute="bottom" constant="8" id="n0f-FW-gi4"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="SUO-ec-3cR" appends="YES" id="6qP-4Y-8kH"/>
@@ -233,6 +240,7 @@
                         <outlet property="flashButton" destination="azg-Fi-Lly" id="wLW-2v-jtK"/>
                         <outlet property="libraryButton" destination="84n-dZ-KSz" id="Ozk-SQ-GUq"/>
                         <outlet property="previewView" destination="Sgs-dV-lyT" id="Vsn-Fj-Brz"/>
+                        <outlet property="progressView" destination="bb0-iM-yeZ" id="rrz-dA-Ngx"/>
                         <outlet property="recordButton" destination="q7L-6T-xkJ" id="udx-i7-kQ5"/>
                         <outlet property="recordingFlashView" destination="LVL-17-8zM" id="wV3-ro-9zg"/>
                     </connections>

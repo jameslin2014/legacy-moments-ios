@@ -26,6 +26,7 @@ static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevice
 @property (nonatomic, weak) IBOutlet UIButton *flashButton;
 @property (strong, nonatomic) IBOutlet UIButton *cancelButton;
 @property (strong, nonatomic) IBOutlet UIButton *libraryButton;
+@property (strong, nonatomic) IBOutlet UIProgressView *progressView;
 
 - (IBAction)toggleMovieRecording:(id)sender;
 - (IBAction)changeCamera:(id)sender;
