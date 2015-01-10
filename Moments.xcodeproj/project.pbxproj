@@ -129,6 +129,7 @@
 		E410DF3B1A59FFE100D5C040 /* MOUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E410DF3A1A59FFE100D5C040 /* MOUser.m */; };
 		E41B23071A602EB000FD90C9 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = E41B23061A602EB000FD90C9 /* test.png */; };
 		E4A776691A566915003811D6 /* MomentsAPIUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A776681A566915003811D6 /* MomentsAPIUtilities.m */; };
+		E4E1D3CB1A619A3B00752A23 /* UIImage+Avatar.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E1D3CA1A619A3B00752A23 /* UIImage+Avatar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -399,6 +400,8 @@
 		E41B23061A602EB000FD90C9 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		E4A776671A566915003811D6 /* MomentsAPIUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentsAPIUtilities.h; sourceTree = "<group>"; };
 		E4A776681A566915003811D6 /* MomentsAPIUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentsAPIUtilities.m; sourceTree = "<group>"; };
+		E4E1D3C91A619A3B00752A23 /* UIImage+Avatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Avatar.h"; sourceTree = "<group>"; };
+		E4E1D3CA1A619A3B00752A23 /* UIImage+Avatar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Avatar.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -710,6 +713,7 @@
 		A5B31C331A287F25009734EE /* Moments */ = {
 			isa = PBXGroup;
 			children = (
+				E4E1D3C71A619A1900752A23 /* UIImage+Avatar */,
 				E410DF381A59FFC600D5C040 /* Model */,
 				A5B31C381A287F25009734EE /* MOAppDelegate.h */,
 				A5B31C391A287F25009734EE /* MOAppDelegate.m */,
@@ -886,6 +890,15 @@
 				E410DF3A1A59FFE100D5C040 /* MOUser.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		E4E1D3C71A619A1900752A23 /* UIImage+Avatar */ = {
+			isa = PBXGroup;
+			children = (
+				E4E1D3C91A619A3B00752A23 /* UIImage+Avatar.h */,
+				E4E1D3CA1A619A3B00752A23 /* UIImage+Avatar.m */,
+			);
+			name = "UIImage+Avatar";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1091,6 +1104,7 @@
 				20E5957B1A5B83FA00202C21 /* MOSignInViewController.m in Sources */,
 				A5C5EB841A2A8358002F1591 /* MOPageViewController.m in Sources */,
 				A5B31C3A1A287F25009734EE /* MOAppDelegate.m in Sources */,
+				E4E1D3CB1A619A3B00752A23 /* UIImage+Avatar.m in Sources */,
 				A5E01CD61A2B37F1003ED753 /* UIImageView+AFNetworking.m in Sources */,
 				20E5958B1A5B849800202C21 /* MODecisionViewController.m in Sources */,
 				A5E01C2A1A2AF811003ED753 /* AVCamPreviewView.m in Sources */,

@@ -29,7 +29,7 @@
 }
 
 - (void)putAvatarForUsername:(NSString *)username image:(UIImage *)image {
-    NSURLRequest *request = [self URLRequestForPath:[self pathForUsername:username] withHTTPMethod:@"PUT" data:UIImagePNGRepresentation(image) responseSerializer:nil];
+    NSURLRequest *request = [self URLRequestForPath:[self pathForUsername:username] withHTTPMethod:@"PUT" data:UIImagePNGRepresentation(image) mimeType:@"image/png" responseSerializer:nil];
     
     AFAmazonS3Manager *s3 = [self getManager];
     AFHTTPRequestOperation *operation = [s3 HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -41,7 +41,7 @@
 }
 
 - (NSURLRequest *)avatarRequestForUsername:(NSString *)username {
-    return [self URLRequestForPath:[self pathForUsername:username] withHTTPMethod:@"GET" data:nil responseSerializer:[[AFImageResponseSerializer alloc] init]];
+    return [self URLRequestForPath:[self pathForUsername:username] withHTTPMethod:@"GET" data:nil mimeType:nil responseSerializer:[[AFImageResponseSerializer alloc] init]];
 }
 
 - (NSString *)pathForUsername:(NSString *)username {
@@ -58,7 +58,7 @@
     return s3;
 }
 
-- (NSURLRequest *)URLRequestForPath:(NSString *)path withHTTPMethod:(NSString *)method data:(NSData *)data responseSerializer:(AFHTTPResponseSerializer *)responseSerializer {
+- (NSURLRequest *)URLRequestForPath:(NSString *)path withHTTPMethod:(NSString *)method data:(NSData *)data mimeType:(NSString *)mimeType responseSerializer:(AFHTTPResponseSerializer *)responseSerializer {
     AFAmazonS3Manager *s3 = [self getManager];
     
     if (responseSerializer) {
@@ -72,6 +72,10 @@
     
     if (data) {
         originalRequest.HTTPBody = data;
+    }
+    
+    if (mimeType) {
+        [originalRequest setValue:mimeType forHTTPHeaderField:@"Content-Type"];
     }
     
     NSURLRequest *request = [s3.requestSerializer

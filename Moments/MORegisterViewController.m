@@ -15,6 +15,7 @@
 #import "EDSpinningBoxScene.h"
 #import "MOS3APIUtilities.h"
 #import "MMPopLabel.h"
+#import "UIImage+Avatar.h"
 
 #import <pop/POP.h>
 
@@ -585,7 +586,7 @@
             if (success) {
                 [user setIntroShown:YES];
                 
-                user.avatar = imageButton3.imageView.image;
+                user.avatar = [imageButton3.imageView.image cropAndScaleToSize:imageButton3.imageView.frame.size.width];
                 [[MOS3APIUtilities sharedInstance] putAvatarForUsername:user.name image:user.avatar];
                 
                 _leftmostLayoutConstraint.constant = 2 * -self.view.frame.size.width;
