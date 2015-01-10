@@ -27,6 +27,8 @@
 		204BA45D1A4134BF00C1C05E /* EDSpinningBoxScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 204BA45C1A4134BF00C1C05E /* EDSpinningBoxScene.m */; };
 		205FA4881A54E1970061C174 /* PBJVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 205FA4871A54E1970061C174 /* PBJVideoPlayerController.m */; };
 		205FA4921A5600410061C174 /* EDRecordingFlashingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 205FA4911A5600410061C174 /* EDRecordingFlashingView.m */; };
+		20990C4F1A60C6A00084292C /* MMLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20990C4B1A60C69F0084292C /* MMLabel.m */; };
+		20990C501A60C6A00084292C /* MMPopLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20990C4D1A60C69F0084292C /* MMPopLabel.m */; };
 		20B821241A4BA057009E293B /* MOTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B821231A4BA057009E293B /* MOTableViewController.m */; };
 		20C077C31A47B9260092B7AA /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C077C21A47B9260092B7AA /* Twitter.framework */; };
 		20C077C61A48C6220092B7AA /* MOFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C077C51A48C6220092B7AA /* MOFollowViewController.m */; };
@@ -200,6 +202,11 @@
 		205FA4871A54E1970061C174 /* PBJVideoPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJVideoPlayerController.m; sourceTree = "<group>"; };
 		205FA4901A5600410061C174 /* EDRecordingFlashingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDRecordingFlashingView.h; sourceTree = "<group>"; };
 		205FA4911A5600410061C174 /* EDRecordingFlashingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDRecordingFlashingView.m; sourceTree = "<group>"; };
+		20990C4A1A60C69F0084292C /* MMLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLabel.h; sourceTree = "<group>"; };
+		20990C4B1A60C69F0084292C /* MMLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLabel.m; sourceTree = "<group>"; };
+		20990C4C1A60C69F0084292C /* MMPopLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPopLabel.h; sourceTree = "<group>"; };
+		20990C4D1A60C69F0084292C /* MMPopLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPopLabel.m; sourceTree = "<group>"; };
+		20990C4E1A60C6A00084292C /* MMPopLabelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPopLabelDelegate.h; sourceTree = "<group>"; };
 		20B821201A4B5173009E293B /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		20B821221A4BA057009E293B /* MOTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOTableViewController.h; sourceTree = "<group>"; };
 		20B821231A4BA057009E293B /* MOTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOTableViewController.m; sourceTree = "<group>"; };
@@ -557,6 +564,18 @@
 			name = "UIImage+EDExtras";
 			sourceTree = "<group>";
 		};
+		20990C511A60C6A60084292C /* MMPopLabel */ = {
+			isa = PBXGroup;
+			children = (
+				20990C4A1A60C69F0084292C /* MMLabel.h */,
+				20990C4B1A60C69F0084292C /* MMLabel.m */,
+				20990C4C1A60C69F0084292C /* MMPopLabel.h */,
+				20990C4D1A60C69F0084292C /* MMPopLabel.m */,
+				20990C4E1A60C6A00084292C /* MMPopLabelDelegate.h */,
+			);
+			name = MMPopLabel;
+			sourceTree = "<group>";
+		};
 		20E595871A5B842300202C21 /* Media */ = {
 			isa = PBXGroup;
 			children = (
@@ -784,6 +803,7 @@
 		A5E01C951A2B3531003ED753 /* External Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				20990C511A60C6A60084292C /* MMPopLabel */,
 				A5DAC9B51A5E4E0600145AEE /* pop.xcodeproj */,
 				A5AD89111A4D21350013D417 /* SVProgressHUD */,
 				A564DA131A4781AA003C99F3 /* SVWebViewController */,
@@ -1059,6 +1079,7 @@
 				02C1E4BA1A30221C00F7EC6E /* DLImageView.m in Sources */,
 				A5E01CCF1A2B37F1003ED753 /* AFURLConnectionOperation.m in Sources */,
 				20D6E7DC1A44D5BA00B6DF3F /* EDSegments.m in Sources */,
+				20990C4F1A60C6A00084292C /* MMLabel.m in Sources */,
 				A5E01CD21A2B37F1003ED753 /* AFURLSessionManager.m in Sources */,
 				A5E01CCA1A2B37F1003ED753 /* AFHTTPRequestOperationManager.m in Sources */,
 				A5E01C9B1A2B37D7003ED753 /* SSKeychain.m in Sources */,
@@ -1078,6 +1099,7 @@
 				02C1E4A31A2E9AAE00F7EC6E /* JCDHTTPConnection.m in Sources */,
 				A5E01CC91A2B37F1003ED753 /* AFHTTPRequestOperation.m in Sources */,
 				A5E01CCE1A2B37F1003ED753 /* AFSecurityPolicy.m in Sources */,
+				20990C501A60C6A00084292C /* MMPopLabel.m in Sources */,
 				20E5958E1A5B8AEC00202C21 /* UIImage+EDExtras.m in Sources */,
 				E4A776691A566915003811D6 /* MomentsAPIUtilities.m in Sources */,
 				A5B31C371A287F25009734EE /* main.m in Sources */,

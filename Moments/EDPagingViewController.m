@@ -75,7 +75,7 @@
 	[self.scrollView addSubview:v1.view];	
 	UILabel *label1 = [[UILabel alloc] init];
 	label1.translatesAutoresizingMaskIntoConstraints = NO;
-	label1.text = @"Create awesome video blogs on your handheld";
+	label1.text = @"Create awesome video blogs on your handheld.";
 	label1.textColor = [UIColor whiteColor];
 	label1.numberOfLines = -1;
 	label1.font = [UIFont fontWithName:@"Avenir-Book" size:17];
@@ -96,7 +96,7 @@
 	[self.scrollView addSubview:v2.view];
 	UILabel *label2 = [[UILabel alloc] init];
 	label2.translatesAutoresizingMaskIntoConstraints = NO;
-	label2.text = @"See what people from around the world are doing day-by-day";
+	label2.text = @"See what people from around the world are doing day-by-day.";
 	label2.textColor = [UIColor whiteColor];
 	label2.numberOfLines = -1;
 	label2.font = [UIFont fontWithName:@"Avenir-Book" size:17];
@@ -118,7 +118,7 @@
 	
 	lastLabel = [[UILabel alloc] init];
 	lastLabel.translatesAutoresizingMaskIntoConstraints = NO;
-	lastLabel.text = @"Join the movement and make your moment";
+	lastLabel.text = @"Join the movement and make your moment.";
 	lastLabel.textColor = [UIColor whiteColor];
 	lastLabel.numberOfLines = -1;
 	lastLabel.font = [UIFont fontWithName:@"Avenir-Book" size:17];

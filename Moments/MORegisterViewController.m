@@ -14,6 +14,7 @@
 #import <SceneKit/SceneKit.h>
 #import "EDSpinningBoxScene.h"
 #import "MOS3APIUtilities.h"
+#import "MMPopLabel.h"
 
 #import <pop/POP.h>
 
@@ -57,6 +58,8 @@
 	UILabel *welcomeLabel3;
 	
 	UIView *background4;
+	
+	MMPopLabel *popLabel;
 }
 
 - (BOOL)prefersStatusBarHidden{
@@ -65,6 +68,10 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+
+	[[MMPopLabel appearance] setLabelColor:[UIColor whiteColor]];
+	[[MMPopLabel appearance] setLabelTextColor:[UIColor blackColor]];
+	[[MMPopLabel appearance] setLabelFont:[UIFont fontWithName:@"Avenir-Book" size:12.0f]];
 
 	self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 	self.modalPresentationStyle = UIModalPresentationOverFullScreen;
@@ -433,14 +440,38 @@
 }
 
 - (void)continueButton1Pressed{
+#warning TODO: Check the e-mail address is not empty
 
+	if (usernameField1.text.length == 0){
+		UILabel *errorLabel = [[UILabel alloc]init];
+		errorLabel.text = @"Too short";
+		errorLabel.textColor = [UIColor redColor];
+		errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:10];
+		errorLabel.alpha = 0;
+		[containerView1.superview addSubview:errorLabel];
+		errorLabel.center = CGPointMake(background1.bounds.size.width, containerView1.frame.origin.y / 2);
+		[UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+			errorLabel.alpha = 1.0;
+		} completion:^(BOOL finished) {
+			[UIView animateWithDuration:0.2 delay:2.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+				errorLabel.alpha = 0;
+			} completion:^(BOOL finished) {
+				[errorLabel removeFromSuperview];
+			}];
+		}];
+		return;
+	}
+	if (emailField1.text.length == 0){
+		//present pop up
+//		return;
+	}
+	
 #warning TODO: Check the intended username is not already taken
 //    [[MomentsAPIUtilities sharedInstance] isRegisteredUsername:usernameField1.text completion:^(BOOL used) {
-//        NSLog(@"%@", !used ? @"YES" : @"NO");
+//		
 //    }];
-    
-#warning TODO: Check the e-mail address is not empty
-    
+	
+	
 	[self resignAllResponders];
 	backButtonImage.image = [UIImage backButtonClosed];
 	backButtonImage.animationImages = [UIImage transitionCancelButtonImages:NO];
@@ -683,17 +714,31 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+	if (textField.rightView){
+		[UIView animateWithDuration:0.2 animations:^{
+			textField.rightView.alpha = 0;
+		} completion:^(BOOL finished) {
+			textField.rightView = nil;
+		}];
+	}
+	return YES;
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
 	
 	if (textField == usernameField1){
+		[usernameField1 resignFirstResponder];
 		[emailField1 becomeFirstResponder];
 	} else if (textField == emailField1){
+		[emailField1 resignFirstResponder];
 		[self continueButton1Pressed];
-		[passwordField2 becomeFirstResponder];
 	} else if (textField == passwordField2){
+		[passwordField2 resignFirstResponder];
 		[confirmPasswordField2 becomeFirstResponder];
 	} else if (textField == confirmPasswordField2){
+		[passwordField2 resignFirstResponder];
 		[self continueButton2Pressed];
 	}
 	
