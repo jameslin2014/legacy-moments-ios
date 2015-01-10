@@ -8,6 +8,7 @@
 
 #import "MOS3APIUtilities.h"
 #import "AFAmazonS3Manager.h"
+#import "UIImage+EDExtras.h"
 
 @implementation MOS3APIUtilities
 
@@ -40,8 +41,23 @@
     [s3.operationQueue addOperation:operation];
 }
 
+- (void)getAvatarForUsername:(NSString *)username completion:(void (^)(UIImage *))completion {
+    AFAmazonS3Manager *s3 = [self getManager];
+    NSURLRequest *request = [self avatarRequestForUsername:username];
+    AFHTTPRequestOperation *operation = [s3 HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Avatar dowloaded");
+        
+      completion((UIImage *) responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error %@", error);
+        
+        completion([UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]]);
+    }];
+    [s3.operationQueue addOperation:operation];
+}
+
 - (NSURLRequest *)avatarRequestForUsername:(NSString *)username {
-    return [self URLRequestForPath:[self pathForUsername:username] withHTTPMethod:@"GET" data:nil mimeType:nil responseSerializer:[[AFImageResponseSerializer alloc] init]];
+    return [self URLRequestForPath:[self pathForUsername:username] withHTTPMethod:@"GET" data:nil mimeType:nil responseSerializer:nil];
 }
 
 - (NSString *)pathForUsername:(NSString *)username {
@@ -54,6 +70,7 @@
                              secret:self.secret];
     s3.requestSerializer.region = AFAmazonS3USStandardRegion;
     s3.requestSerializer.bucket = self.bucket;
+    s3.responseSerializer = [[AFImageResponseSerializer alloc] init];
     
     return s3;
 }

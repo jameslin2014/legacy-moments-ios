@@ -8,6 +8,7 @@
 
 #import "MOUser.h"
 #import "MomentsAPIUtilities.h"
+#import "MOS3APIUtilities.h"
 #import "SSKeychain.h"
 
 @implementation MOUser
@@ -20,6 +21,9 @@
         [self loadFromKeychain];
         if (self.token) {
             self.loggedIn = YES;
+            [[MOS3APIUtilities sharedInstance] getAvatarForUsername:self.name completion:^(UIImage *avatar) {
+                self.avatar = avatar;
+            }];
         }
     }
     return self;

@@ -130,6 +130,7 @@
 		E41B23071A602EB000FD90C9 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = E41B23061A602EB000FD90C9 /* test.png */; };
 		E4A776691A566915003811D6 /* MomentsAPIUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A776681A566915003811D6 /* MomentsAPIUtilities.m */; };
 		E4E1D3CB1A619A3B00752A23 /* UIImage+Avatar.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E1D3CA1A619A3B00752A23 /* UIImage+Avatar.m */; };
+		E4E1D3CE1A61B22D00752A23 /* MOAvatarCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E1D3CD1A61B22D00752A23 /* MOAvatarCache.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -402,6 +403,8 @@
 		E4A776681A566915003811D6 /* MomentsAPIUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentsAPIUtilities.m; sourceTree = "<group>"; };
 		E4E1D3C91A619A3B00752A23 /* UIImage+Avatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Avatar.h"; sourceTree = "<group>"; };
 		E4E1D3CA1A619A3B00752A23 /* UIImage+Avatar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Avatar.m"; sourceTree = "<group>"; };
+		E4E1D3CC1A61B22D00752A23 /* MOAvatarCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOAvatarCache.h; sourceTree = "<group>"; };
+		E4E1D3CD1A61B22D00752A23 /* MOAvatarCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOAvatarCache.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -728,6 +731,8 @@
 				205FA48F1A55F2CB0061C174 /* UIImage+EDExtras */,
 				02949ED71A2984F8001EDD2D /* API */,
 				A5B31C341A287F25009734EE /* Supporting Files */,
+				E4E1D3CC1A61B22D00752A23 /* MOAvatarCache.h */,
+				E4E1D3CD1A61B22D00752A23 /* MOAvatarCache.m */,
 			);
 			path = Moments;
 			sourceTree = "<group>";
@@ -1101,6 +1106,7 @@
 				20D6E7D61A43C7DA00B6DF3F /* EDSegmentedControl.m in Sources */,
 				A5EDE0D61A59178D00DA8B8B /* MOS3APIUtilities.m in Sources */,
 				20E5957C1A5B83FA00202C21 /* MORegisterViewController.m in Sources */,
+				E4E1D3CE1A61B22D00752A23 /* MOAvatarCache.m in Sources */,
 				20E5957B1A5B83FA00202C21 /* MOSignInViewController.m in Sources */,
 				A5C5EB841A2A8358002F1591 /* MOPageViewController.m in Sources */,
 				A5B31C3A1A287F25009734EE /* MOAppDelegate.m in Sources */,
