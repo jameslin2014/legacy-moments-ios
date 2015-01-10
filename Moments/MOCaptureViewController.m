@@ -36,9 +36,11 @@
 	shouldCancel = NO;
 	
 	self.progressView.hidden = YES;
+	self.progressView.tintColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
 	
 	[self.recordButton setImage:[UIImage cameraButton] forState:UIControlStateNormal];
 	
+	[self.cancelButton setImage:[[UIImage circleCancelButton] imageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
 	self.cancelButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     // Create the AVCaptureSession
     AVCaptureSession *session = [[AVCaptureSession alloc] init];

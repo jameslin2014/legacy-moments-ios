@@ -144,7 +144,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="50" id="kwM-dG-4O0"/>
                                                             </constraints>
-                                                            <state key="normal" image="cancel">
+                                                            <state key="normal">
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                             <connections>
@@ -453,7 +453,6 @@
     </scenes>
     <resources>
         <image name="camera-flip" width="28" height="21"/>
-        <image name="cancel" width="128" height="128"/>
         <image name="flash" width="24" height="38"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
