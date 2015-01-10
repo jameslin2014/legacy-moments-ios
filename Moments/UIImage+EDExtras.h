@@ -36,5 +36,7 @@
 
 + (UIImage *)plusButtonHighlighted;
 
++ (UIImage *)circleCancelButton;
+
 @end
 

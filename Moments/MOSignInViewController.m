@@ -72,6 +72,7 @@
 	usernameField.translatesAutoresizingMaskIntoConstraints = NO;
 	usernameField.leftView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"user"] imageWithColor:[UIColor colorWithRed:0.76 green:0.78 blue:0.79 alpha:1]]];
 	usernameField.leftView.frame = CGRectMake(0, 0, 42, 42);
+	usernameField.autocapitalizationType = UITextAutocapitalizationTypeNone;
 	usernameField.leftView.contentMode = UIViewContentModeCenter;
 	usernameField.leftViewMode = UITextFieldViewModeAlways;
 	usernameField.placeholder = @"username";
