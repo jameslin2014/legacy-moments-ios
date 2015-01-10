@@ -534,11 +534,15 @@
     
     SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
     v.scene = [[EDSpinningBoxScene alloc] init];
-    v.alpha = 0.0;
-    v.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
-    [self.view addSubview:v];
+	v.backgroundColor = [UIColor clearColor];
+	UIView *vContainer = [[UIView alloc]initWithFrame:self.view.bounds];
+	vContainer.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+	vContainer.alpha = 0.0;
+	[vContainer addSubview:v];
+	[self.view addSubview:vContainer];
+	v.center = CGPointMake(v.center.x, containerView3.frame.origin.y / 2);
     [UIView animateWithDuration:0.2 delay:0.05 options:0 animations:^{
-        v.alpha = 1.0;
+        vContainer.alpha = 1.0;
     } completion:nil];
     
     MOUser *user = [MomentsAPIUtilities sharedInstance].user;
@@ -561,7 +565,7 @@
                 backButton.enabled = NO;
                 [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                     [self.view layoutIfNeeded];
-                    v.alpha = 0;
+                    vContainer.alpha = 0;
                 } completion:^(BOOL finished) {
                     backButtonImage.image = [UIImage backButtonOpen];
                     backButtonImage.animationImages = [UIImage transitionBackButtonImages:YES];
@@ -570,7 +574,7 @@
                     [backButtonImage startAnimating];
                     backButton.enabled = YES;
                     [backButton removeTarget:self action:@selector(backButton3Pressed) forControlEvents:UIControlEventTouchUpInside];
-                    [v removeFromSuperview];
+                    [vContainer removeFromSuperview];
                     
                     UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
                     
@@ -581,10 +585,11 @@
                     }];
                 }];
             } else {
+#warning TODO: Show error message
                 [UIView animateWithDuration:0.2 animations:^{
-                    v.alpha = 0;
+                    vContainer.alpha = 0;
                 } completion:^(BOOL finished) {
-                    [v removeFromSuperview];
+                    [vContainer removeFromSuperview];
                 }];
             }
         });
