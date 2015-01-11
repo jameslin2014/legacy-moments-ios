@@ -45,23 +45,9 @@
 	[videoPlayer playFromBeginning];
 	videoPlayer.delegate = self;
 	[self.view addSubview:videoPlayer.view];
-	UILabel *label = [[UILabel alloc] init];
-	label.translatesAutoresizingMaskIntoConstraints = NO;
-	label.text = @"Create awesome video blogs on your handheld";
-	label.textColor = [UIColor whiteColor];
-	label.numberOfLines = -1;
-	label.font = [UIFont fontWithName:@"Avenir-Book" size:17];
-	label.textAlignment = NSTextAlignmentCenter;
-	[videoPlayer.view addSubview:label];
-	[videoPlayer.view addConstraints:@[
-							  [NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:videoPlayer.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0],
-							  [NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:videoPlayer.view attribute:NSLayoutAttributeCenterY multiplier:0.25 constant:0],
-							  [NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:videoPlayer.view attribute:NSLayoutAttributeWidth multiplier:0.75 constant:0]
-							  ]];
 	
 	blurView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
 	blurView.translatesAutoresizingMaskIntoConstraints = NO;
-	blurView.alpha = 0;
 	[self.view addSubview:blurView];
 	[self.view addConstraints:@[
 							  [NSLayoutConstraint constraintWithItem:blurView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0],
@@ -74,8 +60,7 @@
 	roundSignInContainer.translatesAutoresizingMaskIntoConstraints = NO;
 	roundSignInContainer.backgroundColor = [UIColor whiteColor];
 	roundSignInContainer.layer.cornerRadius = 20;
-	roundSignInContainer.alpha = 0;
-	[roundSignInContainer addTarget:self action:@selector(presentSignIn) forControlEvents:UIControlEventTouchUpInside];
+	[roundSignInContainer addTarget:self action:@selector(presentSignIn) forControlEvents:UIControlEventTouchDown];
 	[blurView addSubview:roundSignInContainer];
 	[blurView addConstraints:@[
 							   [NSLayoutConstraint constraintWithItem:roundSignInContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:blurView attribute:NSLayoutAttributeWidth multiplier:0.5 constant:0],
@@ -116,8 +101,7 @@
 	roundRegisterContainer.translatesAutoresizingMaskIntoConstraints = NO;
 	roundRegisterContainer.backgroundColor = [UIColor whiteColor];
 	roundRegisterContainer.layer.cornerRadius = 20;
-	roundRegisterContainer.alpha = 0;
-	[roundRegisterContainer addTarget:self action:@selector(presentRegister) forControlEvents:UIControlEventTouchUpInside];
+	[roundRegisterContainer addTarget:self action:@selector(presentRegister) forControlEvents:UIControlEventTouchDown];
 	[blurView addSubview:roundRegisterContainer];
 	[blurView addConstraints:@[
 							   [NSLayoutConstraint constraintWithItem:roundRegisterContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:blurView attribute:NSLayoutAttributeWidth multiplier:0.5 constant:0],

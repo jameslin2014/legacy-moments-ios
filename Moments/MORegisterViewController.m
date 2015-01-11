@@ -16,6 +16,7 @@
 #import "MOS3APIUtilities.h"
 #import "MMPopLabel.h"
 #import "UIImage+Avatar.h"
+#import <AudioToolbox/AudioServices.h>
 
 #import <pop/POP.h>
 
@@ -469,8 +470,8 @@
 	}
 	[self resignAllResponders];
 #warning TODO: Check the intended username is not already taken
-    [[MomentsAPIUtilities sharedInstance] isRegisteredUsername:usernameField1.text completion:^(BOOL used) {
-		if (!used){
+	[[MomentsAPIUtilities sharedInstance] isRegisteredUsername:usernameField1.text orEmail:emailField1.text completion:^(NSDictionary *values) {
+		if ([values[@"usernameAvailable"] boolValue] && [values[@"emailAvailable"] boolValue]){
 			backButtonImage.image = [UIImage backButtonClosed];
 			backButtonImage.animationImages = [UIImage transitionCancelButtonImages:NO];
 			backButtonImage.animationDuration = 0.25;
@@ -496,14 +497,30 @@
 			});
 		} else{
 #warning TODO: Error message
+			AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+			
 			UILabel *errorLabel = [[UILabel alloc]init];
 			errorLabel.textColor = [UIColor redColor];
 			errorLabel.alpha = 0;
 			errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
 			errorLabel.textAlignment = NSTextAlignmentCenter;
 			errorLabel.center = CGPointMake(background1.center.x / 2.0, containerView1.frame.origin.y / 2.0);
+			BOOL usernameAvailable = [values[@"usernameAvailable"] boolValue];
+			BOOL emailAvailable = [values[@"emailAvailable"] boolValue];
+			NSString *message = [NSString stringWithFormat:@"%@ already taken.", usernameAvailable ? (emailAvailable ? @"Username and email are" : @"Username is") : @"Email is"];
+			errorLabel.text = message;
+			[background1 addSubview:errorLabel];
+			[UIView animateWithDuration:0.2 animations:^{
+				errorLabel.alpha = 1;
+			} completion:^(BOOL finished) {
+				[UIView animateWithDuration:0.2 delay:1.5 options:0 animations:^{
+					errorLabel.alpha = 0;
+				} completion:^(BOOL finished) {
+					[errorLabel removeFromSuperview];
+				}];
+			}];
 		}
-    }];
+	}];
 }
 
 - (void)cancelButtonPressed{
