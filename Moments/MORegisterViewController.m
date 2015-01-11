@@ -467,37 +467,37 @@
 		//present pop up
 //		return;
 	}
-	
-#warning TODO: Check the intended username is not already taken
-//    [[MomentsAPIUtilities sharedInstance] isRegisteredUsername:usernameField1.text completion:^(BOOL used) {
-//		
-//    }];
-	
-	
 	[self resignAllResponders];
-	backButtonImage.image = [UIImage backButtonClosed];
-	backButtonImage.animationImages = [UIImage transitionCancelButtonImages:NO];
-	backButtonImage.animationDuration = 0.25;
-	backButtonImage.animationRepeatCount = 1;
-	[backButtonImage startAnimating];
-	backButton.enabled = NO;
-
-	POPSpringAnimation *layoutAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayoutConstraintConstant];
-	layoutAnimation.springSpeed = 10.0f;
-	layoutAnimation.springBounciness = 5.0f;
-	layoutAnimation.toValue = @(-self.view.bounds.size.width);
-	layoutAnimation.beginTime = CACurrentMediaTime();
-	[_leftmostLayoutConstraint pop_addAnimation:layoutAnimation forKey:@"detailsContainerWidthAnimate"];
-	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-		backButtonImage.image = [UIImage backButtonOpen];
-		backButtonImage.animationImages = [UIImage transitionBackButtonImages:YES];
-		backButtonImage.animationDuration = 0.25;
-		backButtonImage.animationRepeatCount = 1;
-		[backButtonImage startAnimating];
-		backButton.enabled = YES;
-		[backButton removeTarget:self action:@selector(cancelButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-		[backButton addTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchUpInside];
-	});
+#warning TODO: Check the intended username is not already taken
+    [[MomentsAPIUtilities sharedInstance] isRegisteredUsername:usernameField1.text completion:^(BOOL used) {
+		if (!used){
+			backButtonImage.image = [UIImage backButtonClosed];
+			backButtonImage.animationImages = [UIImage transitionCancelButtonImages:NO];
+			backButtonImage.animationDuration = 0.25;
+			backButtonImage.animationRepeatCount = 1;
+			[backButtonImage startAnimating];
+			backButton.enabled = NO;
+			
+			POPSpringAnimation *layoutAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayoutConstraintConstant];
+			layoutAnimation.springSpeed = 10.0f;
+			layoutAnimation.springBounciness = 5.0f;
+			layoutAnimation.toValue = @(-self.view.bounds.size.width);
+			layoutAnimation.beginTime = CACurrentMediaTime();
+			[_leftmostLayoutConstraint pop_addAnimation:layoutAnimation forKey:@"detailsContainerWidthAnimate"];
+			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+				backButtonImage.image = [UIImage backButtonOpen];
+				backButtonImage.animationImages = [UIImage transitionBackButtonImages:YES];
+				backButtonImage.animationDuration = 0.25;
+				backButtonImage.animationRepeatCount = 1;
+				[backButtonImage startAnimating];
+				backButton.enabled = YES;
+				[backButton removeTarget:self action:@selector(cancelButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+				[backButton addTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchUpInside];
+			});
+		} else{
+#warning TODO: Error message
+		}
+    }];
 }
 
 - (void)cancelButtonPressed{
