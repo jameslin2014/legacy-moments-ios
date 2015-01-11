@@ -443,42 +443,17 @@
 }
 
 - (void)continueButton1Pressed{
-#warning TODO: Check the e-mail address is not empty
-
-	if (usernameField1.text.length < 3){
-		UILabel *errorLabel = [[UILabel alloc]init];
-		errorLabel.text = @"Too short";
-		errorLabel.textColor = [UIColor redColor];
-		errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:10];
-		errorLabel.alpha = 0;
-		[containerView1.superview addSubview:errorLabel];
-		errorLabel.center = CGPointMake(background1.bounds.size.width, containerView1.frame.origin.y / 2);
-		[UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-			errorLabel.alpha = 1.0;
-		} completion:^(BOOL finished) {
-			[UIView animateWithDuration:0.2 delay:2.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-				errorLabel.alpha = 0;
-			} completion:^(BOOL finished) {
-				[errorLabel removeFromSuperview];
-			}];
-		}];
-		return;
-	}
-	if (emailField1.text.length == 0){
-		//present pop up
-//		return;
-	}
 	[self resignAllResponders];
-#warning TODO: Check the intended username is not already taken
+#warning NOT WORKING!!!!!!!!
 	[[MomentsAPIUtilities sharedInstance] isRegisteredUsername:usernameField1.text orEmail:emailField1.text completion:^(NSDictionary *values) {
-		if ([values[@"usernameAvailable"] boolValue] && [values[@"emailAvailable"] boolValue]){
+		NSLog(@"%@   %@", values[@"usernameAvailable"], values[@"emailAvailable"]);
+		if (values[@"usernameAvailable"] != nil && values[@"emailAvailable"] != nil){
 			backButtonImage.image = [UIImage backButtonClosed];
 			backButtonImage.animationImages = [UIImage transitionCancelButtonImages:NO];
 			backButtonImage.animationDuration = 0.25;
 			backButtonImage.animationRepeatCount = 1;
 			[backButtonImage startAnimating];
 			backButton.enabled = NO;
-			
 			POPSpringAnimation *layoutAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayoutConstraintConstant];
 			layoutAnimation.springSpeed = 10.0f;
 			layoutAnimation.springBounciness = 5.0f;
@@ -496,7 +471,6 @@
 				[backButton addTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchUpInside];
 			});
 		} else{
-#warning TODO: Error message
 			AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 			
 			UILabel *errorLabel = [[UILabel alloc]init];
@@ -508,6 +482,7 @@
 			BOOL usernameAvailable = [values[@"usernameAvailable"] boolValue];
 			BOOL emailAvailable = [values[@"emailAvailable"] boolValue];
 			NSString *message = [NSString stringWithFormat:@"%@ already taken.", usernameAvailable ? (emailAvailable ? @"Username and email are" : @"Username is") : @"Email is"];
+			NSLog(@"%@   %@", usernameAvailable, emailAvailable);
 			errorLabel.text = message;
 			[background1 addSubview:errorLabel];
 			[UIView animateWithDuration:0.2 animations:^{
