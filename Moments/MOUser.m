@@ -90,8 +90,6 @@
     self.followers = nil;
     
     [self saveToKeychain];
-    
-    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"dataLoaded" object:nil]];
 }
 
 - (void)reload {

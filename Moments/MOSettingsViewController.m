@@ -13,6 +13,7 @@
 #import "SVWebViewController.h"
 #import "SVProgressHUD.h"
 #import "UserVoice.h"
+#import "MODecisionViewController.h"
 
 #import <Accounts/Accounts.h>
 #import <Social/Social.h>
@@ -325,10 +326,13 @@ static NSString *CellIdentifier = @"CellID";
                 [self dismissViewControllerAnimated:YES completion:nil];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"signOut" object:nil];
                 [[MomentsAPIUtilities sharedInstance].user logout];
-			}]];
+                
+                UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
+                
+                [self presentViewController:destinationViewController animated:YES completion:nil];
+            }]];
             
             [self presentViewController:alertController animated:YES completion:nil];
-
 		}
         
 	} else if (self.control.stateBeforeTouches == StateRightSelected){

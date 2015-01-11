@@ -444,7 +444,7 @@
 - (void)continueButton1Pressed{
 #warning TODO: Check the e-mail address is not empty
 
-	if (usernameField1.text.length == 0){
+	if (usernameField1.text.length < 3){
 		UILabel *errorLabel = [[UILabel alloc]init];
 		errorLabel.text = @"Too short";
 		errorLabel.textColor = [UIColor redColor];

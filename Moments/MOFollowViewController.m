@@ -213,7 +213,8 @@
     }];
 
 //	FollowingStatusView *followStatus = [[UIImageView alloc]initWithImage:[self.following containsObject:username] ? [UIImage followingYes] : [UIImage followingNo]];
-	FollowingStatusView *followStatus = [[FollowingStatusView alloc]init];
+//    FollowingStatusView *followStatus = [[FollowingStatusView alloc]initWithFrame:CGRectMake(0.0, 0.0, 25.0, 25.0)];
+    FollowingStatusView *followStatus = [[FollowingStatusView alloc]init];
 	followStatus.isFollowing = [self.following containsObject:username];
 	followStatus.frame = CGRectMake(0, 0, 25, 25);
 	followStatus.center = CGPointMake(cell.bounds.size.width + 30, profileImageView.center.y);
@@ -297,14 +298,19 @@
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    if (searchText.length < 3) {
+        return;
+    }
+    
     [[MomentsAPIUtilities sharedInstance] searchForUsersLikeUsername:searchText completion:^(NSArray *results) {
 		NSMutableArray *usernames = [NSMutableArray array];
 		if ([results isKindOfClass:[NSArray class]]){
 			for (NSDictionary *d in results){
-				[usernames addObject:d[@"name"]];
+                if (![d[@"name"] isEqual:[MomentsAPIUtilities sharedInstance].user.name]) {
+                    [usernames addObject:d[@"name"]];
+                }
 			}
 		}
-		self.searchUsers = nil;
 		self.searchUsers = usernames;
 		[self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
     }];

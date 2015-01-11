@@ -38,7 +38,6 @@
     [self addAuthHeaderWithUsername:self.apiUsername password:self.apiPassword request:urlRequest];
     
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        NSLog(@"%@", response);
         if (!error) {
             NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
             completion([[dictionary objectForKey:@"exists"] boolValue]);
