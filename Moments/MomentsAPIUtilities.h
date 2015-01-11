@@ -37,7 +37,8 @@
 /**
  * Sends a request to the API which returns an array of usernames which contain the search text
  */
-- (void)searchForUsersLikeUsername:(NSString *)searchText completion:(void (^)(NSArray *))completion;
+- (void)searchForUsersLikeUsername:(NSString *)searchText completion:(void (^)(NSDictionary
+                                                                               *))completion;
 
 /**
  * Sends a request to the API to create a new user with the username, e-mail and password provided

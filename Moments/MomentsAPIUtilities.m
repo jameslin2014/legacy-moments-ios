@@ -83,7 +83,7 @@
 /**
  * Sends a request to the API which returns an array of usernames which contain the search text
  */
-- (void)searchForUsersLikeUsername:(NSString *)searchText completion:(void (^)(NSArray *))completion {
+- (void)searchForUsersLikeUsername:(NSString *)searchText completion:(void (^)(NSDictionary *))completion {
     NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:[NSString stringWithFormat:@"/search/%@", searchText]
                                                    withHTTPMethod:@"GET"
                                                     andDictionary:nil];

@@ -241,6 +241,9 @@
 	[UIView animateWithDuration:0.2 delay:0.1 options:0 animations:^{
 		v.alpha = 1.0;
 	} completion:nil];
+    
+    MOUser *user = [MomentsAPIUtilities sharedInstance].user;
+    
 	if ([self.following containsObject:username]){
 		[[MomentsAPIUtilities sharedInstance] unfollowUser:username completion:^(NSDictionary *dict) {
 			dispatch_async(dispatch_get_main_queue(), ^{
@@ -250,8 +253,10 @@
 					[v removeFromSuperview];
 				}];
 			});
-			[[MomentsAPIUtilities sharedInstance].user reload];
-			NSLog(@"1: %@", dict);
+			NSLog(@"1: %@", dict[@"follows"]);
+            user.following = dict[@"follows"];
+            user.followers = dict[@"followers"];
+            [self dataLoaded];
 		}];
 	} else{
 		[[MomentsAPIUtilities sharedInstance] followUser:username completion:^(NSDictionary *dict) {
@@ -262,8 +267,10 @@
 					[v removeFromSuperview];
 				}];
 			});
-			[[MomentsAPIUtilities sharedInstance].user reload];
-			NSLog(@"2: %@", dict);
+			NSLog(@"2: %@", dict[@"follows"]);
+            user.following = dict[@"follows"];
+            user.followers = dict[@"followers"];
+            [self dataLoaded];
 		}];
 	}
 }
@@ -300,16 +307,17 @@
         return;
     }
     
-    [[MomentsAPIUtilities sharedInstance] searchForUsersLikeUsername:searchText completion:^(NSArray *results) {
-		NSMutableArray *usernames = [NSMutableArray array];
-		if ([results isKindOfClass:[NSArray class]]){
-			for (NSDictionary *d in results){
-                if (![d[@"name"] isEqual:[MomentsAPIUtilities sharedInstance].user.name]) {
-                    [usernames addObject:d[@"name"]];
-                }
-			}
-		}
-		self.searchUsers = usernames;
+    [[MomentsAPIUtilities sharedInstance] searchForUsersLikeUsername:searchText completion:^(NSDictionary *results) {
+        
+        NSMutableArray *users = [NSMutableArray arrayWithArray:results[@"results"]];
+        NSString *user = [MomentsAPIUtilities sharedInstance].user.name;
+        
+        if ([users containsObject:user]) {
+            [users removeObject:user];
+        }
+        
+		self.searchUsers = users;
+
 		[self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
     }];
 }
