@@ -17,31 +17,38 @@
 - (void)setIsFollowing:(BOOL)isFollowing{
 	_isFollowing = isFollowing;
 	_outerGreenCircle.hidden = !_isFollowing;
+	_innerGreenCircle.hidden = !_isFollowing;
 #warning animate
 }
 
-- (void)layoutSubviews{
-	if (!_backgroundGrayCircle){
+- (instancetype)init{
+	if (self = [super initWithFrame:CGRectMake(0, 0, 25, 25)]){
+		for (CALayer *l in self.layer.sublayers){
+			[l removeFromSuperlayer];
+		}
+		self.layer.backgroundColor = [UIColor clearColor].CGColor;
 		_backgroundGrayCircle = [[CAShapeLayer alloc]init];
-		_backgroundGrayCircle.frame = self.bounds;
+		_backgroundGrayCircle.frame = self.layer.bounds;
+		_backgroundGrayCircle.path = [UIBezierPath bezierPathWithOvalInRect:_backgroundGrayCircle.frame].CGPath;
 		_backgroundGrayCircle.strokeColor = [UIColor grayColor].CGColor;
+		_backgroundGrayCircle.fillColor = [UIColor clearColor].CGColor;
 		_backgroundGrayCircle.lineWidth = 2.0;
 		[self.layer addSublayer:_backgroundGrayCircle];
-	}
-	if (!_innerGreenCircle){
 		_innerGreenCircle = [[CAShapeLayer alloc]init];
-		_innerGreenCircle.frame = CGRectMake(.1*self.bounds.size.width, .1*self.bounds.size.height, .8*self.bounds.size.width, .8*self.bounds.size.height);
+		_innerGreenCircle.frame = CGRectMake((25.0 - 15.0) / 4.0, (25.0 - 15.0) / 4.0, 15, 15);
+		_innerGreenCircle.path = [UIBezierPath bezierPathWithOvalInRect:_innerGreenCircle.frame].CGPath;
 		_innerGreenCircle.fillColor = [UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1].CGColor;
 		[self.layer addSublayer:_innerGreenCircle];
-	}
-	if (!_outerGreenCircle){
 		_outerGreenCircle = [[CAShapeLayer alloc]init];
-		_outerGreenCircle.frame = self.bounds;
+		_outerGreenCircle.frame = self.layer.bounds;
+		_outerGreenCircle.path = [UIBezierPath bezierPathWithOvalInRect:_outerGreenCircle.frame].CGPath;
 		_outerGreenCircle.strokeColor = [UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1].CGColor;
 		_outerGreenCircle.lineWidth = 2.0;
+		_outerGreenCircle.fillColor = [UIColor clearColor].CGColor;
 		_outerGreenCircle.hidden = !self.isFollowing;
 		[self.layer addSublayer:_outerGreenCircle];
 	}
+	return self;
 }
 
 - (void)drawRect:(CGRect)rect {
