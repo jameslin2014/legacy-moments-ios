@@ -15,10 +15,26 @@
 }
 
 - (void)setIsFollowing:(BOOL)isFollowing{
+	if (_isFollowing == isFollowing) return;
 	_isFollowing = isFollowing;
+//	if (_isFollowing){ //from open to closed
+//		_outerGreenCircle.hidden = NO;
+//		_innerGreenCircle.hidden = NO;
+//		
+////		CABasicAnimation *growAnimation;
+////		growAnimation = [CABasicAnimation animationWithKeyPath:@"bounds.size"];
+////		growAnimation.repeatCount = 1;
+////		growAnimation.autoreverses = NO;
+////		growAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+////		growAnimation.fromValue = [NSValue valueWithCGSize:CGSizeMake(0, 0)];
+////		growAnimation.toValue = [NSValue valueWithCGSize:CGSizeMake(15, 15)];
+////		[_innerGreenCircle addAnimation:growAnimation forKey:@"bounds.size"];
+////		CABasicAnimation *closeAnimation = [CABasicAnimation animationWithKeyPath:@""];
+//	} else{ //from closed to open
+//		
+//	}
 	_outerGreenCircle.hidden = !_isFollowing;
 	_innerGreenCircle.hidden = !_isFollowing;
-#warning animate
 }
 
 - (instancetype)init{
@@ -41,6 +57,7 @@
 		_innerGreenCircle.path = [UIBezierPath bezierPathWithOvalInRect:_innerGreenCircle.frame].CGPath;
 		_innerGreenCircle.fillColor = [UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1].CGColor;
 		_innerGreenCircle.backgroundColor = [UIColor clearColor].CGColor;
+		_innerGreenCircle.hidden = !self.isFollowing;
 		[self.layer addSublayer:_innerGreenCircle];
 		_outerGreenCircle = [[CAShapeLayer alloc]init];
 		_outerGreenCircle.frame = self.layer.bounds;
