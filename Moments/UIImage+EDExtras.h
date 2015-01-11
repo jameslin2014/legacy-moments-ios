@@ -38,5 +38,11 @@
 
 + (UIImage *)circleCancelButton;
 
++ (UIImage *)followingNo;
+
++ (UIImage *)followingYes;
+
++ (NSArray *)transitionFollowing:(BOOL)reversed;
+
 @end
 

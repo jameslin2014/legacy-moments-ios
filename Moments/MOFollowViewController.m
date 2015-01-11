@@ -13,6 +13,9 @@
 #import "UIImageView+AFNetworking.h"
 #import "UIImage+EDExtras.h"
 #import "MOAvatarCache.h"
+#import "UIImage+EDExtras.h"
+#import "EDSpinningBoxScene.h"
+
 
 @interface MOFollowViewController ()
 
@@ -36,9 +39,6 @@
 - (void)viewDidLoad{
 	[super viewDidLoad];
 	
-	self.tapper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
-	self.tapper.cancelsTouchesInView = YES;
-	[self.view addGestureRecognizer:self.tapper];
 	self.view.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:1.0];
 	
 	// Do any additional setup after loading the view.???????
@@ -87,7 +87,10 @@
 	self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
 	self.tableView.separatorColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:1.0];
 	self.tableView.backgroundColor = [UIColor colorWithRed:(36/255.0) green:(35/255.0) blue:(34/255.0) alpha:1.0];
-	[self.tableView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapOccurred:)]];
+	self.tableView.allowsSelection = YES;
+	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapOccurred:)];
+	tap.cancelsTouchesInView = NO;
+	[self.tableView addGestureRecognizer:tap];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -115,10 +118,6 @@
 	} else {
 		self.title = @"Followers";
 	}
-}
-
-- (void)handleSingleTap: (UITapGestureRecognizer *) tap{
-	[self.view endEditing:YES];
 }
 
 - (IBAction)showSearch{
@@ -170,6 +169,7 @@
 //	UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DaCell"];
 	UITableViewCell *cell = [[UITableViewCell alloc]init];
 	UILabel *nameLabel;
+	nameLabel.tag = 13154;
 	UIImageView *profileImageView;
 	
 	for (UIView *v in cell.contentView.subviews){
@@ -181,19 +181,19 @@
 	}
 	
 	cell.backgroundColor = [UIColor clearColor];
-	cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//	cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	
 	if (!nameLabel) {nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 7, cell.frame.size.width, cell.frame.size.height)];}
 	nameLabel.font = [UIFont fontWithName:@"Avenir-Book" size:18];
 	nameLabel.textColor = [UIColor whiteColor];
 	if (!nameLabel.superview){
-		[cell.contentView addSubview:nameLabel];
+		[cell addSubview:nameLabel];
 	}
 	if (!profileImageView){profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 11, 35, 35)];}
 	profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
 	profileImageView.clipsToBounds = YES;
 	if (!profileImageView.superview){
-		[cell.contentView addSubview:profileImageView];
+		[cell addSubview:profileImageView];
 	}
 	NSString *username;
 	if (self.textFieldSelected && self.searchUsers.count > indexPath.row){
@@ -208,14 +208,60 @@
     [[[MOAvatarCache alloc] init] getAvatarForUsername:username completion:^(UIImage *avatar) {
         profileImageView.image = avatar;
     }];
-    
-//    __weak UIImageView *weakImageView = profileImageView;
-//    [profileImageView setImageWithURLRequest:[[MOS3APIUtilities sharedInstance] avatarRequestForUsername:username] placeholderImage:[UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-//        weakImageView.image = image;
-//    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-//    }];
-	
+
+	UIImageView *followStatus = [[UIImageView alloc]initWithImage:[self.following containsObject:username] ? [UIImage followingYes] : [UIImage followingNo]];
+	followStatus.frame = CGRectMake(0, 0, 30, 30);
+	followStatus.center = CGPointMake(cell.bounds.size.width + 30, profileImageView.center.y);
+	followStatus.tag = 78900;
+	[cell addSubview:followStatus];
 	return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+	NSString *username;
+	if (self.textFieldSelected && self.searchUsers.count > indexPath.row){
+		username = self.searchUsers[indexPath.row];
+	} else if (self.segmentedControl.selectedSegmentIndex == 0){
+		username = self.following[indexPath.row];
+	} else{
+		username = self.followers[indexPath.row];
+	}
+	UIImageView *followingStatus = (UIImageView *)[cell viewWithTag:78900];
+	NSLog(@"%@", followingStatus);
+	SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
+	v.scene = [[EDSpinningBoxScene alloc] init];
+	v.alpha = 0.0;
+	v.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+	[self.view addSubview:v];
+	[UIView animateWithDuration:0.2 delay:0.1 options:0 animations:^{
+		v.alpha = 1.0;
+	} completion:nil];
+	if ([self.following containsObject:username]){
+		[[MomentsAPIUtilities sharedInstance] unfollowUser:username completion:^(NSDictionary *dict) {
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[UIView animateWithDuration:0.2 animations:^{
+					v.alpha = 0.0;
+				} completion:^(BOOL finished) {
+					[v removeFromSuperview];
+				}];
+			});
+			[[MomentsAPIUtilities sharedInstance].user reload];
+			NSLog(@"1: %@", dict);
+		}];
+	} else{
+		[[MomentsAPIUtilities sharedInstance] followUser:username completion:^(NSDictionary *dict) {
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[UIView animateWithDuration:0.2 animations:^{
+					v.alpha = 0.0;
+				} completion:^(BOOL finished) {
+					[v removeFromSuperview];
+				}];
+			});
+			[[MomentsAPIUtilities sharedInstance].user reload];
+			NSLog(@"2: %@", dict);
+		}];
+	}
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

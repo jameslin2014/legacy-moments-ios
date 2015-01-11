@@ -574,4 +574,104 @@
 	return returnImage;
 }
 
++ (UIImage *)followingNo{
+	CGRect rect = CGRectMake(0, 0, 200, 200);
+	UIGraphicsBeginImageContext(rect.size);
+	
+	//// Color Declarations
+	UIColor* color = [UIColor colorWithRed: 0 green: 0.776 blue: 0.42 alpha: 1];
+	
+	//// Oval Drawing
+	UIBezierPath* ovalPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(8, 8, 184, 184)];
+	[UIColor.grayColor setStroke];
+	ovalPath.lineWidth = 8;
+	[ovalPath stroke];
+	
+	UIImage *returnImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	return returnImage;
+}
+
++ (UIImage *)followingYes{
+	CGRect rect = CGRectMake(0, 0, 200, 200);
+	UIGraphicsBeginImageContext(rect.size);
+	
+	//// Color Declarations
+	UIColor* color = [UIColor colorWithRed: 0 green: 0.776 blue: 0.42 alpha: 1];
+	
+	//// Oval Drawing
+	UIBezierPath* ovalPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(8, 8, 184, 184)];
+	[UIColor.grayColor setStroke];
+	ovalPath.lineWidth = 8;
+	[ovalPath stroke];
+	
+	
+	//// Oval 3 Drawing
+	CGRect oval3Rect = CGRectMake(8, 8, 184, 184);
+	UIBezierPath* oval3Path = UIBezierPath.bezierPath;
+	[oval3Path addArcWithCenter: CGPointMake(CGRectGetMidX(oval3Rect), CGRectGetMidY(oval3Rect)) radius: CGRectGetWidth(oval3Rect) / 2 startAngle: -90 * M_PI/180 endAngle: 270 * M_PI/180 clockwise: YES];
+	
+	[color setStroke];
+	oval3Path.lineWidth = 8;
+	[oval3Path stroke];
+	
+	
+	//// Oval 2 Drawing
+	UIBezierPath* oval2Path = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(40, 40, 120, 120)];
+	[color setFill];
+	[oval2Path fill];
+	[color setStroke];
+	oval2Path.lineWidth = 8;
+	[oval2Path stroke];
+	
+	UIImage *returnImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	return returnImage;
+}
+
++ (NSArray *)transitionFollowing:(BOOL)reversed{
+	NSMutableArray *finalArray = [NSMutableArray array];
+	for (float i = 0; i <= 35.0; i += 1.0){
+		CGRect rect = CGRectMake(0, 0, 200, 200);
+		UIGraphicsBeginImageContext(rect.size);
+		
+		//// Color Declarations
+		UIColor* color = [UIColor colorWithRed: 0 green: 0.776 blue: 0.42 alpha: 1];
+		
+		//// Oval Drawing
+		UIBezierPath* ovalPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(8, 8, 184, 184)];
+		[UIColor.grayColor setStroke];
+		ovalPath.lineWidth = 8;
+		[ovalPath stroke];
+		
+		
+		//// Oval 3 Drawing
+		CGRect oval3Rect = CGRectMake(8, 8, 184, 184);
+		UIBezierPath* oval3Path = UIBezierPath.bezierPath;
+		[oval3Path addArcWithCenter: CGPointMake(CGRectGetMidX(oval3Rect), CGRectGetMidY(oval3Rect)) radius: CGRectGetWidth(oval3Rect) / 2 startAngle: -90 * M_PI/180 endAngle: -80 + i*10 * M_PI/180 clockwise: YES];
+		
+		[color setStroke];
+		oval3Path.lineWidth = 8;
+		[oval3Path stroke];
+		
+		
+		//// Oval 2 Drawing
+		UIBezierPath* oval2Path = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(100 - (i/35.0)*60, 100 - (i/35.0)*60, (i/35.0)*120, (i/35.0)*120)];
+		[color setFill];
+		[oval2Path fill];
+		[color setStroke];
+		oval2Path.lineWidth = 8;
+		[oval2Path stroke];
+
+		
+		UIImage *returnImage = UIGraphicsGetImageFromCurrentImageContext();
+		UIGraphicsEndImageContext();
+		[finalArray addObject:returnImage];
+	}
+	if (reversed){
+		finalArray = [[[finalArray reverseObjectEnumerator]allObjects] mutableCopy];
+	}
+	return finalArray;
+}
+
 @end
