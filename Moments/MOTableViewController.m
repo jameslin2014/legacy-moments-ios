@@ -120,14 +120,14 @@
 
 -(void)viewWillAppear:(BOOL)animated {
 	NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
-	[[NSNotificationCenter defaultCenter] addObserverForName:@"signOut"
-													  object:nil
-													   queue:mainQueue
-												  usingBlock:^(NSNotification *note)
-	 {
-		 UIViewController *loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"login"];
-		 [self presentViewController:loginVC animated:YES completion:nil];
-	 }];
+//	[[NSNotificationCenter defaultCenter] addObserverForName:@"signOut"
+//													  object:nil
+//													   queue:mainQueue
+//												  usingBlock:^(NSNotification *note)
+//	 {
+//		 UIViewController *loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"login"];
+//		 [self presentViewController:loginVC animated:YES completion:nil];
+//	 }];
     
     [[NSNotificationCenter defaultCenter] addObserverForName:@"dataLoaded"
                                                       object:nil
@@ -135,6 +135,13 @@
                                                   usingBlock:^(NSNotification *note) {
       [self dataLoaded];
     }];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"avatarChanged"
+                                                      object:nil
+                                                       queue:mainQueue
+                                                  usingBlock:^(NSNotification *note) {
+                                                      [self avatarChanged];
+                                                  }];
     
     self.following = [MomentsAPIUtilities sharedInstance].user.following;
 }
@@ -320,6 +327,10 @@
 - (void)dataLoaded {
     self.following = [MomentsAPIUtilities sharedInstance].user.following;
     
+    [self.tableView reloadData];
+}
+
+- (void)avatarChanged {
     [self.tableView reloadData];
 }
 

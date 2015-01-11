@@ -118,6 +118,11 @@
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"IntroHasShown"];
 }
 
+- (void)setAvatar:(UIImage *)avatar {
+    _avatar = avatar;
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"avatarChanged" object:nil]];
+}
+
 - (void)log {
     NSLog(@"Name: %@", self.name);
     NSLog(@"Email: %@", self.email);

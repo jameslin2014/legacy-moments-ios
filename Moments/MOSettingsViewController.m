@@ -14,6 +14,7 @@
 #import "SVProgressHUD.h"
 #import "UserVoice.h"
 #import "MODecisionViewController.h"
+#import "UIImage+Avatar.h"
 
 #import <Accounts/Accounts.h>
 #import <Social/Social.h>
@@ -459,39 +460,35 @@ static NSString *CellIdentifier = @"CellID";
 
 - (void)changeProfilePicture{
 	NSLog(@"pressed");
-	
-	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-	UIAlertAction *cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-	
-	UIAlertAction *libraryButton = [UIAlertAction actionWithTitle:@"Photo Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-		//OPEN PHOTO LIBRARY
-		UIImagePickerController *picker = [[UIImagePickerController alloc]init];
-		picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-		picker.delegate = self;
-		[self presentViewController:picker animated:YES completion:nil];
-	}];
-	
-	if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-		NSLog(@"Camera is available");
-		
-		UIAlertAction *cameraButton = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-			
-			UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-			picker.delegate = self;
-			picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-			
-			[self presentViewController:picker animated:YES completion:nil];
-			
-			
-		}];
-		[alertController addAction:cameraButton];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
 
-	}
-	
-	[alertController addAction:libraryButton];
-	[alertController addAction:cancelButton];
-	
-	[self presentViewController:alertController animated:YES completion:nil];
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        UIAlertAction *cameraButton = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            UIImagePickerControllerSourceType type = UIImagePickerControllerSourceTypeCamera;
+            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+            picker.allowsEditing = NO;
+            picker.delegate = self;
+            picker.sourceType = type;
+            [self presentViewController:picker animated:YES completion:nil];
+        }];
+        [alertController addAction:cameraButton];
+    }
+    
+    UIAlertAction *photoLibraryButton = [UIAlertAction actionWithTitle:@"Photo Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        UIImagePickerControllerSourceType type = UIImagePickerControllerSourceTypePhotoLibrary;
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.allowsEditing = NO;
+        picker.delegate = self;
+        picker.sourceType = type;
+        [self presentViewController:picker animated:YES completion:nil];
+    }];
+    [alertController addAction:photoLibraryButton];
+    
+    UIAlertAction *cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:cancelButton];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -506,9 +503,18 @@ static NSString *CellIdentifier = @"CellID";
 
 #pragma mark - UIImagePickerDelegate
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-	[picker dismissViewControllerAnimated:YES completion:nil];
-#warning TODO: Set profile image
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *image = [[info objectForKey:@"UIImagePickerControllerOriginalImage"] cropAndScaleToSize:250.0];
+    
+    [picker dismissViewControllerAnimated:YES completion:^{
+        MOUser *user = [MomentsAPIUtilities sharedInstance].user;
+        user.avatar = image;
+        [[MOS3APIUtilities sharedInstance] putAvatarForUsername:user.name image:user.avatar];
+    }];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

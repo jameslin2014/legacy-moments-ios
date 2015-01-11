@@ -200,9 +200,7 @@
 			} completion:^(BOOL finished) {
 				[vContainer removeFromSuperview];
 			}];
-			if (success) {
-				[user setIntroShown:YES];
-				
+			if (success) {				
 				UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
 				[[[UIApplication sharedApplication] delegate] window].rootViewController = destinationViewController;
 				[[[[UIApplication sharedApplication] delegate] window] makeKeyAndVisible];

@@ -12,6 +12,8 @@
 
 @implementation MOS3APIUtilities
 
+AFAmazonS3Manager *s3;
+
 + (instancetype)sharedInstance
 {
     static dispatch_once_t pred;
@@ -30,9 +32,10 @@
 }
 
 - (void)putAvatarForUsername:(NSString *)username image:(UIImage *)image {
-    NSURLRequest *request = [self URLRequestForPath:[self pathForUsername:username] withHTTPMethod:@"PUT" data:UIImagePNGRepresentation(image) mimeType:@"image/png" responseSerializer:nil];
+    [self initManager];
     
-    AFAmazonS3Manager *s3 = [self getManager];
+    NSURLRequest *request = [self URLRequestForPath:[self pathForUsername:username] withHTTPMethod:@"PUT" data:UIImagePNGRepresentation(image) mimeType:@"image/png" responseSerializer:nil];
+
     AFHTTPRequestOperation *operation = [s3 HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Avatar uploaded");
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -42,8 +45,9 @@
 }
 
 - (void)getAvatarForUsername:(NSString *)username completion:(void (^)(UIImage *))completion {
-    AFAmazonS3Manager *s3 = [self getManager];
-    NSURLRequest *request = [self avatarRequestForUsername:username];
+    [self initManager];
+    
+    NSURLRequest *request = [self URLRequestForPath:[self pathForUsername:username] withHTTPMethod:@"GET" data:nil mimeType:nil responseSerializer:nil];
     AFHTTPRequestOperation *operation = [s3 HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Avatar dowloaded");
         
@@ -56,28 +60,18 @@
     [s3.operationQueue addOperation:operation];
 }
 
-- (NSURLRequest *)avatarRequestForUsername:(NSString *)username {
-    return [self URLRequestForPath:[self pathForUsername:username] withHTTPMethod:@"GET" data:nil mimeType:nil responseSerializer:nil];
-}
-
 - (NSString *)pathForUsername:(NSString *)username {
     return [NSString stringWithFormat:@"avatars/%@.png", [username lowercaseString]];
 }
 
-- (AFAmazonS3Manager *)getManager {
-    AFAmazonS3Manager *s3 = [[AFAmazonS3Manager alloc]
-                             initWithAccessKeyID:self.accessKey
-                             secret:self.secret];
+- (void)initManager {
+    s3 = [[AFAmazonS3Manager alloc] initWithAccessKeyID:self.accessKey secret:self.secret];
     s3.requestSerializer.region = AFAmazonS3USStandardRegion;
     s3.requestSerializer.bucket = self.bucket;
     s3.responseSerializer = [[AFImageResponseSerializer alloc] init];
-    
-    return s3;
 }
 
 - (NSURLRequest *)URLRequestForPath:(NSString *)path withHTTPMethod:(NSString *)method data:(NSData *)data mimeType:(NSString *)mimeType responseSerializer:(AFHTTPResponseSerializer *)responseSerializer {
-    AFAmazonS3Manager *s3 = [self getManager];
-    
     if (responseSerializer) {
         s3.responseSerializer = responseSerializer;
     }
@@ -98,7 +92,7 @@
     NSURLRequest *request = [s3.requestSerializer
                              requestBySettingAuthorizationHeadersForRequest:originalRequest
                              error:nil];
-
+    
     return request;
 }
 

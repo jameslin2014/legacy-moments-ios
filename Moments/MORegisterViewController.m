@@ -585,8 +585,6 @@
                     completion:^(BOOL success) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (success) {
-                [user setIntroShown:YES];
-                
                 user.avatar = [imageButton3.imageView.image cropAndScaleToSize:imageButton3.imageView.frame.size.width];
                 [[MOS3APIUtilities sharedInstance] putAvatarForUsername:user.name image:user.avatar];
                 
