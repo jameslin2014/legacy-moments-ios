@@ -23,9 +23,6 @@
 
 - (instancetype)init{
 	if (self = [super initWithFrame:CGRectMake(0, 0, 15, 15)]){
-		for (CALayer *l in self.layer.sublayers){
-			[l removeFromSuperlayer];
-		}
 		self.backgroundColor = [UIColor clearColor];
 		self.layer.backgroundColor = [UIColor clearColor].CGColor;
 		_backgroundGrayCircle = [[CAShapeLayer alloc]init];
