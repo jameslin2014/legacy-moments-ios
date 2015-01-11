@@ -213,9 +213,8 @@
     }];
 
 //	FollowingStatusView *followStatus = [[UIImageView alloc]initWithImage:[self.following containsObject:username] ? [UIImage followingYes] : [UIImage followingNo]];
-	FollowingStatusView *followStatus = [[FollowingStatusView alloc]init];
+	FollowingStatusView *followStatus = [[FollowingStatusView alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
 	followStatus.isFollowing = [self.following containsObject:username];
-	followStatus.frame = CGRectMake(0, 0, 25, 25);
 	followStatus.center = CGPointMake(cell.bounds.size.width + 30, profileImageView.center.y);
 	followStatus.tag = 78900;
 	[cell addSubview:followStatus];
