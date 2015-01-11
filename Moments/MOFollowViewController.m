@@ -21,7 +21,6 @@
 
 @property (strong, nonatomic) UITapGestureRecognizer *tapper;
 @property (strong, nonatomic) JKSegmentedControl *segmentedControl;
-@property (strong, nonatomic) UISearchBar *searchBar;
 @property (strong, nonatomic) NSArray *followers;
 @property (strong, nonatomic) NSArray *following;
 @property (strong, nonatomic) NSArray *searchUsers;
@@ -111,8 +110,7 @@
 
 - (void)tabsChanged: (JKSegmentedControl *) segmentedControl{
     [self dataLoaded];
-    [[MomentsAPIUtilities sharedInstance].user reload];
-	
+
     if ([segmentedControl selectedSegmentIndex] == 0) {
 		self.title = @"Following";
 	} else {
@@ -121,6 +119,7 @@
 }
 
 - (IBAction)showSearch{
+	[self.tableView reloadData];
 	[self.searchButton setAction:@selector(showRegular)];
 	[UIView animateWithDuration:0.1 animations:^{
 		self.segmentedControl.alpha = 0.0f;
@@ -210,7 +209,7 @@
     }];
 
 	UIImageView *followStatus = [[UIImageView alloc]initWithImage:[self.following containsObject:username] ? [UIImage followingYes] : [UIImage followingNo]];
-	followStatus.frame = CGRectMake(0, 0, 30, 30);
+	followStatus.frame = CGRectMake(0, 0, 35, 35);
 	followStatus.center = CGPointMake(cell.bounds.size.width + 30, profileImageView.center.y);
 	followStatus.tag = 78900;
 	[cell addSubview:followStatus];

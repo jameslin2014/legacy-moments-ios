@@ -13,7 +13,9 @@
 @property IBOutlet UIBarButtonItem *searchButton;
 @property (nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIView *subNavigationView;
+@property (strong, nonatomic) UISearchBar *searchBar;
 
 - (IBAction)showSearch;
+- (void)showRegular;
 
 @end

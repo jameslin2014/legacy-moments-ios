@@ -7,8 +7,9 @@
 //
 
 #import "MOPageViewController.h"
+#import "MOFollowViewController.h"
 
-@interface MOPageViewController ()
+@interface MOPageViewController () <UIScrollViewDelegate>
 @property (strong, nonatomic) NSArray *viewControllers;
 @end
 
@@ -42,8 +43,13 @@
 		[vc didMoveToParentViewController:self];
 	}
 	self.scrollView.contentSize = CGSizeMake(self.viewControllers.count * self.view.frame.size.width, self.view.frame.size.height);
-	
+	self.scrollView.delegate = self;
 	[self.viewControllers[1] view].alpha = 0;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+	[((MOFollowViewController *)[self.viewControllers[2] topViewController]).searchBar resignFirstResponder];
+	[((MOFollowViewController *)[self.viewControllers[2] topViewController]) showRegular];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
