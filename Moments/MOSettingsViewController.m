@@ -419,7 +419,7 @@ static NSString *CellIdentifier = @"CellID";
 			} else if (indexPath.row == 1){
 				NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/app/id%d?mt=8", 953901607];
 				NSURL *url = [NSURL URLWithString:urlString];
-				UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[url, @"SOME STRING"] applicationActivities:nil];
+				UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[url, @"Share your moments with Moments."] applicationActivities:nil];
 #warning TODO         ^
 				[self presentViewController:activityViewController animated:YES completion:nil];
 			}

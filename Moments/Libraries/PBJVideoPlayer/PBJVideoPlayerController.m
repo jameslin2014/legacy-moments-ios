@@ -55,7 +55,7 @@ static NSString * const PBJVideoPlayerControllerPlayerKeepUpKey = @"playbackLike
 // KVO player layer keys
 static NSString * const PBJVideoPlayerControllerReadyForDisplay = @"readyForDisplay";
 
-#warning TODO: scrubbing support
+#warning TODO: scrubbing support - Can we put this off?
 //static float const PBJVideoPlayerControllerRates[PBJVideoPlayerRateCount] = { 0.25, 0.5, 0.75, 1, 1.5, 2 };
 //static NSInteger const PBJVideoPlayerRateCount = 6;
 
