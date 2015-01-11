@@ -222,6 +222,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	NSString *username;
 	if (self.textFieldSelected && self.searchUsers.count > indexPath.row){
 		username = self.searchUsers[indexPath.row];
