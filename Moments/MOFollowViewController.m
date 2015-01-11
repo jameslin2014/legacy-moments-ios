@@ -188,7 +188,10 @@
 	if (!nameLabel.superview){
 		[cell addSubview:nameLabel];
 	}
-	if (!profileImageView){profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 11, 35, 35)];}
+	if (!profileImageView){
+		profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 11, 35, 35)];
+	}
+	profileImageView.center = CGPointMake(profileImageView.center.x, 30.25);
 	profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2;
 	profileImageView.clipsToBounds = YES;
 	if (!profileImageView.superview){
@@ -223,11 +226,11 @@
 		username = self.searchUsers[indexPath.row];
 	} else if (self.segmentedControl.selectedSegmentIndex == 0){
 		username = self.following[indexPath.row];
-	} else{
+	} else if (self.segmentedControl.selectedSegmentIndex == 1){
 		username = self.followers[indexPath.row];
 	}
+	NSLog(@"%@", username);
 	UIImageView *followingStatus = (UIImageView *)[cell viewWithTag:78900];
-	NSLog(@"%@", followingStatus);
 	SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
 	v.scene = [[EDSpinningBoxScene alloc] init];
 	v.alpha = 0.0;
