@@ -16,9 +16,9 @@
 
 - (void)setIsFollowing:(BOOL)isFollowing{
 	_isFollowing = isFollowing;
+
 	_outerGreenCircle.hidden = !_isFollowing;
 	_innerGreenCircle.hidden = !_isFollowing;
-#warning animate
 }
 
 - (instancetype)init{
@@ -41,6 +41,7 @@
 		_innerGreenCircle.path = [UIBezierPath bezierPathWithOvalInRect:_innerGreenCircle.frame].CGPath;
 		_innerGreenCircle.fillColor = [UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1].CGColor;
 		_innerGreenCircle.backgroundColor = [UIColor clearColor].CGColor;
+		_innerGreenCircle.hidden = !self.isFollowing;
 		[self.layer addSublayer:_innerGreenCircle];
 		_outerGreenCircle = [[CAShapeLayer alloc]init];
 		_outerGreenCircle.frame = self.layer.bounds;
