@@ -496,6 +496,12 @@
 			});
 		} else{
 #warning TODO: Error message
+			UILabel *errorLabel = [[UILabel alloc]init];
+			errorLabel.textColor = [UIColor redColor];
+			errorLabel.alpha = 0;
+			errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
+			errorLabel.textAlignment = NSTextAlignmentCenter;
+			errorLabel.center = CGPointMake(background1.center.x / 2.0, containerView1.frame.origin.y / 2.0);
 		}
     }];
 }
