@@ -195,7 +195,7 @@
     urlRequest.HTTPMethod = method ? method : @"GET";
     
     // If the HTTP Method is POST, set the request body from the dictionary
-    if ([method isEqual:@"POST"]) {
+    if (![method isEqual:@"GET"]) {
         NSData *bodyData = [self encodeDictionary:dictionary];
         [urlRequest setHTTPBody:bodyData];
         [urlRequest setValue:[NSString stringWithFormat:@"%lu", (unsigned long) bodyData.length] forHTTPHeaderField:@"Content-Length"];
