@@ -222,7 +222,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 	NSString *username;
 	if (self.textFieldSelected && self.searchUsers.count > indexPath.row){
 		username = self.searchUsers[indexPath.row];
@@ -231,13 +231,39 @@
 	} else if (self.segmentedControl.selectedSegmentIndex == 1){
 		username = self.followers[indexPath.row];
 	}
+	NSLog(@"%@", username);
+//	FollowingStatusView *followingStatus = (FollowingStatusView *)[cell viewWithTag:78900];
+//	SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
+//	v.scene = [[EDSpinningBoxScene alloc] init];
+//	v.alpha = 0.0;
+//	v.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+//	[self.view addSubview:v];
+//	[UIView animateWithDuration:0.2 delay:0.1 options:0 animations:^{
+//		v.alpha = 1.0;
+//	} completion:nil];
 	if ([self.following containsObject:username]){
 		[[MomentsAPIUtilities sharedInstance] unfollowUser:username completion:^(NSDictionary *dict) {
-			[self.tableView reloadData];
+//			dispatch_async(dispatch_get_main_queue(), ^{
+//				[UIView animateWithDuration:0.2 animations:^{
+//					v.alpha = 0.0;
+//				} completion:^(BOOL finished) {
+//					[v removeFromSuperview];
+//				}];
+//			});
+			[[MomentsAPIUtilities sharedInstance].user reload];
+			NSLog(@"1: %@", dict);
 		}];
 	} else{
 		[[MomentsAPIUtilities sharedInstance] followUser:username completion:^(NSDictionary *dict) {
-			[self.tableView reloadData];
+//			dispatch_async(dispatch_get_main_queue(), ^{
+//				[UIView animateWithDuration:0.2 animations:^{
+//					v.alpha = 0.0;
+//				} completion:^(BOOL finished) {
+//					[v removeFromSuperview];
+//				}];
+//			});
+			[[MomentsAPIUtilities sharedInstance].user reload];
+			NSLog(@"2: %@", dict);
 		}];
 	}
 }
