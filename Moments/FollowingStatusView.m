@@ -15,24 +15,8 @@
 }
 
 - (void)setIsFollowing:(BOOL)isFollowing{
-	if (_isFollowing == isFollowing) return;
 	_isFollowing = isFollowing;
-//	if (_isFollowing){ //from open to closed
-//		_outerGreenCircle.hidden = NO;
-//		_innerGreenCircle.hidden = NO;
-//		
-////		CABasicAnimation *growAnimation;
-////		growAnimation = [CABasicAnimation animationWithKeyPath:@"bounds.size"];
-////		growAnimation.repeatCount = 1;
-////		growAnimation.autoreverses = NO;
-////		growAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
-////		growAnimation.fromValue = [NSValue valueWithCGSize:CGSizeMake(0, 0)];
-////		growAnimation.toValue = [NSValue valueWithCGSize:CGSizeMake(15, 15)];
-////		[_innerGreenCircle addAnimation:growAnimation forKey:@"bounds.size"];
-////		CABasicAnimation *closeAnimation = [CABasicAnimation animationWithKeyPath:@""];
-//	} else{ //from closed to open
-//		
-//	}
+
 	_outerGreenCircle.hidden = !_isFollowing;
 	_innerGreenCircle.hidden = !_isFollowing;
 }
