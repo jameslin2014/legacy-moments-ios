@@ -34,6 +34,7 @@
 		20C077C61A48C6220092B7AA /* MOFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C077C51A48C6220092B7AA /* MOFollowViewController.m */; };
 		20D6E7D61A43C7DA00B6DF3F /* EDSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D6E7D51A43C7DA00B6DF3F /* EDSegmentedControl.m */; };
 		20D6E7DC1A44D5BA00B6DF3F /* EDSegments.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D6E7DB1A44D5BA00B6DF3F /* EDSegments.m */; };
+		20DC7D671A62398A00AE644C /* FollowingStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DC7D661A62398A00AE644C /* FollowingStatusView.m */; };
 		20E5957A1A5B83FA00202C21 /* EDPagingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E595671A5B83FA00202C21 /* EDPagingViewController.m */; };
 		20E5957B1A5B83FA00202C21 /* MOSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E595681A5B83FA00202C21 /* MOSignInViewController.m */; };
 		20E5957C1A5B83FA00202C21 /* MORegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E5956A1A5B83FA00202C21 /* MORegisterViewController.m */; };
@@ -219,6 +220,8 @@
 		20D6E7D51A43C7DA00B6DF3F /* EDSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDSegmentedControl.m; sourceTree = "<group>"; };
 		20D6E7DA1A44D5BA00B6DF3F /* EDSegments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDSegments.h; sourceTree = "<group>"; };
 		20D6E7DB1A44D5BA00B6DF3F /* EDSegments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDSegments.m; sourceTree = "<group>"; };
+		20DC7D651A62398A00AE644C /* FollowingStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowingStatusView.h; sourceTree = "<group>"; };
+		20DC7D661A62398A00AE644C /* FollowingStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingStatusView.m; sourceTree = "<group>"; };
 		20E595671A5B83FA00202C21 /* EDPagingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDPagingViewController.m; sourceTree = "<group>"; };
 		20E595681A5B83FA00202C21 /* MOSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOSignInViewController.m; sourceTree = "<group>"; };
 		20E595691A5B83FA00202C21 /* MORegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MORegisterViewController.h; sourceTree = "<group>"; };
@@ -772,6 +775,8 @@
 				20C077C51A48C6220092B7AA /* MOFollowViewController.m */,
 				20EB172B1A4747A700DA1B16 /* MOSettingsViewController.h */,
 				20EB172C1A4747A700DA1B16 /* MOSettingsViewController.m */,
+				20DC7D651A62398A00AE644C /* FollowingStatusView.h */,
+				20DC7D661A62398A00AE644C /* FollowingStatusView.m */,
 			);
 			name = "User interface";
 			sourceTree = "<group>";
@@ -1123,6 +1128,7 @@
 				20E5958E1A5B8AEC00202C21 /* UIImage+EDExtras.m in Sources */,
 				E4A776691A566915003811D6 /* MomentsAPIUtilities.m in Sources */,
 				A5B31C371A287F25009734EE /* main.m in Sources */,
+				20DC7D671A62398A00AE644C /* FollowingStatusView.m in Sources */,
 				20C077C61A48C6220092B7AA /* MOFollowViewController.m in Sources */,
 				A564DA441A4784A3003C99F3 /* SVModalWebViewController.m in Sources */,
 				A5E01CCB1A2B37F1003ED753 /* AFHTTPSessionManager.m in Sources */,

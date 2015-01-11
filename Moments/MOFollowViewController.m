@@ -15,6 +15,7 @@
 #import "MOAvatarCache.h"
 #import "UIImage+EDExtras.h"
 #import "EDSpinningBoxScene.h"
+#import "FollowingStatusView.h"
 
 
 @interface MOFollowViewController ()
@@ -211,8 +212,10 @@
         profileImageView.image = avatar;
     }];
 
-	UIImageView *followStatus = [[UIImageView alloc]initWithImage:[self.following containsObject:username] ? [UIImage followingYes] : [UIImage followingNo]];
-	followStatus.frame = CGRectMake(0, 0, 35, 35);
+//	FollowingStatusView *followStatus = [[UIImageView alloc]initWithImage:[self.following containsObject:username] ? [UIImage followingYes] : [UIImage followingNo]];
+	FollowingStatusView *followStatus = [[FollowingStatusView alloc]init];
+	followStatus.isFollowing = [self.following containsObject:username];
+	followStatus.frame = CGRectMake(0, 0, 25, 25);
 	followStatus.center = CGPointMake(cell.bounds.size.width + 30, profileImageView.center.y);
 	followStatus.tag = 78900;
 	[cell addSubview:followStatus];
@@ -230,7 +233,7 @@
 		username = self.followers[indexPath.row];
 	}
 	NSLog(@"%@", username);
-	UIImageView *followingStatus = (UIImageView *)[cell viewWithTag:78900];
+	FollowingStatusView *followingStatus = (FollowingStatusView *)[cell viewWithTag:78900];
 	SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
 	v.scene = [[EDSpinningBoxScene alloc] init];
 	v.alpha = 0.0;
