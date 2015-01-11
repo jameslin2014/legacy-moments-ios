@@ -30,17 +30,17 @@
 /**
  * Sends a request to the API to check if the intended username has already been registered
  */
-- (void)isRegisteredUsername:(NSString *)username completion:(void (^)(BOOL))completion {
-    NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:[NSString stringWithFormat:@"/exists/%@", username]
-                                                   withHTTPMethod:@"GET"
-                                                    andDictionary:nil];
+- (void)isRegisteredUsername:(NSString *)username orEmail:(NSString *)email completion:(void (^)(NSDictionary *))completion {
+    NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:@"/exists/"
+                                                   withHTTPMethod:@"POST"
+                                                    andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:username, @"name", email, @"email", nil]];
     
     [self addAuthHeaderWithUsername:self.apiUsername password:self.apiPassword request:urlRequest];
     
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (!error) {
             NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-            completion([[dictionary objectForKey:@"exists"] boolValue]);
+            completion(dictionary);
         }
     }];
 }

@@ -22,7 +22,7 @@
 /**
  * Sends a request to the API to check if the intended username has already been registered
  */
-- (void)isRegisteredUsername:(NSString *)username completion:(void (^)(BOOL))completion;
+- (void)isRegisteredUsername:(NSString *)username orEmail:(NSString *)email completion:(void (^)(NSDictionary *))completion;
 
 /**
  * Sends a request to the API to check if the user can login with this username and password
