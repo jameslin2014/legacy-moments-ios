@@ -28,10 +28,10 @@
 }
 
 /**
- * Sends a request to the API to check if the intended username has already been registered
+ * Sends a request to the API to check if the intended username and e-mail are valid
  */
-- (void)isRegisteredUsername:(NSString *)username orEmail:(NSString *)email completion:(void (^)(NSDictionary *))completion {
-    NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:@"/exists/"
+- (void)isValidUsername:(NSString *)username andEmail:(NSString *)email completion:(void (^)(NSDictionary *))completion {
+    NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:@"/valid/"
                                                    withHTTPMethod:@"POST"
                                                     andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:username, @"name", email, @"email", nil]];
     

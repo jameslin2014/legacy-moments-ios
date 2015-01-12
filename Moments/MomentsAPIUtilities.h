@@ -20,9 +20,9 @@
 + (instancetype)sharedInstance;
 
 /**
- * Sends a request to the API to check if the intended username has already been registered
+ * Sends a request to the API to check if the intended username and e-mail are valid
  */
-- (void)isRegisteredUsername:(NSString *)username orEmail:(NSString *)email completion:(void (^)(NSDictionary *))completion;
+- (void)isValidUsername:(NSString *)username andEmail:(NSString *)email completion:(void (^)(NSDictionary *))completion;
 
 /**
  * Sends a request to the API to check if the user can login with this username and password
