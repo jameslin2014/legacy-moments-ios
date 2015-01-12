@@ -472,7 +472,7 @@
 		UIImage *cropped = [UIImage imageWithCGImage:imageRef];
 		CGImageRelease(imageRef2);
 		
-		NSString *user2 = [NSString stringWithFormat:@"%@.jpg", [MomentsAPIUtilities sharedInstance].user.name];
+		NSString *user2 = [NSString stringWithFormat:@"/videos/%@.jpg", [MomentsAPIUtilities sharedInstance].user.name];
 		NSURL *url2 = [s3Manager.baseURL URLByAppendingPathComponent:user2];
 		NSMutableURLRequest *originalRequest2 = [[NSMutableURLRequest alloc] initWithURL:url2];
 		originalRequest2.HTTPMethod = @"PUT";
