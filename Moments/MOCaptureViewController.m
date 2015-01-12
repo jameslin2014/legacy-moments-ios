@@ -7,13 +7,6 @@
 //
 
 #import "MOCaptureViewController.h"
-#import "AFAmazonS3Manager.h"
-#import "AFAmazonS3RequestSerializer.h"
-#import "MomentsAPIUtilities.h"
-#import <SceneKit/SceneKit.h>
-#import "EDSpinningBoxScene.h"
-#import "UIImage+EDExtras.h"
-#import "MOS3APIUtilities.h"
 
 @implementation MOCaptureViewController{
 	BOOL shouldCancel;

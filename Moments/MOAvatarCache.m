@@ -7,9 +7,6 @@
 //
 
 #import "MOAvatarCache.h"
-#import "MOS3APIUtilities.h"
-#import <UIKit/UIKit.h>
-#import "UIImage+EDExtras.h"
 
 @implementation MOAvatarCache
 

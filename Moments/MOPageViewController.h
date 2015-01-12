@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MOFollowViewController.h"
 
 @interface MOPageViewController : UIViewController 
 

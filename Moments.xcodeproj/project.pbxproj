@@ -658,6 +658,15 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		A58008681A646E8D00676FA5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A5E01CDA1A2B3899003ED753 /* interface.xcassets */,
+				A5E01CDC1A2B3C76003ED753 /* fundamentals.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		A5AD89111A4D21350013D417 /* SVProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -698,8 +707,6 @@
 				E410DF381A59FFC600D5C040 /* Model */,
 				A58008671A6469BB00676FA5 /* View */,
 				A5C5EB851A2A835E002F1591 /* Controllers */,
-				A5E01CDA1A2B3899003ED753 /* interface.xcassets */,
-				A5E01CDC1A2B3C76003ED753 /* fundamentals.xcassets */,
 				02949ED71A2984F8001EDD2D /* API */,
 				A5B31C341A287F25009734EE /* Supporting Files */,
 			);
@@ -709,6 +716,7 @@
 		A5B31C341A287F25009734EE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A58008681A646E8D00676FA5 /* Resources */,
 				205FA4851A54E0770061C174 /* Directive */,
 				A5B31C3E1A287F26009734EE /* Main.storyboard */,
 				A5B31C431A287F26009734EE /* LaunchScreen.xib */,

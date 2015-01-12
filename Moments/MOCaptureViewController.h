@@ -10,8 +10,17 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import <SceneKit/SceneKit.h>
 #import "AVCamPreviewView.h"
+
 #import "EDRecordingFlashingView.h"
+#import "EDSpinningBoxScene.h"
+#import "UIImage+EDExtras.h"
+
+#import "AFAmazonS3Manager.h"
+#import "AFAmazonS3RequestSerializer.h"
+#import "MomentsAPIUtilities.h"
+#import "MOS3APIUtilities.h"
 
 static void *RecordingContext = &RecordingContext;
 static void *SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDeviceAuthorizedContext;

@@ -7,16 +7,6 @@
 //
 
 #import "MOFollowViewController.h"
-#import "JKSegmentedControl.h"
-#import "MomentsAPIUtilities.h"
-#import "MOS3APIUtilities.h"
-#import "UIImageView+AFNetworking.h"
-#import "UIImage+EDExtras.h"
-#import "MOAvatarCache.h"
-#import "UIImage+EDExtras.h"
-#import "EDSpinningBoxScene.h"
-#import "FollowingStatusView.h"
-
 
 @interface MOFollowViewController ()
 

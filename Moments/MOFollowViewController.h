@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MomentsAPIUtilities.h"
+#import "MOS3APIUtilities.h"
+#import "UIImageView+AFNetworking.h"
+#import "MOAvatarCache.h"
+#import "FollowingStatusView.h"
+#import "JKSegmentedControl.h"
+#import "UIImage+EDExtras.h"
+#import "UIImage+EDExtras.h"
+#import "EDSpinningBoxScene.h"
+
 @interface MOFollowViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate>
 
 @property IBOutlet UIBarButtonItem *searchButton;

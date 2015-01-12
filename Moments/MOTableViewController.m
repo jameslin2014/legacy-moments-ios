@@ -7,18 +7,6 @@
 //
 
 #import "MOTableViewController.h"
-#import "AFNetworking.h"
-#import "MomentsAPIUtilities.h"
-#import "MOS3APIUtilities.h"
-#import "UIImageView+AFNetworking.h"
-#import "MOSettingsViewController.h"
-#import <SceneKit/SceneKit.h>
-#import "EDSpinningBoxScene.h"
-#import "ALAssetsLibrary+CustomPhotoAlbum.h"
-#import "PBJVideoPlayerController.h"
-#import "UIImage+EDExtras.h"
-#import "MOAvatarCache.h"
-#import "MODecisionViewController.h"
 
 @interface MOTableViewController () <PBJVideoPlayerControllerDelegate>
 @property (strong, nonatomic) NSArray *following;

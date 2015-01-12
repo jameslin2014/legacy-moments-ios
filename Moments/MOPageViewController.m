@@ -7,7 +7,6 @@
 //
 
 #import "MOPageViewController.h"
-#import "MOFollowViewController.h"
 
 @interface MOPageViewController () <UIScrollViewDelegate>
 @property (strong, nonatomic) NSArray *viewControllers;

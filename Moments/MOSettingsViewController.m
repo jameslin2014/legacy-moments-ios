@@ -7,18 +7,6 @@
 //
 
 #import "MOSettingsViewController.h"
-#import "SVModalWebViewController.h"
-#import "EDSegmentedControl.h"
-#import "MomentsAPIUtilities.h"
-#import "SVWebViewController.h"
-#import "SVProgressHUD.h"
-#import "UserVoice.h"
-#import "MODecisionViewController.h"
-#import "UIImage+Avatar.h"
-#import "EDSpinningBoxScene.h"
-
-#import <Accounts/Accounts.h>
-#import <Social/Social.h>
 
 static NSString *CellIdentifier = @"CellID";
 
@@ -35,22 +23,6 @@ static NSString *CellIdentifier = @"CellID";
 @end
 
 @implementation MOSettingsViewController
-
-- (BOOL)prefersStatusBarHidden{
-	return NO;
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle{
-	return UIStatusBarStyleLightContent;
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	
-	[self.emailField resignFirstResponder];
-	[self.passwordField resignFirstResponder];
-	[self.usernameField resignFirstResponder];
-	
-}
 
 - (void)viewDidLoad{
 	[super viewDidLoad];
@@ -117,6 +89,22 @@ static NSString *CellIdentifier = @"CellID";
 										[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.vibrancyView attribute:NSLayoutAttributeBottomMargin multiplier:1.0 constant:0]
 										]];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(controlStateChanged) name:@"SegmentedControlStateChanged" object:nil];
+}
+
+- (BOOL)prefersStatusBarHidden{
+    return NO;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    [self.emailField resignFirstResponder];
+    [self.passwordField resignFirstResponder];
+    [self.usernameField resignFirstResponder];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

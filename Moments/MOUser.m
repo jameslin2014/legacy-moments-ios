@@ -7,15 +7,10 @@
 //
 
 #import "MOUser.h"
-#import "MomentsAPIUtilities.h"
-#import "MOS3APIUtilities.h"
-#import "MOAvatarCache.h"
-#import "SSKeychain.h"
 
 @implementation MOUser
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         self.loggedIn = NO;
