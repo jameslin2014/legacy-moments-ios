@@ -183,6 +183,11 @@
 			nameLabel = (UILabel *) v;
 		}
 	}
+    
+    UIView *bgView = [[UIView alloc] init];
+    bgView.translatesAutoresizingMaskIntoConstraints = NO;
+    bgView.backgroundColor = [UIColor colorWithRed:60/255.0 green: 60/255.0 blue:60/255.0 alpha:1.0];
+    cell.selectedBackgroundView = bgView;
 	
 	cell.backgroundColor = [UIColor clearColor];
 //	cell.selectionStyle = UITableViewCellSelectionStyleNone;
