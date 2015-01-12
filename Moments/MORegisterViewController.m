@@ -455,7 +455,7 @@
 				errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
 				errorLabel.textAlignment = NSTextAlignmentCenter;
 				errorLabel.alpha = 0;
-				errorLabel.center = CGPointMake(background1.center.x / 2.0, containerView1.frame.origin.y / 2.0);
+				errorLabel.center = CGPointMake(background1.bounds.size.width / 2.0, containerView1.frame.origin.y / 2.0);
 				NSString *message = values[@"error"][0];
 				errorLabel.text = message;
 				[containerView1.superview addSubview:errorLabel];
@@ -526,7 +526,7 @@
 		errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
 		errorLabel.textAlignment = NSTextAlignmentCenter;
 		[errorLabel sizeToFit];
-		errorLabel.center = CGPointMake(background2.center.x / 2.0, containerView2.frame.origin.y / 2.0);
+		errorLabel.center = CGPointMake(background2.bounds.size.width / 2.0, containerView2.frame.origin.y / 2.0);
 		NSString *message = @"Password must be at least 6 characters.";
 		errorLabel.text = message;
 		[background2 addSubview:errorLabel];
@@ -548,7 +548,7 @@
 		errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
 		errorLabel.textAlignment = NSTextAlignmentCenter;
 		[errorLabel sizeToFit];
-		errorLabel.center = CGPointMake(background2.center.x / 2.0, containerView2.frame.origin.y / 2.0);
+		errorLabel.center = CGPointMake(background2.bounds.size.width / 2.0, containerView2.frame.origin.y / 2.0);
 		NSString *message = @"Confirm password must be the same as password.";
 		errorLabel.text = message;
 		[background2 addSubview:errorLabel];
@@ -615,7 +615,7 @@
 		errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
 		errorLabel.textAlignment = NSTextAlignmentCenter;
 		[errorLabel sizeToFit];
-		errorLabel.center = CGPointMake(background3.center.x / 2.0, containerView3.frame.origin.y / 2.0);
+		errorLabel.center = CGPointMake(background3.bounds.size.width / 2.0, containerView3.frame.origin.y / 2.0);
 		NSString *message = @"Please select a picture.";
 		errorLabel.text = message;
 		[background3 addSubview:errorLabel];
