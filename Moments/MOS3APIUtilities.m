@@ -33,19 +33,19 @@
     
     NSURLRequest *request = [self URLRequestForPath:[self pathForUsername:username] withHTTPMethod:@"PUT" data:UIImagePNGRepresentation(image) mimeType:@"image/png" responseSerializer:nil];
 
-    AFHTTPRequestOperation *operation = [s3 HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    AFHTTPRequestOperation *operation = [self.s3 HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Avatar uploaded");
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error %@", error);
     }];
-    [s3.operationQueue addOperation:operation];
+    [self.s3.operationQueue addOperation:operation];
 }
 
 - (void)getAvatarForUsername:(NSString *)username completion:(void (^)(UIImage *))completion {
     [self initManager];
     
     NSURLRequest *request = [self URLRequestForPath:[self pathForUsername:username] withHTTPMethod:@"GET" data:nil mimeType:nil responseSerializer:nil];
-    AFHTTPRequestOperation *operation = [s3 HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    AFHTTPRequestOperation *operation = [self.s3 HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Avatar dowloaded");
         
       completion((UIImage *) responseObject);
@@ -54,7 +54,7 @@
         
         completion([UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]]);
     }];
-    [s3.operationQueue addOperation:operation];
+    [self.s3.operationQueue addOperation:operation];
 }
 
 - (NSString *)pathForUsername:(NSString *)username {
