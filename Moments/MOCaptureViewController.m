@@ -13,6 +13,7 @@
 #import <SceneKit/SceneKit.h>
 #import "EDSpinningBoxScene.h"
 #import "UIImage+EDExtras.h"
+#import "MOS3APIUtilities.h"
 
 @implementation MOCaptureViewController{
 	BOOL shouldCancel;
@@ -349,7 +350,7 @@
 	} completion:nil];
 	[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
 	NSString *user = [NSString stringWithFormat:@"%@.mp4", [MomentsAPIUtilities sharedInstance].user.name];
-	AVAsset *firstVid = [AVAsset assetWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@",user]]];
+	AVAsset *firstVid = [AVAsset assetWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/pickmoments/videos/%@",user]]];
 	AVAsset *secondVid = [AVAsset assetWithURL:videoURL];
 	NSArray *assets = @[firstVid, secondVid];
 	AVMutableComposition *mutableComposition = [AVMutableComposition composition];
@@ -425,12 +426,15 @@
 		//        UIBackgroundTaskIdentifier backgroundRecordingID = [self backgroundRecordingID];
 		[self setBackgroundRecordingID:UIBackgroundTaskInvalid];
 		
-		AFAmazonS3Manager *s3Manager =
-		[[AFAmazonS3Manager alloc] initWithAccessKeyID:@"AKIAIVV5BPQF5DZFC26Q"
-												secret:@"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"];
-		s3Manager.requestSerializer.region = AFAmazonS3USStandardRegion;
-		s3Manager.requestSerializer.bucket = @"moments-videos";
-		
+//		AFAmazonS3Manager *s3Manager =
+//		[[AFAmazonS3Manager alloc] initWithAccessKeyID:@"AKIAIVV5BPQF5DZFC26Q"
+//												secret:@"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"];
+//		s3Manager.requestSerializer.region = AFAmazonS3USStandardRegion;
+//		s3Manager.requestSerializer.bucket = @"pickmoments";
+
+        MOS3APIUtilities *apiUtilities = [MOS3APIUtilities sharedInstance];
+        [apiUtilities initManager];
+        AFAmazonS3Manager *s3Manager = apiUtilities.s3;
 		
 		NSString *user = [NSString stringWithFormat:@"%@.mp4", [MomentsAPIUtilities sharedInstance].user.name];
 		NSURL *url = [s3Manager.baseURL URLByAppendingPathComponent:user];
@@ -451,11 +455,13 @@
 		[s3Manager.operationQueue addOperation:operation];
 		
 		
-		AFAmazonS3Manager *s3Manager2 =
-		[[AFAmazonS3Manager alloc] initWithAccessKeyID:@"AKIAIVV5BPQF5DZFC26Q"
-												secret:@"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"];
-		s3Manager2.requestSerializer.region = AFAmazonS3USStandardRegion;
-		s3Manager2.requestSerializer.bucket = @"moments-videos";
+//		AFAmazonS3Manager *s3Manager2 =
+//		[[AFAmazonS3Manager alloc] initWithAccessKeyID:@"AKIAIVV5BPQF5DZFC26Q"
+//												secret:@"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"];
+//		s3Manager2.requestSerializer.region = AFAmazonS3USStandardRegion;
+//		s3Manager2.requestSerializer.bucket = @"pickmoments";
+        
+        AFAmazonS3Manager *s3Manager2 = apiUtilities.s3;
 		
 		AVAsset *asset = [AVAsset assetWithURL:movieURL];
 		AVAssetImageGenerator *imageGenerator = [[AVAssetImageGenerator alloc]initWithAsset:asset];

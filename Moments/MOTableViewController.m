@@ -82,7 +82,7 @@
 	[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
 
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-		NSData *videoData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",user]]];
+		NSData *videoData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/pickmoments/videos/%@.mp4",user]]];
 		[videoData writeToFile:imagePath atomically:NO];
 		UIActivityViewController *shareSheet = [[UIActivityViewController alloc] initWithActivityItems:@[video] applicationActivities:nil];
 		[shareSheet setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError){
@@ -253,14 +253,14 @@
 		} else {
 			username = self.following[indexPath.row];
 		}
-		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",username]]];
+		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/pickmoments/videos/%@.mp4",username]]];
 		[request setHTTPMethod:@"HEAD"];
 		AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 		[op start];
 		[op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
 			self.tableShouldRegisterTapEvents = NO;
 			[self.reloadTimer invalidate];
-			self.videoPlayer.videoPath = [NSString stringWithFormat:@"https://s3.amazonaws.com/moments-videos/%@.mp4",username];
+			self.videoPlayer.videoPath = [NSString stringWithFormat:@"https://s3.amazonaws.com/pickmoments/videos/%@.mp4",username];
 			[self addChildViewController:self.videoPlayer];
 			[self.view addSubview:self.videoPlayer.view];
 			[self.videoPlayer didMoveToParentViewController:self];

@@ -7,12 +7,9 @@
 //
 
 #import "MOS3APIUtilities.h"
-#import "AFAmazonS3Manager.h"
 #import "UIImage+EDExtras.h"
 
 @implementation MOS3APIUtilities
-
-AFAmazonS3Manager *s3;
 
 + (instancetype)sharedInstance
 {
@@ -65,18 +62,18 @@ AFAmazonS3Manager *s3;
 }
 
 - (void)initManager {
-    s3 = [[AFAmazonS3Manager alloc] initWithAccessKeyID:self.accessKey secret:self.secret];
-    s3.requestSerializer.region = AFAmazonS3USStandardRegion;
-    s3.requestSerializer.bucket = self.bucket;
-    s3.responseSerializer = [[AFImageResponseSerializer alloc] init];
+    self.s3 = [[AFAmazonS3Manager alloc] initWithAccessKeyID:self.accessKey secret:self.secret];
+    self.s3.requestSerializer.region = AFAmazonS3USStandardRegion;
+    self.s3.requestSerializer.bucket = self.bucket;
+    self.s3.responseSerializer = [[AFImageResponseSerializer alloc] init];
 }
 
 - (NSURLRequest *)URLRequestForPath:(NSString *)path withHTTPMethod:(NSString *)method data:(NSData *)data mimeType:(NSString *)mimeType responseSerializer:(AFHTTPResponseSerializer *)responseSerializer {
     if (responseSerializer) {
-        s3.responseSerializer = responseSerializer;
+        self.s3.responseSerializer = responseSerializer;
     }
     
-    NSURL *url = [s3.baseURL URLByAppendingPathComponent:path];
+    NSURL *url = [self.s3.baseURL URLByAppendingPathComponent:path];
     NSMutableURLRequest *originalRequest = [[NSMutableURLRequest alloc] initWithURL:url];
     
     originalRequest.HTTPMethod = method ? method : @"GET";
@@ -89,7 +86,7 @@ AFAmazonS3Manager *s3;
         [originalRequest setValue:mimeType forHTTPHeaderField:@"Content-Type"];
     }
     
-    NSURLRequest *request = [s3.requestSerializer
+    NSURLRequest *request = [self.s3.requestSerializer
                              requestBySettingAuthorizationHeadersForRequest:originalRequest
                              error:nil];
     
