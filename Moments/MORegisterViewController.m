@@ -444,7 +444,6 @@
 
 - (void)continueButton1Pressed{
 	[self resignAllResponders];
-#warning NOT WORKING!!!!!!!!
 	NSString *username = usernameField1.text;
 	NSString *email = emailField1.text;
 	[[MomentsAPIUtilities sharedInstance] isValidUsername:username andEmail:email completion:^(NSDictionary *values) {
@@ -581,6 +580,52 @@
     
 	[self resignAllResponders];
     backButton.enabled = NO;
+	
+	if (passwordField2.text.length < 6){
+		AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+		UILabel *errorLabel = [[UILabel alloc]init];
+		errorLabel.textColor = [UIColor redColor];
+		errorLabel.alpha = 0;
+		errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
+		errorLabel.textAlignment = NSTextAlignmentCenter;
+		[errorLabel sizeToFit];
+		errorLabel.center = CGPointMake(background1.center.x / 2.0, containerView1.frame.origin.y / 2.0);
+		NSString *message = @"Password must be at least 6 characters.";
+		errorLabel.text = message;
+		[background1 addSubview:errorLabel];
+		[UIView animateWithDuration:0.2 animations:^{
+			errorLabel.alpha = 1;
+		} completion:^(BOOL finished) {
+			[UIView animateWithDuration:0.2 delay:1.5 options:0 animations:^{
+				errorLabel.alpha = 0;
+			} completion:^(BOOL finished) {
+				[errorLabel removeFromSuperview];
+			}];
+		}];
+		return;
+	} else if (![confirmPasswordField2.text isEqualToString:passwordField2.text]){
+		AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+		UILabel *errorLabel = [[UILabel alloc]init];
+		errorLabel.textColor = [UIColor redColor];
+		errorLabel.alpha = 0;
+		errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
+		errorLabel.textAlignment = NSTextAlignmentCenter;
+		[errorLabel sizeToFit];
+		errorLabel.center = CGPointMake(background1.center.x / 2.0, containerView1.frame.origin.y / 2.0);
+		NSString *message = @"Confirm password must be the same as password.";
+		errorLabel.text = message;
+		[background1 addSubview:errorLabel];
+		[UIView animateWithDuration:0.2 animations:^{
+			errorLabel.alpha = 1;
+		} completion:^(BOOL finished) {
+			[UIView animateWithDuration:0.2 delay:1.5 options:0 animations:^{
+				errorLabel.alpha = 0;
+			} completion:^(BOOL finished) {
+				[errorLabel removeFromSuperview];
+			}];
+		}];
+		return;
+	}
 	
 	POPSpringAnimation *layoutAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayoutConstraintConstant];
 	layoutAnimation.springSpeed = 10.0f;
