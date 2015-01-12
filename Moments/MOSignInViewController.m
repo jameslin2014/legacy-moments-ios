@@ -112,7 +112,7 @@
 	roundSignInContainer.translatesAutoresizingMaskIntoConstraints = NO;
 	roundSignInContainer.backgroundColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
 	roundSignInContainer.layer.cornerRadius = 20;
-	[roundSignInContainer addTarget:self action:@selector(signInButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+	[roundSignInContainer addTarget:self action:@selector(signInButtonPressed) forControlEvents:UIControlEventTouchDown];
 	[containerView addSubview:roundSignInContainer];
 	[containerView addConstraints:@[
 							   [NSLayoutConstraint constraintWithItem:roundSignInContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:containerView attribute:NSLayoutAttributeWidth multiplier:0.7 constant:0],
@@ -154,7 +154,7 @@
 	cancelButton.translatesAutoresizingMaskIntoConstraints = NO;
 	cancelButton.backgroundColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
 	cancelButton.layer.cornerRadius = 40;
-	[cancelButton addTarget:self action:@selector(cancelButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+	[cancelButton addTarget:self action:@selector(cancelButtonPressed) forControlEvents:UIControlEventTouchDown];
 	[self.view addSubview:cancelButton];
 	[self.view addConstraints:@[
 								[NSLayoutConstraint constraintWithItem:cancelButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:80],
@@ -188,7 +188,7 @@
 	[vContainer addSubview:v];
 	[self.view addSubview:vContainer];
 	v.center = CGPointMake(v.center.x, containerView.frame.origin.y / 2);
-	[UIView animateWithDuration:0.2 delay:0.05 options:0 animations:^{
+	[UIView animateWithDuration:0.2 delay:0.2 options:0 animations:^{
 		vContainer.alpha = 1.0;
 	} completion:nil];
 	
@@ -199,23 +199,39 @@
 				vContainer.alpha = 0;
 			} completion:^(BOOL finished) {
 				[vContainer removeFromSuperview];
+				if (success) {
+					UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
+					[[[UIApplication sharedApplication] delegate] window].rootViewController = destinationViewController;
+					[[[[UIApplication sharedApplication] delegate] window] makeKeyAndVisible];
+					if ([self.presentingViewController isKindOfClass:[EDPagingViewController class]]){
+						EDPagingViewController *pagingViewController = (EDPagingViewController *) self.presentingViewController;
+						[pagingViewController.player stop];
+					}
+				} else {
+					AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+					UILabel *errorLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, containerView.superview.frame.size.width * .8, 30)];
+					errorLabel.textColor = [UIColor redColor];
+//					errorLabel.alpha = 0;
+					errorLabel.backgroundColor = [UIColor whiteColor];
+					errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
+					errorLabel.textAlignment = NSTextAlignmentCenter;
+					[errorLabel sizeToFit];
+					errorLabel.center = CGPointMake(containerView.superview.bounds.size.width / 2.0, containerView.frame.origin.y / 2.0);
+					NSString *message = @"Sign in failed.";
+					errorLabel.text = message;
+					[containerView.superview addSubview:errorLabel];
+					[UIView animateWithDuration:0.2 animations:^{
+						errorLabel.alpha = 1;
+					} completion:^(BOOL finished) {
+						[UIView animateWithDuration:0.2 delay:1.5 options:0 animations:^{
+							errorLabel.alpha = 0;
+						} completion:^(BOOL finished) {
+							[errorLabel removeFromSuperview];
+						}];
+					}];
+					return;
+				}
 			}];
-			if (success) {				
-				UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
-				[[[UIApplication sharedApplication] delegate] window].rootViewController = destinationViewController;
-				[[[[UIApplication sharedApplication] delegate] window] makeKeyAndVisible];
-                
-                if ([self.presentingViewController isKindOfClass:[EDPagingViewController class]]) {
-                    EDPagingViewController *pagingViewController = (EDPagingViewController *) self.presentingViewController;
-                    [pagingViewController.player stop];
-                }
-                
-//				[self presentViewController:destinationViewController animated:YES completion:^{
-//					EDPagingViewController *pagingViewController = (EDPagingViewController *) self.presentingViewController;
-//					[pagingViewController.player stop];
-//					pagingViewController = nil;
-//				}];
-            }
 		});
     }];
 }

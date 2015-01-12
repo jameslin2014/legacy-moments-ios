@@ -171,17 +171,6 @@
                                                         <action selector="toggleMovieRecording:" destination="lzj-Vv-tF4" eventType="touchUpInside" id="gWE-oD-nnQ"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="84n-dZ-KSz">
-                                                    <rect key="frame" x="230" y="34" width="137" height="32"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
-                                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <state key="normal" title="Library">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="openVideoPicker" destination="lzj-Vv-tF4" eventType="touchUpInside" id="ORd-tg-7qg"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="centerY" secondItem="q7L-6T-xkJ" secondAttribute="centerY" id="9qz-kB-jdd"/>
@@ -189,12 +178,8 @@
                                                 <constraint firstAttribute="centerX" secondItem="q7L-6T-xkJ" secondAttribute="centerX" id="Z9S-q2-HhE"/>
                                                 <constraint firstAttribute="bottom" secondItem="7mB-F1-xlE" secondAttribute="bottom" id="aOD-xp-4mu"/>
                                                 <constraint firstAttribute="trailing" secondItem="7mB-F1-xlE" secondAttribute="trailing" id="aPd-1X-G2h"/>
-                                                <constraint firstItem="84n-dZ-KSz" firstAttribute="top" secondItem="RJx-Kv-F2f" secondAttribute="top" constant="34" id="feN-kO-37I"/>
-                                                <constraint firstItem="84n-dZ-KSz" firstAttribute="trailing" secondItem="RJx-Kv-F2f" secondAttribute="trailingMargin" id="jNG-02-dyd"/>
-                                                <constraint firstItem="84n-dZ-KSz" firstAttribute="centerY" secondItem="q7L-6T-xkJ" secondAttribute="centerY" id="moa-zs-hhG"/>
                                                 <constraint firstItem="7mB-F1-xlE" firstAttribute="top" secondItem="RJx-Kv-F2f" secondAttribute="top" id="n54-yE-6R3"/>
                                                 <constraint firstItem="q7L-6T-xkJ" firstAttribute="leading" secondItem="yza-zT-sFT" secondAttribute="trailing" constant="6" id="uBW-6v-Yan"/>
-                                                <constraint firstItem="84n-dZ-KSz" firstAttribute="leading" secondItem="q7L-6T-xkJ" secondAttribute="trailing" constant="8" symbolic="YES" id="uip-Nr-aMX"/>
                                                 <constraint firstAttribute="centerY" secondItem="q7L-6T-xkJ" secondAttribute="centerY" id="wfV-LG-gQ2"/>
                                             </constraints>
                                         </view>
@@ -238,7 +223,6 @@
                         <outlet property="cameraButton" destination="8fp-Rk-D9Y" id="EV4-m7-vNK"/>
                         <outlet property="cancelButton" destination="yza-zT-sFT" id="gJv-9m-yOk"/>
                         <outlet property="flashButton" destination="azg-Fi-Lly" id="wLW-2v-jtK"/>
-                        <outlet property="libraryButton" destination="84n-dZ-KSz" id="Ozk-SQ-GUq"/>
                         <outlet property="previewView" destination="Sgs-dV-lyT" id="Vsn-Fj-Brz"/>
                         <outlet property="progressView" destination="bb0-iM-yeZ" id="rrz-dA-Ngx"/>
                         <outlet property="recordButton" destination="q7L-6T-xkJ" id="udx-i7-kQ5"/>

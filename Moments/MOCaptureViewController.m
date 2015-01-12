@@ -217,7 +217,6 @@
 				self.progressView.progress = 0;
 				progressTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
 				self.cancelButton.hidden = NO;
-				self.libraryButton.hidden = YES;
 				self.recordButton.imageView.animationImages = [UIImage transitionButtonImages:NO];
 				self.recordButton.imageView.animationDuration = 0.25;
 				self.recordButton.imageView.animationRepeatCount = 1;
@@ -243,7 +242,6 @@
 			
 			dispatch_async(dispatch_get_main_queue(), ^{
 				self.cancelButton.hidden = YES;
-				self.libraryButton.hidden = NO;
 				self.progressView.hidden = YES;
 				[progressTimer invalidate];
 				[self.recordingFlashView hide];
@@ -495,15 +493,6 @@
 		}];
 		[s3Manager2.operationQueue addOperation:operation2];
 	}];
-}
-
-- (IBAction)openVideoPicker{
-	UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-	imagePicker.delegate = self;
-	imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-	imagePicker.mediaTypes = [[NSArray alloc] initWithObjects:(NSString *)kUTTypeMovie,nil];
-	
-	[self presentViewController:imagePicker animated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
