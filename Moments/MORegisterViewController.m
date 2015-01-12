@@ -456,7 +456,7 @@
 				errorLabel.textAlignment = NSTextAlignmentCenter;
 				errorLabel.alpha = 0;
 				errorLabel.center = CGPointMake(background1.bounds.size.width / 2.0, containerView1.frame.origin.y / 2.0);
-				NSString *message = values[@"error"][0];
+				NSString *message = values[@"errors"][0];
 				errorLabel.text = message;
 				[containerView1.superview addSubview:errorLabel];
 				[UIView animateWithDuration:0.2 animations:^{
