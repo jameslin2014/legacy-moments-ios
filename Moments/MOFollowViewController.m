@@ -110,7 +110,7 @@
 - (void)tapOccurred: (UITapGestureRecognizer *)tapGesture{
 	if ([self.tableView indexPathForRowAtPoint:[tapGesture locationInView:self.tableView]] == nil){
 		[self showRegular];
-	}
+    }
 }
 
 - (void)tabsChanged: (JKSegmentedControl *) segmentedControl{
@@ -124,6 +124,9 @@
 }
 
 - (IBAction)showSearch{
+    self.searchUsers = [NSArray array];
+    self.followers = [NSArray array];
+    self.following = [NSArray array];
 	[self.tableView reloadData];
 	[self.searchButton setAction:@selector(showRegular)];
 	[UIView animateWithDuration:0.1 animations:^{

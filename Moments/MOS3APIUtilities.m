@@ -7,7 +7,6 @@
 //
 
 #import "MOS3APIUtilities.h"
-#import "UIImage+EDExtras.h"
 
 @implementation MOS3APIUtilities
 
@@ -52,7 +51,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error %@", error);
         
-        completion([UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]]);
+        completion(nil);
     }];
     [self.s3.operationQueue addOperation:operation];
 }

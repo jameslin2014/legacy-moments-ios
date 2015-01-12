@@ -8,6 +8,8 @@
 
 #import "MOAvatarCache.h"
 #import "MOS3APIUtilities.h"
+#import <UIKit/UIKit.h>
+#import "UIImage+EDExtras.h"
 
 @implementation MOAvatarCache
 
@@ -20,8 +22,12 @@
     } else {
         // Load the avatar from S3 and then save it to the local library cache directory
         [[MOS3APIUtilities sharedInstance] getAvatarForUsername:username completion:^(UIImage *avatar) {
-            [UIImagePNGRepresentation(avatar) writeToFile:[self getFilePathForUserAvatar:username] atomically:YES];
-            completion(avatar);
+            if (avatar) {
+                [UIImagePNGRepresentation(avatar) writeToFile:[self getFilePathForUserAvatar:username] atomically:YES];
+                completion(avatar);
+            } else {
+                completion(nil); // [UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]]);
+            }
         }];
     }
 }
