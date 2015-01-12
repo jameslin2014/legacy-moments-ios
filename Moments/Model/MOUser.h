@@ -10,7 +10,6 @@
 #import <UIKit/UIKit.h>
 
 #import "MOAvatarCache.h"
-#import "MomentsAPIUtilities.h"
 #import "MOS3APIUtilities.h"
 #import "SSKeychain.h"
 

@@ -7,6 +7,7 @@
 //
 
 #import "MOUser.h"
+#import "MomentsAPIUtilities.h"
 
 @implementation MOUser
 
