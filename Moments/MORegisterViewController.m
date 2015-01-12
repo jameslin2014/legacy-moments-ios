@@ -170,7 +170,7 @@
 	roundContinueContainer1.translatesAutoresizingMaskIntoConstraints = NO;
 	roundContinueContainer1.backgroundColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
 	roundContinueContainer1.layer.cornerRadius = 20;
-	[roundContinueContainer1 addTarget:self action:@selector(continueButton1Pressed) forControlEvents:UIControlEventTouchUpInside];
+	[roundContinueContainer1 addTarget:self action:@selector(continueButton1Pressed) forControlEvents:UIControlEventTouchDown];
 	[containerView1 addSubview:roundContinueContainer1];
 	[containerView1 addConstraints:@[
 									[NSLayoutConstraint constraintWithItem:roundContinueContainer1 attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:containerView1 attribute:NSLayoutAttributeWidth multiplier:0.7 constant:0],
@@ -212,7 +212,7 @@
 	backButton.translatesAutoresizingMaskIntoConstraints = NO;
 	backButton.backgroundColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
 	backButton.layer.cornerRadius = 40;
-	[backButton addTarget:self action:@selector(cancelButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+	[backButton addTarget:self action:@selector(cancelButtonPressed) forControlEvents:UIControlEventTouchDown];
 	[self.view addSubview:backButton];
 	[self.view addConstraints:@[
 								[NSLayoutConstraint constraintWithItem:backButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:80],
@@ -311,7 +311,7 @@
 	roundContinueContainer2.translatesAutoresizingMaskIntoConstraints = NO;
 	roundContinueContainer2.backgroundColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
 	roundContinueContainer2.layer.cornerRadius = 20;
-	[roundContinueContainer2 addTarget:self action:@selector(continueButton2Pressed) forControlEvents:UIControlEventTouchUpInside];
+	[roundContinueContainer2 addTarget:self action:@selector(continueButton2Pressed) forControlEvents:UIControlEventTouchDown];
 	[containerView2 addSubview:roundContinueContainer2];
 	[containerView2 addConstraints:@[
 									 [NSLayoutConstraint constraintWithItem:roundContinueContainer2 attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:containerView2 attribute:NSLayoutAttributeWidth multiplier:0.7 constant:0],
@@ -377,7 +377,7 @@
 	[imageButton3 setImage:[UIImage plusButton] forState:UIControlStateNormal];
 	[imageButton3 setImage:[UIImage plusButtonHighlighted] forState:UIControlStateHighlighted];
 	imageButton3.imageView.contentMode = UIViewContentModeScaleAspectFit;
-	[imageButton3 addTarget:self action:@selector(imageButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+	[imageButton3 addTarget:self action:@selector(imageButtonPressed) forControlEvents:UIControlEventTouchDown];
 	[containerView3 addSubview:imageButton3];
 	[containerView3 addConstraints:@[
 									 [NSLayoutConstraint constraintWithItem:imageButton3 attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:imageButton3 attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0],
@@ -389,8 +389,8 @@
 	roundWelcomeLabel3.translatesAutoresizingMaskIntoConstraints = NO;
 	roundWelcomeLabel3.backgroundColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
 	roundWelcomeLabel3.layer.cornerRadius = 20;
-    [roundWelcomeLabel3 addTarget:self action:@selector(welcomeButton3Pressed) forControlEvents:UIControlEventTouchUpInside];
-	//	[roundSignInContainer addTarget:self action:@selector(signIn) forControlEvents:UIControlEventTouchUpInside];
+    [roundWelcomeLabel3 addTarget:self action:@selector(welcomeButton3Pressed) forControlEvents:UIControlEventTouchDown];
+	//	[roundSignInContainer addTarget:self action:@selector(signIn) forControlEvents:UIControlEventTouchDown];
 	[containerView3 addSubview:roundWelcomeLabel3];
 	[containerView3 addConstraints:@[
 									 [NSLayoutConstraint constraintWithItem:roundWelcomeLabel3 attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:containerView3 attribute:NSLayoutAttributeWidth multiplier:0.7 constant:0],
@@ -456,9 +456,9 @@
 				errorLabel.textAlignment = NSTextAlignmentCenter;
 				errorLabel.alpha = 0;
 				errorLabel.center = CGPointMake(background1.bounds.size.width / 2.0, containerView1.frame.origin.y / 2.0);
-				NSString *message = values[@"error"][0];
+				NSString *message = values[@"errors"][0];
 				errorLabel.text = message;
-				[containerView1.superview addSubview:errorLabel];
+				[self.view addSubview:errorLabel];
 				[UIView animateWithDuration:0.2 animations:^{
 					errorLabel.textColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:1];
 				} completion:^(BOOL finished) {
@@ -488,8 +488,8 @@
 					backButtonImage.animationRepeatCount = 1;
 					[backButtonImage startAnimating];
 					backButton.enabled = YES;
-					[backButton removeTarget:self action:@selector(cancelButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-					[backButton addTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchUpInside];
+					[backButton removeTarget:self action:@selector(cancelButtonPressed) forControlEvents:UIControlEventTouchDown];
+					[backButton addTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchDown];
 				});
 			}
 		});
@@ -513,14 +513,12 @@
 }
 
 - (void)continueButton2Pressed{
-#warning TODO: Check the passwords are the same
-    
 	[self resignAllResponders];
     backButton.enabled = NO;
 	
 	if (passwordField2.text.length < 6){
 		AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-		UILabel *errorLabel = [[UILabel alloc]init];
+		UILabel *errorLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, background2.frame.size.width * .8, 30)];
 		errorLabel.textColor = [UIColor redColor];
 		errorLabel.alpha = 0;
 		errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
@@ -542,7 +540,7 @@
 		return;
 	} else if (![confirmPasswordField2.text isEqualToString:passwordField2.text]){
 		AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-		UILabel *errorLabel = [[UILabel alloc]init];
+		UILabel *errorLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, background2.frame.size.width * .8, 30)];
 		errorLabel.textColor = [UIColor redColor];
 		errorLabel.alpha = 0;
 		errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
@@ -572,8 +570,8 @@
 	[_leftmostLayoutConstraint pop_addAnimation:layoutAnimation forKey:@"detailsContainerWidthAnimate"];
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 		backButton.enabled = YES;
-		[backButton removeTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchUpInside];
-		[backButton addTarget:self action:@selector(backButton3Pressed) forControlEvents:UIControlEventTouchUpInside];
+		[backButton removeTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchDown];
+		[backButton addTarget:self action:@selector(backButton3Pressed) forControlEvents:UIControlEventTouchDown];
 	});
 }
 
@@ -599,8 +597,8 @@
 		backButtonImage.animationRepeatCount = 1;
 		[backButtonImage startAnimating];
 		backButton.enabled = YES;
-		[backButton removeTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchUpInside];
-		[backButton addTarget:self action:@selector(cancelButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+		[backButton removeTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchDown];
+		[backButton addTarget:self action:@selector(cancelButtonPressed) forControlEvents:UIControlEventTouchDown];
 	});
 }
 
@@ -609,7 +607,7 @@
 	
 	if (imageButton3.imageView.image == [UIImage plusButton] || imageButton3.imageView.image == [UIImage plusButtonHighlighted]){
 		AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-		UILabel *errorLabel = [[UILabel alloc]init];
+		UILabel *errorLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, background3.frame.size.width * .8, 30)];
 		errorLabel.textColor = [UIColor redColor];
 		errorLabel.alpha = 0;
 		errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
@@ -671,7 +669,7 @@
                     backButtonImage.animationRepeatCount = 1;
                     [backButtonImage startAnimating];
                     backButton.enabled = YES;
-                    [backButton removeTarget:self action:@selector(backButton3Pressed) forControlEvents:UIControlEventTouchUpInside];
+                    [backButton removeTarget:self action:@selector(backButton3Pressed) forControlEvents:UIControlEventTouchDown];
                     [vContainer removeFromSuperview];
                     
                     UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
@@ -689,6 +687,27 @@
                 } completion:^(BOOL finished) {
                     [vContainer removeFromSuperview];
                 }];
+				AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+				UILabel *errorLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, background3.frame.size.width * .8, 30)];
+				errorLabel.textColor = [UIColor redColor];
+				errorLabel.alpha = 0;
+				errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
+				errorLabel.textAlignment = NSTextAlignmentCenter;
+				[errorLabel sizeToFit];
+				errorLabel.center = CGPointMake(background3.bounds.size.width / 2.0, containerView3.frame.origin.y / 2.0);
+				NSString *message = @"Something went wrong. Please try again.";
+				errorLabel.text = message;
+				[background3 addSubview:errorLabel];
+				[UIView animateWithDuration:0.2 animations:^{
+					errorLabel.alpha = 1;
+				} completion:^(BOOL finished) {
+					[UIView animateWithDuration:0.2 delay:1.5 options:0 animations:^{
+						errorLabel.alpha = 0;
+					} completion:^(BOOL finished) {
+						[errorLabel removeFromSuperview];
+					}];
+				}];
+				return;
             }
         });
     }];
@@ -706,8 +725,8 @@
 	[_leftmostLayoutConstraint pop_addAnimation:layoutAnimation forKey:@"detailsContainerWidthAnimate"];
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 		backButton.enabled = YES;
-		[backButton removeTarget:self action:@selector(backButton3Pressed) forControlEvents:UIControlEventTouchUpInside];
-		[backButton addTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchUpInside];
+		[backButton removeTarget:self action:@selector(backButton3Pressed) forControlEvents:UIControlEventTouchDown];
+		[backButton addTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchDown];
 	});
 }
 
