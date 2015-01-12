@@ -18,8 +18,10 @@
 	shouldCancel = NO;
 	
 	self.progressView.hidden = YES;
-	self.progressView.tintColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
-	
+    self.progressView.tintColor = [UIColor whiteColor];
+    self.progressView.frame = CGRectMake(0, 557, self.view.frame.size.width, 10);
+    self.progressView.trackTintColor = [UIColor clearColor];
+    
 	[self.recordButton setImage:[UIImage cameraButton] forState:UIControlStateNormal];
 	
 	[self.cancelButton setImage:[[UIImage circleCancelButton] imageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
