@@ -204,8 +204,12 @@
 				UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
 				[[[UIApplication sharedApplication] delegate] window].rootViewController = destinationViewController;
 				[[[[UIApplication sharedApplication] delegate] window] makeKeyAndVisible];
-				EDPagingViewController *pagingViewController = (EDPagingViewController *) self.presentingViewController;
-				[pagingViewController.player stop];
+                
+                if ([self.presentingViewController isKindOfClass:[EDPagingViewController class]]) {
+                    EDPagingViewController *pagingViewController = (EDPagingViewController *) self.presentingViewController;
+                    [pagingViewController.player stop];
+                }
+                
 //				[self presentViewController:destinationViewController animated:YES completion:^{
 //					EDPagingViewController *pagingViewController = (EDPagingViewController *) self.presentingViewController;
 //					[pagingViewController.player stop];

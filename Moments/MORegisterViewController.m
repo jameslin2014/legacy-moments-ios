@@ -666,12 +666,19 @@
                     [vContainer removeFromSuperview];
                     
                     UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
+                    [[[UIApplication sharedApplication] delegate] window].rootViewController = destinationViewController;
+                    [[[[UIApplication sharedApplication] delegate] window] makeKeyAndVisible];
                     
-                    [self presentViewController:destinationViewController animated:YES completion:^{
+                    if ([self.presentingViewController isKindOfClass:[EDPagingViewController class]]) {
                         EDPagingViewController *pagingViewController = (EDPagingViewController *) self.presentingViewController;
                         [pagingViewController.player stop];
-                        pagingViewController = nil;
-                    }];
+                    }
+
+                    //				[self presentViewController:destinationViewController animated:YES completion:^{
+                    //					EDPagingViewController *pagingViewController = (EDPagingViewController *) self.presentingViewController;
+                    //					[pagingViewController.player stop];
+                    //					pagingViewController = nil;
+                    //				}];
                 }];
             } else {
 #warning TODO: Show error message
