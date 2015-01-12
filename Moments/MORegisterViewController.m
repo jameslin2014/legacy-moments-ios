@@ -680,12 +680,6 @@
                         EDPagingViewController *pagingViewController = (EDPagingViewController *) self.presentingViewController;
                         [pagingViewController.player stop];
                     }
-
-                    //				[self presentViewController:destinationViewController animated:YES completion:^{
-                    //					EDPagingViewController *pagingViewController = (EDPagingViewController *) self.presentingViewController;
-                    //					[pagingViewController.player stop];
-                    //					pagingViewController = nil;
-                    //				}];
                 }];
             } else {
 #warning TODO: Show error message

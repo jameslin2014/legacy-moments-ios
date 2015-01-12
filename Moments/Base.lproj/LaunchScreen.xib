@@ -27,7 +27,7 @@
                 <constraint firstItem="9xv-2Q-4s0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="XwY-Gd-omX"/>
                 <constraint firstAttribute="trailing" secondItem="9xv-2Q-4s0" secondAttribute="trailing" id="be4-PY-kVI"/>
             </constraints>
-            <nil key="simulatedStatusBarMetrics"/>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="351" y="358"/>
         </view>

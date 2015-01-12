@@ -203,8 +203,10 @@
 					UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
 					[[[UIApplication sharedApplication] delegate] window].rootViewController = destinationViewController;
 					[[[[UIApplication sharedApplication] delegate] window] makeKeyAndVisible];
-					EDPagingViewController *pagingViewController = (EDPagingViewController *) self.presentingViewController;
-					[pagingViewController.player stop];
+					if ([self.presentingViewController isKindOfClass:[EDPagingViewController class]]){
+						EDPagingViewController *pagingViewController = (EDPagingViewController *) self.presentingViewController;
+						[pagingViewController.player stop];
+					}
 				} else {
 					AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 					UILabel *errorLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, containerView.superview.frame.size.width * .8, 30)];
