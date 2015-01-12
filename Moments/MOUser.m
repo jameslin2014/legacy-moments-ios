@@ -20,7 +20,8 @@
     if (self) {
         self.loggedIn = NO;
         [self loadFromKeychain];
-        if (self.token) {
+        [self log];
+        if (self.name && self.token) {
             self.loggedIn = YES;
             [[[MOAvatarCache alloc] init] getAvatarForUsername:self.name completion:^(UIImage *avatar) {
                 self.avatar = avatar;
@@ -63,6 +64,26 @@
         [self saveToKeychain];
         
         completion(nil != dictionary && nil == [dictionary objectForKey:@"error"]);
+    }];
+}
+
+- (void)updateUsername:(NSString *)username email:(NSString *)email password:(NSString *)password completion:(void (^)(BOOL))completion {
+    [[MomentsAPIUtilities sharedInstance] updateUser:username email:email password:password completion:^(NSDictionary *dictionary) {
+        NSLog(@"%@", dictionary);
+        if (dictionary[@"errors"]) {
+            NSLog(@"%@", dictionary[@"errors"]);
+            completion(NO);
+        } else {
+            self.name = username;
+            self.email = email;
+            self.password = password;
+            
+            [self saveToKeychain];
+            
+            [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"dataLoaded" object:nil]];
+            
+            completion(YES);
+        }
     }];
 }
 
@@ -117,14 +138,6 @@
         
         [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"dataLoaded" object:nil]];
     }];
-}
-
-- (void)setIntroShown:(BOOL)introShown {
-    [[NSUserDefaults standardUserDefaults] setBool:introShown forKey:@"IntroHasShown"];
-}
-
-- (BOOL)introShown {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"IntroHasShown"];
 }
 
 - (void)setAvatar:(UIImage *)avatar {

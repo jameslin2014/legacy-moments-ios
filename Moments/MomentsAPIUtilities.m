@@ -52,8 +52,26 @@
     NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:@"/login/"
                                                    withHTTPMethod:@"POST"
                                                     andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:username, @"name", password, @"password", nil]];
-
+    
     [self addAuthHeaderWithUsername:self.apiUsername password:self.apiPassword request:urlRequest];
+    
+    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if (!error) {
+            NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+            completion(dictionary);
+        }
+    }];
+}
+
+/**
+ * Sends a request to the API to update the user data
+ */
+- (void)updateUser:(NSString *)username email:(NSString *)email password:(NSString *)password completion:(void (^)(NSDictionary *))completion {
+    NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:[NSString stringWithFormat:@"/%@", self.user.name]
+                                                   withHTTPMethod:@"PUT"
+                                                    andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:username, @"name", email, @"email", password, @"password", nil]];
+
+    [self addAuthHeaderWithToken:self.user.token request:urlRequest];
     
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (!error) {

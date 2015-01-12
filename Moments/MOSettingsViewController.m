@@ -15,6 +15,7 @@
 #import "UserVoice.h"
 #import "MODecisionViewController.h"
 #import "UIImage+Avatar.h"
+#import "EDSpinningBoxScene.h"
 
 #import <Accounts/Accounts.h>
 #import <Social/Social.h>
@@ -199,7 +200,8 @@ static NSString *CellIdentifier = @"CellID";
 			self.emailField.translatesAutoresizingMaskIntoConstraints = NO;
 			self.emailField.adjustsFontSizeToFitWidth = YES;
 			self.emailField.textColor = [UIColor whiteColor];
-			self.emailField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:user.email attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor],NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
+			self.emailField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"E-mail Address" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor],NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
+            self.emailField.text = user.email;
 			self.emailField.tintColor = [UIColor whiteColor];
 			self.emailField.keyboardType = UIKeyboardTypeEmailAddress;
 			self.emailField.returnKeyType = UIReturnKeyGo;
@@ -225,7 +227,7 @@ static NSString *CellIdentifier = @"CellID";
 			self.passwordField.adjustsFontSizeToFitWidth = YES;
 			self.passwordField.secureTextEntry = YES;
 			self.passwordField.textColor = [UIColor whiteColor];
-			self.passwordField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor], NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
+			self.passwordField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"Password" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor], NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
 			self.passwordField.tintColor = [UIColor whiteColor];
 			self.passwordField.keyboardType = UIKeyboardTypeAlphabet;
 			self.passwordField.returnKeyType = UIReturnKeyGo;
@@ -250,7 +252,8 @@ static NSString *CellIdentifier = @"CellID";
 			self.usernameField.translatesAutoresizingMaskIntoConstraints = NO;
 			self.usernameField.adjustsFontSizeToFitWidth = YES;
 			self.usernameField.textColor = [UIColor whiteColor];
-			self.usernameField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:user.name attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor], NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
+			self.usernameField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"Username" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor], NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
+            self.usernameField.text = user.name;
 			self.usernameField.tintColor = [UIColor whiteColor];
 			self.usernameField.keyboardType = UIKeyboardTypeAlphabet;
 			self.usernameField.returnKeyType = UIReturnKeyGo;
@@ -507,7 +510,28 @@ static NSString *CellIdentifier = @"CellID";
 }
 
 - (void)save {
-    NSLog(@"Save");
+    SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
+    v.scene = [[EDSpinningBoxScene alloc] init];
+    v.alpha = 0.0;
+    v.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+    [self.view addSubview:v];
+    [UIView animateWithDuration:0.2 delay:0.1 options:0 animations:^{
+        v.alpha = 1.0;
+    } completion:nil];
+    
+    MOUser *user = [MomentsAPIUtilities sharedInstance].user;
+    [user updateUsername:self.usernameField.text email:self.emailField.text password:self.passwordField.text completion:^(BOOL success) {
+        if (!success) {
+#warning TODO: Show error message
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.2 animations:^{
+                v.alpha = 0;
+            } completion:^(BOOL finished) {
+                [v removeFromSuperview];
+            }];
+        });
+    }];
 }
 
 #pragma mark - UITextFieldDelegate

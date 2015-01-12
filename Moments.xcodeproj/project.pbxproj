@@ -128,7 +128,6 @@
 		A5E01CDD1A2B3C76003ED753 /* fundamentals.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5E01CDC1A2B3C76003ED753 /* fundamentals.xcassets */; };
 		A5EDE0D61A59178D00DA8B8B /* MOS3APIUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = A5EDE0D51A59178D00DA8B8B /* MOS3APIUtilities.m */; };
 		E410DF3B1A59FFE100D5C040 /* MOUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E410DF3A1A59FFE100D5C040 /* MOUser.m */; };
-		E41B23071A602EB000FD90C9 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = E41B23061A602EB000FD90C9 /* test.png */; };
 		E4A776691A566915003811D6 /* MomentsAPIUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A776681A566915003811D6 /* MomentsAPIUtilities.m */; };
 		E4E1D3CB1A619A3B00752A23 /* UIImage+Avatar.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E1D3CA1A619A3B00752A23 /* UIImage+Avatar.m */; };
 		E4E1D3CE1A61B22D00752A23 /* MOAvatarCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E1D3CD1A61B22D00752A23 /* MOAvatarCache.m */; };
@@ -401,7 +400,6 @@
 		A5EDE0D51A59178D00DA8B8B /* MOS3APIUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOS3APIUtilities.m; sourceTree = "<group>"; };
 		E410DF391A59FFE100D5C040 /* MOUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOUser.h; sourceTree = "<group>"; };
 		E410DF3A1A59FFE100D5C040 /* MOUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOUser.m; sourceTree = "<group>"; };
-		E41B23061A602EB000FD90C9 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		E4A776671A566915003811D6 /* MomentsAPIUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentsAPIUtilities.h; sourceTree = "<group>"; };
 		E4A776681A566915003811D6 /* MomentsAPIUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentsAPIUtilities.m; sourceTree = "<group>"; };
 		E4E1D3C91A619A3B00752A23 /* UIImage+Avatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Avatar.h"; sourceTree = "<group>"; };
@@ -895,7 +893,6 @@
 		E410DF381A59FFC600D5C040 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E41B23061A602EB000FD90C9 /* test.png */,
 				E410DF391A59FFE100D5C040 /* MOUser.h */,
 				E410DF3A1A59FFE100D5C040 /* MOUser.m */,
 			);
@@ -1057,7 +1054,6 @@
 				A564DA471A478A8A003C99F3 /* privacy.html in Resources */,
 				A5AD89181A4D21350013D417 /* SVProgressHUD.bundle in Resources */,
 				A5CAD7881A29A0BF0023F948 /* SanFranciscoText-Bold.otf in Resources */,
-				E41B23071A602EB000FD90C9 /* test.png in Resources */,
 				20E595861A5B83FA00202C21 /* vancouver-city.mp4 in Resources */,
 				A564DA0F1A476ED7003C99F3 /* uv_heart.png in Resources */,
 				A5CAD7841A29A0BF0023F948 /* SanFranciscoDisplay-Regular.otf in Resources */,

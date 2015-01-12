@@ -21,10 +21,9 @@
 @property (nonatomic, strong) UIImage *avatar;
 
 - (void)registerWithUsername:(NSString *)username email:(NSString *)email password:(NSString *)password completion:(void (^)(BOOL))completion;
+- (void)updateUsername:(NSString *)username email:(NSString *)email password:(NSString *)password completion:(void (^)(BOOL))completion;
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)(BOOL))completion;
 - (void)reload;
 - (void)logout;
-- (void)setIntroShown:(BOOL)introShown;
-- (BOOL)introShown;
 
 @end

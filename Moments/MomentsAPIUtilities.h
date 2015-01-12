@@ -55,4 +55,9 @@
  */
 - (void)unfollowUser:(NSString *)user completion:(void (^)(NSDictionary *))completion;
 
+/**
+ * Sends a request to the API to update the user data
+ */
+- (void)updateUser:(NSString *)username email:(NSString *)email password:(NSString *)password completion:(void (^)(NSDictionary *))completion;
+
 @end
