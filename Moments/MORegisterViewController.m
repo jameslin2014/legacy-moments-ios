@@ -447,7 +447,7 @@
 #warning NOT WORKING!!!!!!!!
 	NSString *username = usernameField1.text;
 	NSString *email = emailField1.text;
-	[[MomentsAPIUtilities sharedInstance] isRegisteredUsername:username orEmail:email completion:^(NSDictionary *values) {
+	[[MomentsAPIUtilities sharedInstance] isValidUsername:username andEmail:email completion:^(NSDictionary *values) {
         if (values[@"errors"]) {
             NSLog(@"%@", values[@"errors"]);
             
