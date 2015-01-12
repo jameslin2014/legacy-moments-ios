@@ -44,6 +44,13 @@
     [SSKeychain setPassword:self.token forService:@"moments" account:@"token"];
 }
 
+- (void)clearCredentialsFromKeychain {
+    [SSKeychain deletePasswordForService:@"moments" account:@"username"];
+    [SSKeychain deletePasswordForService:@"moments" account:@"email"];
+    [SSKeychain deletePasswordForService:@"moments" account:@"password"];
+    [SSKeychain deletePasswordForService:@"moments" account:@"token"];
+}
+
 - (void)registerWithUsername:(NSString *)username email:(NSString *)email password:(NSString *)password completion:(void (^)(BOOL))completion {
     [[MomentsAPIUtilities sharedInstance] createUserWithUsername:username email:email andPassword:password completion:^(NSDictionary *dictionary) {
         self.name = username;
@@ -89,7 +96,7 @@
     self.following = nil;
     self.followers = nil;
     
-    [self saveToKeychain];
+    [self clearCredentialsFromKeychain];
     
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"signOut" object:nil]];
 }
