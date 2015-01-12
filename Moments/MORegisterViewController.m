@@ -14,7 +14,6 @@
 #import <SceneKit/SceneKit.h>
 #import "EDSpinningBoxScene.h"
 #import "MOS3APIUtilities.h"
-#import "MMPopLabel.h"
 #import "UIImage+Avatar.h"
 #import <AudioToolbox/AudioServices.h>
 
@@ -60,8 +59,6 @@
 	UILabel *welcomeLabel3;
 	
 	UIView *background4;
-	
-	MMPopLabel *popLabel;
 }
 
 - (BOOL)prefersStatusBarHidden{
@@ -70,10 +67,6 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-
-	[[MMPopLabel appearance] setLabelColor:[UIColor whiteColor]];
-	[[MMPopLabel appearance] setLabelTextColor:[UIColor blackColor]];
-	[[MMPopLabel appearance] setLabelFont:[UIFont fontWithName:@"Avenir-Book" size:12.0f]];
 
 	self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 	self.modalPresentationStyle = UIModalPresentationOverFullScreen;
