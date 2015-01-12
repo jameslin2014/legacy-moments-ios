@@ -103,6 +103,10 @@
     }];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"dataLoaded" object:nil];
+}
+
 - (void)tapOccurred: (UITapGestureRecognizer *)tapGesture{
 	if ([self.tableView indexPathForRowAtPoint:[tapGesture locationInView:self.tableView]] == nil){
 		[self showRegular];

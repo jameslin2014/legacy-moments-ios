@@ -90,6 +90,8 @@
     self.followers = nil;
     
     [self saveToKeychain];
+    
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"signOut" object:nil]];
 }
 
 - (void)reload {

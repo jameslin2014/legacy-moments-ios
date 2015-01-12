@@ -118,6 +118,10 @@ static NSString *CellIdentifier = @"CellID";
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(controlStateChanged) name:@"SegmentedControlStateChanged" object:nil];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SegmentedControlStateChanged" object:nil];
+}
+
 - (void)dismissOptionsAndAbout{
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -325,12 +329,11 @@ static NSString *CellIdentifier = @"CellID";
 			[alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
 			[alertController addAction:[UIAlertAction actionWithTitle:@"Sign Out" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
                 [self dismissViewControllerAnimated:YES completion:nil];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"signOut" object:nil];
                 [[MomentsAPIUtilities sharedInstance].user logout];
                 
-                UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
-                
-                [self presentViewController:destinationViewController animated:YES completion:nil];
+                UIViewController *destinationViewController = [[MODecisionViewController alloc] init];
+                [[[UIApplication sharedApplication] delegate] window].rootViewController = destinationViewController;
+                [[[[UIApplication sharedApplication] delegate] window] makeKeyAndVisible];                
             }]];
             
             [self presentViewController:alertController animated:YES completion:nil];

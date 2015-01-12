@@ -18,6 +18,7 @@
 #import "PBJVideoPlayerController.h"
 #import "UIImage+EDExtras.h"
 #import "MOAvatarCache.h"
+#import "MODecisionViewController.h"
 
 @interface MOTableViewController () <PBJVideoPlayerControllerDelegate>
 @property (strong, nonatomic) NSArray *following;
@@ -120,14 +121,15 @@
 
 -(void)viewWillAppear:(BOOL)animated {
 	NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
-//	[[NSNotificationCenter defaultCenter] addObserverForName:@"signOut"
-//													  object:nil
-//													   queue:mainQueue
-//												  usingBlock:^(NSNotification *note)
-//	 {
-//		 UIViewController *loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"login"];
-//		 [self presentViewController:loginVC animated:YES completion:nil];
-//	 }];
+	[[NSNotificationCenter defaultCenter] addObserverForName:@"signOut"
+													  object:nil
+													   queue:mainQueue
+												  usingBlock:^(NSNotification *note)
+	 {
+         UIViewController *destinationViewController = [[MODecisionViewController alloc] init];
+         [[[UIApplication sharedApplication] delegate] window].rootViewController = destinationViewController;
+         [[[[UIApplication sharedApplication] delegate] window] makeKeyAndVisible];
+	 }];
     
     [[NSNotificationCenter defaultCenter] addObserverForName:@"dataLoaded"
                                                       object:nil
@@ -144,6 +146,12 @@
                                                   }];
     
     self.following = [MomentsAPIUtilities sharedInstance].user.following;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"signOut" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"dataLoaded" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"avatarChanged" object:nil];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
