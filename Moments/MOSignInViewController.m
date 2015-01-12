@@ -230,25 +230,6 @@
 					return;
 				}
 			}];
-<<<<<<< HEAD
-=======
-			if (success) {				
-				UIViewController *destinationViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
-				[[[UIApplication sharedApplication] delegate] window].rootViewController = destinationViewController;
-				[[[[UIApplication sharedApplication] delegate] window] makeKeyAndVisible];
-                
-                if ([self.presentingViewController isKindOfClass:[EDPagingViewController class]]) {
-                    EDPagingViewController *pagingViewController = (EDPagingViewController *) self.presentingViewController;
-                    [pagingViewController.player stop];
-                }
-                
-//				[self presentViewController:destinationViewController animated:YES completion:^{
-//					EDPagingViewController *pagingViewController = (EDPagingViewController *) self.presentingViewController;
-//					[pagingViewController.player stop];
-//					pagingViewController = nil;
-//				}];
-            }
->>>>>>> FETCH_HEAD
 		});
     }];
 }
