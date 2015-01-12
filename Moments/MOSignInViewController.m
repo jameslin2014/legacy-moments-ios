@@ -211,15 +211,14 @@
 					AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 					UILabel *errorLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, containerView.superview.frame.size.width * .8, 30)];
 					errorLabel.textColor = [UIColor redColor];
-//					errorLabel.alpha = 0;
-					errorLabel.backgroundColor = [UIColor whiteColor];
-					errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
+					errorLabel.alpha = 0;
+					errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:14];
 					errorLabel.textAlignment = NSTextAlignmentCenter;
-					[errorLabel sizeToFit];
 					errorLabel.center = CGPointMake(containerView.superview.bounds.size.width / 2.0, containerView.frame.origin.y / 2.0);
 					NSString *message = @"Sign in failed.";
 					errorLabel.text = message;
 					[containerView.superview addSubview:errorLabel];
+                    [errorLabel sizeToFit];
 					[UIView animateWithDuration:0.2 animations:^{
 						errorLabel.alpha = 1;
 					} completion:^(BOOL finished) {

@@ -20,7 +20,6 @@
     if (self) {
         self.loggedIn = NO;
         [self loadFromKeychain];
-        [self log];
         if (self.name && self.token) {
             self.loggedIn = YES;
             [[[MOAvatarCache alloc] init] getAvatarForUsername:self.name completion:^(UIImage *avatar) {

@@ -449,21 +449,26 @@
 	[[MomentsAPIUtilities sharedInstance] isValidUsername:username andEmail:email completion:^(NSDictionary *values) {
 		dispatch_async(dispatch_get_main_queue(), ^{
 			if (values[@"errors"]) {
+                NSLog(@"%@", values[@"errors"]);
+                
 				AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 				UILabel *errorLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, background1.frame.size.width * .8, 30)];
-				errorLabel.textColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:0];
-				errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
+				errorLabel.textColor = [UIColor redColor];
+				errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:14];
 				errorLabel.textAlignment = NSTextAlignmentCenter;
 				errorLabel.alpha = 0;
 				errorLabel.center = CGPointMake(background1.bounds.size.width / 2.0, containerView1.frame.origin.y / 2.0);
 				NSString *message = values[@"errors"][0];
 				errorLabel.text = message;
-				[self.view addSubview:errorLabel];
+				[containerView1.superview addSubview:errorLabel];
+                [errorLabel sizeToFit];
 				[UIView animateWithDuration:0.2 animations:^{
-					errorLabel.textColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:1];
+//					errorLabel.textColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:1];
+                    errorLabel.alpha = 1;
 				} completion:^(BOOL finished) {
 					[UIView animateWithDuration:0.2 delay:1.5 options:0 animations:^{
-						errorLabel.textColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:0];
+//						errorLabel.textColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:0];
+                        errorLabel.alpha = 0;
 					} completion:^(BOOL finished) {
 						[errorLabel removeFromSuperview];
 					}];
@@ -683,6 +688,7 @@
                 }];
             } else {
 #warning TODO: Show error message
+                NSLog(@"%Error");
                 [UIView animateWithDuration:0.2 animations:^{
                     vContainer.alpha = 0;
                 } completion:^(BOOL finished) {
@@ -694,11 +700,11 @@
 				errorLabel.alpha = 0;
 				errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
 				errorLabel.textAlignment = NSTextAlignmentCenter;
-				[errorLabel sizeToFit];
 				errorLabel.center = CGPointMake(background3.bounds.size.width / 2.0, containerView3.frame.origin.y / 2.0);
 				NSString *message = @"Something went wrong. Please try again.";
 				errorLabel.text = message;
 				[background3 addSubview:errorLabel];
+                [errorLabel sizeToFit];
 				[UIView animateWithDuration:0.2 animations:^{
 					errorLabel.alpha = 1;
 				} completion:^(BOOL finished) {
