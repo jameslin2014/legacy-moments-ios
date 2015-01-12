@@ -447,17 +447,18 @@
 #warning NOT WORKING!!!!!!!!
 	NSString *username = usernameField1.text;
 	NSString *email = emailField1.text;
-	[[MomentsAPIUtilities sharedInstance] isRegisteredUsername:username orEmail:email completion:^(NSDictionary *values) {
-		if (values[@"error"]){
+	[[MomentsAPIUtilities sharedInstance] isValidUsername:username andEmail:email completion:^(NSDictionary *values) {
+        if (values[@"errors"]) {
+            NSLog(@"%@", values[@"errors"]);
+
 			AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-			UILabel *errorLabel = [[UILabel alloc]init];
+			UILabel *errorLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, background1.frame.size.width * .8, 30)];
 			errorLabel.textColor = [UIColor redColor];
 			errorLabel.alpha = 0;
 			errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
 			errorLabel.textAlignment = NSTextAlignmentCenter;
-			[errorLabel sizeToFit];
 			errorLabel.center = CGPointMake(background1.center.x / 2.0, containerView1.frame.origin.y / 2.0);
-			NSString *message = values[@"error"];
+			NSString *message = values[@"error"][0];
 			errorLabel.text = message;
 			[background1 addSubview:errorLabel];
 			[UIView animateWithDuration:0.2 animations:^{
