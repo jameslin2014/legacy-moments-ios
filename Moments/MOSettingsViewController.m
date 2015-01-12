@@ -31,7 +31,6 @@ static NSString *CellIdentifier = @"CellID";
 @property (strong, nonatomic) UIVisualEffectView *vibrancyView;
 @property (strong, nonatomic) EDSegmentedControl *control;
 @property (strong, nonatomic) UIButton *doneButton;
-@property (strong, nonatomic) UIButton *saveButton;
 @property (strong, nonatomic) UIImageView *profilePicture;
 @end
 
@@ -125,6 +124,8 @@ static NSString *CellIdentifier = @"CellID";
 }
 
 - (void)dismissOptionsAndAbout{
+    [self save];
+    
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -270,14 +271,6 @@ static NSString *CellIdentifier = @"CellID";
 								   [NSLayoutConstraint constraintWithItem:self.usernameField attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
 								   [NSLayoutConstraint constraintWithItem:self.usernameField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:cell attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:0]
 								   ]];
-		} else if (indexPath.section == 1 && indexPath.row == 3) {
-            self.saveButton = [UIButton buttonWithType:UIButtonTypeSystem];
-            self.saveButton.tintColor = [UIColor whiteColor];
-            [self.saveButton setTitle:@"Save" forState:UIControlStateNormal];
-            self.saveButton.translatesAutoresizingMaskIntoConstraints = NO;
-            self.saveButton.titleLabel.font = [UIFont fontWithName:@"Avenir-Book" size:14];
-            [self.saveButton addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
-            [cell addSubview:self.saveButton];
 		} else if (indexPath.section == 2){
 			cell.textLabel.text = @"Sign Out";
 			cell.imageView.image = [[UIImage imageNamed:@"exit"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
