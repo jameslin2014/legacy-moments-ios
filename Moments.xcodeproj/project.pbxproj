@@ -162,6 +162,8 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>NSData+Base64.h</string>
 			<key>path</key>
 			<string>NSData+Base64.h</string>
 			<key>sourceTree</key>
@@ -175,6 +177,8 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>NSData+Base64.m</string>
 			<key>path</key>
 			<string>NSData+Base64.m</string>
 			<key>sourceTree</key>
@@ -293,7 +297,6 @@
 			<array>
 				<string>E4A776671A566915003811D6</string>
 				<string>E4A776681A566915003811D6</string>
-				<string>A5E01C9E1A2B37F0003ED753</string>
 				<string>A5EDE0D41A59178D00DA8B8B</string>
 				<string>A5EDE0D51A59178D00DA8B8B</string>
 			</array>
@@ -314,6 +317,8 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>ALAssetsLibrary+CustomPhotoAlbum.h</string>
 			<key>path</key>
 			<string>ALAssetsLibrary+CustomPhotoAlbum.h</string>
 			<key>sourceTree</key>
@@ -327,6 +332,8 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>ALAssetsLibrary+CustomPhotoAlbum.m</string>
 			<key>path</key>
 			<string>ALAssetsLibrary+CustomPhotoAlbum.m</string>
 			<key>sourceTree</key>
@@ -563,8 +570,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>EDSegmentedControl</string>
 			<key>path</key>
 			<string>EDSegmentedControl</string>
 			<key>sourceTree</key>
@@ -579,8 +584,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>JKSegmentedControl</string>
 			<key>path</key>
 			<string>JKSegmentedControl</string>
 			<key>sourceTree</key>
@@ -595,8 +598,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>SSKeychain</string>
 			<key>path</key>
 			<string>SSKeychain</string>
 			<key>sourceTree</key>
@@ -611,8 +612,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>EDSpinningBoxScene</string>
 			<key>path</key>
 			<string>EDSpinningBoxScene</string>
 			<key>sourceTree</key>
@@ -669,8 +668,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Directive</string>
 			<key>path</key>
 			<string>Directive</string>
 			<key>sourceTree</key>
@@ -718,8 +715,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>UIImage+EDExtras</string>
 			<key>path</key>
 			<string>UIImage+EDExtras</string>
 			<key>sourceTree</key>
@@ -1207,8 +1202,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Media</string>
 			<key>path</key>
 			<string>Media</string>
 			<key>sourceTree</key>
@@ -1582,8 +1575,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>UserVoiceSDK</string>
 			<key>path</key>
 			<string>UserVoiceSDK</string>
 			<key>sourceTree</key>
@@ -2283,8 +2274,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>SVWebViewController</string>
 			<key>path</key>
 			<string>SVWebViewController</string>
 			<key>sourceTree</key>
@@ -2558,6 +2547,10 @@
 			<key>children</key>
 			<array>
 				<string>A58008631A64692D00676FA5</string>
+				<string>A5E52B0D1A64712C004825A5</string>
+				<string>A5E52B091A6470FF004825A5</string>
+				<string>A5E52B0B1A64710C004825A5</string>
+				<string>A5E52B0C1A647115004825A5</string>
 				<string>A5DAC9B51A5E4E0600145AEE</string>
 				<string>A5AD89111A4D21350013D417</string>
 				<string>A564DA131A4781AA003C99F3</string>
@@ -2569,8 +2562,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Lib</string>
 			<key>path</key>
 			<string>Lib</string>
 			<key>sourceTree</key>
@@ -2580,13 +2571,13 @@
 		<dict>
 			<key>children</key>
 			<array>
+				<string>A5E52B0E1A647148004825A5</string>
+				<string>A5E52B0F1A647154004825A5</string>
 				<string>E4E1D3C71A619A1900752A23</string>
 				<string>205FA48F1A55F2CB0061C174</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Categories</string>
 			<key>path</key>
 			<string>Categories</string>
 			<key>sourceTree</key>
@@ -2602,8 +2593,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Internal</string>
 			<key>path</key>
 			<string>Internal</string>
 			<key>sourceTree</key>
@@ -2618,8 +2607,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>EDRecordingFlashingView</string>
 			<key>path</key>
 			<string>EDRecordingFlashingView</string>
 			<key>sourceTree</key>
@@ -2634,8 +2621,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>AVCamPreview</string>
 			<key>path</key>
 			<string>AVCamPreview</string>
 			<key>sourceTree</key>
@@ -2650,8 +2635,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>View</string>
 			<key>path</key>
 			<string>View</string>
 			<key>sourceTree</key>
@@ -2666,8 +2649,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Resources</string>
 			<key>path</key>
 			<string>Resources</string>
 			<key>sourceTree</key>
@@ -2685,8 +2666,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>SVProgressHUD</string>
 			<key>path</key>
 			<string>SVProgressHUD</string>
 			<key>sourceTree</key>
@@ -3097,7 +3076,6 @@
 				<string>E410DF381A59FFC600D5C040</string>
 				<string>A58008671A6469BB00676FA5</string>
 				<string>A5C5EB851A2A835E002F1591</string>
-				<string>02949ED71A2984F8001EDD2D</string>
 				<string>A5B31C341A287F25009734EE</string>
 			</array>
 			<key>isa</key>
@@ -3120,8 +3098,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Supporting Files</string>
 			<key>path</key>
 			<string>Supporting Files</string>
 			<key>sourceTree</key>
@@ -3515,8 +3491,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>PBJVideoPlayer</string>
 			<key>path</key>
 			<string>PBJVideoPlayer</string>
 			<key>sourceTree</key>
@@ -3638,8 +3612,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Controllers</string>
 			<key>path</key>
 			<string>Controllers</string>
 			<key>sourceTree</key>
@@ -3809,8 +3781,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>JKSegmentedControl.h</string>
 			<key>path</key>
 			<string>JKSegmentedControl.h</string>
 			<key>sourceTree</key>
@@ -3824,8 +3794,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>JKSegmentedControl.m</string>
 			<key>path</key>
 			<string>JKSegmentedControl.m</string>
 			<key>sourceTree</key>
@@ -3839,8 +3807,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>SSKeychain.h</string>
 			<key>path</key>
 			<string>SSKeychain.h</string>
 			<key>sourceTree</key>
@@ -3854,8 +3820,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>SSKeychain.m</string>
 			<key>path</key>
 			<string>SSKeychain.m</string>
 			<key>sourceTree</key>
@@ -3894,75 +3858,6 @@
 			<string>A5E01C9C1A2B37E3003ED753</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>A5E01C9E1A2B37F0003ED753</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>023F97631A50C251001381B3</string>
-				<string>023F97641A50C251001381B3</string>
-				<string>023F97651A50C251001381B3</string>
-				<string>023F97661A50C251001381B3</string>
-				<string>029606791A3518A600FFA9AD</string>
-				<string>0296067A1A3518A600FFA9AD</string>
-				<string>A5E01C9F1A2B37F0003ED753</string>
-				<string>A5E01CA01A2B37F0003ED753</string>
-				<string>02C1E4AC1A30221C00F7EC6E</string>
-				<string>02C1E4AD1A30221C00F7EC6E</string>
-				<string>02C1E4B01A30221C00F7EC6E</string>
-				<string>02C1E4B31A30221C00F7EC6E</string>
-				<string>02C1E4B41A30221C00F7EC6E</string>
-				<string>02C1E4B51A30221C00F7EC6E</string>
-				<string>02C1E4B61A30221C00F7EC6E</string>
-				<string>A5E01CA11A2B37F0003ED753</string>
-				<string>A5E01CA21A2B37F0003ED753</string>
-				<string>02C1E4A11A2E9AAE00F7EC6E</string>
-				<string>02C1E4A21A2E9AAE00F7EC6E</string>
-				<string>A5E01CA31A2B37F0003ED753</string>
-				<string>A5E01CA41A2B37F0003ED753</string>
-				<string>A5E01CA51A2B37F1003ED753</string>
-				<string>A5E01CA61A2B37F1003ED753</string>
-				<string>A5E01CA71A2B37F1003ED753</string>
-				<string>A5E01CA81A2B37F1003ED753</string>
-				<string>A5E01CA91A2B37F1003ED753</string>
-				<string>A5E01CAA1A2B37F1003ED753</string>
-				<string>A5E01CAB1A2B37F1003ED753</string>
-				<string>A5E01CAC1A2B37F1003ED753</string>
-				<string>A5E01CAD1A2B37F1003ED753</string>
-				<string>A5E01CAE1A2B37F1003ED753</string>
-				<string>A5E01CAF1A2B37F1003ED753</string>
-				<string>A5E01CB01A2B37F1003ED753</string>
-				<string>A5E01CB11A2B37F1003ED753</string>
-				<string>A5E01CB21A2B37F1003ED753</string>
-				<string>A5E01CB31A2B37F1003ED753</string>
-				<string>A5E01CB41A2B37F1003ED753</string>
-				<string>A5E01CB51A2B37F1003ED753</string>
-				<string>A5E01CB61A2B37F1003ED753</string>
-				<string>A5E01CB71A2B37F1003ED753</string>
-				<string>A5E01CB81A2B37F1003ED753</string>
-				<string>A5E01CB91A2B37F1003ED753</string>
-				<string>A5E01CBA1A2B37F1003ED753</string>
-				<string>A5E01CBB1A2B37F1003ED753</string>
-				<string>A5E01CBC1A2B37F1003ED753</string>
-				<string>A5E01CBD1A2B37F1003ED753</string>
-				<string>A5E01CBE1A2B37F1003ED753</string>
-				<string>A5E01CBF1A2B37F1003ED753</string>
-				<string>A5E01CC01A2B37F1003ED753</string>
-				<string>A5E01CC11A2B37F1003ED753</string>
-				<string>A5E01CC21A2B37F1003ED753</string>
-				<string>A5E01CC31A2B37F1003ED753</string>
-				<string>A5E01CC41A2B37F1003ED753</string>
-				<string>A5E01CC51A2B37F1003ED753</string>
-				<string>A5E01CC61A2B37F1003ED753</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Networking</string>
-			<key>path</key>
-			<string>Networking</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>A5E01C9F1A2B37F0003ED753</key>
 		<dict>
@@ -4653,6 +4548,145 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>A5E52B091A6470FF004825A5</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>A5E01C9F1A2B37F0003ED753</string>
+				<string>A5E01CA01A2B37F0003ED753</string>
+				<string>A5E01CA11A2B37F0003ED753</string>
+				<string>A5E01CA21A2B37F0003ED753</string>
+				<string>A5E01CA31A2B37F0003ED753</string>
+				<string>A5E01CA41A2B37F0003ED753</string>
+				<string>A5E01CA51A2B37F1003ED753</string>
+				<string>A5E01CA61A2B37F1003ED753</string>
+				<string>A5E01CA71A2B37F1003ED753</string>
+				<string>A5E01CA81A2B37F1003ED753</string>
+				<string>A5E01CA91A2B37F1003ED753</string>
+				<string>A5E01CAA1A2B37F1003ED753</string>
+				<string>A5E01CAB1A2B37F1003ED753</string>
+				<string>A5E01CAC1A2B37F1003ED753</string>
+				<string>A5E01CAD1A2B37F1003ED753</string>
+				<string>A5E01CAE1A2B37F1003ED753</string>
+				<string>A5E01CAF1A2B37F1003ED753</string>
+				<string>A5E01CB01A2B37F1003ED753</string>
+				<string>A5E01CB11A2B37F1003ED753</string>
+				<string>A5E01CB21A2B37F1003ED753</string>
+				<string>A5E01CB31A2B37F1003ED753</string>
+				<string>A5E01CB41A2B37F1003ED753</string>
+				<string>A5E01CB51A2B37F1003ED753</string>
+				<string>A5E01CB61A2B37F1003ED753</string>
+				<string>A5E01CB71A2B37F1003ED753</string>
+				<string>A5E01CB81A2B37F1003ED753</string>
+				<string>A5E01CB91A2B37F1003ED753</string>
+				<string>A5E01CBA1A2B37F1003ED753</string>
+				<string>A5E01CBB1A2B37F1003ED753</string>
+				<string>A5E01CBC1A2B37F1003ED753</string>
+				<string>A5E01CBD1A2B37F1003ED753</string>
+				<string>A5E01CBE1A2B37F1003ED753</string>
+				<string>A5E01CBF1A2B37F1003ED753</string>
+				<string>A5E01CC01A2B37F1003ED753</string>
+				<string>A5E01CC11A2B37F1003ED753</string>
+				<string>A5E01CC21A2B37F1003ED753</string>
+				<string>A5E01CC31A2B37F1003ED753</string>
+				<string>A5E01CC41A2B37F1003ED753</string>
+				<string>A5E01CC51A2B37F1003ED753</string>
+				<string>A5E01CC61A2B37F1003ED753</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>AFNetworking</string>
+			<key>path</key>
+			<string>AFNetworking</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A5E52B0B1A64710C004825A5</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>02C1E4AC1A30221C00F7EC6E</string>
+				<string>02C1E4AD1A30221C00F7EC6E</string>
+				<string>02C1E4B01A30221C00F7EC6E</string>
+				<string>02C1E4B31A30221C00F7EC6E</string>
+				<string>02C1E4B41A30221C00F7EC6E</string>
+				<string>02C1E4B51A30221C00F7EC6E</string>
+				<string>02C1E4B61A30221C00F7EC6E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>DLIL</string>
+			<key>path</key>
+			<string>DLIL</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A5E52B0C1A647115004825A5</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>02C1E4A11A2E9AAE00F7EC6E</string>
+				<string>02C1E4A21A2E9AAE00F7EC6E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>JCDHTTPConnection</string>
+			<key>path</key>
+			<string>JCDHTTPConnection</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A5E52B0D1A64712C004825A5</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>023F97631A50C251001381B3</string>
+				<string>023F97641A50C251001381B3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>FBEncryptorAES</string>
+			<key>path</key>
+			<string>FBEncryptorAES</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A5E52B0E1A647148004825A5</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>023F97651A50C251001381B3</string>
+				<string>023F97661A50C251001381B3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>NSData+Base64</string>
+			<key>path</key>
+			<string>NSData+Base64</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A5E52B0F1A647154004825A5</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>029606791A3518A600FFA9AD</string>
+				<string>0296067A1A3518A600FFA9AD</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>ALAssetsLibrary+CustomPhotoAlbum</string>
+			<key>path</key>
+			<string>ALAssetsLibrary+CustomPhotoAlbum</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>A5EDE0D41A59178D00DA8B8B</key>
 		<dict>
 			<key>fileEncoding</key>
@@ -4690,6 +4724,7 @@
 		<dict>
 			<key>children</key>
 			<array>
+				<string>02949ED71A2984F8001EDD2D</string>
 				<string>E4E1D3CC1A61B22D00752A23</string>
 				<string>E4E1D3CD1A61B22D00752A23</string>
 				<string>E410DF391A59FFE100D5C040</string>
@@ -4697,8 +4732,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Model</string>
 			<key>path</key>
 			<string>Model</string>
 			<key>sourceTree</key>
@@ -4779,8 +4812,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>UIImage+Avatar</string>
 			<key>path</key>
 			<string>UIImage+Avatar</string>
 			<key>sourceTree</key>
