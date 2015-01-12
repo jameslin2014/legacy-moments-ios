@@ -15,10 +15,6 @@
 
 @implementation MOPageViewController
 
-- (BOOL)prefersStatusBarHidden{
-	return NO;
-}
-
 - (void)viewDidLoad {
 	
 	[super viewDidLoad];
@@ -45,6 +41,10 @@
 	self.scrollView.contentSize = CGSizeMake(self.viewControllers.count * self.view.frame.size.width, self.view.frame.size.height);
 	self.scrollView.delegate = self;
 	[self.viewControllers[1] view].alpha = 0;
+}
+
+- (BOOL)prefersStatusBarHidden{
+    return NO;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{

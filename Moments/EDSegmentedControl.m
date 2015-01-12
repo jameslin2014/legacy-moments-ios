@@ -46,7 +46,7 @@
 	[self setNeedsDisplay];
 }
 
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
 	UITouch *touch = touches.anyObject;
 	[self setNeedsDisplay];
 	if ([touch locationInView:self].x < self.bounds.size.width / 2){
@@ -60,7 +60,7 @@
 	}
 }
 
--(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
 	self.state = self.stateBeforeTouches;
 }
 

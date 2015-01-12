@@ -119,7 +119,7 @@
 	return 55;
 }
 
--(void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
 	NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
 	[[NSNotificationCenter defaultCenter] addObserverForName:@"signOut"
 													  object:nil
@@ -201,15 +201,9 @@
         [[[MOAvatarCache alloc] init] getAvatarForUsername:self.following[indexPath.row] completion:^(UIImage *avatar) {
             profileImageView.image = avatar;
         }];
-        
-//        __weak UIImageView *weakImageView = profileImageView;
-//        [profileImageView setImageWithURLRequest:[[MOS3APIUtilities sharedInstance] avatarRequestForUsername:self.following[indexPath.row]] placeholderImage:[UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-//            weakImageView.image = image;
-//            weakImageView.layer.cornerRadius = weakImageView.frame.size.width / 2;
-//            weakImageView.clipsToBounds = YES;
-//        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-//        }];
+    
 	}
+    
 	return cell;
 }
 
@@ -319,7 +313,7 @@
 	self.tableShouldRegisterTapEvents = NO;
 }
 
--(void)videoPlayerPlaybackStateDidChange:(PBJVideoPlayerController *)videoPlayer {
+- (void)videoPlayerPlaybackStateDidChange:(PBJVideoPlayerController *)videoPlayer {
 	//Dont remove this please
 }
 

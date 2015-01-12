@@ -20,18 +20,6 @@
 	NSTimer	*progressTimer;
 }
 
-- (BOOL)prefersStatusBarHidden{
-	return NO;
-}
-
-- (BOOL)isSessionRunningAndDeviceAuthorized {
-    return [[self session] isRunning] && [self isDeviceAuthorized];
-}
-
-+ (NSSet *)keyPathsForValuesAffectingSessionRunningAndDeviceAuthorized {
-    return [NSSet setWithObjects:@"session.running", @"deviceAuthorized", nil];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 	shouldCancel = NO;
@@ -92,6 +80,18 @@
         }
         
     });
+}
+
+- (BOOL)prefersStatusBarHidden{
+    return NO;
+}
+
+- (BOOL)isSessionRunningAndDeviceAuthorized {
+    return [[self session] isRunning] && [self isDeviceAuthorized];
+}
+
++ (NSSet *)keyPathsForValuesAffectingSessionRunningAndDeviceAuthorized {
+    return [NSSet setWithObjects:@"session.running", @"deviceAuthorized", nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -390,8 +390,7 @@
 		[instructions addObject:videoCompositionInstruction];
 		CGAffineTransform rotation = CGAffineTransformMakeRotation(M_PI_2);
 		CGAffineTransform translateToCenter = CGAffineTransformMakeTranslation(640, 480);
-		//        CGAffineTransform mixedTransform = CGAffineTransformConcat(rotation, translateToCenter);
-		//        AVMutableVideoCompositionLayerInstruction *FirstlayerInstruction = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:videoCompositionTrack];
+		
 		[videoCompositionTrack setPreferredTransform:CGAffineTransformConcat(rotation,translateToCenter)];
 		time = CMTimeAdd(time, assetTrack.timeRange.duration);
 		
@@ -426,12 +425,6 @@
 		//        UIBackgroundTaskIdentifier backgroundRecordingID = [self backgroundRecordingID];
 		[self setBackgroundRecordingID:UIBackgroundTaskInvalid];
 		
-//		AFAmazonS3Manager *s3Manager =
-//		[[AFAmazonS3Manager alloc] initWithAccessKeyID:@"AKIAIVV5BPQF5DZFC26Q"
-//												secret:@"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"];
-//		s3Manager.requestSerializer.region = AFAmazonS3USStandardRegion;
-//		s3Manager.requestSerializer.bucket = @"pickmoments";
-
         MOS3APIUtilities *apiUtilities = [MOS3APIUtilities sharedInstance];
         [apiUtilities initManager];
         AFAmazonS3Manager *s3Manager = apiUtilities.s3;
@@ -454,13 +447,6 @@
 		}];
 		[s3Manager.operationQueue addOperation:operation];
 		
-		
-//		AFAmazonS3Manager *s3Manager2 =
-//		[[AFAmazonS3Manager alloc] initWithAccessKeyID:@"AKIAIVV5BPQF5DZFC26Q"
-//												secret:@"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"];
-//		s3Manager2.requestSerializer.region = AFAmazonS3USStandardRegion;
-//		s3Manager2.requestSerializer.bucket = @"pickmoments";
-        
         AFAmazonS3Manager *s3Manager2 = apiUtilities.s3;
 		
 		AVAsset *asset = [AVAsset assetWithURL:movieURL];

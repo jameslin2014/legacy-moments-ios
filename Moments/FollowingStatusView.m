@@ -16,7 +16,6 @@
 
 - (void)setIsFollowing:(BOOL)isFollowing{
 	_isFollowing = isFollowing;
-
 	_outerGreenCircle.hidden = !_isFollowing;
 	_innerGreenCircle.hidden = !_isFollowing;
 }

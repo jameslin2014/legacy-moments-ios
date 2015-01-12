@@ -25,7 +25,6 @@
 @property (strong, nonatomic) NSArray *followers;
 @property (strong, nonatomic) NSArray *following;
 @property (strong, nonatomic) NSArray *searchUsers;
-
 @property (nonatomic) BOOL textFieldSelected;
 
 @end
@@ -173,8 +172,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//	UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DaCell"];
-	UITableViewCell *cell = [[UITableViewCell alloc]init];
+    UITableViewCell *cell = [[UITableViewCell alloc]init];
 	UILabel *nameLabel;
 	nameLabel.tag = 13154;
 	UIImageView *profileImageView;
@@ -193,7 +191,6 @@
     cell.selectedBackgroundView = bgView;
 	
 	cell.backgroundColor = [UIColor clearColor];
-//	cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	
 	if (!nameLabel) {nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 7, cell.frame.size.width, cell.frame.size.height)];}
 	nameLabel.font = [UIFont fontWithName:@"Avenir-Book" size:18];
@@ -224,7 +221,6 @@
         profileImageView.image = avatar;
     }];
 
-//	FollowingStatusView *followStatus = [[UIImageView alloc]initWithImage:[self.following containsObject:username] ? [UIImage followingYes] : [UIImage followingNo]];
 	FollowingStatusView *followStatus = [[FollowingStatusView alloc]init];
 	followStatus.isFollowing = [self.following containsObject:username];
 	followStatus.center = CGPointMake(cell.bounds.size.width + 30, profileImageView.center.y);
@@ -236,35 +232,22 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	NSString *username;
-	if (self.textFieldSelected && self.searchUsers.count > indexPath.row){
+	
+    if (self.textFieldSelected && self.searchUsers.count > indexPath.row){
 		username = self.searchUsers[indexPath.row];
 	} else if (self.segmentedControl.selectedSegmentIndex == 0){
 		username = self.following[indexPath.row];
 	} else if (self.segmentedControl.selectedSegmentIndex == 1){
 		username = self.followers[indexPath.row];
 	}
+    
 	NSLog(@"%@", username);
-    //	FollowingStatusView *followingStatus = (FollowingStatusView *)[cell viewWithTag:78900];
-    //	SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
-    //	v.scene = [[EDSpinningBoxScene alloc] init];
-    //	v.alpha = 0.0;
-    //	v.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
-    //	[self.view addSubview:v];
-    //	[UIView animateWithDuration:0.2 delay:0.1 options:0 animations:^{
-    //		v.alpha = 1.0;
-    //	} completion:nil];
     
     MOUser *user = [MomentsAPIUtilities sharedInstance].user;
     
 	if ([self.following containsObject:username]){
 		[[MomentsAPIUtilities sharedInstance] unfollowUser:username completion:^(NSDictionary *dict) {
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                [UIView animateWithDuration:0.2 animations:^{
-//                    v.alpha = 0.0;
-//                } completion:^(BOOL finished) {
-//                    [v removeFromSuperview];
-//                }];
-//            });
+
 			NSLog(@"1: %@", dict[@"follows"]);
             user.following = dict[@"follows"];
             user.followers = dict[@"followers"];
@@ -272,13 +255,7 @@
 		}];
 	} else{
 		[[MomentsAPIUtilities sharedInstance] followUser:username completion:^(NSDictionary *dict) {
-//			dispatch_async(dispatch_get_main_queue(), ^{
-//				[UIView animateWithDuration:0.2 animations:^{
-//					v.alpha = 0.0;
-//				} completion:^(BOOL finished) {
-//					[v removeFromSuperview];
-//				}];
-//			});
+
 			NSLog(@"2: %@", dict[@"follows"]);
             user.following = dict[@"follows"];
             user.followers = dict[@"followers"];

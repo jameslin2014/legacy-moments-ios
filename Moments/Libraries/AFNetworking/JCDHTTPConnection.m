@@ -80,7 +80,7 @@
         self.onSuccess(self.response, self.body);
 }
 
--(NSCachedURLResponse *)connection:(NSURLConnection *)connection
+- (NSCachedURLResponse *)connection:(NSURLConnection *)connection
                  willCacheResponse:(NSCachedURLResponse *)cachedResponse
 {
     return nil;

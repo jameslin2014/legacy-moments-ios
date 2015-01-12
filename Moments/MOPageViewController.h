@@ -10,7 +10,6 @@
 
 @interface MOPageViewController : UIViewController 
 
-// UIPageViewController properties
 @property (strong, nonatomic) UIScrollView *scrollView;
 
 @end

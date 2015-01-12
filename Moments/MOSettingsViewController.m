@@ -529,7 +529,7 @@ static NSString *CellIdentifier = @"CellID";
 
 #pragma mark - UITextFieldDelegate
 
--(void)textFieldDidEndEditing:(UITextField *)textField{
+- (void)textFieldDidEndEditing:(UITextField *)textField{
 	//Save changes
 }
 
