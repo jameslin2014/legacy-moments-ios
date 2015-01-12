@@ -447,7 +447,7 @@
 #warning NOT WORKING!!!!!!!!
 	NSString *username = usernameField1.text;
 	NSString *email = emailField1.text;
-	[[MomentsAPIUtilities sharedInstance] isRegisteredUsername:username orEmail:emailField1 completion:^(NSDictionary *values) {
+	[[MomentsAPIUtilities sharedInstance] isRegisteredUsername:username orEmail:email completion:^(NSDictionary *values) {
 		if (values[@"error"]){
 			AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 			UILabel *errorLabel = [[UILabel alloc]init];
@@ -455,6 +455,7 @@
 			errorLabel.alpha = 0;
 			errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
 			errorLabel.textAlignment = NSTextAlignmentCenter;
+			[errorLabel sizeToFit];
 			errorLabel.center = CGPointMake(background1.center.x / 2.0, containerView1.frame.origin.y / 2.0);
 			NSString *message = values[@"error"];
 			errorLabel.text = message;
@@ -475,6 +476,7 @@
 			errorLabel.alpha = 0;
 			errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
 			errorLabel.textAlignment = NSTextAlignmentCenter;
+			[errorLabel sizeToFit];
 			errorLabel.center = CGPointMake(background1.center.x / 2.0, containerView1.frame.origin.y / 2.0);
 			NSString *message = @"Username is not available.";
 			errorLabel.text = message;
@@ -495,8 +497,9 @@
 			errorLabel.alpha = 0;
 			errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
 			errorLabel.textAlignment = NSTextAlignmentCenter;
+			[errorLabel sizeToFit];
 			errorLabel.center = CGPointMake(background1.center.x / 2.0, containerView1.frame.origin.y / 2.0);
-			NSString *message = @"Email is not available.";
+			NSString *message = @"Email is already being used.";
 			errorLabel.text = message;
 			[background1 addSubview:errorLabel];
 			[UIView animateWithDuration:0.2 animations:^{
@@ -515,6 +518,7 @@
 			errorLabel.alpha = 0;
 			errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
 			errorLabel.textAlignment = NSTextAlignmentCenter;
+			[errorLabel sizeToFit];
 			errorLabel.center = CGPointMake(background1.center.x / 2.0, containerView1.frame.origin.y / 2.0);
 			NSString *message = @"Email is invalid.";
 			errorLabel.text = message;
