@@ -447,115 +447,52 @@
 	NSString *username = usernameField1.text;
 	NSString *email = emailField1.text;
 	[[MomentsAPIUtilities sharedInstance] isValidUsername:username andEmail:email completion:^(NSDictionary *values) {
-        if (values[@"errors"]) {
-            NSLog(@"%@", values[@"errors"]);
-
-			AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-			UILabel *errorLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, background1.frame.size.width * .8, 30)];
-			errorLabel.textColor = [UIColor redColor];
-			errorLabel.alpha = 0;
-			errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
-			errorLabel.textAlignment = NSTextAlignmentCenter;
-			errorLabel.center = CGPointMake(background1.center.x / 2.0, containerView1.frame.origin.y / 2.0);
-			NSString *message = values[@"error"][0];
-			errorLabel.text = message;
-			[background1 addSubview:errorLabel];
-			[UIView animateWithDuration:0.2 animations:^{
-				errorLabel.alpha = 1;
-			} completion:^(BOOL finished) {
-				[UIView animateWithDuration:0.2 delay:1.5 options:0 animations:^{
-					errorLabel.alpha = 0;
+		dispatch_async(dispatch_get_main_queue(), ^{
+			if (values[@"errors"]) {
+				AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+				UILabel *errorLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, background1.frame.size.width * .8, 30)];
+				errorLabel.textColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:0];
+				errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
+				errorLabel.textAlignment = NSTextAlignmentCenter;
+				errorLabel.alpha = 0;
+				errorLabel.center = CGPointMake(background1.center.x / 2.0, containerView1.frame.origin.y / 2.0);
+				NSString *message = values[@"error"][0];
+				errorLabel.text = message;
+				[containerView1.superview addSubview:errorLabel];
+				[UIView animateWithDuration:0.2 animations:^{
+					errorLabel.textColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:1];
 				} completion:^(BOOL finished) {
-					[errorLabel removeFromSuperview];
+					[UIView animateWithDuration:0.2 delay:1.5 options:0 animations:^{
+						errorLabel.textColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:0];
+					} completion:^(BOOL finished) {
+						[errorLabel removeFromSuperview];
+					}];
 				}];
-			}];
-		} else if (!values[@"usernameAvailable"]){
-			AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-			UILabel *errorLabel = [[UILabel alloc]init];
-			errorLabel.textColor = [UIColor redColor];
-			errorLabel.alpha = 0;
-			errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
-			errorLabel.textAlignment = NSTextAlignmentCenter;
-			[errorLabel sizeToFit];
-			errorLabel.center = CGPointMake(background1.center.x / 2.0, containerView1.frame.origin.y / 2.0);
-			NSString *message = @"Username is not available.";
-			errorLabel.text = message;
-			[background1 addSubview:errorLabel];
-			[UIView animateWithDuration:0.2 animations:^{
-				errorLabel.alpha = 1;
-			} completion:^(BOOL finished) {
-				[UIView animateWithDuration:0.2 delay:1.5 options:0 animations:^{
-					errorLabel.alpha = 0;
-				} completion:^(BOOL finished) {
-					[errorLabel removeFromSuperview];
-				}];
-			}];
-		} else if (!values[@"emailAvailable"]){
-			AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-			UILabel *errorLabel = [[UILabel alloc]init];
-			errorLabel.textColor = [UIColor redColor];
-			errorLabel.alpha = 0;
-			errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
-			errorLabel.textAlignment = NSTextAlignmentCenter;
-			[errorLabel sizeToFit];
-			errorLabel.center = CGPointMake(background1.center.x / 2.0, containerView1.frame.origin.y / 2.0);
-			NSString *message = @"Email is already being used.";
-			errorLabel.text = message;
-			[background1 addSubview:errorLabel];
-			[UIView animateWithDuration:0.2 animations:^{
-				errorLabel.alpha = 1;
-			} completion:^(BOOL finished) {
-				[UIView animateWithDuration:0.2 delay:1.5 options:0 animations:^{
-					errorLabel.alpha = 0;
-				} completion:^(BOOL finished) {
-					[errorLabel removeFromSuperview];
-				}];
-			}];
-		} else if ([email containsString:@"@"]){
-			AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-			UILabel *errorLabel = [[UILabel alloc]init];
-			errorLabel.textColor = [UIColor redColor];
-			errorLabel.alpha = 0;
-			errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
-			errorLabel.textAlignment = NSTextAlignmentCenter;
-			[errorLabel sizeToFit];
-			errorLabel.center = CGPointMake(background1.center.x / 2.0, containerView1.frame.origin.y / 2.0);
-			NSString *message = @"Email is invalid.";
-			errorLabel.text = message;
-			[background1 addSubview:errorLabel];
-			[UIView animateWithDuration:0.2 animations:^{
-				errorLabel.alpha = 1;
-			} completion:^(BOOL finished) {
-				[UIView animateWithDuration:0.2 delay:1.5 options:0 animations:^{
-					errorLabel.alpha = 0;
-				} completion:^(BOOL finished) {
-					[errorLabel removeFromSuperview];
-				}];
-			}];
-		}else{
-			backButtonImage.image = [UIImage backButtonClosed];
-			backButtonImage.animationImages = [UIImage transitionCancelButtonImages:NO];
-			backButtonImage.animationDuration = 0.25;
-			backButtonImage.animationRepeatCount = 1;
-			[backButtonImage startAnimating];
-			backButton.enabled = NO;
-			POPSpringAnimation *layoutAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayoutConstraintConstant];
-			layoutAnimation.springSpeed = 10.0f;
-			layoutAnimation.springBounciness = 5.0f;
-			layoutAnimation.toValue = @(-self.view.bounds.size.width);
-			layoutAnimation.beginTime = CACurrentMediaTime();
-			[_leftmostLayoutConstraint pop_addAnimation:layoutAnimation forKey:@"detailsContainerWidthAnimate"];
-			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-				backButtonImage.image = [UIImage backButtonOpen];
-				backButtonImage.animationImages = [UIImage transitionBackButtonImages:YES];
+			}else{
+				backButtonImage.image = [UIImage backButtonClosed];
+				backButtonImage.animationImages = [UIImage transitionCancelButtonImages:NO];
 				backButtonImage.animationDuration = 0.25;
 				backButtonImage.animationRepeatCount = 1;
 				[backButtonImage startAnimating];
-				backButton.enabled = YES;
-				[backButton removeTarget:self action:@selector(cancelButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-				[backButton addTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchUpInside];
-			});
-		}
+				backButton.enabled = NO;
+				POPSpringAnimation *layoutAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayoutConstraintConstant];
+				layoutAnimation.springSpeed = 10.0f;
+				layoutAnimation.springBounciness = 5.0f;
+				layoutAnimation.toValue = @(-self.view.bounds.size.width);
+				layoutAnimation.beginTime = CACurrentMediaTime();
+				[_leftmostLayoutConstraint pop_addAnimation:layoutAnimation forKey:@"detailsContainerWidthAnimate"];
+				dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+					backButtonImage.image = [UIImage backButtonOpen];
+					backButtonImage.animationImages = [UIImage transitionBackButtonImages:YES];
+					backButtonImage.animationDuration = 0.25;
+					backButtonImage.animationRepeatCount = 1;
+					[backButtonImage startAnimating];
+					backButton.enabled = YES;
+					[backButton removeTarget:self action:@selector(cancelButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+					[backButton addTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchUpInside];
+				});
+			}
+		});
 	}];
 }
 
@@ -589,10 +526,10 @@
 		errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
 		errorLabel.textAlignment = NSTextAlignmentCenter;
 		[errorLabel sizeToFit];
-		errorLabel.center = CGPointMake(background1.center.x / 2.0, containerView1.frame.origin.y / 2.0);
+		errorLabel.center = CGPointMake(background2.center.x / 2.0, containerView2.frame.origin.y / 2.0);
 		NSString *message = @"Password must be at least 6 characters.";
 		errorLabel.text = message;
-		[background1 addSubview:errorLabel];
+		[background2 addSubview:errorLabel];
 		[UIView animateWithDuration:0.2 animations:^{
 			errorLabel.alpha = 1;
 		} completion:^(BOOL finished) {
@@ -611,10 +548,10 @@
 		errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
 		errorLabel.textAlignment = NSTextAlignmentCenter;
 		[errorLabel sizeToFit];
-		errorLabel.center = CGPointMake(background1.center.x / 2.0, containerView1.frame.origin.y / 2.0);
+		errorLabel.center = CGPointMake(background2.center.x / 2.0, containerView2.frame.origin.y / 2.0);
 		NSString *message = @"Confirm password must be the same as password.";
 		errorLabel.text = message;
-		[background1 addSubview:errorLabel];
+		[background2 addSubview:errorLabel];
 		[UIView animateWithDuration:0.2 animations:^{
 			errorLabel.alpha = 1;
 		} completion:^(BOOL finished) {
@@ -669,6 +606,30 @@
 
 - (void)welcomeButton3Pressed{
 	[self resignAllResponders];
+	
+	if (imageButton3.imageView.image == [UIImage plusButton] || imageButton3.imageView.image == [UIImage plusButtonHighlighted]){
+		AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+		UILabel *errorLabel = [[UILabel alloc]init];
+		errorLabel.textColor = [UIColor redColor];
+		errorLabel.alpha = 0;
+		errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
+		errorLabel.textAlignment = NSTextAlignmentCenter;
+		[errorLabel sizeToFit];
+		errorLabel.center = CGPointMake(background3.center.x / 2.0, containerView3.frame.origin.y / 2.0);
+		NSString *message = @"Please select a picture.";
+		errorLabel.text = message;
+		[background3 addSubview:errorLabel];
+		[UIView animateWithDuration:0.2 animations:^{
+			errorLabel.alpha = 1;
+		} completion:^(BOOL finished) {
+			[UIView animateWithDuration:0.2 delay:1.5 options:0 animations:^{
+				errorLabel.alpha = 0;
+			} completion:^(BOOL finished) {
+				[errorLabel removeFromSuperview];
+			}];
+		}];
+		return;
+	}
     
     SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
     v.scene = [[EDSpinningBoxScene alloc] init];
