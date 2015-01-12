@@ -448,7 +448,8 @@
 	NSString *email = emailField1.text;
 	[[MomentsAPIUtilities sharedInstance] isValidUsername:username andEmail:email completion:^(NSDictionary *values) {
 		dispatch_async(dispatch_get_main_queue(), ^{
-			if (values[@"errors"]) {
+            NSArray *errors = values[@"errors"];
+			if (errors.count) {
                 NSLog(@"%@", values[@"errors"]);
                 
 				AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
