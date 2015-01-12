@@ -436,7 +436,7 @@
         [apiUtilities initManager];
         AFAmazonS3Manager *s3Manager = apiUtilities.s3;
 		
-		NSString *user = [NSString stringWithFormat:@"%@.mp4", [MomentsAPIUtilities sharedInstance].user.name];
+		NSString *user = [NSString stringWithFormat:@"/videos/%@.mp4", [MomentsAPIUtilities sharedInstance].user.name];
 		NSURL *url = [s3Manager.baseURL URLByAppendingPathComponent:user];
 		NSMutableURLRequest *originalRequest = [[NSMutableURLRequest alloc] initWithURL:url];
 		originalRequest.HTTPMethod = @"PUT";
