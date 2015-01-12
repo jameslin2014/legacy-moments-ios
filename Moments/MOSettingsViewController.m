@@ -30,6 +30,7 @@ static NSString *CellIdentifier = @"CellID";
 @property (strong, nonatomic) UIVisualEffectView *vibrancyView;
 @property (strong, nonatomic) EDSegmentedControl *control;
 @property (strong, nonatomic) UIButton *doneButton;
+@property (strong, nonatomic) UIButton *saveButton;
 @property (strong, nonatomic) UIImageView *profilePicture;
 @end
 
@@ -145,7 +146,7 @@ static NSString *CellIdentifier = @"CellID";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 	if (self.control.stateBeforeTouches == StateLeftSelected){
 		if (section == 0) return 1;
-		if (section == 1) return 3;
+		if (section == 1) return 4;
 		if (section == 2) return 1;
 	} else if (self.control.stateBeforeTouches == StateRightSelected){
 		if (section == 0) return 2;
@@ -183,18 +184,22 @@ static NSString *CellIdentifier = @"CellID";
 		}
 	}
 	if (self.control.stateBeforeTouches == StateLeftSelected){
+        MOUser *user = [MomentsAPIUtilities sharedInstance].user;
+        
 		if (indexPath.section == 0){
 			//Change Image
 			cell.textLabel.text = @"Change Profile Image";
 			cell.selectionStyle = UITableViewCellSelectionStyleGray;
 		} else if (indexPath.section == 1 && indexPath.row == 0){
+            
+            
 			cell.textLabel.text = @"Email Address";
 			cell.imageView.image = [[UIImage imageNamed:@"mail"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			self.emailField = [[UITextField alloc] init];
 			self.emailField.translatesAutoresizingMaskIntoConstraints = NO;
 			self.emailField.adjustsFontSizeToFitWidth = YES;
 			self.emailField.textColor = [UIColor whiteColor];
-			self.emailField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"j.doe@example.com" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor],NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
+			self.emailField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:user.email attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor],NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
 			self.emailField.tintColor = [UIColor whiteColor];
 			self.emailField.keyboardType = UIKeyboardTypeEmailAddress;
 			self.emailField.returnKeyType = UIReturnKeyGo;
@@ -220,7 +225,7 @@ static NSString *CellIdentifier = @"CellID";
 			self.passwordField.adjustsFontSizeToFitWidth = YES;
 			self.passwordField.secureTextEntry = YES;
 			self.passwordField.textColor = [UIColor whiteColor];
-			self.passwordField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"New Password" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor], NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
+			self.passwordField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor], NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
 			self.passwordField.tintColor = [UIColor whiteColor];
 			self.passwordField.keyboardType = UIKeyboardTypeAlphabet;
 			self.passwordField.returnKeyType = UIReturnKeyGo;
@@ -245,7 +250,7 @@ static NSString *CellIdentifier = @"CellID";
 			self.usernameField.translatesAutoresizingMaskIntoConstraints = NO;
 			self.usernameField.adjustsFontSizeToFitWidth = YES;
 			self.usernameField.textColor = [UIColor whiteColor];
-			self.usernameField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"Username" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor], NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
+			self.usernameField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:user.name attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor], NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
 			self.usernameField.tintColor = [UIColor whiteColor];
 			self.usernameField.keyboardType = UIKeyboardTypeAlphabet;
 			self.usernameField.returnKeyType = UIReturnKeyGo;
@@ -262,7 +267,15 @@ static NSString *CellIdentifier = @"CellID";
 								   [NSLayoutConstraint constraintWithItem:self.usernameField attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
 								   [NSLayoutConstraint constraintWithItem:self.usernameField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:cell attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:0]
 								   ]];
-		}else if (indexPath.section == 2){
+		} else if (indexPath.section == 1 && indexPath.row == 3) {
+            self.saveButton = [UIButton buttonWithType:UIButtonTypeSystem];
+            self.saveButton.tintColor = [UIColor whiteColor];
+            [self.saveButton setTitle:@"Save" forState:UIControlStateNormal];
+            self.saveButton.translatesAutoresizingMaskIntoConstraints = NO;
+            self.saveButton.titleLabel.font = [UIFont fontWithName:@"Avenir-Book" size:14];
+            [self.saveButton addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
+            [cell addSubview:self.saveButton];
+		} else if (indexPath.section == 2){
 			cell.textLabel.text = @"Sign Out";
 			cell.imageView.image = [[UIImage imageNamed:@"exit"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			cell.selectionStyle = UITableViewCellSelectionStyleGray;
@@ -492,6 +505,10 @@ static NSString *CellIdentifier = @"CellID";
     [alertController addAction:cancelButton];
     
     [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)save {
+    NSLog(@"Save");
 }
 
 #pragma mark - UITextFieldDelegate
