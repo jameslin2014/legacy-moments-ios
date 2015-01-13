@@ -143,6 +143,8 @@
 
 - (void)setAvatar:(UIImage *)avatar {
     _avatar = avatar;
+    [[[MOAvatarCache alloc] init] putAvatar:self.avatar forUsername:self.name];
+    
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"avatarChanged" object:nil]];
 }
 

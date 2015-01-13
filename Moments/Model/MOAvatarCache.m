@@ -29,8 +29,12 @@
     }
 }
 
+- (void)putAvatar:(UIImage *)avatar forUsername:(NSString *)username {
+    [UIImagePNGRepresentation(avatar) writeToFile:[self getFilePathForUserAvatar:username] atomically:YES];
+}
+
 - (NSString *)getFilePathForUserAvatar:(NSString *)username {
-    NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)firstObject];
+    NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
     NSFileManager* fileManager = [NSFileManager defaultManager];
     
     [fileManager createDirectoryAtPath:[cachePath stringByAppendingPathComponent:@"/avatars"] withIntermediateDirectories:YES attributes:nil error:nil];
