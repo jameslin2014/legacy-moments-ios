@@ -93,6 +93,10 @@
             
             [self reload];
             
+            [[[MOAvatarCache alloc] init] getAvatarForUsername:self.name completion:^(UIImage *avatar) {
+                self.avatar = avatar;
+            }];
+            
             [self saveToKeychain];
         } else {
             NSLog(@"Login failed");
@@ -111,6 +115,8 @@
     
     self.following = nil;
     self.followers = nil;
+    
+    self.avatar = nil;
     
     [self clearCredentialsFromKeychain];
     

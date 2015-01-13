@@ -22,6 +22,7 @@
 @interface MORegisterViewController ()
 
 @property (nonatomic) NSInteger currentIndex;
+@property (nonatomic, strong) UIImage *avatar;
 
 @end
 
@@ -648,8 +649,10 @@
                     completion:^(BOOL success) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (success) {
-                user.avatar = [imageButton3.imageView.image cropAndScaleToSize:imageButton3.imageView.frame.size.width];
-                [[MOS3APIUtilities sharedInstance] putAvatarForUsername:user.name image:user.avatar];
+                if (self.avatar) {
+                    user.avatar = self.avatar;
+                    [[MOS3APIUtilities sharedInstance] putAvatarForUsername:user.name image:user.avatar];
+                }
                 
                 _leftmostLayoutConstraint.constant = 2 * -self.view.frame.size.width;
                 backButtonImage.image = [UIImage backButtonClosed];
@@ -786,10 +789,10 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    self.avatar = [[info objectForKey:@"UIImagePickerControllerOriginalImage"] cropAndScaleToSize:250.0];
 
     [picker dismissViewControllerAnimated:YES completion:^{
-		[imageButton3 setImage:image forState:UIControlStateNormal];
+		[imageButton3 setImage:self.avatar forState:UIControlStateNormal];
 		imageButton3.imageView.layer.cornerRadius = imageButton3.imageView.layer.frame.size.height / 2.0;
 		imageButton3.imageView.layer.masksToBounds = YES;
 		imageButton3.imageView.layer.borderWidth = 0;
