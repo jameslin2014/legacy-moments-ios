@@ -17,8 +17,6 @@
 #import "UIImage+Avatar.h"
 #import <AudioToolbox/AudioServices.h>
 
-#import <pop/POP.h>
-
 @interface MORegisterViewController ()
 
 @property (nonatomic) NSInteger currentIndex;
@@ -475,13 +473,10 @@
 				backButtonImage.animationRepeatCount = 1;
 				[backButtonImage startAnimating];
 				backButton.enabled = NO;
-				POPSpringAnimation *layoutAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayoutConstraintConstant];
-				layoutAnimation.springSpeed = 10.0f;
-				layoutAnimation.springBounciness = 5.0f;
-				layoutAnimation.toValue = @(-self.view.bounds.size.width);
-				layoutAnimation.beginTime = CACurrentMediaTime();
-				[_leftmostLayoutConstraint pop_addAnimation:layoutAnimation forKey:@"detailsContainerWidthAnimate"];
-				dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+				_leftmostLayoutConstraint.constant = -self.view.bounds.size.width;
+				[UIView animateWithDuration:0.75 delay:0 usingSpringWithDamping:10 initialSpringVelocity:5 options:0 animations:^{
+					[self.view layoutIfNeeded];
+				} completion:^(BOOL finished) {
 					backButtonImage.image = [UIImage backButtonOpen];
 					backButtonImage.animationImages = [UIImage transitionBackButtonImages:YES];
 					backButtonImage.animationDuration = 0.25;
@@ -490,7 +485,7 @@
 					backButton.enabled = YES;
 					[backButton removeTarget:self action:@selector(cancelButtonPressed) forControlEvents:UIControlEventTouchDown];
 					[backButton addTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchDown];
-				});
+				}];
 			}
 		});
 	}];
@@ -561,18 +556,14 @@
 		}];
 		return;
 	}
-	
-	POPSpringAnimation *layoutAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayoutConstraintConstant];
-	layoutAnimation.springSpeed = 10.0f;
-	layoutAnimation.springBounciness = 5.0f;
-	layoutAnimation.toValue = @(2 * -self.view.bounds.size.width);
-	layoutAnimation.beginTime = CACurrentMediaTime();
-	[_leftmostLayoutConstraint pop_addAnimation:layoutAnimation forKey:@"detailsContainerWidthAnimate"];
-	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+	_leftmostLayoutConstraint.constant = 2 * -self.view.bounds.size.width;
+	[UIView animateWithDuration:0.75 delay:0 usingSpringWithDamping:10 initialSpringVelocity:5 options:0 animations:^{
+		[self.view layoutIfNeeded];
+	} completion:^(BOOL finished) {
 		backButton.enabled = YES;
 		[backButton removeTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchDown];
 		[backButton addTarget:self action:@selector(backButton3Pressed) forControlEvents:UIControlEventTouchDown];
-	});
+	}];
 }
 
 - (void)backButton2Pressed{
@@ -584,12 +575,12 @@
 	[backButtonImage startAnimating];
 	backButton.enabled = NO;
 	
-	POPSpringAnimation *layoutAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayoutConstraintConstant];
-	layoutAnimation.springSpeed = 10.0f;
-	layoutAnimation.springBounciness = 5.0f;
-	layoutAnimation.toValue = @(0);
-	layoutAnimation.beginTime = CACurrentMediaTime();
-	[_leftmostLayoutConstraint pop_addAnimation:layoutAnimation forKey:@"detailsContainerWidthAnimate"];
+	_leftmostLayoutConstraint.constant = 0;
+	[UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:10 initialSpringVelocity:5 options:0 animations:^{
+		[self.view layoutIfNeeded];
+	} completion:^(BOOL finished) {
+		
+	}];
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 		backButtonImage.image = [UIImage cancelButtonX];
 		backButtonImage.animationImages = [UIImage transitionCancelButtonImages:YES];
@@ -659,7 +650,7 @@
                 backButtonImage.animationRepeatCount = 1;
                 [backButtonImage startAnimating];
                 backButton.enabled = NO;
-                [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                [UIView animateWithDuration:0.75 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                     [self.view layoutIfNeeded];
                     vContainer.alpha = 0;
                 } completion:^(BOOL finished) {
@@ -683,7 +674,7 @@
                 }];
             } else {
 #warning TODO: Show error message
-                NSLog(@"%Error");
+                NSLog(@"Error");
                 [UIView animateWithDuration:0.2 animations:^{
                     vContainer.alpha = 0;
                 } completion:^(BOOL finished) {
@@ -719,17 +710,14 @@
 	[self resignAllResponders];
 	backButton.enabled = NO;
 	
-	POPSpringAnimation *layoutAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayoutConstraintConstant];
-	layoutAnimation.springSpeed = 10.0f;
-	layoutAnimation.springBounciness = 5.0f;
-	layoutAnimation.toValue = @(-self.view.bounds.size.width);
-	layoutAnimation.beginTime = CACurrentMediaTime();
-	[_leftmostLayoutConstraint pop_addAnimation:layoutAnimation forKey:@"detailsContainerWidthAnimate"];
-	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+	_leftmostLayoutConstraint.constant = -self.view.bounds.size.width;
+	[UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:10 initialSpringVelocity:5 options:0 animations:^{
+		[self.view layoutIfNeeded];
+	} completion:^(BOOL finished) {
 		backButton.enabled = YES;
 		[backButton removeTarget:self action:@selector(backButton3Pressed) forControlEvents:UIControlEventTouchDown];
 		[backButton addTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchDown];
-	});
+	}];
 }
 
 - (void)resignAllResponders{
@@ -745,15 +733,21 @@
 	imageButton3.imageView.layer.cornerRadius = 0;
 	imageButton3.imageView.layer.masksToBounds = NO;
 	
-	[imageButton3.imageView.layer pop_removeAnimationForKey:@"rotationAnim"];
-	POPSpringAnimation *rotationAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerRotation];
-	imageButton3.imageView.layer.transform = CATransform3DMakeRotation(0, 0, 0, 0);
-	rotationAnimation.beginTime = CACurrentMediaTime();
-	rotationAnimation.toValue = @(M_PI_2);
-	rotationAnimation.springBounciness = 0;
-	rotationAnimation.springSpeed = 0;
-	[imageButton3.imageView.layer pop_addAnimation:rotationAnimation forKey:@"rotationAnim"];
-    
+	CGRect originalFrame = imageButton3.frame;
+	CGPoint center = imageButton3.center;
+	imageButton3.translatesAutoresizingMaskIntoConstraints = YES;
+	[UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+		imageButton3.frame = CGRectMake(0, 0, imageButton3.frame.size.width * 1.5, imageButton3.frame.size.width * 1.5);
+		imageButton3.center = center;
+	} completion:^(BOOL finished) {
+		[UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+			imageButton3.frame = originalFrame;
+			imageButton3.center = center;
+		} completion:^(BOOL finished){
+			imageButton3.translatesAutoresizingMaskIntoConstraints = NO;
+		}];
+	}];
+	
     // temporary design for what would look like a UIAlertController.
     // damon needs to implement the backend on this. :)
     UIAlertController *sheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];

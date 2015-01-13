@@ -134,8 +134,6 @@
 		A5C29FF51A33C9F300E605F1 /* PBJVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C29FF31A33C9F300E605F1 /* PBJVideoView.m */; };
 		A5C5EB811A2A8358002F1591 /* MOCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5EB7A1A2A8358002F1591 /* MOCaptureViewController.m */; };
 		A5C5EB841A2A8358002F1591 /* MOPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5EB801A2A8358002F1591 /* MOPageViewController.m */; };
-		A5DAC9CB1A5E4E3C00145AEE /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5DAC9C21A5E4E0600145AEE /* pop.framework */; };
-		A5DAC9CC1A5E4E3C00145AEE /* pop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A5DAC9C21A5E4E0600145AEE /* pop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A5E01C2A1A2AF811003ED753 /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E01C291A2AF811003ED753 /* AVCamPreviewView.m */; };
 		A5E01C9A1A2B37D7003ED753 /* JKSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E01C971A2B37D7003ED753 /* JKSegmentedControl.m */; };
 		A5E01C9B1A2B37D7003ED753 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E01C991A2B37D7003ED753 /* SSKeychain.m */; };
@@ -167,30 +165,6 @@
 		E4E1D3CE1A61B22D00752A23 /* MOAvatarCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E1D3CD1A61B22D00752A23 /* MOAvatarCache.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		A5DAC9BD1A5E4E0600145AEE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5DAC9B51A5E4E0600145AEE /* pop.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EC191218162FB53A00E0CC76;
-			remoteInfo = pop;
-		};
-		A5DAC9C11A5E4E0600145AEE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5DAC9B51A5E4E0600145AEE /* pop.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0B6BE74819FFD3B900762101;
-			remoteInfo = "pop-embedded";
-		};
-		A5DAC9CD1A5E4E3C00145AEE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5DAC9B51A5E4E0600145AEE /* pop.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 0B6BE74719FFD3B900762101;
-			remoteInfo = "pop-embedded";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		20E595931A5B8B0500202C21 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -198,7 +172,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A5DAC9CC1A5E4E3C00145AEE /* pop.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,7 +412,6 @@
 		A5C5EB7A1A2A8358002F1591 /* MOCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOCaptureViewController.m; sourceTree = "<group>"; };
 		A5C5EB7F1A2A8358002F1591 /* MOPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOPageViewController.h; sourceTree = "<group>"; };
 		A5C5EB801A2A8358002F1591 /* MOPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOPageViewController.m; sourceTree = "<group>"; };
-		A5DAC9B51A5E4E0600145AEE /* pop.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = pop.xcodeproj; path = "../Libraries/pop-master/pop.xcodeproj"; sourceTree = "<group>"; };
 		A5E01C281A2AF811003ED753 /* AVCamPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamPreviewView.h; sourceTree = "<group>"; };
 		A5E01C291A2AF811003ED753 /* AVCamPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamPreviewView.m; sourceTree = "<group>"; };
 		A5E01C961A2B37D7003ED753 /* JKSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKSegmentedControl.h; sourceTree = "<group>"; };
@@ -514,7 +486,6 @@
 				A564D9D31A476860003C99F3 /* GLKit.framework in Frameworks */,
 				A564D9D11A47685B003C99F3 /* OpenGLES.framework in Frameworks */,
 				02949ED11A298458001EDD2D /* SystemConfiguration.framework in Frameworks */,
-				A5DAC9CB1A5E4E3C00145AEE /* pop.framework in Frameworks */,
 				A564D9CF1A476849003C99F3 /* MessageUI.framework in Frameworks */,
 				A564D9CD1A476844003C99F3 /* UIKit.framework in Frameworks */,
 				A564D9CB1A476838003C99F3 /* QuartzCore.framework in Frameworks */,
@@ -875,7 +846,6 @@
 				A5E52B091A6470FF004825A5 /* AFNetworking */,
 				A5E52B0B1A64710C004825A5 /* DLIL */,
 				A5E52B0C1A647115004825A5 /* JCDHTTPConnection */,
-				A5DAC9B51A5E4E0600145AEE /* pop.xcodeproj */,
 				A5AD89111A4D21350013D417 /* SVProgressHUD */,
 				A564DA131A4781AA003C99F3 /* SVWebViewController */,
 				A564D9DC1A476ED7003C99F3 /* UserVoiceSDK */,
@@ -1029,15 +999,6 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		A5DAC9B61A5E4E0600145AEE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A5DAC9BE1A5E4E0600145AEE /* libpop.a */,
-				A5DAC9C21A5E4E0600145AEE /* pop.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		A5E52B091A6470FF004825A5 /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -1171,7 +1132,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				A5DAC9CE1A5E4E3C00145AEE /* PBXTargetDependency */,
 			);
 			name = Moments;
 			productName = Moments;
@@ -1189,7 +1149,7 @@
 				TargetAttributes = {
 					A5B31C301A287F25009734EE = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = T2G55KAEAM;
+						DevelopmentTeam = 44SYMBLN5U;
 					};
 				};
 			};
@@ -1236,35 +1196,12 @@
 			mainGroup = A5B31C281A287F25009734EE;
 			productRefGroup = A5B31C321A287F25009734EE /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = A5DAC9B61A5E4E0600145AEE /* Products */;
-					ProjectRef = A5DAC9B51A5E4E0600145AEE /* pop.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				A5B31C301A287F25009734EE /* Moments */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		A5DAC9BE1A5E4E0600145AEE /* libpop.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libpop.a;
-			remoteRef = A5DAC9BD1A5E4E0600145AEE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A5DAC9C21A5E4E0600145AEE /* pop.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = pop.framework;
-			remoteRef = A5DAC9C11A5E4E0600145AEE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A5B31C2F1A287F25009734EE /* Resources */ = {
@@ -1419,14 +1356,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A5DAC9CE1A5E4E3C00145AEE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "pop-embedded";
-			targetProxy = A5DAC9CD1A5E4E3C00145AEE /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A5B31C3E1A287F26009734EE /* Main.storyboard */ = {
