@@ -9,7 +9,7 @@
 #import "MOTableViewController.h"
 
 @interface MOTableViewController () <PBJVideoPlayerControllerDelegate>
-@property (strong, nonatomic) NSArray *following;
+@property (strong, nonatomic) NSArray *recents;
 @property (nonatomic) BOOL tableShouldRegisterTapEvents;
 @property (strong, nonatomic) PBJVideoPlayerController *videoPlayer;
 @property (strong, nonatomic) SCNView *loadingView;
@@ -102,7 +102,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	// Return the number of rows in the section.
-	return section == 0 ? 1 : self.following.count;
+	return section == 0 ? 1 : self.recents.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -135,7 +135,7 @@
                                                       [self avatarChanged];
                                                   }];
     
-    self.following = [MomentsAPIUtilities sharedInstance].user.following;
+    self.recents = [MomentsAPIUtilities sharedInstance].user.recents;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -190,9 +190,9 @@
             cell.accessoryView = toolbar;
         }
 	} else{
-		cell.textLabel.text = [NSString stringWithFormat:@"\t\t%@", self.following[indexPath.row]];
+		cell.textLabel.text = [NSString stringWithFormat:@"\t\t%@", self.recents[indexPath.row]];
         
-        [[[MOAvatarCache alloc] init] getAvatarForUsername:self.following[indexPath.row] completion:^(UIImage *avatar) {
+        [[[MOAvatarCache alloc] init] getAvatarForUsername:self.recents[indexPath.row] completion:^(UIImage *avatar) {
             profileImageView.image = avatar;
         }];
 	}
@@ -238,7 +238,7 @@
 		if (indexPath.section == 0) {
 			username = [MomentsAPIUtilities sharedInstance].user.name;
 		} else {
-			username = self.following[indexPath.row];
+			username = self.recents[indexPath.row];
 		}
 		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/pickmoments/videos/%@.mp4",username]]];
 		[request setHTTPMethod:@"HEAD"];
@@ -324,7 +324,7 @@
 }
 
 - (void)dataLoaded {
-    self.following = [MomentsAPIUtilities sharedInstance].user.following;
+    self.recents = [MomentsAPIUtilities sharedInstance].user.recents;
     
     [self.tableView reloadData];
 }

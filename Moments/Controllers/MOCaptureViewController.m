@@ -7,6 +7,7 @@
 //
 
 #import "MOCaptureViewController.h"
+#import "MomentsAPIUtilities.h"
 
 @implementation MOCaptureViewController{
 	BOOL shouldCancel;
@@ -420,11 +421,13 @@
 		//        UIBackgroundTaskIdentifier backgroundRecordingID = [self backgroundRecordingID];
 		[self setBackgroundRecordingID:UIBackgroundTaskInvalid];
 		
-        MOS3APIUtilities *apiUtilities = [MOS3APIUtilities sharedInstance];
-        [apiUtilities initManager];
-        AFAmazonS3Manager *s3Manager = apiUtilities.s3;
+        MOS3APIUtilities *s3ApiUtilities = [MOS3APIUtilities sharedInstance];
+        [s3ApiUtilities initManager];
+        AFAmazonS3Manager *s3Manager = s3ApiUtilities.s3;
+        
+        MomentsAPIUtilities *apiUtilities = [MomentsAPIUtilities sharedInstance];
 		
-		NSString *user = [NSString stringWithFormat:@"/videos/%@.mp4", [MomentsAPIUtilities sharedInstance].user.name];
+		NSString *user = [NSString stringWithFormat:@"/videos/%@.mp4", apiUtilities.user.name];
 		NSURL *url = [s3Manager.baseURL URLByAppendingPathComponent:user];
 		NSMutableURLRequest *originalRequest = [[NSMutableURLRequest alloc] initWithURL:url];
 		originalRequest.HTTPMethod = @"PUT";
@@ -437,48 +440,12 @@
 		
 		AFHTTPRequestOperation *operation = [s3Manager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
 			// Success!
+            [apiUtilities recordPostForUser:apiUtilities.user.name];
+            
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 			NSLog(@"Error uploading %@", error);
 		}];
 		[s3Manager.operationQueue addOperation:operation];
-		
-        AFAmazonS3Manager *s3Manager2 = apiUtilities.s3;
-		
-		AVAsset *asset = [AVAsset assetWithURL:movieURL];
-		AVAssetImageGenerator *imageGenerator = [[AVAssetImageGenerator alloc]initWithAsset:asset];
-		CMTime time3 = CMTimeMake(1, 0);
-		CGImageRef imageRef = [imageGenerator copyCGImageAtTime:asset.duration actualTime:&time3 error:NULL];
-		UIImage *thumbnail = [UIImage imageWithCGImage:imageRef];
-		CGImageRef imageRef2 = CGImageCreateWithImageInRect([thumbnail CGImage], CGRectMake(0, 0, 200, 200));
-		UIImage *cropped = [UIImage imageWithCGImage:imageRef];
-		CGImageRelease(imageRef2);
-		
-		NSString *user2 = [NSString stringWithFormat:@"/videos/%@.jpg", [MomentsAPIUtilities sharedInstance].user.name];
-		NSURL *url2 = [s3Manager.baseURL URLByAppendingPathComponent:user2];
-		NSMutableURLRequest *originalRequest2 = [[NSMutableURLRequest alloc] initWithURL:url2];
-		originalRequest2.HTTPMethod = @"PUT";
-		originalRequest2.HTTPBody = UIImageJPEGRepresentation(cropped, 0.2f);
-		[originalRequest2 setValue:@"image/jpg" forHTTPHeaderField:@"Content-Type"];
-		
-		NSURLRequest *request2 = [s3Manager2.requestSerializer
-								  requestBySettingAuthorizationHeadersForRequest:originalRequest2
-								  error:nil];
-		
-		
-		AFHTTPRequestOperation *operation2 = [s3Manager2 HTTPRequestOperationWithRequest:request2 success:^(AFHTTPRequestOperation *operation, id responseObject) {
-			[UIView animateWithDuration:0.2 animations:^{
-				v.alpha = 0.0;
-			} completion:^(BOOL finished) {
-				[v removeFromSuperview];
-			}];
-			[[UIApplication sharedApplication] endIgnoringInteractionEvents];
-			[self.navigationController.view setUserInteractionEnabled:true];
-			NSLog(@"success");
-			NSLog(@"%@",operation.request.allHTTPHeaderFields);
-		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-			NSLog(@"Error uploading %@", error);
-		}];
-		[s3Manager2.operationQueue addOperation:operation2];
 	}];
 }
 

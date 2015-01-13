@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSString *token;
 @property (nonatomic, copy) NSArray *followers;
 @property (nonatomic, copy) NSArray *following;
+@property (nonatomic, copy) NSArray *recents;
 @property (nonatomic, assign) BOOL loggedIn;
 @property (nonatomic, strong) UIImage *avatar;
 

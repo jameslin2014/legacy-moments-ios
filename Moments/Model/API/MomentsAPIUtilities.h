@@ -56,6 +56,11 @@
 - (void)unfollowUser:(NSString *)user completion:(void (^)(NSDictionary *))completion;
 
 /**
+ * Sends a request to the API to record when the user uploads a video
+ */
+- (void)recordPostForUser:(NSString *)username;
+
+/**
  * Sends a request to the API to update the user data
  */
 - (void)updateUser:(NSString *)username email:(NSString *)email password:(NSString *)password completion:(void (^)(NSDictionary *))completion;

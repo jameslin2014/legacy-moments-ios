@@ -167,6 +167,19 @@
 }
 
 /**
+ * Sends a request to the API to record when the user uploads a video
+ */
+- (void)recordPostForUser:(NSString *)username {
+    NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:[NSString stringWithFormat:@"/posted/%@", self.user.name]
+                                                   withHTTPMethod:@"POST"
+                                                    andDictionary:nil];
+    
+    [self addAuthHeaderWithToken:self.user.token request:urlRequest];
+    
+    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:nil];
+}
+
+/**
  * Encode credentials using base64 encoding (for HTTP Basic Authentication)
  */
 - (void)addAuthHeaderWithUsername:(NSString *)username password:(NSString *)password request:(NSMutableURLRequest *)request {
