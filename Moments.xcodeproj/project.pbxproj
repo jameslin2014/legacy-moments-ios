@@ -84,7 +84,6 @@
 		A5E01C2A1A2AF811003ED753 /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E01C291A2AF811003ED753 /* AVCamPreviewView.m */; };
 		A5E01C9A1A2B37D7003ED753 /* JKSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E01C971A2B37D7003ED753 /* JKSegmentedControl.m */; };
 		A5E01C9B1A2B37D7003ED753 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E01C991A2B37D7003ED753 /* SSKeychain.m */; };
-		A5E01C9D1A2B37E3003ED753 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5E01C9C1A2B37E3003ED753 /* Firebase.framework */; };
 		A5E01CC71A2B37F1003ED753 /* AFAmazonS3Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E01CA01A2B37F0003ED753 /* AFAmazonS3Manager.m */; };
 		A5E01CC81A2B37F1003ED753 /* AFAmazonS3RequestSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E01CA21A2B37F0003ED753 /* AFAmazonS3RequestSerializer.m */; };
 		A5E01CC91A2B37F1003ED753 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E01CA41A2B37F0003ED753 /* AFHTTPRequestOperation.m */; };
@@ -350,7 +349,6 @@
 				02949ECD1A298441001EDD2D /* CFNetwork.framework in Frameworks */,
 				02949ECB1A29843A001EDD2D /* libc++.dylib in Frameworks */,
 				02949EC91A298431001EDD2D /* libicucore.dylib in Frameworks */,
-				A5E01C9D1A2B37E3003ED753 /* Firebase.framework in Frameworks */,
 				020418441A296CB600134216 /* CoreFoundation.framework in Frameworks */,
 				020418421A296CAF00134216 /* AVFoundation.framework in Frameworks */,
 				020418401A296C9B00134216 /* CoreMedia.framework in Frameworks */,
@@ -869,7 +867,7 @@
 				TargetAttributes = {
 					A5B31C301A287F25009734EE = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 7NE79LP6VD;
+						DevelopmentTeam = T2G55KAEAM;
 					};
 				};
 			};
