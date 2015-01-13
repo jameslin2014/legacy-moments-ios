@@ -470,8 +470,8 @@
 	UIGraphicsBeginImageContext(rect.size);
 	
 	//// Color Declarations
-	UIColor* color2 = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
-	
+    UIColor *color2 = [UIColor colorWithRed:0.717 green:0.741 blue:0.760 alpha:0];
+    
 	//// Oval Drawing
 	UIBezierPath* ovalPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(3, 3, 172, 172)];
 	[color2 setFill];
