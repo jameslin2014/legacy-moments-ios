@@ -15,13 +15,14 @@
 
 @interface MOUser : NSObject
 
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *email;
-@property (nonatomic, strong) NSString *password;
-@property (nonatomic, strong) NSString *token;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *email;
+@property (nonatomic, copy) NSString *password;
+@property (nonatomic, copy) NSString *token;
 @property (nonatomic, copy) NSArray *followers;
 @property (nonatomic, copy) NSArray *following;
 @property (nonatomic, copy) NSArray *recents;
+@property (nonatomic, copy) NSString *posted;
 @property (nonatomic, assign) BOOL loggedIn;
 @property (nonatomic, strong) UIImage *avatar;
 

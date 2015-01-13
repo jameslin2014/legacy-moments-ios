@@ -11,9 +11,9 @@
 
 @interface MomentsAPIUtilities : NSObject
 
-@property (nonatomic, strong) NSString *apiUrl;
-@property (nonatomic, strong) NSString *apiUsername;
-@property (nonatomic, strong) NSString *apiPassword;
+@property (nonatomic, copy) NSString *apiUrl;
+@property (nonatomic, copy) NSString *apiUsername;
+@property (nonatomic, copy) NSString *apiPassword;
 
 @property (nonatomic, strong) MOUser *user;
 

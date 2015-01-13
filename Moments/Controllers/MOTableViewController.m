@@ -14,7 +14,6 @@
 @property (strong, nonatomic) PBJVideoPlayerController *videoPlayer;
 @property (strong, nonatomic) SCNView *loadingView;
 @property (strong, nonatomic) NSTimer *reloadTimer;
-@property (assign, nonatomic) BOOL userHasVideo;
 @end
 
 @implementation MOTableViewController
@@ -39,7 +38,6 @@
 	button.tintColor = [UIColor whiteColor];
 	self.navigationItem.rightBarButtonItem = button;
     
-    self.userHasVideo = NO;
     [self getDataFromServer];
     [self setNeedsStatusBarAppearanceUpdate];
 }
@@ -173,7 +171,7 @@
         
         profileImageView.image = [MomentsAPIUtilities sharedInstance].user.avatar;
         
-        if (self.userHasVideo) {
+        if ([MomentsAPIUtilities sharedInstance].user.posted) {
             UIToolbar *toolbar = [[UIToolbar alloc] init];
             toolbar.barTintColor = [UIColor colorWithRed:36/255.0 green: 36/255.0 blue:36/255.0 alpha:1.0];
             UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareMoment)];
@@ -247,9 +245,6 @@
 		AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 		[op start];
 		[op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-            if ([MomentsAPIUtilities sharedInstance].user.name == username) {
-                self.userHasVideo = YES;
-            }
 			self.tableShouldRegisterTapEvents = NO;
 			[self.reloadTimer invalidate];
 			self.videoPlayer.videoPath = [NSString stringWithFormat:@"https://s3.amazonaws.com/pickmoments/videos/%@.mp4",username];
@@ -273,8 +268,6 @@
 				self.loadingView.alpha = 1.0;
 			}];
 			[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-            [self.tableView reloadData];
-			
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 			self.tableShouldRegisterTapEvents = NO;
 		}];

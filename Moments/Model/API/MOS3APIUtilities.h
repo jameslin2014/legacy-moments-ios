@@ -12,9 +12,9 @@
 
 @interface MOS3APIUtilities : NSObject
 
-@property (nonatomic, strong) NSString *accessKey;
-@property (nonatomic, strong) NSString *secret;
-@property (nonatomic, strong) NSString *bucket;
+@property (nonatomic, copy) NSString *accessKey;
+@property (nonatomic, copy) NSString *secret;
+@property (nonatomic, copy) NSString *bucket;
 @property (nonatomic, strong) AFAmazonS3Manager *s3;
 
 + (instancetype)sharedInstance;

@@ -116,6 +116,7 @@
     self.following = nil;
     self.followers = nil;
     self.recents = nil;
+    self.posted = nil;
     
     self.avatar = nil;
     
@@ -136,6 +137,7 @@
         self.followers = [dictionary objectForKey:@"followers"];
         self.following = [dictionary objectForKey:@"follows"];
         self.recents = [dictionary objectForKey:@"recents"];
+        self.posted = [dictionary objectForKey:@"posted"];
         
         [self log];
         
