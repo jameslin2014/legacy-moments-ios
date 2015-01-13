@@ -57,7 +57,7 @@
 }
 
 - (NSString *)pathForUsername:(NSString *)username {
-    return [NSString stringWithFormat:@"avatars/%@.png", [username lowercaseString]];
+    return [NSString stringWithFormat:@"avatars/%@.png", username];
 }
 
 - (void)initManager {

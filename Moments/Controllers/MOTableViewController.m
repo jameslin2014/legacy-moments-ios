@@ -28,7 +28,7 @@
     
     
 	self.navigationItem.title = @"Moments";
-	[self.navigationController.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys: [UIFont fontWithName:@"Avenir-Book" size:17], NSFontAttributeName, nil]];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"Avenir-Book" size:17] }];
 	self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:@"Avenir-Book" size:17], NSForegroundColorAttributeName : [UIColor whiteColor]};
 	self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
 	self.tableView.backgroundColor = [UIColor colorWithRed:36/255.0 green: 36/255.0 blue:36/255.0 alpha:1.0];
@@ -58,7 +58,7 @@
 - (void)shareMoment {
     NSString *user = [MomentsAPIUtilities sharedInstance].user.name;
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *documentsDirectory = [paths objectAtIndex:0];
+	NSString *documentsDirectory = paths[0];
 	NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:@"saved.mp4"];
 	NSURL *video = [NSURL fileURLWithPath:imagePath];
 	SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
@@ -177,7 +177,7 @@
             UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareMoment)];
             toolbar.frame = CGRectMake(0, 0, 55, 55);
             item.tintColor = [UIColor whiteColor];
-            [toolbar setItems:[NSArray arrayWithObject:item] animated:NO];
+            [toolbar setItems:@[item] animated:NO];
             [toolbar setBarTintColor:[UIColor clearColor]];
             for(UIView *view in [toolbar subviews])
             {

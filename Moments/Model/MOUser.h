@@ -31,5 +31,6 @@
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)(BOOL))completion;
 - (void)reload;
 - (void)logout;
+- (BOOL)isFollowing:(NSString *)username;
 
 @end

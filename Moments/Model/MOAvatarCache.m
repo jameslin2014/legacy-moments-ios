@@ -34,13 +34,13 @@
 }
 
 - (NSString *)getFilePathForUserAvatar:(NSString *)username {
-    NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
+    NSArray *cachePaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSFileManager* fileManager = [NSFileManager defaultManager];
     
-    [fileManager createDirectoryAtPath:[cachePath stringByAppendingPathComponent:@"/avatars"] withIntermediateDirectories:YES attributes:nil error:nil];
+    [fileManager createDirectoryAtPath:[cachePaths[0] stringByAppendingPathComponent:@"/avatars"] withIntermediateDirectories:YES attributes:nil error:nil];
 
-    return [[[cachePath stringByAppendingPathComponent:@"/avatars"]
-             stringByAppendingPathComponent:[username lowercaseString]]
+    return [[[cachePaths[0] stringByAppendingPathComponent:@"/avatars"]
+             stringByAppendingPathComponent:username]
             stringByAppendingPathExtension:@"png"];
 }
 

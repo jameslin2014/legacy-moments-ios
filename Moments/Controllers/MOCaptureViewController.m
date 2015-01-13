@@ -356,13 +356,13 @@
 																					   preferredTrackID:kCMPersistentTrackID_Invalid];
 	
 	NSMutableArray *instructions = [NSMutableArray new];
-	CGSize size = CGSizeMake([[assets objectAtIndex:1] naturalSize].height, [[assets objectAtIndex:1] naturalSize].width);
+	CGSize size = CGSizeMake([assets[1] naturalSize].height, [assets[1] naturalSize].width);
 	
 	
 	CMTime time = kCMTimeZero;
 	for (AVAsset *asset in assets) {
-		AVAssetTrack *assetTrack = [asset tracksWithMediaType:AVMediaTypeVideo].firstObject;
-		AVAssetTrack *audioAssetTrack = [asset tracksWithMediaType:AVMediaTypeAudio].firstObject;
+		AVAssetTrack *assetTrack = [[asset tracksWithMediaType:AVMediaTypeVideo] firstObject];
+		AVAssetTrack *audioAssetTrack = [[asset tracksWithMediaType:AVMediaTypeAudio] firstObject];
 		
 		NSError *error;
 		[videoCompositionTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, assetTrack.timeRange.duration)
@@ -407,9 +407,9 @@
 	
 	//    AVPlayer *player = [AVPlayer playerWithPlayerItem:pi];
 	AVAssetExportSession *exportSession =  [AVAssetExportSession exportSessionWithAsset:pi.asset presetName:AVAssetExportPresetMediumQuality];
-	NSString* documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-	NSString* path = [documentPath stringByAppendingPathComponent:@"merged2.mp4"];
-	NSURL* movieURL = [NSURL fileURLWithPath: path];
+    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *path = [documentPaths[0] stringByAppendingPathComponent:@"merged2.mp4"];
+	NSURL *movieURL = [NSURL fileURLWithPath:path];
 	exportSession.outputURL = movieURL;
 	exportSession.outputFileType = AVFileTypeMPEG4;
 	[exportSession exportAsynchronouslyWithCompletionHandler:^{
@@ -458,11 +458,11 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
 	
-	NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
+	NSURL *videoURL = info[UIImagePickerControllerMediaURL];
 	
 	NSData *videoData = [NSData dataWithContentsOfURL:videoURL];
-	NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-	NSString *tempPath = [documentsPath stringByAppendingPathComponent:@"merged2.mp4"];
+	NSArray *documentsPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *tempPath = [documentsPaths[0] stringByAppendingPathComponent:@"merged2.mp4"];
 	
 	if ([videoData writeToFile:tempPath atomically:YES]){
 		[self postVideoWithURL:[NSURL fileURLWithPath:tempPath]];
@@ -481,9 +481,8 @@
     }
 
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-	
-    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"merged2.mp4"];
+    NSArray *documentsPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *filePath = [documentsPaths[0] stringByAppendingPathComponent:@"merged2.mp4"];
     [fileManager removeItemAtPath:filePath error:&error];
 	
 	[self postVideoWithURL:outputFileURL];

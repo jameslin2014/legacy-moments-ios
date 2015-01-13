@@ -33,10 +33,10 @@
 	// Do any additional setup after loading the view.???????
 	self.title = @"Following";
 	[self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1]];
-	[self.navigationController.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys: [UIFont fontWithName:@"Avenir-Book" size:17], NSFontAttributeName, nil]];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{ NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:17] }];
 	
 	self.subNavigationView.alpha = 1;
-	self.segmentedControl = [[JKSegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Following", @"Followers", nil]];
+	self.segmentedControl = [[JKSegmentedControl alloc] initWithItems:@[ @"Following", @"Followers" ]];
 	self.segmentedControl.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.subNavigationView addSubview:self.segmentedControl];
 	[self.subNavigationView addConstraints:@[
@@ -212,7 +212,7 @@
     }];
 
 	FollowingStatusView *followStatus = [[FollowingStatusView alloc]init];
-	followStatus.isFollowing = [self.following containsObject:username];
+    followStatus.isFollowing = [[MomentsAPIUtilities sharedInstance].user isFollowing:username];
 	followStatus.center = CGPointMake(cell.bounds.size.width + 30, profileImageView.center.y);
 	followStatus.tag = 78900;
 	[cell addSubview:followStatus];
@@ -231,11 +231,9 @@
 		username = self.followers[indexPath.row];
 	}
     
-	NSLog(@"%@", username);
-    
     MOUser *user = [MomentsAPIUtilities sharedInstance].user;
     
-	if ([self.following containsObject:username]){
+    if ([[MomentsAPIUtilities sharedInstance].user isFollowing:username]) {
 		[[MomentsAPIUtilities sharedInstance] unfollowUser:username completion:^(NSDictionary *dict) {
 
 			NSLog(@"1: %@", dict[@"follows"]);
@@ -243,7 +241,7 @@
             user.followers = dict[@"followers"];
             [self dataLoaded];
 		}];
-	} else{
+	} else {
 		[[MomentsAPIUtilities sharedInstance] followUser:username completion:^(NSDictionary *dict) {
 
 			NSLog(@"2: %@", dict[@"follows"]);
@@ -290,7 +288,6 @@
         
         NSMutableArray *users = [NSMutableArray arrayWithArray:results[@"results"]];
         NSString *user = [MomentsAPIUtilities sharedInstance].user.name;
-        
         if ([users containsObject:user]) {
             [users removeObject:user];
         }

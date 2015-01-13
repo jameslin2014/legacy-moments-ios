@@ -358,7 +358,7 @@ static NSString *CellIdentifier = @"CellID";
 						// You would ideally ask the user which account they want to tweet from, if there is more than one Twitter account present.
 						if ([accountsArray count] == 1) {
 							// Grab the initial Twitter account to tweet from.
-							ACAccount *twitterAccount = [accountsArray objectAtIndex:0];
+							ACAccount *twitterAccount = accountsArray[0];
 							
 							NSMutableDictionary *tempDict = [[NSMutableDictionary alloc] init];
 							[tempDict setValue:@"pickmoments" forKey:@"screen_name"];
@@ -526,7 +526,7 @@ static NSString *CellIdentifier = @"CellID";
 #pragma mark - UIImagePickerDelegate
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    UIImage *image = [[info objectForKey:@"UIImagePickerControllerOriginalImage"] cropAndScaleToSize:250.0];
+    UIImage *image = [info[UIImagePickerControllerOriginalImage] cropAndScaleToSize:250.0];
     
     [picker dismissViewControllerAnimated:YES completion:^{
         MOUser *user = [MomentsAPIUtilities sharedInstance].user;

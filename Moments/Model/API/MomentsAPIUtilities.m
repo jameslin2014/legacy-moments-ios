@@ -31,9 +31,14 @@
  * Sends a request to the API to check if the intended username and e-mail are valid
  */
 - (void)isValidUsername:(NSString *)username andEmail:(NSString *)email completion:(void (^)(NSDictionary *))completion {
+    
+    NSDictionary *dictionary = @{
+                                 @"name": username,
+                                 @"email": email
+                                };
     NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:@"/valid/"
                                                    withHTTPMethod:@"POST"
-                                                    andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:username, @"name", email, @"email", nil]];
+                                                    andDictionary:dictionary];
     
     [self addAuthHeaderWithUsername:self.apiUsername password:self.apiPassword request:urlRequest];
     
@@ -49,9 +54,13 @@
  * Sends a request to the API to check if the user can login with this username and password
  */
 - (void)verifyUsername:(NSString *)username andPassword:(NSString *)password completion:(void (^)(NSDictionary *))completion {
+    NSDictionary *dictionary = @{
+                                 @"name": username,
+                                 @"password": password
+                                };
     NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:@"/login/"
                                                    withHTTPMethod:@"POST"
-                                                    andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:username, @"name", password, @"password", nil]];
+                                                    andDictionary:dictionary];
     
     [self addAuthHeaderWithUsername:self.apiUsername password:self.apiPassword request:urlRequest];
     
@@ -67,9 +76,14 @@
  * Sends a request to the API to update the user data
  */
 - (void)updateUser:(NSString *)username email:(NSString *)email password:(NSString *)password completion:(void (^)(NSDictionary *))completion {
+    NSDictionary *dictionary = @{
+                                 @"name": username,
+                                 @"email": email,
+                                 @"password": password
+                                };
     NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:[NSString stringWithFormat:@"/%@", self.user.name]
                                                    withHTTPMethod:@"PUT"
-                                                    andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:username, @"name", email, @"email", password, @"password", nil]];
+                                                    andDictionary:dictionary];
 
     [self addAuthHeaderWithToken:self.user.token request:urlRequest];
     
@@ -118,10 +132,15 @@
 /**
  * Sends a request to the API to create a new user with the username, e-mail and password provided
  */
-- (void)createUserWithUsername:(NSString *)name email:(NSString *)email andPassword:(NSString *)password completion:(void (^)(NSDictionary *))completion {
+- (void)createUserWithUsername:(NSString *)username email:(NSString *)email andPassword:(NSString *)password completion:(void (^)(NSDictionary *))completion {
+    NSDictionary *dictionary = @{
+                                 @"name": username,
+                                 @"email": email,
+                                 @"password": password
+                                };
     NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:@"/"
                                                    withHTTPMethod:@"POST"
-                                                    andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:name, @"name", email, @"email", password, @"password", nil]];
+                                                    andDictionary:dictionary];
     
     [self addAuthHeaderWithUsername:self.apiUsername password:self.apiPassword request:urlRequest];
     
@@ -135,10 +154,11 @@
 /**
  * Sends a request to the API to subscribe to a user's video content
  */
-- (void)followUser:(NSString *)user completion:(void (^)(NSDictionary *))completion {
+- (void)followUser:(NSString *)username completion:(void (^)(NSDictionary *))completion {
+    NSDictionary *dictionary = @{ @"name": username };
     NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:@"/follow/"
                                                    withHTTPMethod:@"POST"
-                                                    andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:user, @"user", nil]];
+                                                    andDictionary:dictionary];
     
     [self addAuthHeaderWithToken:self.user.token request:urlRequest];
     
@@ -152,10 +172,11 @@
 /**
  * Sends a request to the API to unsubscribe from a user's video content
  */
-- (void)unfollowUser:(NSString *)user completion:(void (^)(NSDictionary *))completion {
+- (void)unfollowUser:(NSString *)username completion:(void (^)(NSDictionary *))completion {
+    NSDictionary *dictionary = @{ @"user": username };
     NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:@"/follow/"
                                                    withHTTPMethod:@"DELETE"
-                                                    andDictionary:[NSDictionary dictionaryWithObjectsAndKeys:user, @"user", nil]];
+                                                    andDictionary:dictionary];
     
     [self addAuthHeaderWithToken:self.user.token request:urlRequest];
     
@@ -201,7 +222,7 @@
 - (NSData *)encodeDictionary:(NSDictionary *)dictionary {
     NSMutableArray *parts = [[NSMutableArray alloc] init];
     for (NSString *key in dictionary) {
-        NSString *encodedValue = [[dictionary objectForKey:key] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *encodedValue = [dictionary[key] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         NSString *encodedKey = [key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         NSString *part = [NSString stringWithFormat:@"%@=%@", encodedKey, encodedValue];
         [parts addObject:part];
