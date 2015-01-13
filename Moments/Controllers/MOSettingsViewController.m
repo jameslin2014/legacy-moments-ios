@@ -27,6 +27,7 @@ static NSString *CellIdentifier = @"CellID";
 - (void)viewDidLoad{
 	[super viewDidLoad];
 		
+    [UVStyleSheet instance].preferredStatusBarStyle = UIStatusBarStyleDefault;
 	self.view.backgroundColor = [UIColor clearColor];
 	
 	self.backgroundBlurView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
@@ -340,7 +341,9 @@ static NSString *CellIdentifier = @"CellID";
 		if (indexPath.section == 0){
             if (indexPath.row == 0) {
                 [UserVoice presentUserVoiceContactUsFormForParentViewController:self];
-				[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+                [UVStyleSheet instance].preferredStatusBarStyle = UIStatusBarStyleDefault;
+                
+//				[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
             } else if (indexPath.row == 1){
 				NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/app/id%d?mt=8", 953901607];
 				[[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];

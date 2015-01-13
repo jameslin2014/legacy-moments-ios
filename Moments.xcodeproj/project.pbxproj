@@ -48,6 +48,68 @@
 		20EB172D1A4747A700DA1B16 /* MOSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20EB172C1A4747A700DA1B16 /* MOSettingsViewController.m */; };
 		20FE2B181A4B1D08000C0E86 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20FE2B171A4B1D08000C0E86 /* Accounts.framework */; };
 		20FE2B1A1A4B1DAD000C0E86 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20FE2B191A4B1DAD000C0E86 /* Social.framework */; };
+		A55775741A64E13200289984 /* HRFormatJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775551A64E13200289984 /* HRFormatJSON.m */; };
+		A55775751A64E13200289984 /* HRGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775581A64E13200289984 /* HRGlobal.m */; };
+		A55775761A64E13200289984 /* HROperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A557755A1A64E13200289984 /* HROperationQueue.m */; };
+		A55775771A64E13200289984 /* HRRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A557755C1A64E13200289984 /* HRRequestOperation.m */; };
+		A55775781A64E13200289984 /* HRRestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A557755F1A64E13200289984 /* HRRestModel.m */; };
+		A55775791A64E13200289984 /* Base64Transcoder.c in Sources */ = {isa = PBXBuildFile; fileRef = A55775641A64E13200289984 /* Base64Transcoder.c */; };
+		A557757A1A64E13200289984 /* YOAuthConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775681A64E13200289984 /* YOAuthConsumer.m */; };
+		A557757B1A64E13200289984 /* YOAuthRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A557756A1A64E13200289984 /* YOAuthRequest.m */; };
+		A557757C1A64E13200289984 /* YOAuthSignatureMethod_HMAC-SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = A557756D1A64E13200289984 /* YOAuthSignatureMethod_HMAC-SHA1.m */; };
+		A557757D1A64E13200289984 /* YOAuthSignatureMethod_PLAINTEXT.m in Sources */ = {isa = PBXBuildFile; fileRef = A557756F1A64E13200289984 /* YOAuthSignatureMethod_PLAINTEXT.m */; };
+		A557757E1A64E13200289984 /* YOAuthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775711A64E13200289984 /* YOAuthToken.m */; };
+		A557757F1A64E13200289984 /* YOAuthUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775731A64E13200289984 /* YOAuthUtil.m */; };
+		A55775EB1A64E1A700289984 /* UserVoice.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775841A64E1A700289984 /* UserVoice.m */; };
+		A55775EC1A64E1A700289984 /* UVAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775861A64E1A700289984 /* UVAccessToken.m */; };
+		A55775ED1A64E1A700289984 /* UVArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775881A64E1A700289984 /* UVArticle.m */; };
+		A55775EE1A64E1A700289984 /* UVArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A557758A1A64E1A700289984 /* UVArticleViewController.m */; };
+		A55775EF1A64E1A700289984 /* UVAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = A557758C1A64E1A700289984 /* UVAttachment.m */; };
+		A55775F01A64E1A700289984 /* UVBabayaga.m in Sources */ = {isa = PBXBuildFile; fileRef = A557758E1A64E1A700289984 /* UVBabayaga.m */; };
+		A55775F11A64E1A700289984 /* UVBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775901A64E1A700289984 /* UVBaseModel.m */; };
+		A55775F21A64E1A700289984 /* UVBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775921A64E1A700289984 /* UVBaseViewController.m */; };
+		A55775F31A64E1A700289984 /* UVCalculatingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775941A64E1A700289984 /* UVCalculatingLabel.m */; };
+		A55775F41A64E1A700289984 /* UVCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775961A64E1A700289984 /* UVCallback.m */; };
+		A55775F51A64E1A700289984 /* UVCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775981A64E1A700289984 /* UVCategory.m */; };
+		A55775F61A64E1A700289984 /* UVClientConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A557759A1A64E1A700289984 /* UVClientConfig.m */; };
+		A55775F71A64E1A700289984 /* UVComment.m in Sources */ = {isa = PBXBuildFile; fileRef = A557759C1A64E1A700289984 /* UVComment.m */; };
+		A55775F81A64E1A700289984 /* UVCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A557759E1A64E1A700289984 /* UVCommentViewController.m */; };
+		A55775F91A64E1A700289984 /* UVConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A557759F1A64E1A700289984 /* UVConfig.m */; };
+		A55775FA1A64E1A700289984 /* UVContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775A11A64E1A700289984 /* UVContactViewController.m */; };
+		A55775FB1A64E1A700289984 /* UVCustomField.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775A31A64E1A700289984 /* UVCustomField.m */; };
+		A55775FC1A64E1A700289984 /* UVDeflection.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775A61A64E1A700289984 /* UVDeflection.m */; };
+		A55775FD1A64E1A700289984 /* UVDetailsFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775A81A64E1A700289984 /* UVDetailsFormViewController.m */; };
+		A55775FE1A64E1A700289984 /* UVForum.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775AA1A64E1A700289984 /* UVForum.m */; };
+		A55775FF1A64E1A700289984 /* UVHelpTopic.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775AC1A64E1A700289984 /* UVHelpTopic.m */; };
+		A55776001A64E1A700289984 /* UVHelpTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775AE1A64E1A700289984 /* UVHelpTopicViewController.m */; };
+		A55776011A64E1A700289984 /* UVImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775B01A64E1A700289984 /* UVImageCache.m */; };
+		A55776021A64E1A700289984 /* UVImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775B21A64E1A700289984 /* UVImageView.m */; };
+		A55776031A64E1A700289984 /* UVInitialLoadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775B41A64E1A700289984 /* UVInitialLoadManager.m */; };
+		A55776041A64E1A700289984 /* UVInstantAnswerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775B61A64E1A700289984 /* UVInstantAnswerManager.m */; };
+		A55776051A64E1A700289984 /* UVInstantAnswersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775B81A64E1A700289984 /* UVInstantAnswersViewController.m */; };
+		A55776061A64E1A700289984 /* UVKeyboardUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775BA1A64E1A700289984 /* UVKeyboardUtils.m */; };
+		A55776071A64E1A700289984 /* UVNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775BD1A64E1A700289984 /* UVNavigationController.m */; };
+		A55776081A64E1A700289984 /* UVPostIdeaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775BF1A64E1A700289984 /* UVPostIdeaViewController.m */; };
+		A55776091A64E1A700289984 /* UVRequestContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775C11A64E1A700289984 /* UVRequestContext.m */; };
+		A557760A1A64E1A700289984 /* UVRequestToken.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775C31A64E1A700289984 /* UVRequestToken.m */; };
+		A557760B1A64E1A700289984 /* UVResponseDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775C51A64E1A700289984 /* UVResponseDelegate.m */; };
+		A557760C1A64E1A700289984 /* UVRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775C71A64E1A700289984 /* UVRootViewController.m */; };
+		A557760D1A64E1A700289984 /* UVSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775C91A64E1A700289984 /* UVSession.m */; };
+		A557760E1A64E1A700289984 /* UVSigninManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775CB1A64E1A700289984 /* UVSigninManager.m */; };
+		A557760F1A64E1A700289984 /* UVStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775CC1A64E1A700289984 /* UVStyleSheet.m */; };
+		A55776101A64E1A700289984 /* UVSubdomain.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775CE1A64E1A700289984 /* UVSubdomain.m */; };
+		A55776111A64E1A700289984 /* UVSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775D01A64E1A700289984 /* UVSuccessViewController.m */; };
+		A55776121A64E1A700289984 /* UVSuggestion.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775D21A64E1A700289984 /* UVSuggestion.m */; };
+		A55776131A64E1A700289984 /* UVSuggestionDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775D41A64E1A700289984 /* UVSuggestionDetailsViewController.m */; };
+		A55776141A64E1A700289984 /* UVSuggestionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775D61A64E1A700289984 /* UVSuggestionListViewController.m */; };
+		A55776151A64E1A700289984 /* UVTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775D81A64E1A700289984 /* UVTextView.m */; };
+		A55776161A64E1A700289984 /* UVTextWithFieldsView.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775DA1A64E1A700289984 /* UVTextWithFieldsView.m */; };
+		A55776171A64E1A700289984 /* UVTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775DC1A64E1A700289984 /* UVTicket.m */; };
+		A55776181A64E1A700289984 /* UVTruncatingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775DE1A64E1A700289984 /* UVTruncatingLabel.m */; };
+		A55776191A64E1A700289984 /* UVUser.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775E01A64E1A700289984 /* UVUser.m */; };
+		A557761A1A64E1A700289984 /* UVUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775E21A64E1A700289984 /* UVUtils.m */; };
+		A557761B1A64E1A700289984 /* UVValueSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775E41A64E1A700289984 /* UVValueSelectViewController.m */; };
+		A557761C1A64E1A700289984 /* UVWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775E61A64E1A700289984 /* UVWelcomeViewController.m */; };
 		A564D9C51A476808003C99F3 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A564D9C41A476808003C99F3 /* CoreMotion.framework */; };
 		A564D9C71A476812003C99F3 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A564D9C61A476812003C99F3 /* CoreTelephony.framework */; };
 		A564D9C91A476821003C99F3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A564D9C81A476821003C99F3 /* AudioToolbox.framework */; };
@@ -58,13 +120,6 @@
 		A564D9D31A476860003C99F3 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A564D9D21A476860003C99F3 /* GLKit.framework */; };
 		A564D9D51A476869003C99F3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A564D9D41A476869003C99F3 /* CoreGraphics.framework */; };
 		A564D9D71A476870003C99F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A564D9D61A476870003C99F3 /* Foundation.framework */; };
-		A564DA0B1A476ED7003C99F3 /* libUserVoice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A564D9DD1A476ED7003C99F3 /* libUserVoice.a */; };
-		A564DA0D1A476ED7003C99F3 /* uv_article.png in Resources */ = {isa = PBXBuildFile; fileRef = A564DA021A476ED7003C99F3 /* uv_article.png */; };
-		A564DA0E1A476ED7003C99F3 /* uv_article@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A564DA031A476ED7003C99F3 /* uv_article@2x.png */; };
-		A564DA0F1A476ED7003C99F3 /* uv_heart.png in Resources */ = {isa = PBXBuildFile; fileRef = A564DA041A476ED7003C99F3 /* uv_heart.png */; };
-		A564DA101A476ED7003C99F3 /* uv_heart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A564DA051A476ED7003C99F3 /* uv_heart@2x.png */; };
-		A564DA111A476ED7003C99F3 /* uv_idea.png in Resources */ = {isa = PBXBuildFile; fileRef = A564DA061A476ED7003C99F3 /* uv_idea.png */; };
-		A564DA121A476ED7003C99F3 /* uv_idea@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A564DA071A476ED7003C99F3 /* uv_idea@2x.png */; };
 		A564DA351A4781AA003C99F3 /* SVWebViewController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A564DA1F1A4781AA003C99F3 /* SVWebViewController.bundle */; };
 		A564DA441A4784A3003C99F3 /* SVModalWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A564DA411A4784A3003C99F3 /* SVModalWebViewController.m */; };
 		A564DA451A4784A3003C99F3 /* SVWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A564DA431A4784A3003C99F3 /* SVWebViewController.m */; };
@@ -217,6 +272,139 @@
 		20EB172C1A4747A700DA1B16 /* MOSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOSettingsViewController.m; sourceTree = "<group>"; };
 		20FE2B171A4B1D08000C0E86 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		20FE2B191A4B1DAD000C0E86 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		A55775541A64E13200289984 /* HRFormatJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRFormatJSON.h; sourceTree = "<group>"; };
+		A55775551A64E13200289984 /* HRFormatJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRFormatJSON.m; sourceTree = "<group>"; };
+		A55775561A64E13200289984 /* HRFormatterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRFormatterProtocol.h; sourceTree = "<group>"; };
+		A55775571A64E13200289984 /* HRGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRGlobal.h; sourceTree = "<group>"; };
+		A55775581A64E13200289984 /* HRGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRGlobal.m; sourceTree = "<group>"; };
+		A55775591A64E13200289984 /* HROperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HROperationQueue.h; sourceTree = "<group>"; };
+		A557755A1A64E13200289984 /* HROperationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HROperationQueue.m; sourceTree = "<group>"; };
+		A557755B1A64E13200289984 /* HRRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRRequestOperation.h; sourceTree = "<group>"; };
+		A557755C1A64E13200289984 /* HRRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRRequestOperation.m; sourceTree = "<group>"; };
+		A557755D1A64E13200289984 /* HRResponseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRResponseDelegate.h; sourceTree = "<group>"; };
+		A557755E1A64E13200289984 /* HRRestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRRestModel.h; sourceTree = "<group>"; };
+		A557755F1A64E13200289984 /* HRRestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRRestModel.m; sourceTree = "<group>"; };
+		A55775601A64E13200289984 /* HTTPRiot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPRiot.h; sourceTree = "<group>"; };
+		A55775611A64E13200289984 /* HTTPRiot_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPRiot_Prefix.pch; sourceTree = "<group>"; };
+		A55775641A64E13200289984 /* Base64Transcoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Base64Transcoder.c; sourceTree = "<group>"; };
+		A55775651A64E13200289984 /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Transcoder.h; sourceTree = "<group>"; };
+		A55775661A64E13200289984 /* YOAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOAuth.h; sourceTree = "<group>"; };
+		A55775671A64E13200289984 /* YOAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOAuthConsumer.h; sourceTree = "<group>"; };
+		A55775681A64E13200289984 /* YOAuthConsumer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOAuthConsumer.m; sourceTree = "<group>"; };
+		A55775691A64E13200289984 /* YOAuthRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOAuthRequest.h; sourceTree = "<group>"; };
+		A557756A1A64E13200289984 /* YOAuthRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOAuthRequest.m; sourceTree = "<group>"; };
+		A557756B1A64E13200289984 /* YOAuthSignatureMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOAuthSignatureMethod.h; sourceTree = "<group>"; };
+		A557756C1A64E13200289984 /* YOAuthSignatureMethod_HMAC-SHA1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YOAuthSignatureMethod_HMAC-SHA1.h"; sourceTree = "<group>"; };
+		A557756D1A64E13200289984 /* YOAuthSignatureMethod_HMAC-SHA1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YOAuthSignatureMethod_HMAC-SHA1.m"; sourceTree = "<group>"; };
+		A557756E1A64E13200289984 /* YOAuthSignatureMethod_PLAINTEXT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOAuthSignatureMethod_PLAINTEXT.h; sourceTree = "<group>"; };
+		A557756F1A64E13200289984 /* YOAuthSignatureMethod_PLAINTEXT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOAuthSignatureMethod_PLAINTEXT.m; sourceTree = "<group>"; };
+		A55775701A64E13200289984 /* YOAuthToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOAuthToken.h; sourceTree = "<group>"; };
+		A55775711A64E13200289984 /* YOAuthToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOAuthToken.m; sourceTree = "<group>"; };
+		A55775721A64E13200289984 /* YOAuthUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOAuthUtil.h; sourceTree = "<group>"; };
+		A55775731A64E13200289984 /* YOAuthUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOAuthUtil.m; sourceTree = "<group>"; };
+		A55775841A64E1A700289984 /* UserVoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserVoice.m; sourceTree = "<group>"; };
+		A55775851A64E1A700289984 /* UVAccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVAccessToken.h; sourceTree = "<group>"; };
+		A55775861A64E1A700289984 /* UVAccessToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVAccessToken.m; sourceTree = "<group>"; };
+		A55775871A64E1A700289984 /* UVArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVArticle.h; sourceTree = "<group>"; };
+		A55775881A64E1A700289984 /* UVArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVArticle.m; sourceTree = "<group>"; };
+		A55775891A64E1A700289984 /* UVArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVArticleViewController.h; sourceTree = "<group>"; };
+		A557758A1A64E1A700289984 /* UVArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVArticleViewController.m; sourceTree = "<group>"; };
+		A557758B1A64E1A700289984 /* UVAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVAttachment.h; sourceTree = "<group>"; };
+		A557758C1A64E1A700289984 /* UVAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVAttachment.m; sourceTree = "<group>"; };
+		A557758D1A64E1A700289984 /* UVBabayaga.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVBabayaga.h; sourceTree = "<group>"; };
+		A557758E1A64E1A700289984 /* UVBabayaga.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVBabayaga.m; sourceTree = "<group>"; };
+		A557758F1A64E1A700289984 /* UVBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVBaseModel.h; sourceTree = "<group>"; };
+		A55775901A64E1A700289984 /* UVBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVBaseModel.m; sourceTree = "<group>"; };
+		A55775911A64E1A700289984 /* UVBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVBaseViewController.h; sourceTree = "<group>"; };
+		A55775921A64E1A700289984 /* UVBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVBaseViewController.m; sourceTree = "<group>"; };
+		A55775931A64E1A700289984 /* UVCalculatingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVCalculatingLabel.h; sourceTree = "<group>"; };
+		A55775941A64E1A700289984 /* UVCalculatingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVCalculatingLabel.m; sourceTree = "<group>"; };
+		A55775951A64E1A700289984 /* UVCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVCallback.h; sourceTree = "<group>"; };
+		A55775961A64E1A700289984 /* UVCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVCallback.m; sourceTree = "<group>"; };
+		A55775971A64E1A700289984 /* UVCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVCategory.h; sourceTree = "<group>"; };
+		A55775981A64E1A700289984 /* UVCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVCategory.m; sourceTree = "<group>"; };
+		A55775991A64E1A700289984 /* UVClientConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVClientConfig.h; sourceTree = "<group>"; };
+		A557759A1A64E1A700289984 /* UVClientConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVClientConfig.m; sourceTree = "<group>"; };
+		A557759B1A64E1A700289984 /* UVComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVComment.h; sourceTree = "<group>"; };
+		A557759C1A64E1A700289984 /* UVComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVComment.m; sourceTree = "<group>"; };
+		A557759D1A64E1A700289984 /* UVCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVCommentViewController.h; sourceTree = "<group>"; };
+		A557759E1A64E1A700289984 /* UVCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVCommentViewController.m; sourceTree = "<group>"; };
+		A557759F1A64E1A700289984 /* UVConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVConfig.m; sourceTree = "<group>"; };
+		A55775A01A64E1A700289984 /* UVContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVContactViewController.h; sourceTree = "<group>"; };
+		A55775A11A64E1A700289984 /* UVContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVContactViewController.m; sourceTree = "<group>"; };
+		A55775A21A64E1A700289984 /* UVCustomField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVCustomField.h; sourceTree = "<group>"; };
+		A55775A31A64E1A700289984 /* UVCustomField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVCustomField.m; sourceTree = "<group>"; };
+		A55775A41A64E1A700289984 /* UVDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVDefines.h; sourceTree = "<group>"; };
+		A55775A51A64E1A700289984 /* UVDeflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVDeflection.h; sourceTree = "<group>"; };
+		A55775A61A64E1A700289984 /* UVDeflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVDeflection.m; sourceTree = "<group>"; };
+		A55775A71A64E1A700289984 /* UVDetailsFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVDetailsFormViewController.h; sourceTree = "<group>"; };
+		A55775A81A64E1A700289984 /* UVDetailsFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVDetailsFormViewController.m; sourceTree = "<group>"; };
+		A55775A91A64E1A700289984 /* UVForum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVForum.h; sourceTree = "<group>"; };
+		A55775AA1A64E1A700289984 /* UVForum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVForum.m; sourceTree = "<group>"; };
+		A55775AB1A64E1A700289984 /* UVHelpTopic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVHelpTopic.h; sourceTree = "<group>"; };
+		A55775AC1A64E1A700289984 /* UVHelpTopic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVHelpTopic.m; sourceTree = "<group>"; };
+		A55775AD1A64E1A700289984 /* UVHelpTopicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVHelpTopicViewController.h; sourceTree = "<group>"; };
+		A55775AE1A64E1A700289984 /* UVHelpTopicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVHelpTopicViewController.m; sourceTree = "<group>"; };
+		A55775AF1A64E1A700289984 /* UVImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVImageCache.h; sourceTree = "<group>"; };
+		A55775B01A64E1A700289984 /* UVImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVImageCache.m; sourceTree = "<group>"; };
+		A55775B11A64E1A700289984 /* UVImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVImageView.h; sourceTree = "<group>"; };
+		A55775B21A64E1A700289984 /* UVImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVImageView.m; sourceTree = "<group>"; };
+		A55775B31A64E1A700289984 /* UVInitialLoadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVInitialLoadManager.h; sourceTree = "<group>"; };
+		A55775B41A64E1A700289984 /* UVInitialLoadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVInitialLoadManager.m; sourceTree = "<group>"; };
+		A55775B51A64E1A700289984 /* UVInstantAnswerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVInstantAnswerManager.h; sourceTree = "<group>"; };
+		A55775B61A64E1A700289984 /* UVInstantAnswerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVInstantAnswerManager.m; sourceTree = "<group>"; };
+		A55775B71A64E1A700289984 /* UVInstantAnswersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVInstantAnswersViewController.h; sourceTree = "<group>"; };
+		A55775B81A64E1A700289984 /* UVInstantAnswersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVInstantAnswersViewController.m; sourceTree = "<group>"; };
+		A55775B91A64E1A700289984 /* UVKeyboardUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVKeyboardUtils.h; sourceTree = "<group>"; };
+		A55775BA1A64E1A700289984 /* UVKeyboardUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVKeyboardUtils.m; sourceTree = "<group>"; };
+		A55775BB1A64E1A700289984 /* UVModelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVModelDelegate.h; sourceTree = "<group>"; };
+		A55775BC1A64E1A700289984 /* UVNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVNavigationController.h; sourceTree = "<group>"; };
+		A55775BD1A64E1A700289984 /* UVNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVNavigationController.m; sourceTree = "<group>"; };
+		A55775BE1A64E1A700289984 /* UVPostIdeaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVPostIdeaViewController.h; sourceTree = "<group>"; };
+		A55775BF1A64E1A700289984 /* UVPostIdeaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVPostIdeaViewController.m; sourceTree = "<group>"; };
+		A55775C01A64E1A700289984 /* UVRequestContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVRequestContext.h; sourceTree = "<group>"; };
+		A55775C11A64E1A700289984 /* UVRequestContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVRequestContext.m; sourceTree = "<group>"; };
+		A55775C21A64E1A700289984 /* UVRequestToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVRequestToken.h; sourceTree = "<group>"; };
+		A55775C31A64E1A700289984 /* UVRequestToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVRequestToken.m; sourceTree = "<group>"; };
+		A55775C41A64E1A700289984 /* UVResponseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVResponseDelegate.h; sourceTree = "<group>"; };
+		A55775C51A64E1A700289984 /* UVResponseDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVResponseDelegate.m; sourceTree = "<group>"; };
+		A55775C61A64E1A700289984 /* UVRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVRootViewController.h; sourceTree = "<group>"; };
+		A55775C71A64E1A700289984 /* UVRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVRootViewController.m; sourceTree = "<group>"; };
+		A55775C81A64E1A700289984 /* UVSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVSession.h; sourceTree = "<group>"; };
+		A55775C91A64E1A700289984 /* UVSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVSession.m; sourceTree = "<group>"; };
+		A55775CA1A64E1A700289984 /* UVSigninManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVSigninManager.h; sourceTree = "<group>"; };
+		A55775CB1A64E1A700289984 /* UVSigninManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVSigninManager.m; sourceTree = "<group>"; };
+		A55775CC1A64E1A700289984 /* UVStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVStyleSheet.m; sourceTree = "<group>"; };
+		A55775CD1A64E1A700289984 /* UVSubdomain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVSubdomain.h; sourceTree = "<group>"; };
+		A55775CE1A64E1A700289984 /* UVSubdomain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVSubdomain.m; sourceTree = "<group>"; };
+		A55775CF1A64E1A700289984 /* UVSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVSuccessViewController.h; sourceTree = "<group>"; };
+		A55775D01A64E1A700289984 /* UVSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVSuccessViewController.m; sourceTree = "<group>"; };
+		A55775D11A64E1A700289984 /* UVSuggestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVSuggestion.h; sourceTree = "<group>"; };
+		A55775D21A64E1A700289984 /* UVSuggestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVSuggestion.m; sourceTree = "<group>"; };
+		A55775D31A64E1A700289984 /* UVSuggestionDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVSuggestionDetailsViewController.h; sourceTree = "<group>"; };
+		A55775D41A64E1A700289984 /* UVSuggestionDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVSuggestionDetailsViewController.m; sourceTree = "<group>"; };
+		A55775D51A64E1A700289984 /* UVSuggestionListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVSuggestionListViewController.h; sourceTree = "<group>"; };
+		A55775D61A64E1A700289984 /* UVSuggestionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVSuggestionListViewController.m; sourceTree = "<group>"; };
+		A55775D71A64E1A700289984 /* UVTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVTextView.h; sourceTree = "<group>"; };
+		A55775D81A64E1A700289984 /* UVTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVTextView.m; sourceTree = "<group>"; };
+		A55775D91A64E1A700289984 /* UVTextWithFieldsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVTextWithFieldsView.h; sourceTree = "<group>"; };
+		A55775DA1A64E1A700289984 /* UVTextWithFieldsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVTextWithFieldsView.m; sourceTree = "<group>"; };
+		A55775DB1A64E1A700289984 /* UVTicket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVTicket.h; sourceTree = "<group>"; };
+		A55775DC1A64E1A700289984 /* UVTicket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVTicket.m; sourceTree = "<group>"; };
+		A55775DD1A64E1A700289984 /* UVTruncatingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVTruncatingLabel.h; sourceTree = "<group>"; };
+		A55775DE1A64E1A700289984 /* UVTruncatingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVTruncatingLabel.m; sourceTree = "<group>"; };
+		A55775DF1A64E1A700289984 /* UVUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVUser.h; sourceTree = "<group>"; };
+		A55775E01A64E1A700289984 /* UVUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVUser.m; sourceTree = "<group>"; };
+		A55775E11A64E1A700289984 /* UVUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVUtils.h; sourceTree = "<group>"; };
+		A55775E21A64E1A700289984 /* UVUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVUtils.m; sourceTree = "<group>"; };
+		A55775E31A64E1A700289984 /* UVValueSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVValueSelectViewController.h; sourceTree = "<group>"; };
+		A55775E41A64E1A700289984 /* UVValueSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVValueSelectViewController.m; sourceTree = "<group>"; };
+		A55775E51A64E1A700289984 /* UVWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVWelcomeViewController.h; sourceTree = "<group>"; };
+		A55775E61A64E1A700289984 /* UVWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVWelcomeViewController.m; sourceTree = "<group>"; };
+		A55775E71A64E1A700289984 /* UserVoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserVoice.h; sourceTree = "<group>"; };
+		A55775E81A64E1A700289984 /* UVConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVConfig.h; sourceTree = "<group>"; };
+		A55775E91A64E1A700289984 /* UVDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVDelegate.h; sourceTree = "<group>"; };
+		A55775EA1A64E1A700289984 /* UVStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVStyleSheet.h; sourceTree = "<group>"; };
 		A564D9C41A476808003C99F3 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		A564D9C61A476812003C99F3 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		A564D9C81A476821003C99F3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -227,17 +415,6 @@
 		A564D9D21A476860003C99F3 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		A564D9D41A476869003C99F3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		A564D9D61A476870003C99F3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		A564D9DD1A476ED7003C99F3 /* libUserVoice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUserVoice.a; sourceTree = "<group>"; };
-		A564D9DF1A476ED7003C99F3 /* UserVoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserVoice.h; sourceTree = "<group>"; };
-		A564D9E01A476ED7003C99F3 /* UVConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVConfig.h; sourceTree = "<group>"; };
-		A564D9E11A476ED7003C99F3 /* UVDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVDelegate.h; sourceTree = "<group>"; };
-		A564D9E21A476ED7003C99F3 /* UVStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVStyleSheet.h; sourceTree = "<group>"; };
-		A564DA021A476ED7003C99F3 /* uv_article.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uv_article.png; sourceTree = "<group>"; };
-		A564DA031A476ED7003C99F3 /* uv_article@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uv_article@2x.png"; sourceTree = "<group>"; };
-		A564DA041A476ED7003C99F3 /* uv_heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uv_heart.png; sourceTree = "<group>"; };
-		A564DA051A476ED7003C99F3 /* uv_heart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uv_heart@2x.png"; sourceTree = "<group>"; };
-		A564DA061A476ED7003C99F3 /* uv_idea.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uv_idea.png; sourceTree = "<group>"; };
-		A564DA071A476ED7003C99F3 /* uv_idea@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uv_idea@2x.png"; sourceTree = "<group>"; };
 		A564DA1F1A4781AA003C99F3 /* SVWebViewController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVWebViewController.bundle; sourceTree = "<group>"; };
 		A564DA401A4784A3003C99F3 /* SVModalWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVModalWebViewController.h; sourceTree = "<group>"; };
 		A564DA411A4784A3003C99F3 /* SVModalWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVModalWebViewController.m; sourceTree = "<group>"; };
@@ -337,7 +514,6 @@
 				A564D9D31A476860003C99F3 /* GLKit.framework in Frameworks */,
 				A564D9D11A47685B003C99F3 /* OpenGLES.framework in Frameworks */,
 				02949ED11A298458001EDD2D /* SystemConfiguration.framework in Frameworks */,
-				A564DA0B1A476ED7003C99F3 /* libUserVoice.a in Frameworks */,
 				A5DAC9CB1A5E4E3C00145AEE /* pop.framework in Frameworks */,
 				A564D9CF1A476849003C99F3 /* MessageUI.framework in Frameworks */,
 				A564D9CD1A476844003C99F3 /* UIKit.framework in Frameworks */,
@@ -498,38 +674,182 @@
 			path = Media;
 			sourceTree = "<group>";
 		};
+		A55775521A64E13200289984 /* HTTPRiot */ = {
+			isa = PBXGroup;
+			children = (
+				A55775531A64E13200289984 /* Formatters */,
+				A55775571A64E13200289984 /* HRGlobal.h */,
+				A55775581A64E13200289984 /* HRGlobal.m */,
+				A55775591A64E13200289984 /* HROperationQueue.h */,
+				A557755A1A64E13200289984 /* HROperationQueue.m */,
+				A557755B1A64E13200289984 /* HRRequestOperation.h */,
+				A557755C1A64E13200289984 /* HRRequestOperation.m */,
+				A557755D1A64E13200289984 /* HRResponseDelegate.h */,
+				A557755E1A64E13200289984 /* HRRestModel.h */,
+				A557755F1A64E13200289984 /* HRRestModel.m */,
+				A55775601A64E13200289984 /* HTTPRiot.h */,
+				A55775611A64E13200289984 /* HTTPRiot_Prefix.pch */,
+			);
+			path = HTTPRiot;
+			sourceTree = "<group>";
+		};
+		A55775531A64E13200289984 /* Formatters */ = {
+			isa = PBXGroup;
+			children = (
+				A55775541A64E13200289984 /* HRFormatJSON.h */,
+				A55775551A64E13200289984 /* HRFormatJSON.m */,
+				A55775561A64E13200289984 /* HRFormatterProtocol.h */,
+			);
+			path = Formatters;
+			sourceTree = "<group>";
+		};
+		A55775621A64E13200289984 /* YOAuth */ = {
+			isa = PBXGroup;
+			children = (
+				A55775631A64E13200289984 /* Crypto */,
+				A55775661A64E13200289984 /* YOAuth.h */,
+				A55775671A64E13200289984 /* YOAuthConsumer.h */,
+				A55775681A64E13200289984 /* YOAuthConsumer.m */,
+				A55775691A64E13200289984 /* YOAuthRequest.h */,
+				A557756A1A64E13200289984 /* YOAuthRequest.m */,
+				A557756B1A64E13200289984 /* YOAuthSignatureMethod.h */,
+				A557756C1A64E13200289984 /* YOAuthSignatureMethod_HMAC-SHA1.h */,
+				A557756D1A64E13200289984 /* YOAuthSignatureMethod_HMAC-SHA1.m */,
+				A557756E1A64E13200289984 /* YOAuthSignatureMethod_PLAINTEXT.h */,
+				A557756F1A64E13200289984 /* YOAuthSignatureMethod_PLAINTEXT.m */,
+				A55775701A64E13200289984 /* YOAuthToken.h */,
+				A55775711A64E13200289984 /* YOAuthToken.m */,
+				A55775721A64E13200289984 /* YOAuthUtil.h */,
+				A55775731A64E13200289984 /* YOAuthUtil.m */,
+			);
+			path = YOAuth;
+			sourceTree = "<group>";
+		};
+		A55775631A64E13200289984 /* Crypto */ = {
+			isa = PBXGroup;
+			children = (
+				A55775641A64E13200289984 /* Base64Transcoder.c */,
+				A55775651A64E13200289984 /* Base64Transcoder.h */,
+			);
+			path = Crypto;
+			sourceTree = "<group>";
+		};
+		A55775831A64E1A700289984 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A55775841A64E1A700289984 /* UserVoice.m */,
+				A55775851A64E1A700289984 /* UVAccessToken.h */,
+				A55775861A64E1A700289984 /* UVAccessToken.m */,
+				A55775871A64E1A700289984 /* UVArticle.h */,
+				A55775881A64E1A700289984 /* UVArticle.m */,
+				A55775891A64E1A700289984 /* UVArticleViewController.h */,
+				A557758A1A64E1A700289984 /* UVArticleViewController.m */,
+				A557758B1A64E1A700289984 /* UVAttachment.h */,
+				A557758C1A64E1A700289984 /* UVAttachment.m */,
+				A557758D1A64E1A700289984 /* UVBabayaga.h */,
+				A557758E1A64E1A700289984 /* UVBabayaga.m */,
+				A557758F1A64E1A700289984 /* UVBaseModel.h */,
+				A55775901A64E1A700289984 /* UVBaseModel.m */,
+				A55775911A64E1A700289984 /* UVBaseViewController.h */,
+				A55775921A64E1A700289984 /* UVBaseViewController.m */,
+				A55775931A64E1A700289984 /* UVCalculatingLabel.h */,
+				A55775941A64E1A700289984 /* UVCalculatingLabel.m */,
+				A55775951A64E1A700289984 /* UVCallback.h */,
+				A55775961A64E1A700289984 /* UVCallback.m */,
+				A55775971A64E1A700289984 /* UVCategory.h */,
+				A55775981A64E1A700289984 /* UVCategory.m */,
+				A55775991A64E1A700289984 /* UVClientConfig.h */,
+				A557759A1A64E1A700289984 /* UVClientConfig.m */,
+				A557759B1A64E1A700289984 /* UVComment.h */,
+				A557759C1A64E1A700289984 /* UVComment.m */,
+				A557759D1A64E1A700289984 /* UVCommentViewController.h */,
+				A557759E1A64E1A700289984 /* UVCommentViewController.m */,
+				A557759F1A64E1A700289984 /* UVConfig.m */,
+				A55775A01A64E1A700289984 /* UVContactViewController.h */,
+				A55775A11A64E1A700289984 /* UVContactViewController.m */,
+				A55775A21A64E1A700289984 /* UVCustomField.h */,
+				A55775A31A64E1A700289984 /* UVCustomField.m */,
+				A55775A41A64E1A700289984 /* UVDefines.h */,
+				A55775A51A64E1A700289984 /* UVDeflection.h */,
+				A55775A61A64E1A700289984 /* UVDeflection.m */,
+				A55775A71A64E1A700289984 /* UVDetailsFormViewController.h */,
+				A55775A81A64E1A700289984 /* UVDetailsFormViewController.m */,
+				A55775A91A64E1A700289984 /* UVForum.h */,
+				A55775AA1A64E1A700289984 /* UVForum.m */,
+				A55775AB1A64E1A700289984 /* UVHelpTopic.h */,
+				A55775AC1A64E1A700289984 /* UVHelpTopic.m */,
+				A55775AD1A64E1A700289984 /* UVHelpTopicViewController.h */,
+				A55775AE1A64E1A700289984 /* UVHelpTopicViewController.m */,
+				A55775AF1A64E1A700289984 /* UVImageCache.h */,
+				A55775B01A64E1A700289984 /* UVImageCache.m */,
+				A55775B11A64E1A700289984 /* UVImageView.h */,
+				A55775B21A64E1A700289984 /* UVImageView.m */,
+				A55775B31A64E1A700289984 /* UVInitialLoadManager.h */,
+				A55775B41A64E1A700289984 /* UVInitialLoadManager.m */,
+				A55775B51A64E1A700289984 /* UVInstantAnswerManager.h */,
+				A55775B61A64E1A700289984 /* UVInstantAnswerManager.m */,
+				A55775B71A64E1A700289984 /* UVInstantAnswersViewController.h */,
+				A55775B81A64E1A700289984 /* UVInstantAnswersViewController.m */,
+				A55775B91A64E1A700289984 /* UVKeyboardUtils.h */,
+				A55775BA1A64E1A700289984 /* UVKeyboardUtils.m */,
+				A55775BB1A64E1A700289984 /* UVModelDelegate.h */,
+				A55775BC1A64E1A700289984 /* UVNavigationController.h */,
+				A55775BD1A64E1A700289984 /* UVNavigationController.m */,
+				A55775BE1A64E1A700289984 /* UVPostIdeaViewController.h */,
+				A55775BF1A64E1A700289984 /* UVPostIdeaViewController.m */,
+				A55775C01A64E1A700289984 /* UVRequestContext.h */,
+				A55775C11A64E1A700289984 /* UVRequestContext.m */,
+				A55775C21A64E1A700289984 /* UVRequestToken.h */,
+				A55775C31A64E1A700289984 /* UVRequestToken.m */,
+				A55775C41A64E1A700289984 /* UVResponseDelegate.h */,
+				A55775C51A64E1A700289984 /* UVResponseDelegate.m */,
+				A55775C61A64E1A700289984 /* UVRootViewController.h */,
+				A55775C71A64E1A700289984 /* UVRootViewController.m */,
+				A55775C81A64E1A700289984 /* UVSession.h */,
+				A55775C91A64E1A700289984 /* UVSession.m */,
+				A55775CA1A64E1A700289984 /* UVSigninManager.h */,
+				A55775CB1A64E1A700289984 /* UVSigninManager.m */,
+				A55775CC1A64E1A700289984 /* UVStyleSheet.m */,
+				A55775CD1A64E1A700289984 /* UVSubdomain.h */,
+				A55775CE1A64E1A700289984 /* UVSubdomain.m */,
+				A55775CF1A64E1A700289984 /* UVSuccessViewController.h */,
+				A55775D01A64E1A700289984 /* UVSuccessViewController.m */,
+				A55775D11A64E1A700289984 /* UVSuggestion.h */,
+				A55775D21A64E1A700289984 /* UVSuggestion.m */,
+				A55775D31A64E1A700289984 /* UVSuggestionDetailsViewController.h */,
+				A55775D41A64E1A700289984 /* UVSuggestionDetailsViewController.m */,
+				A55775D51A64E1A700289984 /* UVSuggestionListViewController.h */,
+				A55775D61A64E1A700289984 /* UVSuggestionListViewController.m */,
+				A55775D71A64E1A700289984 /* UVTextView.h */,
+				A55775D81A64E1A700289984 /* UVTextView.m */,
+				A55775D91A64E1A700289984 /* UVTextWithFieldsView.h */,
+				A55775DA1A64E1A700289984 /* UVTextWithFieldsView.m */,
+				A55775DB1A64E1A700289984 /* UVTicket.h */,
+				A55775DC1A64E1A700289984 /* UVTicket.m */,
+				A55775DD1A64E1A700289984 /* UVTruncatingLabel.h */,
+				A55775DE1A64E1A700289984 /* UVTruncatingLabel.m */,
+				A55775DF1A64E1A700289984 /* UVUser.h */,
+				A55775E01A64E1A700289984 /* UVUser.m */,
+				A55775E11A64E1A700289984 /* UVUtils.h */,
+				A55775E21A64E1A700289984 /* UVUtils.m */,
+				A55775E31A64E1A700289984 /* UVValueSelectViewController.h */,
+				A55775E41A64E1A700289984 /* UVValueSelectViewController.m */,
+				A55775E51A64E1A700289984 /* UVWelcomeViewController.h */,
+				A55775E61A64E1A700289984 /* UVWelcomeViewController.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		A564D9DC1A476ED7003C99F3 /* UserVoiceSDK */ = {
 			isa = PBXGroup;
 			children = (
-				A564D9DD1A476ED7003C99F3 /* libUserVoice.a */,
-				A564D9DE1A476ED7003C99F3 /* UVHeaders */,
-				A564D9E31A476ED7003C99F3 /* UVResources */,
+				A55775831A64E1A700289984 /* Classes */,
+				A55775E71A64E1A700289984 /* UserVoice.h */,
+				A55775E81A64E1A700289984 /* UVConfig.h */,
+				A55775E91A64E1A700289984 /* UVDelegate.h */,
+				A55775EA1A64E1A700289984 /* UVStyleSheet.h */,
 			);
 			path = UserVoiceSDK;
-			sourceTree = "<group>";
-		};
-		A564D9DE1A476ED7003C99F3 /* UVHeaders */ = {
-			isa = PBXGroup;
-			children = (
-				A564D9DF1A476ED7003C99F3 /* UserVoice.h */,
-				A564D9E01A476ED7003C99F3 /* UVConfig.h */,
-				A564D9E11A476ED7003C99F3 /* UVDelegate.h */,
-				A564D9E21A476ED7003C99F3 /* UVStyleSheet.h */,
-			);
-			path = UVHeaders;
-			sourceTree = "<group>";
-		};
-		A564D9E31A476ED7003C99F3 /* UVResources */ = {
-			isa = PBXGroup;
-			children = (
-				A564DA021A476ED7003C99F3 /* uv_article.png */,
-				A564DA031A476ED7003C99F3 /* uv_article@2x.png */,
-				A564DA041A476ED7003C99F3 /* uv_heart.png */,
-				A564DA051A476ED7003C99F3 /* uv_heart@2x.png */,
-				A564DA061A476ED7003C99F3 /* uv_idea.png */,
-				A564DA071A476ED7003C99F3 /* uv_idea@2x.png */,
-			);
-			path = UVResources;
 			sourceTree = "<group>";
 		};
 		A564DA131A4781AA003C99F3 /* SVWebViewController */ = {
@@ -548,6 +868,8 @@
 		A58008611A64690B00676FA5 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				A55775521A64E13200289984 /* HTTPRiot */,
+				A55775621A64E13200289984 /* YOAuth */,
 				A58008631A64692D00676FA5 /* Internal */,
 				A5E52B0D1A64712C004825A5 /* FBEncryptorAES */,
 				A5E52B091A6470FF004825A5 /* AFNetworking */,
@@ -950,22 +1272,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5E01CDB1A2B3899003ED753 /* interface.xcassets in Resources */,
-				A564DA0E1A476ED7003C99F3 /* uv_article@2x.png in Resources */,
 				A5B31C401A287F26009734EE /* Main.storyboard in Resources */,
-				A564DA121A476ED7003C99F3 /* uv_idea@2x.png in Resources */,
 				20E595821A5B83FA00202C21 /* Late.mov in Resources */,
-				A564DA0D1A476ED7003C99F3 /* uv_article.png in Resources */,
 				A5E01CDD1A2B3C76003ED753 /* fundamentals.xcassets in Resources */,
 				A564DA351A4781AA003C99F3 /* SVWebViewController.bundle in Resources */,
 				20E5957F1A5B83FA00202C21 /* Funk 2 - 100 - P1.wav in Resources */,
-				A564DA111A476ED7003C99F3 /* uv_idea.png in Resources */,
-				A564DA101A476ED7003C99F3 /* uv_heart@2x.png in Resources */,
 				20E595801A5B83FA00202C21 /* Funk 2 - 100 - P2.wav in Resources */,
 				A5B31C451A287F26009734EE /* LaunchScreen.xib in Resources */,
 				A564DA471A478A8A003C99F3 /* privacy.html in Resources */,
 				A5AD89181A4D21350013D417 /* SVProgressHUD.bundle in Resources */,
 				20E595861A5B83FA00202C21 /* vancouver-city.mp4 in Resources */,
-				A564DA0F1A476ED7003C99F3 /* uv_heart.png in Resources */,
 				20E595811A5B83FA00202C21 /* Funk 2 - 100 - P3.wav in Resources */,
 				20E5957D1A5B83FA00202C21 /* beach.mp4 in Resources */,
 			);
@@ -981,11 +1297,28 @@
 				023F976E1A50C251001381B3 /* FBEncryptorAES.m in Sources */,
 				20B821241A4BA057009E293B /* MOTableViewController.m in Sources */,
 				A5E01CC81A2B37F1003ED753 /* AFAmazonS3RequestSerializer.m in Sources */,
+				A55776081A64E1A700289984 /* UVPostIdeaViewController.m in Sources */,
+				A55775F81A64E1A700289984 /* UVCommentViewController.m in Sources */,
+				A55776001A64E1A700289984 /* UVHelpTopicViewController.m in Sources */,
+				A55776131A64E1A700289984 /* UVSuggestionDetailsViewController.m in Sources */,
+				A55776011A64E1A700289984 /* UVImageCache.m in Sources */,
 				A5E01CD31A2B37F1003ED753 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				A5E01CD81A2B37F1003ED753 /* UIRefreshControl+AFNetworking.m in Sources */,
+				A55776181A64E1A700289984 /* UVTruncatingLabel.m in Sources */,
+				A55775EF1A64E1A700289984 /* UVAttachment.m in Sources */,
+				A557760E1A64E1A700289984 /* UVSigninManager.m in Sources */,
+				A55776171A64E1A700289984 /* UVTicket.m in Sources */,
 				A5C29FF51A33C9F300E605F1 /* PBJVideoView.m in Sources */,
+				A55776071A64E1A700289984 /* UVNavigationController.m in Sources */,
+				A55776141A64E1A700289984 /* UVSuggestionListViewController.m in Sources */,
+				A55775F41A64E1A700289984 /* UVCallback.m in Sources */,
 				A5E01CD51A2B37F1003ED753 /* UIButton+AFNetworking.m in Sources */,
+				A557757E1A64E13200289984 /* YOAuthToken.m in Sources */,
 				A564DA451A4784A3003C99F3 /* SVWebViewController.m in Sources */,
+				A55775F91A64E1A700289984 /* UVConfig.m in Sources */,
+				A55775791A64E13200289984 /* Base64Transcoder.c in Sources */,
+				A55776061A64E1A700289984 /* UVKeyboardUtils.m in Sources */,
+				A557761C1A64E1A700289984 /* UVWelcomeViewController.m in Sources */,
 				02C1E4B71A30221C00F7EC6E /* DLILCacheManager.m in Sources */,
 				A5E01CD41A2B37F1003ED753 /* UIAlertView+AFNetworking.m in Sources */,
 				A5E01C9A1A2B37D7003ED753 /* JKSegmentedControl.m in Sources */,
@@ -995,36 +1328,74 @@
 				20EB172D1A4747A700DA1B16 /* MOSettingsViewController.m in Sources */,
 				20E5957E1A5B83FA00202C21 /* MOMusicPlayer.m in Sources */,
 				A5C5EB811A2A8358002F1591 /* MOCaptureViewController.m in Sources */,
+				A55776121A64E1A700289984 /* UVSuggestion.m in Sources */,
+				A55775781A64E13200289984 /* HRRestModel.m in Sources */,
+				A55775EC1A64E1A700289984 /* UVAccessToken.m in Sources */,
 				A5E01CCD1A2B37F1003ED753 /* AFNetworkReachabilityManager.m in Sources */,
+				A55776191A64E1A700289984 /* UVUser.m in Sources */,
+				A557760D1A64E1A700289984 /* UVSession.m in Sources */,
+				A557761B1A64E1A700289984 /* UVValueSelectViewController.m in Sources */,
+				A55775F51A64E1A700289984 /* UVCategory.m in Sources */,
+				A557760A1A64E1A700289984 /* UVRequestToken.m in Sources */,
+				A55776021A64E1A700289984 /* UVImageView.m in Sources */,
+				A55776041A64E1A700289984 /* UVInstantAnswerManager.m in Sources */,
+				A55775FF1A64E1A700289984 /* UVHelpTopic.m in Sources */,
+				A55775741A64E13200289984 /* HRFormatJSON.m in Sources */,
+				A55775FB1A64E1A700289984 /* UVCustomField.m in Sources */,
+				A55776031A64E1A700289984 /* UVInitialLoadManager.m in Sources */,
 				02C1E4B81A30221C00F7EC6E /* DLILOperation.m in Sources */,
 				A5AD89171A4D21350013D417 /* SVIndefiniteAnimatedView.m in Sources */,
+				A55775F01A64E1A700289984 /* UVBabayaga.m in Sources */,
 				02C1E4B91A30221C00F7EC6E /* DLImageLoader.m in Sources */,
 				A5E01CD01A2B37F1003ED753 /* AFURLRequestSerialization.m in Sources */,
 				205FA4921A5600410061C174 /* EDRecordingFlashingView.m in Sources */,
+				A55776111A64E1A700289984 /* UVSuccessViewController.m in Sources */,
 				205FA4881A54E1970061C174 /* PBJVideoPlayerController.m in Sources */,
+				A55775FC1A64E1A700289984 /* UVDeflection.m in Sources */,
+				A557761A1A64E1A700289984 /* UVUtils.m in Sources */,
 				A5E01CD71A2B37F1003ED753 /* UIProgressView+AFNetworking.m in Sources */,
 				02C1E4BA1A30221C00F7EC6E /* DLImageView.m in Sources */,
+				A55775F31A64E1A700289984 /* UVCalculatingLabel.m in Sources */,
+				A55776151A64E1A700289984 /* UVTextView.m in Sources */,
+				A55775EE1A64E1A700289984 /* UVArticleViewController.m in Sources */,
 				A5E01CCF1A2B37F1003ED753 /* AFURLConnectionOperation.m in Sources */,
+				A55775751A64E13200289984 /* HRGlobal.m in Sources */,
+				A557757F1A64E13200289984 /* YOAuthUtil.m in Sources */,
+				A55775F71A64E1A700289984 /* UVComment.m in Sources */,
 				20D6E7DC1A44D5BA00B6DF3F /* EDSegments.m in Sources */,
 				A5E01CD21A2B37F1003ED753 /* AFURLSessionManager.m in Sources */,
+				A55775EB1A64E1A700289984 /* UserVoice.m in Sources */,
+				A55776161A64E1A700289984 /* UVTextWithFieldsView.m in Sources */,
+				A55775FA1A64E1A700289984 /* UVContactViewController.m in Sources */,
 				A5E01CCA1A2B37F1003ED753 /* AFHTTPRequestOperationManager.m in Sources */,
+				A557760B1A64E1A700289984 /* UVResponseDelegate.m in Sources */,
 				A5E01C9B1A2B37D7003ED753 /* SSKeychain.m in Sources */,
 				E410DF3B1A59FFE100D5C040 /* MOUser.m in Sources */,
+				A55776051A64E1A700289984 /* UVInstantAnswersViewController.m in Sources */,
 				A5E01CCC1A2B37F1003ED753 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				A55775ED1A64E1A700289984 /* UVArticle.m in Sources */,
+				A55775F11A64E1A700289984 /* UVBaseModel.m in Sources */,
 				20D6E7D61A43C7DA00B6DF3F /* EDSegmentedControl.m in Sources */,
+				A557760C1A64E1A700289984 /* UVRootViewController.m in Sources */,
 				A5EDE0D61A59178D00DA8B8B /* MOS3APIUtilities.m in Sources */,
 				20E5957C1A5B83FA00202C21 /* MORegisterViewController.m in Sources */,
+				A55775FE1A64E1A700289984 /* UVForum.m in Sources */,
+				A55775F21A64E1A700289984 /* UVBaseViewController.m in Sources */,
 				E4E1D3CE1A61B22D00752A23 /* MOAvatarCache.m in Sources */,
 				20E5957B1A5B83FA00202C21 /* MOSignInViewController.m in Sources */,
 				A5C5EB841A2A8358002F1591 /* MOPageViewController.m in Sources */,
 				A5B31C3A1A287F25009734EE /* MOAppDelegate.m in Sources */,
 				E4E1D3CB1A619A3B00752A23 /* UIImage+Avatar.m in Sources */,
 				A5E01CD61A2B37F1003ED753 /* UIImageView+AFNetworking.m in Sources */,
+				A55776091A64E1A700289984 /* UVRequestContext.m in Sources */,
 				20E5958B1A5B849800202C21 /* MODecisionViewController.m in Sources */,
 				A5E01C2A1A2AF811003ED753 /* AVCamPreviewView.m in Sources */,
 				023F976F1A50C251001381B3 /* NSData+Base64.m in Sources */,
 				A5AD89191A4D21350013D417 /* SVProgressHUD.m in Sources */,
+				A557760F1A64E1A700289984 /* UVStyleSheet.m in Sources */,
+				A55775F61A64E1A700289984 /* UVClientConfig.m in Sources */,
 				02C1E4A31A2E9AAE00F7EC6E /* JCDHTTPConnection.m in Sources */,
+				A55775771A64E13200289984 /* HRRequestOperation.m in Sources */,
 				A5E01CC91A2B37F1003ED753 /* AFHTTPRequestOperation.m in Sources */,
 				A5E01CCE1A2B37F1003ED753 /* AFSecurityPolicy.m in Sources */,
 				20E5958E1A5B8AEC00202C21 /* UIImage+EDExtras.m in Sources */,
@@ -1032,11 +1403,18 @@
 				A5B31C371A287F25009734EE /* main.m in Sources */,
 				20DC7D671A62398A00AE644C /* FollowingStatusView.m in Sources */,
 				20C077C61A48C6220092B7AA /* MOFollowViewController.m in Sources */,
+				A55776101A64E1A700289984 /* UVSubdomain.m in Sources */,
+				A557757A1A64E13200289984 /* YOAuthConsumer.m in Sources */,
+				A557757B1A64E13200289984 /* YOAuthRequest.m in Sources */,
 				A564DA441A4784A3003C99F3 /* SVModalWebViewController.m in Sources */,
 				A5E01CCB1A2B37F1003ED753 /* AFHTTPSessionManager.m in Sources */,
 				A5E01CD91A2B37F1003ED753 /* UIWebView+AFNetworking.m in Sources */,
+				A55775761A64E13200289984 /* HROperationQueue.m in Sources */,
+				A557757C1A64E13200289984 /* YOAuthSignatureMethod_HMAC-SHA1.m in Sources */,
 				0296067B1A3518A600FFA9AD /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
 				A5E01CD11A2B37F1003ED753 /* AFURLResponseSerialization.m in Sources */,
+				A55775FD1A64E1A700289984 /* UVDetailsFormViewController.m in Sources */,
+				A557757D1A64E13200289984 /* YOAuthSignatureMethod_PLAINTEXT.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
