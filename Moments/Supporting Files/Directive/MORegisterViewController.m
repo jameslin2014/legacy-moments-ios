@@ -649,10 +649,8 @@
                     completion:^(BOOL success) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (success) {
-                if (self.avatar) {
-                    user.avatar = self.avatar;
-                    [[MOS3APIUtilities sharedInstance] putAvatarForUsername:user.name image:user.avatar];
-                }
+                user.avatar = self.avatar ?: [[[MOAvatarCache alloc] init] defaultAvatar];
+                [[MOS3APIUtilities sharedInstance] putAvatarForUsername:user.name image:user.avatar];
                 
                 _leftmostLayoutConstraint.constant = 2 * -self.view.frame.size.width;
                 backButtonImage.image = [UIImage backButtonClosed];

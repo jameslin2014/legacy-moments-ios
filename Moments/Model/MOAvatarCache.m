@@ -23,7 +23,7 @@
                 [UIImagePNGRepresentation(avatar) writeToFile:[self getFilePathForUserAvatar:username] atomically:YES];
                 completion(avatar);
             } else {
-                completion([UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]]);
+                completion([self defaultAvatar]);
             }
         }];
     }
@@ -42,6 +42,10 @@
     return [[[cachePath stringByAppendingPathComponent:@"/avatars"]
              stringByAppendingPathComponent:[username lowercaseString]]
             stringByAppendingPathExtension:@"png"];
+}
+
+- (UIImage *)defaultAvatar {
+    return [UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]];
 }
 
 @end
