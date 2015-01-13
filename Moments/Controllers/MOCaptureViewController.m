@@ -441,7 +441,11 @@
 		AFHTTPRequestOperation *operation = [s3Manager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
 			// Success!
             [apiUtilities recordPostForUser:apiUtilities.user.name];
-            
+            [UIView animateWithDuration:0.2 animations:^{
+                v.alpha = 0.0;
+            } completion:^(BOOL finished) {
+                [v removeFromSuperview];
+            }];
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 			NSLog(@"Error uploading %@", error);
 		}];
