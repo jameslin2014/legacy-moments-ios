@@ -446,6 +446,9 @@
             } completion:^(BOOL finished) {
                 [v removeFromSuperview];
             }];
+            [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+            [self.navigationController.view setUserInteractionEnabled:true];
+            NSLog(@"success");
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 			NSLog(@"Error uploading %@", error);
 		}];
