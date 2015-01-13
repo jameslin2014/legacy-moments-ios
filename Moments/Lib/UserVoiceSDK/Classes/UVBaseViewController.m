@@ -307,19 +307,19 @@
 }
 
 - (void)keyboardWillShow:(NSNotification*)notification {
-    if (IPAD) {
+//    if (IPAD) {
         NSInteger formSheetHeight = 576;
-        if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-            _kbHeight = formSheetHeight - 352;
-        } else {
-            _kbHeight = formSheetHeight - 504;
-        }
-    } else {
-        NSDictionary* info = [notification userInfo];
-        CGRect rect = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-        // Convert from window space to view space to account for orientation
-        _kbHeight = (NSInteger)[self.view convertRect:rect fromView:nil].size.height;
-    }
+//        if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
+//            _kbHeight = formSheetHeight - 352;
+//        } else {
+//            _kbHeight = formSheetHeight - 504;
+//        }
+//    } else {
+//        NSDictionary* info = [notification userInfo];
+//        CGRect rect = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+//        // Convert from window space to view space to account for orientation
+//        _kbHeight = (NSInteger)[self.view convertRect:rect fromView:nil].size.height;
+//    }
 }
 
 - (UIScrollView *)scrollView {

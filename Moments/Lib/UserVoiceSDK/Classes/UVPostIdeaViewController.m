@@ -117,40 +117,40 @@
     self.navigationItem.rightBarButtonItem.enabled = ([_titleField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length > 0);
     [self registerForKeyboardNotifications];
     _didAuthenticateCallback = [[UVCallback alloc] initWithTarget:self selector:@selector(createSuggestion)];
-    [self updateLayout];
+//    [self updateLayout];
 }
 
-- (void)updateLayout {
-    _topConstraint.constant = (IOS7 ? (IPAD ? 44 : (UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? 64 : 52)) : 0);
-    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation) || IPAD) {
-        _desc.hidden = NO;
-        [self.view removeConstraint:_descConstraint];
-    } else {
-        _desc.hidden = YES;
-        [self.view addConstraint:_descConstraint];
-    }
-    if (!IOS7) {
-        _desc.preferredMaxLayoutWidth = 0;
-        [self.view layoutIfNeeded];
-        _desc.preferredMaxLayoutWidth = _desc.frame.size.width;
-    }
-}
+//- (void)updateLayout {
+//    _topConstraint.constant = (IOS7 ? (IPAD ? 44 : (UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? 64 : 52)) : 0);
+//    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation) || IPAD) {
+//        _desc.hidden = NO;
+//        [self.view removeConstraint:_descConstraint];
+//    } else {
+//        _desc.hidden = YES;
+//        [self.view addConstraint:_descConstraint];
+//    }
+//    if (!IOS7) {
+//        _desc.preferredMaxLayoutWidth = 0;
+//        [self.view layoutIfNeeded];
+//        _desc.preferredMaxLayoutWidth = _desc.frame.size.width;
+//    }
+//}
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-    [self updateLayout];
+//    [self updateLayout];
     [_fieldsView performSelector:@selector(updateLayout) withObject:nil afterDelay:0];
 }
 
-- (void)keyboardDidShow:(NSNotification *)note {
-    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation) || IPAD) {
-        _keyboardConstraint.constant = -_kbHeight-10;
-    } else {
-        _keyboardConstraint.constant = -_kbHeight+10;
-    }
-    [self.view layoutIfNeeded];
-    [_fieldsView updateLayout];
-}
+//- (void)keyboardDidShow:(NSNotification *)note {
+//    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation) || IPAD) {
+//        _keyboardConstraint.constant = -_kbHeight-10;
+//    } else {
+//        _keyboardConstraint.constant = -_kbHeight+10;
+//    }
+//    [self.view layoutIfNeeded];
+//    [_fieldsView updateLayout];
+//}
 
 - (void)keyboardDidHide:(NSNotification *)note {
     _keyboardConstraint.constant = -10;
