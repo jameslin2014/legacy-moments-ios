@@ -14,11 +14,9 @@
 #define IA_FILTER_ARTICLES 1
 #define IA_FILTER_IDEAS 2
 
-@interface UVWelcomeViewController : UVBaseViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UVInstantAnswersDelegate> 
+@interface UVWelcomeViewController : UVBaseViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate, UVInstantAnswersDelegate>
 
-//@property (nonatomic, retain) UISearchDisplayController *searchController;
+@property (nonatomic, retain) UISearchDisplayController *searchController;
 @property (nonatomic, retain) UVInstantAnswerManager *instantAnswerManager;
-@property (nonatomic, retain) UISearchBar *searchBar;
-@property (nonatomic, assign) BOOL searching;
 
 @end

@@ -104,6 +104,7 @@ static NSBundle *userVoiceBundle;
 }
 
 + (void)presentUserVoiceContactUsFormForParentViewController:(UIViewController *)parentViewController {
+    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     [self presentUserVoiceController:[self getUserVoiceContactUsForm] forParentViewController:parentViewController];
 }
 

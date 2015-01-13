@@ -494,6 +494,7 @@ typedef void (^PBJVideoPlayerBlock)();
                 _videoView.playerLayer.backgroundColor = [[UIColor blackColor] CGColor];
                 [_videoView.playerLayer setPlayer:_player];
                 _videoView.playerLayer.hidden = NO;
+//                _videoView.playerLayer.
                 break;
             }
             case AVPlayerStatusFailed:
