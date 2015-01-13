@@ -19,6 +19,16 @@
 	[super viewDidLoad];
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
+        NSLog(@"app already launched");
+    } else {
+        
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [self performSelector:@selector(bounceScrollView) withObject:nil afterDelay:0.5];
+        
+    }
+    
     // Do any additional setup after loading the view.
 	self.viewControllers = @[
 							 [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"listView"],
@@ -41,6 +51,19 @@
 	self.scrollView.contentSize = CGSizeMake(self.viewControllers.count * self.view.frame.size.width, self.view.frame.size.height);
 	self.scrollView.delegate = self;
 	[self.viewControllers[1] view].alpha = 0;
+}
+
+- (void)bounceScrollView {
+    self.scrollView.pagingEnabled = NO;
+    self.scrollView.scrollEnabled = NO;
+    [self.scrollView setContentOffset:CGPointMake(40, 0) animated:YES];
+    [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(unbounceScrollView) userInfo:nil repeats:NO];
+}
+
+- (void)unbounceScrollView {
+    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+    [self.scrollView setPagingEnabled:YES];
+    [self.scrollView setScrollEnabled:YES];
 }
 
 - (BOOL)prefersStatusBarHidden{
