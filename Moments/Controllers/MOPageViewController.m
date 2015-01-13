@@ -17,7 +17,8 @@
 - (void)viewDidLoad {
 	
 	[super viewDidLoad];
-	
+    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    
     // Do any additional setup after loading the view.
 	self.viewControllers = @[
 							 [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"listView"],
@@ -63,10 +64,6 @@
 	for (UIViewController *vc in self.viewControllers){
 		vc.view.hidden = NO;
 	}
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle{
-	return UIStatusBarStyleLightContent;
 }
 
 @end

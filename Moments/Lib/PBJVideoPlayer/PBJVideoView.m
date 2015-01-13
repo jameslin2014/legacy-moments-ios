@@ -28,8 +28,6 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface PBJVideoView ()
-{
-}
 
 @end
 

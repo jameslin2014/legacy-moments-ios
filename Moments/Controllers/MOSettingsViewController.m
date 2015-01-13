@@ -24,13 +24,17 @@ static NSString *CellIdentifier = @"CellID";
 
 @implementation MOSettingsViewController
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+}
+
 - (void)viewDidLoad{
 	[super viewDidLoad];
-		
-    [UVStyleSheet instance].preferredStatusBarStyle = UIStatusBarStyleDefault;
-	self.view.backgroundColor = [UIColor clearColor];
-	
+    
+    self.view.backgroundColor = [UIColor clearColor];
 	self.backgroundBlurView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
+    
 	[self.backgroundBlurView setTranslatesAutoresizingMaskIntoConstraints:NO];
 	[self.view addSubview:self.backgroundBlurView];
 	[self.view addConstraints:@[
@@ -71,8 +75,6 @@ static NSString *CellIdentifier = @"CellID";
 										[NSLayoutConstraint constraintWithItem:self.doneButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.control attribute:NSLayoutAttributeCenterY multiplier:1.0 constant: 0]
 										]];
 	
-	//		self.profilePicture = [[UIImageView alloc]init];
-	
 	self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
 	[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
 	self.tableView.separatorColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.5];
@@ -94,10 +96,6 @@ static NSString *CellIdentifier = @"CellID";
 
 - (BOOL)prefersStatusBarHidden{
     return NO;
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -341,9 +339,6 @@ static NSString *CellIdentifier = @"CellID";
 		if (indexPath.section == 0){
             if (indexPath.row == 0) {
                 [UserVoice presentUserVoiceContactUsFormForParentViewController:self];
-                [UVStyleSheet instance].preferredStatusBarStyle = UIStatusBarStyleDefault;
-                
-//				[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
             } else if (indexPath.row == 1){
 				NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/app/id%d?mt=8", 953901607];
 				[[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
