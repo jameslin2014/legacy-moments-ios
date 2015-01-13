@@ -16,7 +16,7 @@
 @property (nonatomic, retain) UVForum *forum;
 @property (nonatomic, retain) UITextField *textEditor;
 @property (nonatomic, retain) NSArray *searchResults;
-@property (nonatomic, retain) UISearchDisplayController *searchController;
+//@property (nonatomic, retain) UISearchDisplayController *searchController;
 @property (nonatomic, retain) UISearchBar *searchBar;
 @property (nonatomic, assign) BOOL searching;
 

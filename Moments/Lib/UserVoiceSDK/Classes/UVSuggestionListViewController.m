@@ -77,7 +77,7 @@
     if (FORMSHEET) {
         [_tableView reloadData];
     } else {
-        [_searchController.searchResultsTableView reloadData];
+//        [_searchController.searchResultsTableView reloadData];
     }
 }
 
@@ -260,7 +260,7 @@
         _searching = YES;
         [_tableView reloadData];
     } else {
-        [_searchController setActive:YES animated:YES];
+//        [_searchController setActive:YES animated:YES];
     }
     return YES;
 }
@@ -292,9 +292,9 @@
     _searchBar.placeholder = NSLocalizedStringFromTableInBundle(@"Search forum", @"UserVoice", [UserVoice bundle], nil);
     _searchBar.delegate = self;
     if (!FORMSHEET) {
-        _searchController = [[UISearchDisplayController alloc] initWithSearchBar:_searchBar contentsController:self];
-        _searchController.searchResultsDataSource = self;
-        _searchController.searchResultsDelegate = self;
+//        _searchController = [[UISearchDisplayController alloc] initWithSearchBar:_searchBar contentsController:self];
+//        _searchController.searchResultsDataSource = self;
+//        _searchController.searchResultsDelegate = self;
     }
     _tableView.tableHeaderView = _searchBar;
 

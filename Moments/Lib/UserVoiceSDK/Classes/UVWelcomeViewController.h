@@ -16,7 +16,7 @@
 
 @interface UVWelcomeViewController : UVBaseViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UVInstantAnswersDelegate> 
 
-@property (nonatomic, retain) UISearchDisplayController *searchController;
+//@property (nonatomic, retain) UISearchDisplayController *searchController;
 @property (nonatomic, retain) UVInstantAnswerManager *instantAnswerManager;
 @property (nonatomic, retain) UISearchBar *searchBar;
 @property (nonatomic, assign) BOOL searching;
