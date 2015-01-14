@@ -16,6 +16,7 @@
 #import "MOS3APIUtilities.h"
 #import "UIImage+Avatar.h"
 #import <AudioToolbox/AudioServices.h>
+#import "TSMessage.h"
 
 @interface MORegisterViewController ()
 
@@ -444,29 +445,10 @@
 			if (errors.count) {
                 NSLog(@"%@", values[@"errors"]);
                 
-				AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-				UILabel *errorLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, background1.frame.size.width * .8, 30)];
-				errorLabel.textColor = [UIColor redColor];
-				errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:14];
-				errorLabel.textAlignment = NSTextAlignmentCenter;
-				errorLabel.alpha = 0;
-				errorLabel.center = CGPointMake(background1.bounds.size.width / 2.0, containerView1.frame.origin.y / 2.0);
-				NSString *message = values[@"errors"][0];
-				errorLabel.text = message;
-				[containerView1.superview addSubview:errorLabel];
-                [errorLabel sizeToFit];
-				[UIView animateWithDuration:0.2 animations:^{
-//					errorLabel.textColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:1];
-                    errorLabel.alpha = 1;
-				} completion:^(BOOL finished) {
-					[UIView animateWithDuration:0.2 delay:1.5 options:0 animations:^{
-//						errorLabel.textColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:0];
-                        errorLabel.alpha = 0;
-					} completion:^(BOOL finished) {
-						[errorLabel removeFromSuperview];
-					}];
-				}];
-			}else{
+                [TSMessage showNotificationWithTitle:[errors componentsJoinedByString:@"\n"]
+                                            subtitle:nil
+                                                type:TSMessageNotificationTypeError];
+			} else {
 				backButtonImage.image = [UIImage backButtonClosed];
 				backButtonImage.animationImages = [UIImage transitionCancelButtonImages:NO];
 				backButtonImage.animationDuration = 0.25;
@@ -513,49 +495,20 @@
 	
 	if (passwordField2.text.length < 6){
 		AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-		UILabel *errorLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, background2.frame.size.width * .8, 30)];
-		errorLabel.textColor = [UIColor redColor];
-		errorLabel.alpha = 0;
-		errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
-		errorLabel.textAlignment = NSTextAlignmentCenter;
-		[errorLabel sizeToFit];
-		errorLabel.center = CGPointMake(background2.bounds.size.width / 2.0, containerView2.frame.origin.y / 2.0);
-		NSString *message = @"Password must be at least 6 characters.";
-		errorLabel.text = message;
-		[background2 addSubview:errorLabel];
-		[UIView animateWithDuration:0.2 animations:^{
-			errorLabel.alpha = 1;
-		} completion:^(BOOL finished) {
-			[UIView animateWithDuration:0.2 delay:1.5 options:0 animations:^{
-				errorLabel.alpha = 0;
-			} completion:^(BOOL finished) {
-				[errorLabel removeFromSuperview];
-			}];
-		}];
-		return;
+        [TSMessage showNotificationWithTitle:@"Password Too Short"
+                                    subtitle:@"Your password must be at least 6 characters long"
+                                        type:TSMessageNotificationTypeError];
+        
+        return;
 	} else if (![confirmPasswordField2.text isEqualToString:passwordField2.text]){
 		AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-		UILabel *errorLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, background2.frame.size.width * .8, 30)];
-		errorLabel.textColor = [UIColor redColor];
-		errorLabel.alpha = 0;
-		errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
-		errorLabel.textAlignment = NSTextAlignmentCenter;
-		[errorLabel sizeToFit];
-		errorLabel.center = CGPointMake(background2.bounds.size.width / 2.0, containerView2.frame.origin.y / 2.0);
-		NSString *message = @"Confirm password must be the same as password.";
-		errorLabel.text = message;
-		[background2 addSubview:errorLabel];
-		[UIView animateWithDuration:0.2 animations:^{
-			errorLabel.alpha = 1;
-		} completion:^(BOOL finished) {
-			[UIView animateWithDuration:0.2 delay:1.5 options:0 animations:^{
-				errorLabel.alpha = 0;
-			} completion:^(BOOL finished) {
-				[errorLabel removeFromSuperview];
-			}];
-		}];
-		return;
+        [TSMessage showNotificationWithTitle:@"Passwords Do Not Match"
+                                    subtitle:@"Please type the same password in both fields"
+                                        type:TSMessageNotificationTypeError];
+        
+        return;
 	}
+    
 	_leftmostLayoutConstraint.constant = 2 * -self.view.bounds.size.width;
 	[UIView animateWithDuration:0.75 delay:0 usingSpringWithDamping:10 initialSpringVelocity:5 options:0 animations:^{
 		[self.view layoutIfNeeded];
@@ -595,30 +548,6 @@
 
 - (void)welcomeButton3Pressed{
 	[self resignAllResponders];
-	
-	if (imageButton3.imageView.image == [UIImage plusButton] || imageButton3.imageView.image == [UIImage plusButtonHighlighted]){
-		AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-		UILabel *errorLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, background3.frame.size.width * .8, 30)];
-		errorLabel.textColor = [UIColor redColor];
-		errorLabel.alpha = 0;
-		errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
-		errorLabel.textAlignment = NSTextAlignmentCenter;
-		[errorLabel sizeToFit];
-		errorLabel.center = CGPointMake(background3.bounds.size.width / 2.0, containerView3.frame.origin.y / 2.0);
-		NSString *message = @"Please select a picture.";
-		errorLabel.text = message;
-		[background3 addSubview:errorLabel];
-		[UIView animateWithDuration:0.2 animations:^{
-			errorLabel.alpha = 1;
-		} completion:^(BOOL finished) {
-			[UIView animateWithDuration:0.2 delay:1.5 options:0 animations:^{
-				errorLabel.alpha = 0;
-			} completion:^(BOOL finished) {
-				[errorLabel removeFromSuperview];
-			}];
-		}];
-		return;
-	}
     
     SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
     v.scene = [[EDSpinningBoxScene alloc] init];
@@ -673,34 +602,10 @@
                     }
                 }];
             } else {
-#warning TODO: Show error message
-                NSLog(@"Error");
-                [UIView animateWithDuration:0.2 animations:^{
-                    vContainer.alpha = 0;
-                } completion:^(BOOL finished) {
-                    [vContainer removeFromSuperview];
-                }];
 				AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-				UILabel *errorLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, background3.frame.size.width * .8, 30)];
-				errorLabel.textColor = [UIColor redColor];
-				errorLabel.alpha = 0;
-				errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:11];
-				errorLabel.textAlignment = NSTextAlignmentCenter;
-				errorLabel.center = CGPointMake(background3.bounds.size.width / 2.0, containerView3.frame.origin.y / 2.0);
-				NSString *message = @"Something went wrong. Please try again.";
-				errorLabel.text = message;
-				[background3 addSubview:errorLabel];
-                [errorLabel sizeToFit];
-				[UIView animateWithDuration:0.2 animations:^{
-					errorLabel.alpha = 1;
-				} completion:^(BOOL finished) {
-					[UIView animateWithDuration:0.2 delay:1.5 options:0 animations:^{
-						errorLabel.alpha = 0;
-					} completion:^(BOOL finished) {
-						[errorLabel removeFromSuperview];
-					}];
-				}];
-				return;
+                [TSMessage showNotificationWithTitle:@"Registration Failed"
+                                            subtitle:nil
+                                                type:TSMessageNotificationTypeError];
             }
         });
     }];
@@ -749,7 +654,6 @@
 	}];
 	
     // temporary design for what would look like a UIAlertController.
-    // damon needs to implement the backend on this. :)
     UIAlertController *sheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
     UIAlertAction *cameraButton = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {

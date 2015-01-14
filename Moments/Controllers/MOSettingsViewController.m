@@ -500,7 +500,9 @@ static NSString *CellIdentifier = @"CellID";
     MOUser *user = [MomentsAPIUtilities sharedInstance].user;
     [user updateUsername:self.usernameField.text email:self.emailField.text password:self.passwordField.text completion:^(BOOL success) {
         if (!success) {
-#warning TODO: Show error message
+            [TSMessage showNotificationWithTitle:@"Profile Update Failed"
+                                        subtitle:nil
+                                            type:TSMessageNotificationTypeError];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:0.2 animations:^{
@@ -515,7 +517,6 @@ static NSString *CellIdentifier = @"CellID";
 #pragma mark - UITextFieldDelegate
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
-	//Save changes
 }
 
 - (void)dealloc{

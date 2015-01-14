@@ -14,6 +14,7 @@
 #import "MOUser.h"
 #import <SceneKit/SceneKit.h>
 #import "EDSpinningBoxScene.h"
+#import "TSMessage.h"
 
 @interface MOSignInViewController ()
 
@@ -209,26 +210,9 @@
 					}
 				} else {
 					AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-					UILabel *errorLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, containerView.superview.frame.size.width * .8, 30)];
-					errorLabel.textColor = [UIColor redColor];
-					errorLabel.alpha = 0;
-					errorLabel.font = [UIFont fontWithName:@"Avenir-Book" size:14];
-					errorLabel.textAlignment = NSTextAlignmentCenter;
-					errorLabel.center = CGPointMake(containerView.superview.bounds.size.width / 2.0, containerView.frame.origin.y / 2.0);
-					NSString *message = @"Sign in failed.";
-					errorLabel.text = message;
-					[containerView.superview addSubview:errorLabel];
-                    [errorLabel sizeToFit];
-					[UIView animateWithDuration:0.2 animations:^{
-						errorLabel.alpha = 1;
-					} completion:^(BOOL finished) {
-						[UIView animateWithDuration:0.2 delay:1.5 options:0 animations:^{
-							errorLabel.alpha = 0;
-						} completion:^(BOOL finished) {
-							[errorLabel removeFromSuperview];
-						}];
-					}];
-					return;
+                    [TSMessage showNotificationWithTitle:@"Signin Failed"
+                                                subtitle:@"Please check your username and password."
+                                                    type:TSMessageNotificationTypeError];
 				}
 			}];
 		});

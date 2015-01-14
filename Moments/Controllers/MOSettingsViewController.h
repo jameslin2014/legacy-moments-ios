@@ -20,6 +20,7 @@
 
 #import "SVProgressHUD.h"
 #import "UserVoice.h"
+#import "TSMessage.h"
 
 @interface MOSettingsViewController : UIViewController
 @end
