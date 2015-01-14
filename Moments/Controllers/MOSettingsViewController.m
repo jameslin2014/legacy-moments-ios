@@ -24,24 +24,6 @@ static NSString *CellIdentifier = @"CellID";
 
 @implementation MOSettingsViewController
 
-/*
- 
- // do something with this please :D
- 
- UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Are you sure?" message:@"Do you want to save these changes?" preferredStyle:UIAlertControllerStyleAlert];
- [controller addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
- <#code#>
- }]];
- 
- [controller addAction:[UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
- <#code#>
- }]];
- 
- [self presentViewController:controller animated:YES completion:nil];
- 
- */
-
-
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 	[self.tableView reloadData];
@@ -128,10 +110,18 @@ static NSString *CellIdentifier = @"CellID";
     
 }
 
-- (void)dismissOptionsAndAbout{
-    [self save];
+- (void)dismissOptionsAndAbout {
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Are you sure?" message:@"Do you want to save these changes?" preferredStyle:UIAlertControllerStyleAlert];
+    [controller addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self save];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
     
-	[self dismissViewControllerAnimated:YES completion:nil];
+    [controller addAction:[UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 - (void)controlStateChanged{
