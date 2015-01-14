@@ -69,6 +69,7 @@
 		A53871021A6600E000D8D300 /* TSBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = A53870EB1A6600E000D8D300 /* TSBlurView.m */; };
 		A53871031A6600E000D8D300 /* TSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A53870ED1A6600E000D8D300 /* TSMessage.m */; };
 		A53871041A6600E000D8D300 /* TSMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A53870EF1A6600E000D8D300 /* TSMessageView.m */; };
+		A53871071A66019700D8D300 /* HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A53871061A66019700D8D300 /* HexColor.m */; };
 		A55775741A64E13200289984 /* HRFormatJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775551A64E13200289984 /* HRFormatJSON.m */; };
 		A55775751A64E13200289984 /* HRGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775581A64E13200289984 /* HRGlobal.m */; };
 		A55775761A64E13200289984 /* HROperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A557755A1A64E13200289984 /* HROperationQueue.m */; };
@@ -290,6 +291,8 @@
 		A53870ED1A6600E000D8D300 /* TSMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMessage.m; sourceTree = "<group>"; };
 		A53870EE1A6600E000D8D300 /* TSMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMessageView.h; sourceTree = "<group>"; };
 		A53870EF1A6600E000D8D300 /* TSMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMessageView.m; sourceTree = "<group>"; };
+		A53871051A66019700D8D300 /* HexColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexColor.h; sourceTree = "<group>"; };
+		A53871061A66019700D8D300 /* HexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexColor.m; sourceTree = "<group>"; };
 		A55775541A64E13200289984 /* HRFormatJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRFormatJSON.h; sourceTree = "<group>"; };
 		A55775551A64E13200289984 /* HRFormatJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRFormatJSON.m; sourceTree = "<group>"; };
 		A55775561A64E13200289984 /* HRFormatterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRFormatterProtocol.h; sourceTree = "<group>"; };
@@ -693,6 +696,8 @@
 		A53870D61A6600E000D8D300 /* TSMessages */ = {
 			isa = PBXGroup;
 			children = (
+				A53871051A66019700D8D300 /* HexColor.h */,
+				A53871061A66019700D8D300 /* HexColor.m */,
 				A53870D71A6600E000D8D300 /* Assets */,
 				A53870EA1A6600E000D8D300 /* TSBlurView.h */,
 				A53870EB1A6600E000D8D300 /* TSBlurView.m */,
@@ -1364,6 +1369,7 @@
 				A5E01CD41A2B37F1003ED753 /* UIAlertView+AFNetworking.m in Sources */,
 				A5E01C9A1A2B37D7003ED753 /* JKSegmentedControl.m in Sources */,
 				204BA45D1A4134BF00C1C05E /* EDSpinningBoxScene.m in Sources */,
+				A53871071A66019700D8D300 /* HexColor.m in Sources */,
 				A5E01CC71A2B37F1003ED753 /* AFAmazonS3Manager.m in Sources */,
 				20E5957A1A5B83FA00202C21 /* EDPagingViewController.m in Sources */,
 				20EB172D1A4747A700DA1B16 /* MOSettingsViewController.m in Sources */,

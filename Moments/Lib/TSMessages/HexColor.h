@@ -17,8 +17,11 @@
     #define HXColor UIColor
 #else
     #import <Foundation/Foundation.h>
-    #define HXColor NSColor
+    #define HXColor UIColor
 #endif
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface HXColor (HexColorAddition)
 
