@@ -24,6 +24,24 @@ static NSString *CellIdentifier = @"CellID";
 
 @implementation MOSettingsViewController
 
+/*
+ 
+ // do something with this please :D
+ 
+ UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Are you sure?" message:@"Do you want to save these changes?" preferredStyle:UIAlertControllerStyleAlert];
+ [controller addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+ <#code#>
+ }]];
+ 
+ [controller addAction:[UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+ <#code#>
+ }]];
+ 
+ [self presentViewController:controller animated:YES completion:nil];
+ 
+ */
+
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 	[self.tableView reloadData];
