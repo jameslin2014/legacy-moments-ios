@@ -524,13 +524,13 @@ static NSString *CellIdentifier = @"CellID";
         if (!success) {
             NSLog(@"FAILED");
             dispatch_async(dispatch_get_main_queue(), ^{
-                [TSMessage showNotificationInViewController:self title:@"Profile Update Failed"
+                [TSMessage showNotificationInViewController:[[[[UIApplication sharedApplication] delegate] window] rootViewController] title:@"Profile Update Failed"
                                         subtitle:nil
                                             type:TSMessageNotificationTypeError];
             });
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [TSMessage showNotificationInViewController:self title:@"Profile Saved"
+                [TSMessage showNotificationInViewController:[[[[UIApplication sharedApplication] delegate] window] rootViewController] title:@"Profile Saved"
                                         subtitle:nil
                                             type:TSMessageNotificationTypeSuccess];
             });
