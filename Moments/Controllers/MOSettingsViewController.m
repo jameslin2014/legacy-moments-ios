@@ -203,7 +203,8 @@ static NSString *CellIdentifier = @"CellID";
 			
 			[cell addConstraints:@[
 								   [NSLayoutConstraint constraintWithItem:self.emailField attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:cell attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
-								   [NSLayoutConstraint constraintWithItem:self.emailField attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeLeftMargin multiplier:1.0 constant:0]
+								   [NSLayoutConstraint constraintWithItem:self.emailField attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeLeftMargin multiplier:1.0 constant:0],
+                                   [NSLayoutConstraint constraintWithItem:self.emailField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:cell attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:0]
 								   ]];
 			
 		} else if (indexPath.section == 1 && indexPath.row == 1){
@@ -229,7 +230,8 @@ static NSString *CellIdentifier = @"CellID";
 			
 			[cell addConstraints:@[
 								   [NSLayoutConstraint constraintWithItem:self.passwordField attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
-								   [NSLayoutConstraint constraintWithItem:self.passwordField attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeLeftMargin multiplier:1.0 constant:0]
+								   [NSLayoutConstraint constraintWithItem:self.passwordField attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeLeftMargin multiplier:1.0 constant:0],
+                                   [NSLayoutConstraint constraintWithItem:self.passwordField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:cell attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:0]
 								   ]];
 			
 		} else if (indexPath.section == 1 && indexPath.row == 2){
@@ -255,7 +257,8 @@ static NSString *CellIdentifier = @"CellID";
 			
 			[cell addConstraints:@[
 								   [NSLayoutConstraint constraintWithItem:self.usernameField attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
-								   [NSLayoutConstraint constraintWithItem:self.usernameField attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeLeftMargin multiplier:1.0 constant:0]
+								   [NSLayoutConstraint constraintWithItem:self.usernameField attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeLeftMargin multiplier:1.0 constant:0],
+                                   [NSLayoutConstraint constraintWithItem:self.usernameField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:cell attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:0]
 								   ]];
 		} else if (indexPath.section == 2){
 			cell.textLabel.text = @"Sign Out";
