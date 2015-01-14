@@ -999,10 +999,6 @@
 		A58008671A6469BB00676FA5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				20E5956E1A5B83FA00202C21 /* EDPagingViewController.h */,
-				20E595671A5B83FA00202C21 /* EDPagingViewController.m */,
-				20E595891A5B849800202C21 /* MODecisionViewController.h */,
-				20E5958A1A5B849800202C21 /* MODecisionViewController.m */,
 				20DC7D651A62398A00AE644C /* FollowingStatusView.h */,
 				20DC7D661A62398A00AE644C /* FollowingStatusView.m */,
 			);
@@ -1089,6 +1085,10 @@
 		A5C5EB851A2A835E002F1591 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				20E5956E1A5B83FA00202C21 /* EDPagingViewController.h */,
+				20E595671A5B83FA00202C21 /* EDPagingViewController.m */,
+				20E595891A5B849800202C21 /* MODecisionViewController.h */,
+				20E5958A1A5B849800202C21 /* MODecisionViewController.m */,
 				A53871151A66182800D8D300 /* Login/Registration */,
 				A5C5EB7F1A2A8358002F1591 /* MOPageViewController.h */,
 				A5C5EB801A2A8358002F1591 /* MOPageViewController.m */,

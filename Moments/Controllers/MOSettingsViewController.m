@@ -111,6 +111,23 @@ static NSString *CellIdentifier = @"CellID";
 }
 
 - (void)dismissOptionsAndAbout {
+    MOUser *user = [MomentsAPIUtilities sharedInstance].user;
+    
+    if ([self.emailField.text isEqual:user.email]
+        &&
+        (
+         [self.passwordField.text isEqual:user.password]
+         ||
+         [self.passwordField.text isEqual:@""]
+        )
+        &&
+        [self.usernameField.text isEqual:user.name]
+        ) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
+        return;
+    }
+    
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Are you sure?" message:@"Do you want to save these changes?" preferredStyle:UIAlertControllerStyleAlert];
     [controller addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self save];
@@ -312,8 +329,8 @@ static NSString *CellIdentifier = @"CellID";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return indexPath.row == 0 && indexPath.section == 0 ? 40 : 55;
-    return 55;
+    return indexPath.row == 0 && indexPath.section == 0 ? 40 : 55;
+//    return 55;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -472,8 +489,6 @@ static NSString *CellIdentifier = @"CellID";
 }
 
 - (void)changeProfilePicture{
-	NSLog(@"pressed");
-    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
 
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
@@ -505,35 +520,38 @@ static NSString *CellIdentifier = @"CellID";
 }
 
 - (void)save {
-    SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
-    v.scene = [[EDSpinningBoxScene alloc] init];
-    v.alpha = 0.0;
-    v.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
-    [self.view addSubview:v];
-    [UIView animateWithDuration:0.2 delay:0.1 options:0 animations:^{
-        v.alpha = 1.0;
-    } completion:nil];
-    
     MOUser *user = [MomentsAPIUtilities sharedInstance].user;
     [user updateUsername:self.usernameField.text email:self.emailField.text password:self.passwordField.text completion:^(BOOL success) {
         if (!success) {
             [TSMessage showNotificationWithTitle:@"Profile Update Failed"
                                         subtitle:nil
                                             type:TSMessageNotificationTypeError];
+        } else {
+            [TSMessage showNotificationWithTitle:@"Profile Saved"
+                                        subtitle:nil
+                                            type:TSMessageNotificationTypeSuccess];
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [UIView animateWithDuration:0.2 animations:^{
-                v.alpha = 0;
-            } completion:^(BOOL finished) {
-                [v removeFromSuperview];
-            }];
-        });
     }];
 }
 
 #pragma mark - UITextFieldDelegate
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
+    if (textField == self.emailField || textField == self.usernameField) {
+        [[MomentsAPIUtilities sharedInstance] isValidUsername:self.usernameField.text andEmail:self.emailField.text completion:^(NSDictionary *dictionary) {
+            NSArray *errors = dictionary[@"errors"];
+            NSLog(@"%@", errors);
+            if (errors.count) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [TSMessage showNotificationInViewController:self title:@"Warning" subtitle:[errors componentsJoinedByString:@"\n"] type:TSMessageNotificationTypeWarning];
+                });
+            }
+        }];
+    } else if (textField == self.passwordField) {
+        if (textField.text.length > 0 && textField.text.length < 6) {
+            [TSMessage showNotificationInViewController:self title:@"Password Too Short"                                        subtitle:@"Your password must be at least 6 characters long" type:TSMessageNotificationTypeWarning];
+        }
+    }
 }
 
 - (void)dealloc{
