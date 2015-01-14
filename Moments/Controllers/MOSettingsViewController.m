@@ -131,7 +131,6 @@ static NSString *CellIdentifier = @"CellID";
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Are you sure?" message:@"Do you want to save these changes?" preferredStyle:UIAlertControllerStyleAlert];
     [controller addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self save];
-        [self dismissViewControllerAnimated:YES completion:nil];
     }]];
     
     [controller addAction:[UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
@@ -523,15 +522,21 @@ static NSString *CellIdentifier = @"CellID";
     MOUser *user = [MomentsAPIUtilities sharedInstance].user;
     [user updateUsername:self.usernameField.text email:self.emailField.text password:self.passwordField.text completion:^(BOOL success) {
         if (!success) {
-            [TSMessage showNotificationWithTitle:@"Profile Update Failed"
+            NSLog(@"FAILED");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [TSMessage showNotificationInViewController:self title:@"Profile Update Failed"
                                         subtitle:nil
                                             type:TSMessageNotificationTypeError];
+            });
         } else {
-            [TSMessage showNotificationWithTitle:@"Profile Saved"
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [TSMessage showNotificationInViewController:self title:@"Profile Saved"
                                         subtitle:nil
                                             type:TSMessageNotificationTypeSuccess];
+            });
         }
     }];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UITextFieldDelegate
