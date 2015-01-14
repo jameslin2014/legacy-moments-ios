@@ -14,10 +14,40 @@
 	NSTimer	*progressTimer;
 }
 
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if ([[MPMusicPlayerController systemMusicPlayer] playbackState] == MPMusicPlaybackStatePlaying) {
+        NSLog(@"it's playing");
+        
+        [[MPMusicPlayerController systemMusicPlayer] pause];
+        
+        self.recordButton.enabled = YES;
+        self.cameraButton.enabled = YES;
+        self.flashButton.enabled = YES;
+        
+        
+        //        self.recordButton.enabled = NO;
+        //        self.cameraButton.enabled = NO;
+        //        self.flashButton.enabled = NO;
+        
+    } else {
+        NSLog(@"it's not playing");
+        
+        
+        //        self.flashButton.enabled = YES;
+        
+    }
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 	shouldCancel = NO;
 	
+
+    
 	self.progressView.hidden = YES;
     self.progressView.tintColor = [UIColor whiteColor];
     self.progressView.frame = CGRectMake(0, 557, self.view.frame.size.width, 10);
@@ -140,21 +170,21 @@
 }
 
 - (IBAction)flashButtonAction:(UIButton *)sender {
-    AVCaptureDevice *flash = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    self.flash = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     
-    if ([flash isTorchAvailable] && [flash isTorchModeSupported:AVCaptureTorchModeOn]) {
-        BOOL success = [flash lockForConfiguration:nil];
+    if ([self.flash isTorchAvailable] && [self.flash isTorchModeSupported:AVCaptureTorchModeOn]) {
+        BOOL success = [self.flash lockForConfiguration:nil];
         
         if (success) {
-            if ([flash isTorchActive]) {
+            if ([self.flash isTorchActive]) {
 				self.cameraButton.enabled = true;
-                [flash setTorchMode:AVCaptureTorchModeOff];
+                [self.flash setTorchMode:AVCaptureTorchModeOff];
 				sender.tintColor = [UIColor whiteColor];
 				[sender setTitle:@"Off" forState:UIControlStateNormal];
 				self.cameraButton.enabled = true;
             } else {
 				self.cameraButton.enabled = false;
-                [flash setTorchMode:AVCaptureTorchModeOn];
+                [self.flash setTorchMode:AVCaptureTorchModeOn];
 				sender.tintColor = [UIColor yellowColor];
 				[sender setTitle:@"On" forState:UIControlStateNormal];
 				self.cameraButton.enabled = NO;
@@ -163,7 +193,7 @@
 					self.cameraButton.enabled = false;
 				}
             }
-            [flash unlockForConfiguration];
+            [self.flash unlockForConfiguration];
         }
     }
 }

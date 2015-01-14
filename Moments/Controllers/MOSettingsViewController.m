@@ -181,7 +181,7 @@ static NSString *CellIdentifier = @"CellID";
 		} else if (indexPath.section == 1 && indexPath.row == 0){
             
             
-			cell.textLabel.text = @"Email Address";
+			cell.textLabel.text = @" ";//@"Email Address";
 			cell.imageView.image = [[UIImage imageNamed:@"mail"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			self.emailField = [[UITextField alloc] init];
 			self.emailField.translatesAutoresizingMaskIntoConstraints = NO;
@@ -233,7 +233,7 @@ static NSString *CellIdentifier = @"CellID";
 								   ]];
 			
 		} else if (indexPath.section == 1 && indexPath.row == 2){
-			cell.textLabel.text = @"Username";
+			cell.textLabel.text = @" "; //@"Username";
 			cell.imageView.image = [[UIImage imageNamed:@"user"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			self.usernameField = [[UITextField alloc] init];
 			self.usernameField.translatesAutoresizingMaskIntoConstraints = NO;
