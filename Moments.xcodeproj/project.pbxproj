@@ -247,22 +247,22 @@
 		20D6E7DB1A44D5BA00B6DF3F /* EDSegments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDSegments.m; sourceTree = "<group>"; };
 		20DC7D651A62398A00AE644C /* FollowingStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowingStatusView.h; sourceTree = "<group>"; };
 		20DC7D661A62398A00AE644C /* FollowingStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingStatusView.m; sourceTree = "<group>"; };
-		20E595671A5B83FA00202C21 /* EDPagingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDPagingViewController.m; sourceTree = "<group>"; };
-		20E595681A5B83FA00202C21 /* MOSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOSignInViewController.m; sourceTree = "<group>"; };
-		20E595691A5B83FA00202C21 /* MORegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MORegisterViewController.h; sourceTree = "<group>"; };
-		20E5956A1A5B83FA00202C21 /* MORegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MORegisterViewController.m; sourceTree = "<group>"; };
+		20E595671A5B83FA00202C21 /* EDPagingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EDPagingViewController.m; path = "../Supporting Files/Directive/EDPagingViewController.m"; sourceTree = "<group>"; };
+		20E595681A5B83FA00202C21 /* MOSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MOSignInViewController.m; path = "../Supporting Files/Directive/MOSignInViewController.m"; sourceTree = "<group>"; };
+		20E595691A5B83FA00202C21 /* MORegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MORegisterViewController.h; path = "../Supporting Files/Directive/MORegisterViewController.h"; sourceTree = "<group>"; };
+		20E5956A1A5B83FA00202C21 /* MORegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MORegisterViewController.m; path = "../Supporting Files/Directive/MORegisterViewController.m"; sourceTree = "<group>"; };
 		20E5956B1A5B83FA00202C21 /* beach.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = beach.mp4; sourceTree = "<group>"; };
-		20E5956C1A5B83FA00202C21 /* MOMusicPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOMusicPlayer.h; sourceTree = "<group>"; };
-		20E5956D1A5B83FA00202C21 /* MOMusicPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOMusicPlayer.m; sourceTree = "<group>"; };
-		20E5956E1A5B83FA00202C21 /* EDPagingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDPagingViewController.h; sourceTree = "<group>"; };
+		20E5956C1A5B83FA00202C21 /* MOMusicPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MOMusicPlayer.h; path = "../Supporting Files/Directive/MOMusicPlayer.h"; sourceTree = "<group>"; };
+		20E5956D1A5B83FA00202C21 /* MOMusicPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MOMusicPlayer.m; path = "../Supporting Files/Directive/MOMusicPlayer.m"; sourceTree = "<group>"; };
+		20E5956E1A5B83FA00202C21 /* EDPagingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EDPagingViewController.h; path = "../Supporting Files/Directive/EDPagingViewController.h"; sourceTree = "<group>"; };
 		20E5956F1A5B83FA00202C21 /* Funk 2 - 100 - P1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Funk 2 - 100 - P1.wav"; sourceTree = "<group>"; };
 		20E595701A5B83FA00202C21 /* Funk 2 - 100 - P2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Funk 2 - 100 - P2.wav"; sourceTree = "<group>"; };
 		20E595711A5B83FA00202C21 /* Funk 2 - 100 - P3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Funk 2 - 100 - P3.wav"; sourceTree = "<group>"; };
 		20E595721A5B83FA00202C21 /* Late.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Late.mov; sourceTree = "<group>"; };
-		20E595731A5B83FA00202C21 /* MOSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOSignInViewController.h; sourceTree = "<group>"; };
+		20E595731A5B83FA00202C21 /* MOSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MOSignInViewController.h; path = "../Supporting Files/Directive/MOSignInViewController.h"; sourceTree = "<group>"; };
 		20E595791A5B83FA00202C21 /* vancouver-city.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "vancouver-city.mp4"; sourceTree = "<group>"; };
-		20E595891A5B849800202C21 /* MODecisionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MODecisionViewController.h; sourceTree = "<group>"; };
-		20E5958A1A5B849800202C21 /* MODecisionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MODecisionViewController.m; sourceTree = "<group>"; };
+		20E595891A5B849800202C21 /* MODecisionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MODecisionViewController.h; path = "../Supporting Files/Directive/MODecisionViewController.h"; sourceTree = "<group>"; };
+		20E5958A1A5B849800202C21 /* MODecisionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MODecisionViewController.m; path = "../Supporting Files/Directive/MODecisionViewController.m"; sourceTree = "<group>"; };
 		20E5958C1A5B8AEC00202C21 /* UIImage+EDExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+EDExtras.h"; sourceTree = "<group>"; };
 		20E5958D1A5B8AEC00202C21 /* UIImage+EDExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+EDExtras.m"; sourceTree = "<group>"; };
 		20EB172B1A4747A700DA1B16 /* MOSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOSettingsViewController.h; sourceTree = "<group>"; };
@@ -658,24 +658,6 @@
 			path = EDSpinningBoxScene;
 			sourceTree = "<group>";
 		};
-		205FA4851A54E0770061C174 /* Directive */ = {
-			isa = PBXGroup;
-			children = (
-				20E5956C1A5B83FA00202C21 /* MOMusicPlayer.h */,
-				20E5956D1A5B83FA00202C21 /* MOMusicPlayer.m */,
-				20E5956E1A5B83FA00202C21 /* EDPagingViewController.h */,
-				20E595671A5B83FA00202C21 /* EDPagingViewController.m */,
-				20E595891A5B849800202C21 /* MODecisionViewController.h */,
-				20E5958A1A5B849800202C21 /* MODecisionViewController.m */,
-				20E595731A5B83FA00202C21 /* MOSignInViewController.h */,
-				20E595681A5B83FA00202C21 /* MOSignInViewController.m */,
-				20E595691A5B83FA00202C21 /* MORegisterViewController.h */,
-				20E5956A1A5B83FA00202C21 /* MORegisterViewController.m */,
-				20E595871A5B842300202C21 /* Media */,
-			);
-			path = Directive;
-			sourceTree = "<group>";
-		};
 		205FA48F1A55F2CB0061C174 /* UIImage+EDExtras */ = {
 			isa = PBXGroup;
 			children = (
@@ -695,7 +677,8 @@
 				20E595701A5B83FA00202C21 /* Funk 2 - 100 - P2.wav */,
 				20E595711A5B83FA00202C21 /* Funk 2 - 100 - P3.wav */,
 			);
-			path = Media;
+			name = Media;
+			path = Directive/Media;
 			sourceTree = "<group>";
 		};
 		A53870D61A6600E000D8D300 /* TSMessages */ = {
@@ -747,6 +730,17 @@
 				A53871121A660F8B00D8D300 /* OnePasswordExtension.m */,
 			);
 			path = 1Password;
+			sourceTree = "<group>";
+		};
+		A53871151A66182800D8D300 /* Login/Registration */ = {
+			isa = PBXGroup;
+			children = (
+				20E595731A5B83FA00202C21 /* MOSignInViewController.h */,
+				20E595681A5B83FA00202C21 /* MOSignInViewController.m */,
+				20E595691A5B83FA00202C21 /* MORegisterViewController.h */,
+				20E5956A1A5B83FA00202C21 /* MORegisterViewController.m */,
+			);
+			name = Login/Registration;
 			sourceTree = "<group>";
 		};
 		A55775521A64E13200289984 /* HTTPRiot */ = {
@@ -1005,6 +999,10 @@
 		A58008671A6469BB00676FA5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				20E5956E1A5B83FA00202C21 /* EDPagingViewController.h */,
+				20E595671A5B83FA00202C21 /* EDPagingViewController.m */,
+				20E595891A5B849800202C21 /* MODecisionViewController.h */,
+				20E5958A1A5B849800202C21 /* MODecisionViewController.m */,
 				20DC7D651A62398A00AE644C /* FollowingStatusView.h */,
 				20DC7D661A62398A00AE644C /* FollowingStatusView.m */,
 			);
@@ -1067,8 +1065,8 @@
 		A5B31C341A287F25009734EE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				20E595871A5B842300202C21 /* Media */,
 				A58008681A646E8D00676FA5 /* Resources */,
-				205FA4851A54E0770061C174 /* Directive */,
 				A5B31C3E1A287F26009734EE /* Main.storyboard */,
 				A5B31C431A287F26009734EE /* LaunchScreen.xib */,
 				A5B31C351A287F25009734EE /* Info.plist */,
@@ -1091,6 +1089,7 @@
 		A5C5EB851A2A835E002F1591 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A53871151A66182800D8D300 /* Login/Registration */,
 				A5C5EB7F1A2A8358002F1591 /* MOPageViewController.h */,
 				A5C5EB801A2A8358002F1591 /* MOPageViewController.m */,
 				20B821221A4BA057009E293B /* MOTableViewController.h */,
@@ -1205,11 +1204,13 @@
 		E410DF381A59FFC600D5C040 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				02949ED71A2984F8001EDD2D /* API */,
+				20E5956C1A5B83FA00202C21 /* MOMusicPlayer.h */,
+				20E5956D1A5B83FA00202C21 /* MOMusicPlayer.m */,
 				E4E1D3CC1A61B22D00752A23 /* MOAvatarCache.h */,
 				E4E1D3CD1A61B22D00752A23 /* MOAvatarCache.m */,
 				E410DF391A59FFE100D5C040 /* MOUser.h */,
 				E410DF3A1A59FFE100D5C040 /* MOUser.m */,
+				02949ED71A2984F8001EDD2D /* API */,
 			);
 			path = Model;
 			sourceTree = "<group>";
