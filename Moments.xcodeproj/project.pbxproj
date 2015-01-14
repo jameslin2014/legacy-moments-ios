@@ -70,6 +70,8 @@
 		A53871031A6600E000D8D300 /* TSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A53870ED1A6600E000D8D300 /* TSMessage.m */; };
 		A53871041A6600E000D8D300 /* TSMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A53870EF1A6600E000D8D300 /* TSMessageView.m */; };
 		A53871071A66019700D8D300 /* HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A53871061A66019700D8D300 /* HexColor.m */; };
+		A53871131A660F8B00D8D300 /* 1Password.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A53871101A660F8B00D8D300 /* 1Password.xcassets */; };
+		A53871141A660F8B00D8D300 /* OnePasswordExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = A53871121A660F8B00D8D300 /* OnePasswordExtension.m */; };
 		A55775741A64E13200289984 /* HRFormatJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775551A64E13200289984 /* HRFormatJSON.m */; };
 		A55775751A64E13200289984 /* HRGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775581A64E13200289984 /* HRGlobal.m */; };
 		A55775761A64E13200289984 /* HROperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A557755A1A64E13200289984 /* HROperationQueue.m */; };
@@ -293,6 +295,9 @@
 		A53870EF1A6600E000D8D300 /* TSMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMessageView.m; sourceTree = "<group>"; };
 		A53871051A66019700D8D300 /* HexColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexColor.h; sourceTree = "<group>"; };
 		A53871061A66019700D8D300 /* HexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexColor.m; sourceTree = "<group>"; };
+		A53871101A660F8B00D8D300 /* 1Password.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = 1Password.xcassets; sourceTree = "<group>"; };
+		A53871111A660F8B00D8D300 /* OnePasswordExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePasswordExtension.h; sourceTree = "<group>"; };
+		A53871121A660F8B00D8D300 /* OnePasswordExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnePasswordExtension.m; sourceTree = "<group>"; };
 		A55775541A64E13200289984 /* HRFormatJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRFormatJSON.h; sourceTree = "<group>"; };
 		A55775551A64E13200289984 /* HRFormatJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRFormatJSON.m; sourceTree = "<group>"; };
 		A55775561A64E13200289984 /* HRFormatterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRFormatterProtocol.h; sourceTree = "<group>"; };
@@ -734,6 +739,16 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		A538710F1A660F8B00D8D300 /* 1Password */ = {
+			isa = PBXGroup;
+			children = (
+				A53871101A660F8B00D8D300 /* 1Password.xcassets */,
+				A53871111A660F8B00D8D300 /* OnePasswordExtension.h */,
+				A53871121A660F8B00D8D300 /* OnePasswordExtension.m */,
+			);
+			path = 1Password;
+			sourceTree = "<group>";
+		};
 		A55775521A64E13200289984 /* HTTPRiot */ = {
 			isa = PBXGroup;
 			children = (
@@ -928,6 +943,7 @@
 		A58008611A64690B00676FA5 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				A538710F1A660F8B00D8D300 /* 1Password */,
 				A53870D61A6600E000D8D300 /* TSMessages */,
 				A55775521A64E13200289984 /* HTTPRiot */,
 				A55775621A64E13200289984 /* YOAuth */,
@@ -1239,7 +1255,7 @@
 				TargetAttributes = {
 					A5B31C301A287F25009734EE = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = T2G55KAEAM;
+						DevelopmentTeam = 7NE79LP6VD;
 					};
 				};
 			};
@@ -1316,6 +1332,7 @@
 				A53870F41A6600E000D8D300 /* NotificationBackgroundErrorIcon@2x.png in Resources */,
 				A5B31C451A287F26009734EE /* LaunchScreen.xib in Resources */,
 				A53870F91A6600E000D8D300 /* NotificationBackgroundSuccessIcon.png in Resources */,
+				A53871131A660F8B00D8D300 /* 1Password.xcassets in Resources */,
 				A564DA471A478A8A003C99F3 /* privacy.html in Resources */,
 				A53870FA1A6600E000D8D300 /* NotificationBackgroundSuccessIcon@2x.png in Resources */,
 				A53870F81A6600E000D8D300 /* NotificationBackgroundSuccess@2x.png in Resources */,
@@ -1360,6 +1377,7 @@
 				A5E01CD51A2B37F1003ED753 /* UIButton+AFNetworking.m in Sources */,
 				A557757E1A64E13200289984 /* YOAuthToken.m in Sources */,
 				A564DA451A4784A3003C99F3 /* SVWebViewController.m in Sources */,
+				A53871141A660F8B00D8D300 /* OnePasswordExtension.m in Sources */,
 				A55775F91A64E1A700289984 /* UVConfig.m in Sources */,
 				A55775791A64E13200289984 /* Base64Transcoder.c in Sources */,
 				A55776061A64E1A700289984 /* UVKeyboardUtils.m in Sources */,
