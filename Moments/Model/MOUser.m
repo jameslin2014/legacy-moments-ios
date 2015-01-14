@@ -75,6 +75,9 @@
             
             [self saveToKeychain];
             
+            [[[MOAvatarCache alloc] init] putAvatar:self.avatar forUsername:self.name];
+            [[MOS3APIUtilities sharedInstance] putAvatarForUsername:self.name image:self.avatar];
+            
             [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"dataLoaded" object:nil]];
             
             completion(YES);

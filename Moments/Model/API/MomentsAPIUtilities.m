@@ -108,6 +108,8 @@
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (!error) {
             completion([NSJSONSerialization JSONObjectWithData:data options:0 error:&error]);
+        } else {
+            NSLog(@"ERROR: %@", error);
         }
     }];
 }
