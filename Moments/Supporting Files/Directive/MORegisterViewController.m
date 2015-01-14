@@ -270,7 +270,6 @@
 	passwordField2.placeholder = @"password";
 	passwordField2.secureTextEntry = YES;
 	passwordField2.backgroundColor = [UIColor colorWithRed:0.96 green:0.97 blue:0.98 alpha:1];
-	passwordField2.font = [UIFont fontWithName:@"Avenir-Book" size:17];
     passwordField2.autocorrectionType = UITextAutocorrectionTypeNo;
 	[containerView2 addSubview:passwordField2];
 	[containerView2 addConstraints:@[
@@ -290,7 +289,6 @@
 	confirmPasswordField2.placeholder = @"confirm password";
 	confirmPasswordField2.secureTextEntry = YES;
 	confirmPasswordField2.backgroundColor = [UIColor colorWithRed:0.96 green:0.97 blue:0.98 alpha:1];
-	confirmPasswordField2.font = [UIFont fontWithName:@"Avenir-Book" size:17];
     confirmPasswordField2.autocorrectionType = UITextAutocorrectionTypeNo;
 	[containerView2 addSubview:confirmPasswordField2];
 	[containerView2 addConstraints:@[
@@ -459,6 +457,8 @@
 				[UIView animateWithDuration:0.75 delay:0 usingSpringWithDamping:10 initialSpringVelocity:5 options:0 animations:^{
 					[self.view layoutIfNeeded];
 				} completion:^(BOOL finished) {
+				}];
+				dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 					backButtonImage.image = [UIImage backButtonOpen];
 					backButtonImage.animationImages = [UIImage transitionBackButtonImages:YES];
 					backButtonImage.animationDuration = 0.25;
@@ -467,7 +467,7 @@
 					backButton.enabled = YES;
 					[backButton removeTarget:self action:@selector(cancelButtonPressed) forControlEvents:UIControlEventTouchDown];
 					[backButton addTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchDown];
-				}];
+				});
 			}
 		});
 	}];
@@ -701,19 +701,12 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-	if (textField.rightView){
-		[UIView animateWithDuration:0.2 animations:^{
-			textField.rightView.alpha = 0;
-		} completion:^(BOOL finished) {
-			textField.rightView = nil;
-		}];
-	}
-	return YES;
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
+	
+	if (textField.secureTextEntry){
+		textField.font = [UIFont systemFontOfSize:textField.font.pointSize];
+	}
 	
 	if (textField == usernameField1) {
 		[emailField1 becomeFirstResponder];

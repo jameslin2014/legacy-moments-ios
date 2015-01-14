@@ -216,11 +216,18 @@
         profileImageView.image = avatar;
     }];
 
-	FollowingStatusView *followStatus = [[FollowingStatusView alloc]init];
-    followStatus.isFollowing = [[MomentsAPIUtilities sharedInstance].user isFollowing:username];
-	followStatus.center = CGPointMake(cell.bounds.size.width + 30, profileImageView.center.y);
-	followStatus.tag = 78900;
-	[cell addSubview:followStatus];
+	if (self.segmentedControl.selectedSegmentIndex != 0){
+		FollowingStatusView *followStatus = [[FollowingStatusView alloc]init];
+		followStatus.isFollowing = [[MomentsAPIUtilities sharedInstance].user isFollowing:username];
+		followStatus.translatesAutoresizingMaskIntoConstraints = NO;
+		[cell.contentView addSubview:followStatus];
+		[cell.contentView addConstraints:@[
+										   [NSLayoutConstraint constraintWithItem:followStatus attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:15],
+										   [NSLayoutConstraint constraintWithItem:followStatus attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:15],
+										   [NSLayoutConstraint constraintWithItem:followStatus attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:cell.contentView attribute:NSLayoutAttributeRight multiplier:1.0 constant:-15],
+										   [NSLayoutConstraint constraintWithItem:followStatus attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:cell.contentView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]
+										   ]];
+	}
 	return cell;
 }
 
