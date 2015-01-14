@@ -26,7 +26,11 @@ static NSString *CellIdentifier = @"CellID";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+	[self.tableView reloadData];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle{
+	return UIStatusBarStyleLightContent;
 }
 
 - (void)viewDidLoad{
@@ -106,10 +110,6 @@ static NSString *CellIdentifier = @"CellID";
     
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SegmentedControlStateChanged" object:nil];
-}
-
 - (void)dismissOptionsAndAbout{
     [self save];
     
@@ -117,7 +117,6 @@ static NSString *CellIdentifier = @"CellID";
 }
 
 - (void)controlStateChanged{
-	//Change image at the top?
 	[self.tableView reloadData];
 }
 
