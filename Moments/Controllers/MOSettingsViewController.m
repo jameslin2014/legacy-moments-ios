@@ -184,6 +184,7 @@ static NSString *CellIdentifier = @"CellID";
         
 		if (indexPath.section == 0){
 			// Change Image
+//            cell.imageView.translatesAutoresizingMaskIntoConstraints = NO;
             cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width / 2.0;
             cell.imageView.clipsToBounds = YES;
             cell.imageView.image = [MomentsAPIUtilities sharedInstance].user.avatar;
@@ -311,7 +312,8 @@ static NSString *CellIdentifier = @"CellID";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-	return 55;
+//    return indexPath.row == 0 && indexPath.section == 0 ? 40 : 55;
+    return 55;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
