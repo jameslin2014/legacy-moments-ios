@@ -217,7 +217,7 @@
         profileImageView.image = avatar;
     }];
 
-	if (self.segmentedControl.selectedSegmentIndex != 0){
+	if (self.textFieldSelected || self.segmentedControl.selectedSegmentIndex != 0){
 		FollowingStatusView *followStatus = [[FollowingStatusView alloc]init];
 		followStatus.isFollowing = [[MomentsAPIUtilities sharedInstance].user isFollowing:username];
 		followStatus.translatesAutoresizingMaskIntoConstraints = NO;
