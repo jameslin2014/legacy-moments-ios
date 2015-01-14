@@ -183,7 +183,11 @@ static NSString *CellIdentifier = @"CellID";
         MOUser *user = [MomentsAPIUtilities sharedInstance].user;
         
 		if (indexPath.section == 0){
-			//Change Image
+			// Change Image
+            cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width / 2.0;
+            cell.imageView.clipsToBounds = YES;
+            cell.imageView.image = [MomentsAPIUtilities sharedInstance].user.avatar;
+            
 			cell.textLabel.text = @"Change Profile Image";
 			cell.selectionStyle = UITableViewCellSelectionStyleGray;
 		} else if (indexPath.section == 1 && indexPath.row == 0){
