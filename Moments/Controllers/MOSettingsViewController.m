@@ -181,11 +181,11 @@ static NSString *CellIdentifier = @"CellID";
 		} else if (indexPath.section == 1 && indexPath.row == 0){
             
             
-			cell.textLabel.text = @" ";//@"Email Address";
+			cell.textLabel.text = @" "; // @"Email Address";
 			cell.imageView.image = [[UIImage imageNamed:@"mail"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			self.emailField = [[UITextField alloc] init];
 			self.emailField.translatesAutoresizingMaskIntoConstraints = NO;
-			self.emailField.adjustsFontSizeToFitWidth = YES;
+			self.emailField.adjustsFontSizeToFitWidth = NO;
 			self.emailField.textColor = [UIColor whiteColor];
 			self.emailField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"E-mail Address" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor],NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
             self.emailField.text = user.email;
@@ -195,33 +195,33 @@ static NSString *CellIdentifier = @"CellID";
 			self.emailField.backgroundColor = [UIColor clearColor];
 			self.emailField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
 			self.emailField.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support
-			self.emailField.textAlignment = NSTextAlignmentRight;
+			self.emailField.textAlignment = NSTextAlignmentLeft;
 			self.emailField.tag = 0;
 			self.emailField.delegate = self;
 			[self.emailField setEnabled: YES];
 			[cell addSubview:self.emailField];
 			
 			[cell addConstraints:@[
-								   [NSLayoutConstraint constraintWithItem:self.emailField attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
-								   [NSLayoutConstraint constraintWithItem:self.emailField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:cell attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:0]
+								   [NSLayoutConstraint constraintWithItem:self.emailField attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:cell attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
+								   [NSLayoutConstraint constraintWithItem:self.emailField attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeLeftMargin multiplier:1.0 constant:0]
 								   ]];
 			
 		} else if (indexPath.section == 1 && indexPath.row == 1){
-			cell.textLabel.text = @"Password";
+			cell.textLabel.text = @" "; // @"Password";
 			cell.imageView.image = [[UIImage imageNamed:@"lock"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			self.passwordField = [[UITextField alloc] init];
 			self.passwordField.translatesAutoresizingMaskIntoConstraints = NO;
-			self.passwordField.adjustsFontSizeToFitWidth = YES;
+			self.passwordField.adjustsFontSizeToFitWidth = NO;
 			self.passwordField.secureTextEntry = YES;
 			self.passwordField.textColor = [UIColor whiteColor];
-			self.passwordField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"Password" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor], NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
+			self.passwordField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"••••••" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor], NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:16]}];
 			self.passwordField.tintColor = [UIColor whiteColor];
 			self.passwordField.keyboardType = UIKeyboardTypeAlphabet;
 			self.passwordField.returnKeyType = UIReturnKeyGo;
 			self.passwordField.backgroundColor = [UIColor clearColor];
 			self.passwordField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
 			self.passwordField.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support
-			self.passwordField.textAlignment = NSTextAlignmentRight;
+			self.passwordField.textAlignment = NSTextAlignmentLeft;
 			self.passwordField.tag = 0;
 			self.passwordField.delegate = self;
 			[self.passwordField setEnabled: YES];
@@ -229,15 +229,15 @@ static NSString *CellIdentifier = @"CellID";
 			
 			[cell addConstraints:@[
 								   [NSLayoutConstraint constraintWithItem:self.passwordField attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
-								   [NSLayoutConstraint constraintWithItem:self.passwordField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:cell attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:0]
+								   [NSLayoutConstraint constraintWithItem:self.passwordField attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeLeftMargin multiplier:1.0 constant:0]
 								   ]];
 			
 		} else if (indexPath.section == 1 && indexPath.row == 2){
-			cell.textLabel.text = @" "; //@"Username";
+			cell.textLabel.text = @" "; // @"Username";
 			cell.imageView.image = [[UIImage imageNamed:@"user"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			self.usernameField = [[UITextField alloc] init];
 			self.usernameField.translatesAutoresizingMaskIntoConstraints = NO;
-			self.usernameField.adjustsFontSizeToFitWidth = YES;
+			self.usernameField.adjustsFontSizeToFitWidth = NO;
 			self.usernameField.textColor = [UIColor whiteColor];
 			self.usernameField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"Username" attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor], NSFontAttributeName:[UIFont fontWithName:@"Avenir-Book" size:14]}];
             self.usernameField.text = user.name;
@@ -247,7 +247,7 @@ static NSString *CellIdentifier = @"CellID";
 			self.usernameField.backgroundColor = [UIColor clearColor];
 			self.usernameField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
 			self.usernameField.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support
-			self.usernameField.textAlignment = NSTextAlignmentRight;
+			self.usernameField.textAlignment = NSTextAlignmentLeft;
 			self.usernameField.tag = 0;
 			self.usernameField.delegate = self;
 			[self.usernameField setEnabled: YES];
@@ -255,7 +255,7 @@ static NSString *CellIdentifier = @"CellID";
 			
 			[cell addConstraints:@[
 								   [NSLayoutConstraint constraintWithItem:self.usernameField attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
-								   [NSLayoutConstraint constraintWithItem:self.usernameField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:cell attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:0]
+								   [NSLayoutConstraint constraintWithItem:self.usernameField attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeLeftMargin multiplier:1.0 constant:0]
 								   ]];
 		} else if (indexPath.section == 2){
 			cell.textLabel.text = @"Sign Out";
