@@ -18,8 +18,8 @@
 
 @implementation MOTableViewController
 
-- (BOOL)prefersStatusBarHidden {
-    return NO;
+- (UIStatusBarStyle)preferredStatusBarStyle{
+	return UIStatusBarStyleLightContent;
 }
 
 - (void)viewDidLoad {

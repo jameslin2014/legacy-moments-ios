@@ -82,6 +82,10 @@
     return NO;
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle{
+	return UIStatusBarStyleLightContent;
+}
+
 - (BOOL)isSessionRunningAndDeviceAuthorized {
     return [[self session] isRunning] && [self isDeviceAuthorized];
 }
