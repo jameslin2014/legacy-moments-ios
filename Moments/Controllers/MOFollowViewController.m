@@ -243,7 +243,7 @@
 		}];
 	} else {
 		[[MomentsAPIUtilities sharedInstance] followUser:username completion:^(NSDictionary *dict) {
-
+            
 			NSLog(@"2: %@", dict[@"follows"]);
             user.following = dict[@"follows"];
             user.followers = dict[@"followers"];

@@ -155,7 +155,7 @@
  * Sends a request to the API to subscribe to a user's video content
  */
 - (void)followUser:(NSString *)username completion:(void (^)(NSDictionary *))completion {
-    NSDictionary *dictionary = @{ @"name": username };
+    NSDictionary *dictionary = @{ @"user": username };
     NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:@"/follow/"
                                                    withHTTPMethod:@"POST"
                                                     andDictionary:dictionary];
