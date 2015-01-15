@@ -246,7 +246,7 @@
 				[self.recordingFlashView show];
 				self.progressView.hidden = NO;
 				self.progressView.progress = 0;
-				progressTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
+				progressTimer = [NSTimer scheduledTimerWithTimeInterval:0.15 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
 				self.cancelButton.hidden = NO;
 				self.recordButton.imageView.animationImages = [UIImage transitionButtonImages:NO];
 				self.recordButton.imageView.animationDuration = 0.25;
