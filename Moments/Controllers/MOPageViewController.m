@@ -19,11 +19,11 @@
 }
 
 - (void)enableScrolling{
-	self.scrollView.userInteractionEnabled = YES;
+	self.scrollView.scrollEnabled = YES;
 }
 
 - (void)disableScrolling{
-	self.scrollView.userInteractionEnabled = NO;
+	self.scrollView.scrollEnabled = NO;
 }
 
 - (void)viewDidLoad {
