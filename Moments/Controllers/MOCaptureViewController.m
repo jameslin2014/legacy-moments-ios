@@ -14,10 +14,8 @@
 	NSTimer	*progressTimer;
 }
 
-
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
     if ([[MPMusicPlayerController systemMusicPlayer] playbackState] == MPMusicPlaybackStatePlaying) {
         [[MPMusicPlayerController systemMusicPlayer] pause];
         self.recordButton.enabled = YES;
