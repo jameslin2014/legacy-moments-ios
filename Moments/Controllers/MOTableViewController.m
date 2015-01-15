@@ -302,6 +302,7 @@
 - (void)videoPlayerPlaybackDidEnd:(PBJVideoPlayerController *)player {
 	[player removeFromParentViewController];
 	[player.view removeFromSuperview];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"EnableScrollView" object:nil];
 	self.navigationController.navigationBar.alpha = 1.0f;
 	self.reloadTimer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(getDataFromServer) userInfo:nil repeats:YES];
 	self.tableShouldRegisterTapEvents = NO;
