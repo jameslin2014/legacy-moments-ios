@@ -245,6 +245,7 @@
 		AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 		[op start];
 		[op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+			[[NSNotificationCenter defaultCenter] postNotificationName:@"DisableScrollView" object:nil];
 			self.tableShouldRegisterTapEvents = NO;
 			[self.reloadTimer invalidate];
 			self.videoPlayer.videoPath = [NSString stringWithFormat:@"https://s3.amazonaws.com/pickmoments/videos/%@.mp4",username];
@@ -279,6 +280,7 @@
 }
 
 - (void)dismissPlayer{
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"EnableScrollView" object:nil];
 	self.tableShouldRegisterTapEvents = NO;
 	[self.videoPlayer removeFromParentViewController];
 	[self.videoPlayer.view removeFromSuperview];

@@ -18,10 +18,21 @@
 	return UIStatusBarStyleLightContent;
 }
 
+- (void)enableScrolling{
+	self.scrollView.scrollEnabled = NO;
+}
+
+- (void)disableScrolling{
+	self.scrollView.scrollEnabled = YES;
+}
+
 - (void)viewDidLoad {
 	
 	[super viewDidLoad];
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableScrolling) name:@"EnableScrollView" object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(disableScrolling) name:@"DisableScrollView" object:nil];
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
         NSLog(@"app already launched");
@@ -91,6 +102,10 @@
 	for (UIViewController *vc in self.viewControllers){
 		vc.view.hidden = NO;
 	}
+}
+
+- (void)dealloc{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
