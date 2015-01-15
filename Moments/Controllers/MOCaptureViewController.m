@@ -19,35 +19,17 @@
     [super viewDidAppear:animated];
     
     if ([[MPMusicPlayerController systemMusicPlayer] playbackState] == MPMusicPlaybackStatePlaying) {
-        NSLog(@"it's playing");
-        
         [[MPMusicPlayerController systemMusicPlayer] pause];
-        
         self.recordButton.enabled = YES;
         self.cameraButton.enabled = YES;
         self.flashButton.enabled = YES;
-        
-        
-        //        self.recordButton.enabled = NO;
-        //        self.cameraButton.enabled = NO;
-        //        self.flashButton.enabled = NO;
-        
-    } else {
-        NSLog(@"it's not playing");
-        
-        
-        //        self.flashButton.enabled = YES;
-        
     }
-    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 	shouldCancel = NO;
 	
-
-    
 	self.progressView.hidden = YES;
     self.progressView.tintColor = [UIColor whiteColor];
     self.progressView.frame = CGRectMake(0, 557, self.view.frame.size.width, 10);
