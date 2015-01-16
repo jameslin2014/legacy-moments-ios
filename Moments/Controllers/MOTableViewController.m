@@ -25,11 +25,19 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+<<<<<<< HEAD
     [self setNeedsStatusBarAppearanceUpdate];
     
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:nil];
     
     self.navigationItem.title = @"Moments";
+=======
+
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:nil];
+    [self setNeedsStatusBarAppearanceUpdate];
+    
+	self.navigationItem.title = @"Moments";
+>>>>>>> FETCH_HEAD
     [self.navigationController.navigationBar setTitleTextAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"Avenir-Book" size:17] }];
 	self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:@"Avenir-Book" size:17], NSForegroundColorAttributeName : [UIColor whiteColor]};
 	self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
@@ -41,7 +49,6 @@
 	self.navigationItem.rightBarButtonItem = button;
     
     [self getDataFromServer];
-    [self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (void)getDataFromServer{

@@ -36,13 +36,12 @@
 		20E5957A1A5B83FA00202C21 /* EDPagingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E595671A5B83FA00202C21 /* EDPagingViewController.m */; };
 		20E5957B1A5B83FA00202C21 /* MOSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E595681A5B83FA00202C21 /* MOSignInViewController.m */; };
 		20E5957C1A5B83FA00202C21 /* MORegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E5956A1A5B83FA00202C21 /* MORegisterViewController.m */; };
-		20E5957D1A5B83FA00202C21 /* beach.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 20E5956B1A5B83FA00202C21 /* beach.mp4 */; };
 		20E5957E1A5B83FA00202C21 /* MOMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E5956D1A5B83FA00202C21 /* MOMusicPlayer.m */; };
 		20E5957F1A5B83FA00202C21 /* Funk 2 - 100 - P1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 20E5956F1A5B83FA00202C21 /* Funk 2 - 100 - P1.wav */; };
 		20E595801A5B83FA00202C21 /* Funk 2 - 100 - P2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 20E595701A5B83FA00202C21 /* Funk 2 - 100 - P2.wav */; };
 		20E595811A5B83FA00202C21 /* Funk 2 - 100 - P3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 20E595711A5B83FA00202C21 /* Funk 2 - 100 - P3.wav */; };
-		20E595821A5B83FA00202C21 /* Late.mov in Resources */ = {isa = PBXBuildFile; fileRef = 20E595721A5B83FA00202C21 /* Late.mov */; };
-		20E595861A5B83FA00202C21 /* vancouver-city.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 20E595791A5B83FA00202C21 /* vancouver-city.mp4 */; };
+		20E595821A5B83FA00202C21 /* train.mov in Resources */ = {isa = PBXBuildFile; fileRef = 20E595721A5B83FA00202C21 /* train.mov */; };
+		20E595861A5B83FA00202C21 /* cars.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 20E595791A5B83FA00202C21 /* cars.mp4 */; };
 		20E5958B1A5B849800202C21 /* MODecisionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E5958A1A5B849800202C21 /* MODecisionViewController.m */; };
 		20E5958E1A5B8AEC00202C21 /* UIImage+EDExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E5958D1A5B8AEC00202C21 /* UIImage+EDExtras.m */; };
 		20EB172D1A4747A700DA1B16 /* MOSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20EB172C1A4747A700DA1B16 /* MOSettingsViewController.m */; };
@@ -72,6 +71,7 @@
 		A53871071A66019700D8D300 /* HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A53871061A66019700D8D300 /* HexColor.m */; };
 		A53871131A660F8B00D8D300 /* 1Password.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A53871101A660F8B00D8D300 /* 1Password.xcassets */; };
 		A53871141A660F8B00D8D300 /* OnePasswordExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = A53871121A660F8B00D8D300 /* OnePasswordExtension.m */; };
+		A544155A1A68993000E0583C /* snow.mov in Resources */ = {isa = PBXBuildFile; fileRef = A54415591A68993000E0583C /* snow.mov */; };
 		A55775741A64E13200289984 /* HRFormatJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775551A64E13200289984 /* HRFormatJSON.m */; };
 		A55775751A64E13200289984 /* HRGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = A55775581A64E13200289984 /* HRGlobal.m */; };
 		A55775761A64E13200289984 /* HROperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A557755A1A64E13200289984 /* HROperationQueue.m */; };
@@ -251,16 +251,15 @@
 		20E595681A5B83FA00202C21 /* MOSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MOSignInViewController.m; path = "../Supporting Files/Directive/MOSignInViewController.m"; sourceTree = "<group>"; };
 		20E595691A5B83FA00202C21 /* MORegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MORegisterViewController.h; path = "../Supporting Files/Directive/MORegisterViewController.h"; sourceTree = "<group>"; };
 		20E5956A1A5B83FA00202C21 /* MORegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MORegisterViewController.m; path = "../Supporting Files/Directive/MORegisterViewController.m"; sourceTree = "<group>"; };
-		20E5956B1A5B83FA00202C21 /* beach.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = beach.mp4; sourceTree = "<group>"; };
 		20E5956C1A5B83FA00202C21 /* MOMusicPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MOMusicPlayer.h; path = "../Supporting Files/Directive/MOMusicPlayer.h"; sourceTree = "<group>"; };
 		20E5956D1A5B83FA00202C21 /* MOMusicPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MOMusicPlayer.m; path = "../Supporting Files/Directive/MOMusicPlayer.m"; sourceTree = "<group>"; };
 		20E5956E1A5B83FA00202C21 /* EDPagingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EDPagingViewController.h; path = "../Supporting Files/Directive/EDPagingViewController.h"; sourceTree = "<group>"; };
 		20E5956F1A5B83FA00202C21 /* Funk 2 - 100 - P1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Funk 2 - 100 - P1.wav"; sourceTree = "<group>"; };
 		20E595701A5B83FA00202C21 /* Funk 2 - 100 - P2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Funk 2 - 100 - P2.wav"; sourceTree = "<group>"; };
 		20E595711A5B83FA00202C21 /* Funk 2 - 100 - P3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Funk 2 - 100 - P3.wav"; sourceTree = "<group>"; };
-		20E595721A5B83FA00202C21 /* Late.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Late.mov; sourceTree = "<group>"; };
+		20E595721A5B83FA00202C21 /* train.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = train.mov; sourceTree = "<group>"; };
 		20E595731A5B83FA00202C21 /* MOSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MOSignInViewController.h; path = "../Supporting Files/Directive/MOSignInViewController.h"; sourceTree = "<group>"; };
-		20E595791A5B83FA00202C21 /* vancouver-city.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "vancouver-city.mp4"; sourceTree = "<group>"; };
+		20E595791A5B83FA00202C21 /* cars.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = cars.mp4; sourceTree = "<group>"; };
 		20E595891A5B849800202C21 /* MODecisionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MODecisionViewController.h; path = "../Supporting Files/Directive/MODecisionViewController.h"; sourceTree = "<group>"; };
 		20E5958A1A5B849800202C21 /* MODecisionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MODecisionViewController.m; path = "../Supporting Files/Directive/MODecisionViewController.m"; sourceTree = "<group>"; };
 		20E5958C1A5B8AEC00202C21 /* UIImage+EDExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+EDExtras.h"; sourceTree = "<group>"; };
@@ -298,6 +297,7 @@
 		A53871101A660F8B00D8D300 /* 1Password.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = 1Password.xcassets; sourceTree = "<group>"; };
 		A53871111A660F8B00D8D300 /* OnePasswordExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePasswordExtension.h; sourceTree = "<group>"; };
 		A53871121A660F8B00D8D300 /* OnePasswordExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnePasswordExtension.m; sourceTree = "<group>"; };
+		A54415591A68993000E0583C /* snow.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = snow.mov; sourceTree = "<group>"; };
 		A55775541A64E13200289984 /* HRFormatJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRFormatJSON.h; sourceTree = "<group>"; };
 		A55775551A64E13200289984 /* HRFormatJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRFormatJSON.m; sourceTree = "<group>"; };
 		A55775561A64E13200289984 /* HRFormatterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRFormatterProtocol.h; sourceTree = "<group>"; };
@@ -670,9 +670,9 @@
 		20E595871A5B842300202C21 /* Media */ = {
 			isa = PBXGroup;
 			children = (
-				20E595791A5B83FA00202C21 /* vancouver-city.mp4 */,
-				20E5956B1A5B83FA00202C21 /* beach.mp4 */,
-				20E595721A5B83FA00202C21 /* Late.mov */,
+				A54415591A68993000E0583C /* snow.mov */,
+				20E595791A5B83FA00202C21 /* cars.mp4 */,
+				20E595721A5B83FA00202C21 /* train.mov */,
 				20E5956F1A5B83FA00202C21 /* Funk 2 - 100 - P1.wav */,
 				20E595701A5B83FA00202C21 /* Funk 2 - 100 - P2.wav */,
 				20E595711A5B83FA00202C21 /* Funk 2 - 100 - P3.wav */,
@@ -1315,12 +1315,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A544155A1A68993000E0583C /* snow.mov in Resources */,
 				A53870F21A6600E000D8D300 /* NotificationBackgroundError@2x.png in Resources */,
 				A5E01CDB1A2B3899003ED753 /* interface.xcassets in Resources */,
 				A53871011A6600E000D8D300 /* TSMessagesDefaultDesign.json in Resources */,
 				A5B31C401A287F26009734EE /* Main.storyboard in Resources */,
 				A53870FD1A6600E000D8D300 /* NotificationBackgroundWarningIcon.png in Resources */,
-				20E595821A5B83FA00202C21 /* Late.mov in Resources */,
+				20E595821A5B83FA00202C21 /* train.mov in Resources */,
 				A53871001A6600E000D8D300 /* NotificationButtonBackground@2x.png in Resources */,
 				A5E01CDD1A2B3C76003ED753 /* fundamentals.xcassets in Resources */,
 				A53870F31A6600E000D8D300 /* NotificationBackgroundErrorIcon.png in Resources */,
@@ -1339,12 +1340,11 @@
 				A53870F81A6600E000D8D300 /* NotificationBackgroundSuccess@2x.png in Resources */,
 				A5AD89181A4D21350013D417 /* SVProgressHUD.bundle in Resources */,
 				A53870F61A6600E000D8D300 /* NotificationBackgroundMessage@2x.png in Resources */,
-				20E595861A5B83FA00202C21 /* vancouver-city.mp4 in Resources */,
+				20E595861A5B83FA00202C21 /* cars.mp4 in Resources */,
 				20E595811A5B83FA00202C21 /* Funk 2 - 100 - P3.wav in Resources */,
 				A53870FF1A6600E000D8D300 /* NotificationButtonBackground.png in Resources */,
 				A53870FE1A6600E000D8D300 /* NotificationBackgroundWarningIcon@2x.png in Resources */,
 				A53870F11A6600E000D8D300 /* NotificationBackgroundError.png in Resources */,
-				20E5957D1A5B83FA00202C21 /* beach.mp4 in Resources */,
 				A53870F01A6600E000D8D300 /* .gitkeep in Resources */,
 				A53870F51A6600E000D8D300 /* NotificationBackgroundMessage.png in Resources */,
 			);

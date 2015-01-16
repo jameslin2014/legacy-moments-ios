@@ -8,6 +8,7 @@
 
 #import "MOCaptureViewController.h"
 #import "MomentsAPIUtilities.h"
+#import "TSMessage.h"
 
 @implementation MOCaptureViewController{
 	BOOL shouldCancel;
@@ -349,7 +350,7 @@
 }
 
 #pragma mark File Output Delegate
-- (void)postVideoWithURL: (NSURL *) videoURL{
+- (void)postVideoWithURL:(NSURL *)videoURL {
 	SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
 	v.scene = [[EDSpinningBoxScene alloc] init];
 	v.alpha = 0.0;
@@ -359,6 +360,10 @@
 		v.alpha = 1.0;
 	} completion:nil];
 	[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [TSMessage showNotificationInViewController:self title:@"Processing…" subtitle:nil type:TSMessageNotificationTypeSuccess duration:0.5];
+    });
+    
 	NSString *user = [NSString stringWithFormat:@"%@.mp4", [MomentsAPIUtilities sharedInstance].user.name];
 	AVAsset *firstVid = [AVAsset assetWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/pickmoments/videos/%@",user]]];
 	AVAsset *secondVid = [AVAsset assetWithURL:videoURL];
@@ -427,7 +432,9 @@
 	exportSession.outputURL = movieURL;
 	exportSession.outputFileType = AVFileTypeMPEG4;
 	[exportSession exportAsynchronouslyWithCompletionHandler:^{
-		NSLog(@"done");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [TSMessage showNotificationInViewController:self title:@"Exporting…" subtitle:nil type:TSMessageNotificationTypeSuccess duration:0.5];
+        });
 		NSLog(@"%@",exportSession.outputURL);
 		
 		[self setLockInterfaceRotation:NO];
@@ -450,6 +457,9 @@
 		NSURLRequest *request = [s3Manager.requestSerializer
 								 requestBySettingAuthorizationHeadersForRequest:originalRequest
 								 error:nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [TSMessage showNotificationInViewController:self title:@"Uploading…" subtitle:nil type:TSMessageNotificationTypeSuccess duration:0.5];
+        });
 		
 		
 		AFHTTPRequestOperation *operation = [s3Manager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -463,8 +473,14 @@
             [[UIApplication sharedApplication] endIgnoringInteractionEvents];
             [self.navigationController.view setUserInteractionEnabled:true];
             NSLog(@"success");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [TSMessage showNotificationInViewController:self title:@"Finished" subtitle:nil type:TSMessageNotificationTypeSuccess duration:0.25];
+            });
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 			NSLog(@"Error uploading %@", error);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [TSMessage showNotificationInViewController:self title:@"Error" subtitle:nil type:TSMessageNotificationTypeError duration:0.5];
+            });
 		}];
 		[s3Manager.operationQueue addOperation:operation];
 	}];
@@ -478,9 +494,11 @@
 	NSArray *documentsPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *tempPath = [documentsPaths[0] stringByAppendingPathComponent:@"merged2.mp4"];
 	
-	if ([videoData writeToFile:tempPath atomically:YES]){
-		[self postVideoWithURL:[NSURL fileURLWithPath:tempPath]];
-	}
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([videoData writeToFile:tempPath atomically:YES]){
+            [self postVideoWithURL:[NSURL fileURLWithPath:tempPath]];
+        }
+    });
 	
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -499,8 +517,13 @@
     NSString *filePath = [documentsPaths[0] stringByAppendingPathComponent:@"merged2.mp4"];
     [fileManager removeItemAtPath:filePath error:&error];
 	
-	[self postVideoWithURL:outputFileURL];
-	[[[MomentsAPIUtilities sharedInstance]user] reload];
+//	[self postVideoWithURL:outputFileURL];
+//	[[[MomentsAPIUtilities sharedInstance]user] reload];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self postVideoWithURL:outputFileURL];
+    });
+
 }
 
 #pragma mark Device Configuration
