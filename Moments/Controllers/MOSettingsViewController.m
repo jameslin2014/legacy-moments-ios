@@ -330,8 +330,8 @@ static NSString *CellIdentifier = @"CellID";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return indexPath.row == 0 && indexPath.section == 0 ? 40 : 55;
-//    return 55;
+//    return indexPath.row == 0 && indexPath.section == 0 ? 40 : 55;
+    return 55;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
