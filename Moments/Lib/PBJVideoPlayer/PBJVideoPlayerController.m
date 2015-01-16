@@ -82,7 +82,9 @@ static NSString * const PBJVideoPlayerControllerReadyForDisplay = @"readyForDisp
 
 @end
 
-@implementation PBJVideoPlayerController
+@implementation PBJVideoPlayerController{
+	BOOL _statusBarHidden;
+}
 
 @synthesize delegate = _delegate;
 @synthesize videoPath = _videoPath;
@@ -100,11 +102,22 @@ static NSString * const PBJVideoPlayerControllerReadyForDisplay = @"readyForDisp
 #pragma mark - getters/setters
 
 - (BOOL)prefersStatusBarHidden{
-	return YES;
+	return _statusBarHidden;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle{
+	return UIStatusBarStyleLightContent;
 }
 
 - (void)viewDidLoad{
 	[super viewDidLoad];
+	_statusBarHidden = NO;
+	[self setNeedsStatusBarAppearanceUpdate];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+	[super viewDidAppear:animated];
+	_statusBarHidden = YES;
 	[self setNeedsStatusBarAppearanceUpdate];
 }
 
