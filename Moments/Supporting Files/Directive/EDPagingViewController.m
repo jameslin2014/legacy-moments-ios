@@ -47,7 +47,7 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playVideos) name:
 	 @"AppCamBack" object:nil];
 	
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+	[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:AVAudioSessionCategoryOptionMixWithOthers error:nil];
 
     if (![[AVAudioSession sharedInstance] isOtherAudioPlaying]) {
         self.player = [[MOMusicPlayer alloc] init];
