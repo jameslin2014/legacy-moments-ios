@@ -175,8 +175,6 @@
         
         profileImageView.image = [MomentsAPIUtilities sharedInstance].user.avatar;
         
-        NSLog(@"REFRESH: %@", [MomentsAPIUtilities sharedInstance].user.posted ? @"YES" : @"NO");
-        
         if ([MomentsAPIUtilities sharedInstance].user.posted) {
             UIToolbar *toolbar = [[UIToolbar alloc] init];
             toolbar.barTintColor = [UIColor colorWithRed:36/255.0 green: 36/255.0 blue:36/255.0 alpha:1.0];
