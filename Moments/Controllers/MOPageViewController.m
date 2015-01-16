@@ -93,7 +93,9 @@
 	[super viewDidAppear:animated];
 	[UIView animateWithDuration:0.15 delay:1 options:UIViewAnimationOptionCurveEaseOut animations:^{
 		[self.viewControllers[1] view].alpha = 1;
-	} completion:nil];
+	} completion:^(BOOL finished) {
+        [self jumpToSearch];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -105,6 +107,16 @@
 
 - (void)dealloc{
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)jumpToSearch {
+    [self.scrollView setContentOffset:CGPointMake(self.scrollView.frame.size.width * 2.0, 0.0) animated:NO];
+    
+    UINavigationController *navController = (UINavigationController *) self.viewControllers[2];
+    MOFollowViewController *followController = (MOFollowViewController *)navController.topViewController;
+    
+    [followController.tableView reloadData];
+    [followController showSearch];
 }
 
 @end

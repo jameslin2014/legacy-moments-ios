@@ -247,8 +247,12 @@
     MOUser *user = [MomentsAPIUtilities sharedInstance].user;
     
     if ([[MomentsAPIUtilities sharedInstance].user isFollowing:username]) {
-        UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Are you sure?" message:[NSString stringWithFormat:@"Do you want to unfollow %@?", username] preferredStyle:UIAlertControllerStyleAlert];
-        [controller addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Are you sure" message:[NSString stringWithFormat:@"Are you sure you want to unfollow %@?", username] preferredStyle:UIAlertControllerStyleActionSheet];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Unfollow" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+            
+            [self dismissViewControllerAnimated:YES completion:nil];
+            
             [[MomentsAPIUtilities sharedInstance] unfollowUser:username completion:^(NSDictionary *dict) {
                 user.following = dict[@"follows"];
                 user.followers = dict[@"followers"];
@@ -262,11 +266,7 @@
             }];
         }]];
         
-        [controller addAction:[UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }]];
-        
-        [self presentViewController:controller animated:YES completion:nil];
+        [self presentViewController:alertController animated:YES completion:nil];
 	} else {
 		[[MomentsAPIUtilities sharedInstance] followUser:username completion:^(NSDictionary *dict) {
             user.following = dict[@"follows"];
