@@ -500,6 +500,7 @@
     [fileManager removeItemAtPath:filePath error:&error];
 	
 	[self postVideoWithURL:outputFileURL];
+	[[[MomentsAPIUtilities sharedInstance]user] reload];
 }
 
 #pragma mark Device Configuration

@@ -25,11 +25,17 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+<<<<<<< HEAD
+    [self setNeedsStatusBarAppearanceUpdate];
+	
+	
+=======
     
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:nil];
     
     [self setNeedsStatusBarAppearanceUpdate];
     
+>>>>>>> FETCH_HEAD
 	self.navigationItem.title = @"Moments";
     [self.navigationController.navigationBar setTitleTextAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"Avenir-Book" size:17] }];
 	self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:@"Avenir-Book" size:17], NSForegroundColorAttributeName : [UIColor whiteColor]};
