@@ -25,8 +25,8 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
-    
-    
+	
+	
 	self.navigationItem.title = @"Moments";
     [self.navigationController.navigationBar setTitleTextAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"Avenir-Book" size:17] }];
 	self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:@"Avenir-Book" size:17], NSForegroundColorAttributeName : [UIColor whiteColor]};

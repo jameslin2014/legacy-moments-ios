@@ -273,6 +273,7 @@
             [self dataLoaded];
 		}];
 	}
+	[[[MomentsAPIUtilities sharedInstance]user] reload];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
