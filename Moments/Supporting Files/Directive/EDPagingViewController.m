@@ -62,9 +62,9 @@
 								[NSLayoutConstraint constraintWithItem:self.scrollView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]
 								]];
 
-	NSString *first = [[NSBundle mainBundle]pathForResource:@"vancouver-city" ofType:@"mp4"];
-	NSString *second = [[NSBundle mainBundle]pathForResource:@"beach" ofType:@"mp4"];
-	NSString *third = [[NSBundle mainBundle]pathForResource:@"Late" ofType:@"mov"];
+	NSString *first = [[NSBundle mainBundle]pathForResource:@"cars" ofType:@"mp4"];
+	NSString *second = [[NSBundle mainBundle]pathForResource:@"snow" ofType:@"mov"];
+	NSString *third = [[NSBundle mainBundle]pathForResource:@"train" ofType:@"mov"];
 	
 	v1 = [[PBJVideoPlayerController alloc]initWithAudioMuted:YES];
 	v1.view.frame = CGRectMake(self.view.bounds.size.width * 0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
