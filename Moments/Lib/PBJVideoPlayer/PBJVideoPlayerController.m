@@ -99,6 +99,15 @@ static NSString * const PBJVideoPlayerControllerReadyForDisplay = @"readyForDisp
 
 #pragma mark - getters/setters
 
+- (BOOL)prefersStatusBarHidden{
+	return YES;
+}
+
+- (void)viewDidLoad{
+	[super viewDidLoad];
+	[self setNeedsStatusBarAppearanceUpdate];
+}
+
 - (void)setVideoFillMode:(NSString *)videoFillMode
 {
 	if (_videoFillMode != videoFillMode) {

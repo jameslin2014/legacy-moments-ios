@@ -25,18 +25,11 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-<<<<<<< HEAD
     [self setNeedsStatusBarAppearanceUpdate];
-	
-	
-=======
     
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:nil];
     
-    [self setNeedsStatusBarAppearanceUpdate];
-    
->>>>>>> FETCH_HEAD
-	self.navigationItem.title = @"Moments";
+    self.navigationItem.title = @"Moments";
     [self.navigationController.navigationBar setTitleTextAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"Avenir-Book" size:17] }];
 	self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:@"Avenir-Book" size:17], NSForegroundColorAttributeName : [UIColor whiteColor]};
 	self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
@@ -258,9 +251,7 @@
 			self.tableShouldRegisterTapEvents = NO;
 			[self.reloadTimer invalidate];
 			self.videoPlayer.videoPath = [NSString stringWithFormat:@"https://s3.amazonaws.com/pickmoments/videos/%@.mp4",username];
-			[self addChildViewController:self.videoPlayer];
-			[self.view addSubview:self.videoPlayer.view];
-			[self.videoPlayer didMoveToParentViewController:self];
+			[self presentViewController:self.videoPlayer animated:NO completion:nil];
 			
 			UITapGestureRecognizer *dismissGesture = [[UITapGestureRecognizer alloc] init];
 			dismissGesture.numberOfTapsRequired = 1;
@@ -268,11 +259,6 @@
 			[self.videoPlayer.view addGestureRecognizer:dismissGesture];
 			
 			[dismissGesture addTarget:self action:@selector(dismissPlayer)];
-			
-			self.loadingView = [[SCNView alloc] initWithFrame:self.view.bounds];
-			self.loadingView.scene = [[EDSpinningBoxScene alloc] init];
-			self.loadingView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
-			[self.view addSubview:self.loadingView];
 			[[NSNotificationCenter defaultCenter] postNotificationName:@"DisableScrollView" object:nil];
 			[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -286,9 +272,9 @@
 }
 
 - (void)dismissPlayer{
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"EnableScrollView" object:nil];
+//	[[NSNotificationCenter defaultCenter] postNotificationName:@"EnableScrollView" object:nil];
+	[self.videoPlayer dismissViewControllerAnimated:NO completion:nil];
 	self.tableView.scrollEnabled = YES;
-	[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
 	self.tableShouldRegisterTapEvents = NO;
 	[self.videoPlayer removeFromParentViewController];
 	[self.videoPlayer.view removeFromSuperview];
