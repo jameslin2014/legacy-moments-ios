@@ -46,7 +46,13 @@
                             <outlet property="delegate" destination="uEq-0C-VRb" id="eWP-rX-F5r"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="0jl-pH-jtO"/>
+                    <navigationItem key="navigationItem" id="0jl-pH-jtO">
+                        <barButtonItem key="leftBarButtonItem" title="Item" systemItem="camera" id="eUz-eb-Nau">
+                            <connections>
+                                <action selector="openCameraView:" destination="xdz-fL-f3w" id="g3J-7b-7fT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="tableView" destination="vfg-3M-eWN" id="p4a-qn-K8V"/>

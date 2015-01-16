@@ -50,6 +50,14 @@
     [[MomentsAPIUtilities sharedInstance].user reload];
 }
 
+- (IBAction)openCameraView:(UIBarButtonItem *)sender {
+    
+    MOPageViewController *pageView = [MOPageViewController alloc];
+    [pageView.scrollView setContentOffset:CGPointMake(pageView.scrollView.frame.size.width, 0.0) animated:YES];
+    
+}
+
+
 - (void)showOptionsAndAbout{
 	MOSettingsViewController *settingsViewController = [[MOSettingsViewController alloc]init];
 	settingsViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
