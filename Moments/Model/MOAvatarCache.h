@@ -16,5 +16,6 @@
 
 - (void)getAvatarForUsername:(NSString *)username completion:(void (^)(UIImage *))completion;
 - (void)putAvatar:(UIImage *)avatar forUsername:(NSString *)username;
+- (void)renameAvatarforUsername:(NSString *)oldUsername newUsername:(NSString *)newUsername;
 - (UIImage *)defaultAvatar;
 @end

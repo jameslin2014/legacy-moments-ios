@@ -69,14 +69,15 @@
             NSLog(@"%@", dictionary[@"errors"]);
             completion(NO);
         } else {
+            NSString *oldUsername = self.name;
+            
             self.name = username;
             self.email = email;
             self.password = password;
             
             [self saveToKeychain];
             
-            [[[MOAvatarCache alloc] init] putAvatar:self.avatar forUsername:self.name];
-            [[MOS3APIUtilities sharedInstance] putAvatarForUsername:self.name image:self.avatar];
+            [[[MOAvatarCache alloc] init] renameAvatarforUsername:oldUsername newUsername:self.name];
             
             [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"dataLoaded" object:nil]];
             
