@@ -25,7 +25,6 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-    [self setNeedsStatusBarAppearanceUpdate];
 
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:nil];
     [self setNeedsStatusBarAppearanceUpdate];
