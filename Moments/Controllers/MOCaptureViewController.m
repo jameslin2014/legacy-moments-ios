@@ -17,12 +17,17 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    if ([[MPMusicPlayerController systemMusicPlayer] playbackState] == MPMusicPlaybackStatePlaying) {
-        [[MPMusicPlayerController systemMusicPlayer] pause];
-        self.recordButton.enabled = YES;
-        self.cameraButton.enabled = YES;
-        self.flashButton.enabled = YES;
-    }
+    
+    self.recordButton.enabled = YES;
+    self.cameraButton.enabled = YES;
+    self.flashButton.enabled = YES;
+    
+//    if ([[MPMusicPlayerController systemMusicPlayer] playbackState] == MPMusicPlaybackStatePlaying) {
+//        [[MPMusicPlayerController systemMusicPlayer] pause];
+//        self.recordButton.enabled = YES;
+//        self.cameraButton.enabled = YES;
+//        self.flashButton.enabled = YES;
+//    }
 }
 
 - (void)viewDidLoad {
@@ -186,6 +191,7 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (context == RecordingContext) {
         BOOL isRecording = [change[NSKeyValueChangeNewKey] boolValue];
+//        [[MPMusicPlayerController systemMusicPlayer] pause];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (isRecording) {
@@ -202,6 +208,9 @@
         });
         
     } else if (context == SessionRunningAndDeviceAuthorizedContext) {
+        
+//        [[MPMusicPlayerController systemMusicPlayer] pause];
+        
         BOOL isRunning = [change[NSKeyValueChangeNewKey] boolValue];
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -220,6 +229,9 @@
 
 #pragma mark Actions
 - (IBAction)toggleMovieRecording:(id)sender {
+    
+    
+    
     dispatch_async([self sessionQueue], ^{
         if (![[self movieFileOutput] isRecording]) {
 			
