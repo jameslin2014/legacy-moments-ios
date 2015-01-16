@@ -201,10 +201,10 @@ static NSString *CellIdentifier = @"CellID";
 		if (indexPath.section == 0){
 			// Change Image
 //            cell.imageView.translatesAutoresizingMaskIntoConstraints = NO;
-            cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width / 2.0;
-            cell.imageView.clipsToBounds = YES;
+		
             cell.imageView.image = [MomentsAPIUtilities sharedInstance].user.avatar;
-            
+			cell.imageView.layer.cornerRadius = cell.frame.size.height / 2.0;
+			cell.imageView.clipsToBounds = YES;
 			cell.textLabel.text = @"Change Profile Image";
 			cell.selectionStyle = UITableViewCellSelectionStyleGray;
 		} else if (indexPath.section == 1 && indexPath.row == 0){

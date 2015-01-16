@@ -245,7 +245,6 @@
 		AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 		[op start];
 		[op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-			[[NSNotificationCenter defaultCenter] postNotificationName:@"DisableScrollView" object:nil];
 			self.tableView.scrollEnabled = NO;
 			self.tableShouldRegisterTapEvents = NO;
 			[self.reloadTimer invalidate];
@@ -263,12 +262,9 @@
 			
 			self.loadingView = [[SCNView alloc] initWithFrame:self.view.bounds];
 			self.loadingView.scene = [[EDSpinningBoxScene alloc] init];
-			self.loadingView.alpha = 0.0;
 			self.loadingView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
 			[self.view addSubview:self.loadingView];
-			[UIView animateWithDuration:0.2 animations:^{
-				self.loadingView.alpha = 1.0;
-			}];
+			[[NSNotificationCenter defaultCenter] postNotificationName:@"DisableScrollView" object:nil];
 			[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 			self.tableShouldRegisterTapEvents = NO;
@@ -283,6 +279,7 @@
 - (void)dismissPlayer{
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"EnableScrollView" object:nil];
 	self.tableView.scrollEnabled = YES;
+	[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
 	self.tableShouldRegisterTapEvents = NO;
 	[self.videoPlayer removeFromParentViewController];
 	[self.videoPlayer.view removeFromSuperview];
