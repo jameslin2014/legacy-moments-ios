@@ -252,6 +252,7 @@
 			NSLog(@"1: %@", dict[@"follows"]);
             user.following = dict[@"follows"];
             user.followers = dict[@"followers"];
+            user.recents = dict[@"recents"];
 
             dispatch_async(dispatch_get_main_queue(), ^{
                 [TSMessage showNotificationWithTitle:[NSString stringWithFormat:@"You are not following %@ any more.", username] type:TSMessageNotificationTypeSuccess];
@@ -265,6 +266,7 @@
 			NSLog(@"2: %@", dict[@"follows"]);
             user.following = dict[@"follows"];
             user.followers = dict[@"followers"];
+            user.recents = dict[@"recents"];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 [TSMessage showNotificationWithTitle:[NSString stringWithFormat:@"You are now following %@.", username] type:TSMessageNotificationTypeSuccess];

@@ -464,7 +464,10 @@
 		
 		AFHTTPRequestOperation *operation = [s3Manager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
 			// Success!
+            
             [apiUtilities recordPostForUser:apiUtilities.user.name];
+            [apiUtilities.user reload];
+            
             [UIView animateWithDuration:0.2 animations:^{
                 v.alpha = 0.0;
             } completion:^(BOOL finished) {
