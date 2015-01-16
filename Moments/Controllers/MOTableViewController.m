@@ -23,11 +23,14 @@
 	return UIStatusBarStyleLightContent;
 }
 
+- (BOOL)prefersStatusBarHidden{
+	return NO;
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:nil];
-    [self setNeedsStatusBarAppearanceUpdate];
     
 	self.navigationItem.title = @"Moments";
     [self.navigationController.navigationBar setTitleTextAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"Avenir-Book" size:17] }];
@@ -250,9 +253,9 @@
 			self.tableShouldRegisterTapEvents = NO;
 			[self.reloadTimer invalidate];
 			self.videoPlayer.videoPath = [NSString stringWithFormat:@"https://s3.amazonaws.com/pickmoments/videos/%@.mp4",username];
-			[self addChildViewController:self.videoPlayer];
-			[self.view addSubview:self.videoPlayer.view];
-			[self.videoPlayer didMoveToParentViewController:self];
+			self.videoPlayer.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+			self.modalPresentationStyle = UIModalPresentationOverFullScreen;
+			[self presentViewController:self.videoPlayer animated:YES completion:nil];
 			
 			UITapGestureRecognizer *dismissGesture = [[UITapGestureRecognizer alloc] init];
 			dismissGesture.numberOfTapsRequired = 1;
@@ -260,11 +263,6 @@
 			[self.videoPlayer.view addGestureRecognizer:dismissGesture];
 			
 			[dismissGesture addTarget:self action:@selector(dismissPlayer)];
-			
-			self.loadingView = [[SCNView alloc] initWithFrame:self.view.bounds];
-			self.loadingView.scene = [[EDSpinningBoxScene alloc] init];
-			self.loadingView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
-			[self.view addSubview:self.loadingView];
 			[[NSNotificationCenter defaultCenter] postNotificationName:@"DisableScrollView" object:nil];
 			[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -279,8 +277,8 @@
 
 - (void)dismissPlayer{
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"EnableScrollView" object:nil];
+	[self.videoPlayer dismissViewControllerAnimated:YES completion:nil];
 	self.tableView.scrollEnabled = YES;
-	[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
 	self.tableShouldRegisterTapEvents = NO;
 	[self.videoPlayer removeFromParentViewController];
 	[self.videoPlayer.view removeFromSuperview];
@@ -300,8 +298,7 @@
 }
 
 - (void)videoPlayerPlaybackDidEnd:(PBJVideoPlayerController *)player {
-	[player removeFromParentViewController];
-	[player.view removeFromSuperview];
+	[player dismissViewControllerAnimated:YES completion:nil];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"EnableScrollView" object:nil];
 	self.navigationController.navigationBar.alpha = 1.0f;
 	self.reloadTimer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(getDataFromServer) userInfo:nil repeats:YES];

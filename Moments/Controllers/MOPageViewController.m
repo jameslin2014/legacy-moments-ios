@@ -10,8 +10,6 @@
 
 @interface MOPageViewController () <UIScrollViewDelegate>
 @property (strong, nonatomic) NSArray *viewControllers;
-
-@property (nonatomic) BOOL statusBarVisible;
 @end
 
 @implementation MOPageViewController
@@ -21,24 +19,18 @@
 }
 
 - (BOOL)prefersStatusBarHidden{
-	return !self.statusBarVisible;
+	return NO;
 }
 
 - (void)enableScrolling{
 	self.scrollView.scrollEnabled = YES;
-	self.statusBarVisible = YES;
-	[self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (void)disableScrolling{
 	self.scrollView.scrollEnabled = NO;
-	self.statusBarVisible = NO;
-	[self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (void)viewDidLoad {
-	self.statusBarVisible = YES;
-	[self setNeedsStatusBarAppearanceUpdate];
 	[super viewDidLoad];
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 	
