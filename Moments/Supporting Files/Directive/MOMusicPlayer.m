@@ -56,12 +56,14 @@ static const float kSampleRate = 44100.00;
 }
 
 - (void)start {
-    self.player1.volume = 1.00 * kPlayer1Volume; // full
+    self.player1.volume = 0.00 * kPlayer1Volume; // full
     self.player2.volume = 0.00; // off
     self.player3.volume = 0.00; // off
     
     NSError *error = nil;
     [self.engine startAndReturnError:&error];
+    
+    fadeTimer = [NSTimer scheduledTimerWithTimeInterval:.15 target:self selector:@selector(fadeIn) userInfo:nil repeats:YES];
     
     [self.player1 play];
     [self.player2 play];
@@ -72,7 +74,14 @@ static const float kSampleRate = 44100.00;
 	fadeTimer = [NSTimer scheduledTimerWithTimeInterval:.15 target:self selector:@selector(fading) userInfo:nil repeats:YES];
 }
 
-- (void)fading{
+- (void)fadeIn {
+    self.player1.volume += 0.1;
+    if (self.player1.volume >= kPlayer1Volume) {
+        [fadeTimer invalidate];
+    }
+}
+
+- (void)fading {
 	BOOL playersAllAtZero = YES;
 	
     if (self.player1.volume > 0.1) {
