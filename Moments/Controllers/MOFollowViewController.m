@@ -247,7 +247,7 @@
     MOUser *user = [MomentsAPIUtilities sharedInstance].user;
     
     if ([[MomentsAPIUtilities sharedInstance].user isFollowing:username]) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Are you sure" message:[NSString stringWithFormat:@"Are you sure you want to unfollow %@?", username] preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:[NSString stringWithFormat:@"Are you sure you want to unfollow %@?", username] preferredStyle:UIAlertControllerStyleActionSheet];
         [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
         [alertController addAction:[UIAlertAction actionWithTitle:@"Unfollow" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
             

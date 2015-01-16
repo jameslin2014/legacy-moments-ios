@@ -290,6 +290,9 @@
 	[self.videoPlayer.view removeFromSuperview];
 	self.navigationController.navigationBar.alpha = 1.0f;
 	self.reloadTimer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(getDataFromServer) userInfo:nil repeats:YES];
+    if ([self.videoPlayer.videoPath containsString:@"welcome"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"WelcomeVideoPlayed"];
+    }
 }
 
 - (void)videoPlayerReady:(PBJVideoPlayerController *)player {
