@@ -95,9 +95,7 @@
 	[super viewDidAppear:animated];
 	[UIView animateWithDuration:0.15 delay:1 options:UIViewAnimationOptionCurveEaseOut animations:^{
 		[self.viewControllers[1] view].alpha = 1;
-	} completion:^(BOOL finished) {
-        [self jumpToSearch];
-    }];
+    } completion:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

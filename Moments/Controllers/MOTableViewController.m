@@ -52,7 +52,6 @@
 
 - (IBAction)openCameraView:(UIBarButtonItem *)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"JumpToCamera" object:nil];
-    NSLog(@"Camera");
 }
 
 - (void)showOptionsAndAbout{
