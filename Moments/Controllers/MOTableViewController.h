@@ -21,6 +21,7 @@
 #import "MOAvatarCache.h"
 #import "MODecisionViewController.h"
 #import "MOSettingsViewController.h"
+#import "MOPageViewController.h"
 
 @interface MOTableViewController : UITableViewController
 @end
