@@ -58,7 +58,7 @@
         
         [self saveToKeychain];
         
-        completion(nil != dictionary && nil == dictionary[@"error"]);
+        completion(nil != dictionary && nil == dictionary[@"errors"]);
     }];
 }
 
