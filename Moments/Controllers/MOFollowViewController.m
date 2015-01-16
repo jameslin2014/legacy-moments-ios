@@ -247,17 +247,26 @@
     MOUser *user = [MomentsAPIUtilities sharedInstance].user;
     
     if ([[MomentsAPIUtilities sharedInstance].user isFollowing:username]) {
-		[[MomentsAPIUtilities sharedInstance] unfollowUser:username completion:^(NSDictionary *dict) {
-            user.following = dict[@"follows"];
-            user.followers = dict[@"followers"];
-            user.recents = dict[@"recents"];
-
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [TSMessage showNotificationWithTitle:[NSString stringWithFormat:@"You are not following %@ any more.", username] type:TSMessageNotificationTypeSuccess];
-            });
-            
-            [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"dataLoaded" object:nil]];
-		}];
+        UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Are you sure?" message:[NSString stringWithFormat:@"Do you want to unfollow %@?", username] preferredStyle:UIAlertControllerStyleAlert];
+        [controller addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [[MomentsAPIUtilities sharedInstance] unfollowUser:username completion:^(NSDictionary *dict) {
+                user.following = dict[@"follows"];
+                user.followers = dict[@"followers"];
+                user.recents = dict[@"recents"];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [TSMessage showNotificationWithTitle:[NSString stringWithFormat:@"You are not following %@ any more.", username] type:TSMessageNotificationTypeSuccess];
+                });
+                
+                [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"dataLoaded" object:nil]];
+            }];
+        }]];
+        
+        [controller addAction:[UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }]];
+        
+        [self presentViewController:controller animated:YES completion:nil];
 	} else {
 		[[MomentsAPIUtilities sharedInstance] followUser:username completion:^(NSDictionary *dict) {
             user.following = dict[@"follows"];
