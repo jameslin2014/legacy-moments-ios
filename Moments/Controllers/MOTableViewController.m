@@ -51,12 +51,9 @@
 }
 
 - (IBAction)openCameraView:(UIBarButtonItem *)sender {
-    
-    MOPageViewController *pageView = [MOPageViewController alloc];
-    [pageView.scrollView setContentOffset:CGPointMake(pageView.scrollView.frame.size.width, 0.0) animated:YES];
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"JumpToCamera" object:nil];
+    NSLog(@"Camera");
 }
-
 
 - (void)showOptionsAndAbout{
 	MOSettingsViewController *settingsViewController = [[MOSettingsViewController alloc]init];

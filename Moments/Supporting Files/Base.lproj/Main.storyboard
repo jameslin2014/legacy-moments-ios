@@ -49,7 +49,7 @@
                     <navigationItem key="navigationItem" id="0jl-pH-jtO">
                         <barButtonItem key="leftBarButtonItem" title="Item" systemItem="camera" id="eUz-eb-Nau">
                             <connections>
-                                <action selector="openCameraView:" destination="xdz-fL-f3w" id="g3J-7b-7fT"/>
+                                <action selector="openCameraView:" destination="uEq-0C-VRb" id="6Sk-oU-h8S"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

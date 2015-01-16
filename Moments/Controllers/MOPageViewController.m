@@ -37,6 +37,8 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableScrolling) name:@"EnableScrollView" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(disableScrolling) name:@"DisableScrollView" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToCamera) name:@"JumpToCamera" object:nil];
+    
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
         NSLog(@"app already launched");
     } else {
@@ -117,6 +119,10 @@
     
     [followController.tableView reloadData];
     [followController showSearch];
+}
+
+- (void)jumpToCamera {
+    [self.scrollView setContentOffset:CGPointMake(self.scrollView.frame.size.width, 0.0) animated:YES];
 }
 
 @end
