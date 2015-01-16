@@ -7,6 +7,7 @@
 //
 
 #import "MOSettingsViewController.h"
+#import "UIImage+EDExtras.h"
 
 static NSString *CellIdentifier = @"CellID";
 
@@ -202,9 +203,10 @@ static NSString *CellIdentifier = @"CellID";
 			// Change Image
 //            cell.imageView.translatesAutoresizingMaskIntoConstraints = NO;
 		
-            cell.imageView.image = [MomentsAPIUtilities sharedInstance].user.avatar;
-			cell.imageView.layer.cornerRadius = cell.frame.size.height / 2.0;
-			cell.imageView.clipsToBounds = YES;
+//            cell.imageView.image = [MomentsAPIUtilities sharedInstance].user.avatar;
+//			cell.imageView.layer.cornerRadius = cell.frame.size.height / 2.0;
+//			cell.imageView.clipsToBounds = YES;
+			cell.imageView.image = [[UIImage imageNamed:@"photo"] imageWithColor:[UIColor whiteColor]];
 			cell.textLabel.text = @"Change Profile Image";
 			cell.selectionStyle = UITableViewCellSelectionStyleGray;
 		} else if (indexPath.section == 1 && indexPath.row == 0){
