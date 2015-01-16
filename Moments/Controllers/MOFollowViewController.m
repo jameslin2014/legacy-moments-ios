@@ -248,8 +248,6 @@
     
     if ([[MomentsAPIUtilities sharedInstance].user isFollowing:username]) {
 		[[MomentsAPIUtilities sharedInstance] unfollowUser:username completion:^(NSDictionary *dict) {
-
-			NSLog(@"1: %@", dict[@"follows"]);
             user.following = dict[@"follows"];
             user.followers = dict[@"followers"];
             user.recents = dict[@"recents"];
@@ -258,12 +256,10 @@
                 [TSMessage showNotificationWithTitle:[NSString stringWithFormat:@"You are not following %@ any more.", username] type:TSMessageNotificationTypeSuccess];
             });
             
-            [self dataLoaded];
+            [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"dataLoaded" object:nil]];
 		}];
 	} else {
 		[[MomentsAPIUtilities sharedInstance] followUser:username completion:^(NSDictionary *dict) {
-            
-			NSLog(@"2: %@", dict[@"follows"]);
             user.following = dict[@"follows"];
             user.followers = dict[@"followers"];
             user.recents = dict[@"recents"];
@@ -272,7 +268,7 @@
                 [TSMessage showNotificationWithTitle:[NSString stringWithFormat:@"You are now following %@.", username] type:TSMessageNotificationTypeSuccess];
             });
             
-            [self dataLoaded];
+            [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"dataLoaded" object:nil]];
 		}];
 	}
 	[[[MomentsAPIUtilities sharedInstance]user] reload];
