@@ -276,7 +276,7 @@
 }
 
 - (void)dismissPlayer{
-//	[[NSNotificationCenter defaultCenter] postNotificationName:@"EnableScrollView" object:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"EnableScrollView" object:nil];
 	[self.videoPlayer dismissViewControllerAnimated:YES completion:nil];
 	self.tableView.scrollEnabled = YES;
 	self.tableShouldRegisterTapEvents = NO;
