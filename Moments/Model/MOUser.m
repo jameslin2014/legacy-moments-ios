@@ -9,6 +9,7 @@
 #import "MOUser.h"
 #import "MomentsAPIUtilities.h"
 #import "TSMessage.h"
+#import "MODecisionViewController.h"
 
 @implementation MOUser
 
@@ -17,24 +18,27 @@
     if (self) {
         self.loggedIn = NO;
         [self loadFromKeychain];
-        [[NSNotificationCenter defaultCenter] addObserverForName:@"authenticationFailed"
-                                                          object:nil
-                                                           queue:[NSOperationQueue mainQueue]
-                                                      usingBlock:^(NSNotification *note) {
-                                                          if (self.name && self.password) {
-                                                              NSLog(@"Trying to auto-login...");
-                                                              [self loginWithUsername:self.name password:self.password completion:^(BOOL success) {
-                                                                  if (success) {
-                                                                      NSLog(@"Logged in. Reloading...");
-                                                                      [self reload];
-                                                                  } else {
-                                                                      [TSMessage showNotificationWithTitle:@"Authentication Error" subtitle:@"Please sign-in again." type:TSMessageNotificationTypeError];
-                                                                  }
-                                                              }];
-                                                          } else {
-                                                              [TSMessage showNotificationWithTitle:@"Authentication Error" subtitle:@"Please sign-in again." type:TSMessageNotificationTypeError];
-                                                          }
-                                                      }];
+        
+        self.password = nil;
+        
+        [[NSNotificationCenter defaultCenter] addObserverForName:@"authenticationFailed" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+              if (self.name && self.password) {
+                  NSLog(@"Trying to auto-login...");
+                  [self loginWithUsername:self.name password:self.password completion:^(BOOL success) {
+                      if (success) {
+                          NSLog(@"Logged in. Reloading...");
+                          [self reload];
+                      } else {
+//                          [TSMessage showNotificationWithTitle:@"Authentication Error" subtitle:@"Please sign-in again." type:TSMessageNotificationTypeError];
+                          [self logout];
+                      }
+                  }];
+              } else {
+//                  [TSMessage showNotificationWithTitle:@"Authentication Error" subtitle:@"Please sign-in again." type:TSMessageNotificationTypeError];
+                  [self logout];
+              }
+          }];
+        
         if (self.name && self.token) {
             self.loggedIn = YES;
             [[[MOAvatarCache alloc] init] getAvatarForUsername:self.name completion:^(UIImage *avatar) {
@@ -42,6 +46,7 @@
             }];
         }
     }
+    
     return self;
 }
 

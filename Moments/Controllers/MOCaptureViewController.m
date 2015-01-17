@@ -133,14 +133,16 @@
 - (void)viewWillDisappear:(BOOL)animated {
     dispatch_async([self sessionQueue], ^{
         [[self session] stopRunning];
-        
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:AVCaptureDeviceSubjectAreaDidChangeNotification object:[[self videoDeviceInput] device]];
-        [[NSNotificationCenter defaultCenter] removeObserver:[self runtimeErrorHandlingObserver]];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:@"signOut" object:nil];
-        
-        [self removeObserver:self forKeyPath:@"sessionRunningAndDeviceAuthorized" context:SessionRunningAndDeviceAuthorizedContext];
-        [self removeObserver:self forKeyPath:@"movieFileOutput.recording" context:RecordingContext];
     });
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVCaptureDeviceSubjectAreaDidChangeNotification object:[[self videoDeviceInput] device]];
+    [[NSNotificationCenter defaultCenter] removeObserver:[self runtimeErrorHandlingObserver]];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"signOut" object:nil];
+    
+    [self removeObserver:self forKeyPath:@"sessionRunningAndDeviceAuthorized" context:SessionRunningAndDeviceAuthorizedContext];
+    [self removeObserver:self forKeyPath:@"movieFileOutput.recording" context:RecordingContext];
 }
 
 - (void)signOut:(id)sender {
