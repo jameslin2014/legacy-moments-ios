@@ -8,6 +8,7 @@
 
 #import "MOUser.h"
 #import "MomentsAPIUtilities.h"
+#import "TSMessage.h"
 
 @implementation MOUser
 
@@ -16,6 +17,24 @@
     if (self) {
         self.loggedIn = NO;
         [self loadFromKeychain];
+        [[NSNotificationCenter defaultCenter] addObserverForName:@"authenticationFailed"
+                                                          object:nil
+                                                           queue:[NSOperationQueue mainQueue]
+                                                      usingBlock:^(NSNotification *note) {
+                                                          if (self.name && self.password) {
+                                                              NSLog(@"Trying to auto-login...");
+                                                              [self loginWithUsername:self.name password:self.password completion:^(BOOL success) {
+                                                                  if (success) {
+                                                                      NSLog(@"Logged in. Reloading...");
+                                                                      [self reload];
+                                                                  } else {
+                                                                      [TSMessage showNotificationWithTitle:@"Authentication Error" subtitle:@"Please sign-in again." type:TSMessageNotificationTypeError];
+                                                                  }
+                                                              }];
+                                                          } else {
+                                                              [TSMessage showNotificationWithTitle:@"Authentication Error" subtitle:@"Please sign-in again." type:TSMessageNotificationTypeError];
+                                                          }
+                                                      }];
         if (self.name && self.token) {
             self.loggedIn = YES;
             [[[MOAvatarCache alloc] init] getAvatarForUsername:self.name completion:^(UIImage *avatar) {
@@ -79,7 +98,7 @@
             
             [[[MOAvatarCache alloc] init] renameAvatarforUsername:oldUsername newUsername:self.name];
             
-            [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"dataLoaded" object:nil]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"dataLoaded" object:nil];
             
             completion(YES);
         }
@@ -126,7 +145,7 @@
     
     [self clearCredentialsFromKeychain];
     
-    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"signOut" object:nil]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"signOut" object:nil];
 }
 
 - (void)reload {
@@ -145,7 +164,7 @@
         
         [self log];
         
-        [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"dataLoaded" object:nil]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"dataLoaded" object:nil];
     }];
 }
 
@@ -153,7 +172,7 @@
     _avatar = avatar;
     [[[MOAvatarCache alloc] init] putAvatar:self.avatar forUsername:self.name];
     
-    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"avatarChanged" object:nil]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"avatarChanged" object:nil];
 }
 
 - (BOOL)isFollowing:(NSString *)username {

@@ -480,7 +480,7 @@
             [apiUtilities recordPostForUser:apiUtilities.user.name];
             
             apiUtilities.user.posted = @"1970-01-01";
-            [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"dataLoaded" object:nil]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"dataLoaded" object:nil];
             
             [UIView animateWithDuration:0.2 animations:^{
                 v.alpha = 0.0;

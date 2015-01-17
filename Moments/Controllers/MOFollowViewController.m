@@ -262,7 +262,7 @@
                     [TSMessage showNotificationWithTitle:[NSString stringWithFormat:@"You are not following %@ any more.", username] type:TSMessageNotificationTypeSuccess];
                 });
                 
-                [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"dataLoaded" object:nil]];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"dataLoaded" object:nil];
             }];
         }]];
         
@@ -277,7 +277,7 @@
                 [TSMessage showNotificationWithTitle:[NSString stringWithFormat:@"You are now following %@.", username] type:TSMessageNotificationTypeSuccess];
             });
             
-            [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"dataLoaded" object:nil]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"dataLoaded" object:nil];
 		}];
 	}
 	[[[MomentsAPIUtilities sharedInstance]user] reload];
