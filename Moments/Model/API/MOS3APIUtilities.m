@@ -35,7 +35,7 @@
     AFHTTPRequestOperation *operation = [self.s3 HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Avatar uploaded");
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error %@", error);
+//        NSLog(@"Error %@", error);
     }];
     [self.s3.operationQueue addOperation:operation];
 }
@@ -45,11 +45,11 @@
     
     NSURLRequest *request = [self URLRequestForPath:[self pathForUsername:username] withHTTPMethod:@"GET" data:nil mimeType:nil responseSerializer:nil];
     AFHTTPRequestOperation *operation = [self.s3 HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Avatar dowloaded");
+//        NSLog(@"Avatar dowloaded");
         
       completion((UIImage *) responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error %@", error);
+//        NSLog(@"Error %@", error);
         
         completion(nil);
     }];

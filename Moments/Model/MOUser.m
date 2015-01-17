@@ -88,15 +88,14 @@
             NSLog(@"%@", dictionary[@"errors"]);
             completion(NO);
         } else {
-            NSString *oldUsername = self.name;
-            
             self.name = username;
             self.email = email;
             self.password = password;
             
             [self saveToKeychain];
             
-            [[[MOAvatarCache alloc] init] renameAvatarforUsername:oldUsername newUsername:self.name];
+            // No longer needed, the API will do this
+//            [[[MOAvatarCache alloc] init] renameAvatarforUsername:oldUsername newUsername:self.name];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"dataLoaded" object:nil];
             
@@ -161,8 +160,6 @@
         self.following = dictionary [@"follows"];
         self.recents = dictionary [@"recents"];
         self.posted = dictionary [@"posted"];
-        
-        [self log];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"dataLoaded" object:nil];
     }];
