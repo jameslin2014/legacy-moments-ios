@@ -40,7 +40,7 @@
     [fileManager createDirectoryAtPath:[cachePaths[0] stringByAppendingPathComponent:@"/avatars"] withIntermediateDirectories:YES attributes:nil error:nil];
 
     return [[[cachePaths[0] stringByAppendingPathComponent:@"/avatars"]
-             stringByAppendingPathComponent:username]
+             stringByAppendingPathComponent:[username lowercaseString]]
             stringByAppendingPathExtension:@"png"];
 }
 
