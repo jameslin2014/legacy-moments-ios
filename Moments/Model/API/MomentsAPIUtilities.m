@@ -102,7 +102,6 @@
             completion(dictionary);
         } else {
             if ([error.domain isEqual:@"NSURLErrorDomain"] && NSURLErrorUserCancelledAuthentication == error.code) {
-                NSLog(@"Authentication error");
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"authenticationFailed" object:nil];
             }
         }
@@ -124,7 +123,6 @@
             completion([NSJSONSerialization JSONObjectWithData:data options:0 error:&error]);
         } else {
             if ([error.domain isEqual:@"NSURLErrorDomain"] && NSURLErrorUserCancelledAuthentication == error.code) {
-                NSLog(@"Authentication error");
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"authenticationFailed" object:nil];
             }
         }
@@ -194,7 +192,6 @@
             completion([NSJSONSerialization JSONObjectWithData:data options:0 error:&error]);
         } else {
             if ([error.domain isEqual:@"NSURLErrorDomain"] && NSURLErrorUserCancelledAuthentication == error.code) {
-                NSLog(@"Authentication error");
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"authenticationFailed" object:nil];
             }
         }
@@ -217,7 +214,6 @@
             completion([NSJSONSerialization JSONObjectWithData:data options:0 error:&error]);
         } else {
             if ([error.domain isEqual:@"NSURLErrorDomain"] && NSURLErrorUserCancelledAuthentication == error.code) {
-                NSLog(@"Authentication error");
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"authenticationFailed" object:nil];
             }
         }

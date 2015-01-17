@@ -19,32 +19,26 @@
         self.loggedIn = NO;
         [self loadFromKeychain];
         
-        self.password = nil;
-        
-        [[NSNotificationCenter defaultCenter] addObserverForName:@"authenticationFailed" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-              if (self.name && self.password) {
-                  NSLog(@"Trying to auto-login...");
-                  [self loginWithUsername:self.name password:self.password completion:^(BOOL success) {
-                      if (success) {
-                          NSLog(@"Logged in. Reloading...");
-                          [self reload];
-                      } else {
-//                          [TSMessage showNotificationWithTitle:@"Authentication Error" subtitle:@"Please sign-in again." type:TSMessageNotificationTypeError];
-                          [self logout];
-                      }
-                  }];
-              } else {
-//                  [TSMessage showNotificationWithTitle:@"Authentication Error" subtitle:@"Please sign-in again." type:TSMessageNotificationTypeError];
-                  [self logout];
-              }
-          }];
-        
         if (self.name && self.token) {
             self.loggedIn = YES;
             [[[MOAvatarCache alloc] init] getAvatarForUsername:self.name completion:^(UIImage *avatar) {
                 self.avatar = avatar;
             }];
         }
+        
+        [[NSNotificationCenter defaultCenter] addObserverForName:@"authenticationFailed" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+              if (self.name && self.password) {
+                  [self loginWithUsername:self.name password:self.password completion:^(BOOL success) {
+                      if (success) {
+                          [self reload];
+                      } else {
+                          [self logout];
+                      }
+                  }];
+              } else {
+                  [self logout];
+              }
+          }];
     }
     
     return self;
@@ -88,9 +82,7 @@
 
 - (void)updateUsername:(NSString *)username email:(NSString *)email password:(NSString *)password completion:(void (^)(BOOL))completion {
     [[MomentsAPIUtilities sharedInstance] updateUser:username email:email password:password completion:^(NSDictionary *dictionary) {
-        NSLog(@"%@", dictionary);
         if (dictionary[@"errors"]) {
-            NSLog(@"%@", dictionary[@"errors"]);
             completion(NO);
         } else {
             self.name = username;
@@ -125,8 +117,6 @@
             }];
             
             [self saveToKeychain];
-        } else {
-            NSLog(@"Login failed");
         }
         completion(valid);
     }];
