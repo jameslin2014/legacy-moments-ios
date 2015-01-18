@@ -30,6 +30,7 @@
 		20B821241A4BA057009E293B /* MOTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B821231A4BA057009E293B /* MOTableViewController.m */; };
 		20C077C31A47B9260092B7AA /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C077C21A47B9260092B7AA /* Twitter.framework */; };
 		20C077C61A48C6220092B7AA /* MOFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C077C51A48C6220092B7AA /* MOFollowViewController.m */; };
+		20CF396F1A6B5B7300BF9DA9 /* EDTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CF396E1A6B5B7300BF9DA9 /* EDTableViewController.m */; };
 		20D6E7D61A43C7DA00B6DF3F /* EDSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D6E7D51A43C7DA00B6DF3F /* EDSegmentedControl.m */; };
 		20D6E7DC1A44D5BA00B6DF3F /* EDSegments.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D6E7DB1A44D5BA00B6DF3F /* EDSegments.m */; };
 		20DC7D671A62398A00AE644C /* FollowingStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DC7D661A62398A00AE644C /* FollowingStatusView.m */; };
@@ -241,6 +242,8 @@
 		20C077C21A47B9260092B7AA /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		20C077C41A48C6220092B7AA /* MOFollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOFollowViewController.h; sourceTree = "<group>"; };
 		20C077C51A48C6220092B7AA /* MOFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOFollowViewController.m; sourceTree = "<group>"; };
+		20CF396D1A6B5B7300BF9DA9 /* EDTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDTableViewController.h; sourceTree = "<group>"; };
+		20CF396E1A6B5B7300BF9DA9 /* EDTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDTableViewController.m; sourceTree = "<group>"; };
 		20D6E7D41A43C7DA00B6DF3F /* EDSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDSegmentedControl.h; sourceTree = "<group>"; };
 		20D6E7D51A43C7DA00B6DF3F /* EDSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDSegmentedControl.m; sourceTree = "<group>"; };
 		20D6E7DA1A44D5BA00B6DF3F /* EDSegments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDSegments.h; sourceTree = "<group>"; };
@@ -1094,6 +1097,8 @@
 				A5C5EB801A2A8358002F1591 /* MOPageViewController.m */,
 				20B821221A4BA057009E293B /* MOTableViewController.h */,
 				20B821231A4BA057009E293B /* MOTableViewController.m */,
+				20CF396D1A6B5B7300BF9DA9 /* EDTableViewController.h */,
+				20CF396E1A6B5B7300BF9DA9 /* EDTableViewController.m */,
 				20C077C41A48C6220092B7AA /* MOFollowViewController.h */,
 				20C077C51A48C6220092B7AA /* MOFollowViewController.m */,
 				20EB172B1A4747A700DA1B16 /* MOSettingsViewController.h */,
@@ -1447,6 +1452,7 @@
 				20E5957C1A5B83FA00202C21 /* MORegisterViewController.m in Sources */,
 				A55775FE1A64E1A700289984 /* UVForum.m in Sources */,
 				A55775F21A64E1A700289984 /* UVBaseViewController.m in Sources */,
+				20CF396F1A6B5B7300BF9DA9 /* EDTableViewController.m in Sources */,
 				E4E1D3CE1A61B22D00752A23 /* MOAvatarCache.m in Sources */,
 				20E5957B1A5B83FA00202C21 /* MOSignInViewController.m in Sources */,
 				A5C5EB841A2A8358002F1591 /* MOPageViewController.m in Sources */,
