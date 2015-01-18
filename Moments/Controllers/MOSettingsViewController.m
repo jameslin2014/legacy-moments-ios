@@ -183,6 +183,7 @@ static NSString *CellIdentifier = @"CellID";
 		
 		cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: CellIdentifier];
 	}
+	cell.textLabel.text = @"";
 	cell.backgroundColor = [UIColor clearColor];
 	cell.textLabel.textColor = [UIColor whiteColor];
 	cell.textLabel.font = [UIFont fontWithName:@"Avenir-Book" size:14];
