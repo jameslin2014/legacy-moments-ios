@@ -17,6 +17,7 @@
 #import "UIImage+Avatar.h"
 #import <AudioToolbox/AudioServices.h>
 #import "TSMessage.h"
+#import "OnePasswordExtension.h"
 
 @interface MORegisterViewController ()
 
@@ -59,6 +60,8 @@
 	UILabel *welcomeLabel3;
 	
 	UIView *background4;
+	
+//	UIButton *onePassword;
 }
 
 - (BOOL)prefersStatusBarHidden{
@@ -375,6 +378,8 @@
 									 [NSLayoutConstraint constraintWithItem:imageButton3 attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:containerView3 attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0],
 									 [NSLayoutConstraint constraintWithItem:imageButton3 attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:containerView3 attribute:NSLayoutAttributeTop multiplier:1.0 constant:30]
 									 ]];
+	
+	
 	
 	roundWelcomeLabel3 = [UIButton buttonWithType:UIButtonTypeSystem];
 	roundWelcomeLabel3.translatesAutoresizingMaskIntoConstraints = NO;
