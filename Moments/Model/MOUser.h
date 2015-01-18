@@ -32,5 +32,8 @@
 - (void)reload;
 - (void)logout;
 - (BOOL)isFollowing:(NSString *)username;
+- (BOOL)validateEmail:(NSString *)email;
+- (BOOL)validateUsername:(NSString *)username;
+- (BOOL)validatePassword:(NSString *)password;
 
 @end

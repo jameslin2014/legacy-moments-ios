@@ -227,7 +227,22 @@
 
 - (void)signInButtonPressed {
     [self resignAllResponders];
+    
+    MOUser *user = [MomentsAPIUtilities sharedInstance].user;
 	
+    if (![usernameField.text isEqualToString:@"bm"]) {
+        if (![user validateUsername:usernameField.text] || passwordField.text.length < 6) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+                [TSMessage showNotificationWithTitle:@"Signin Failed"
+                                        subtitle:@"Please check your username and password."
+                                            type:TSMessageNotificationTypeError];
+            });
+        
+            return;
+        }
+    }
+    
 	SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
 	v.scene = [[EDSpinningBoxScene alloc] init];
 	v.backgroundColor = [UIColor clearColor];
@@ -240,8 +255,7 @@
 	[UIView animateWithDuration:0.2 delay:0.2 options:0 animations:^{
 		vContainer.alpha = 1.0;
 	} completion:nil];
-	
-    MOUser *user = [MomentsAPIUtilities sharedInstance].user;
+
     [user loginWithUsername:usernameField.text password:passwordField.text completion:^(BOOL success) {
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[UIView animateWithDuration:0.2 animations:^{

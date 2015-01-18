@@ -547,13 +547,11 @@ static NSString *CellIdentifier = @"CellID";
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     if (textField == self.emailField) {
-        NSPredicate *emailPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @".+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*"];
-        
         if (textField.text.length == 0) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [TSMessage showNotificationInViewController:self title:@"Warning" subtitle:@"The e-mail address cannot be empty." type:TSMessageNotificationTypeWarning];
             });
-        } else if (![emailPredicate evaluateWithObject:textField.text]) {
+        } else if (![[MomentsAPIUtilities sharedInstance].user validateEmail:textField.text]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [TSMessage showNotificationInViewController:self title:@"Warning" subtitle:@"This e-mail address is invalid." type:TSMessageNotificationTypeWarning];
             });
@@ -569,13 +567,11 @@ static NSString *CellIdentifier = @"CellID";
             }];
         }
     } else if (textField == self.usernameField) {
-        NSPredicate *usernamePredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"[A-Za-z0-9_-]{3,}"];
-        
         if (textField.text.length < 3) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [TSMessage showNotificationInViewController:self title:@"Warning" subtitle:@"This username is too short. Please use at least 3 characters." type:TSMessageNotificationTypeWarning];
             });
-        } else if (![usernamePredicate evaluateWithObject:textField.text]) {
+        } else if (![[MomentsAPIUtilities sharedInstance].user validateUsername:textField.text]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [TSMessage showNotificationInViewController:self title:@"Warning" subtitle:@"This username is invalid. Please use only letters, numbers, hyphens and underscores." type:TSMessageNotificationTypeWarning];
             });

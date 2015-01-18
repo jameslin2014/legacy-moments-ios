@@ -437,40 +437,61 @@
 	[self resignAllResponders];
 	NSString *username = usernameField1.text;
 	NSString *email = emailField1.text;
-	[[MomentsAPIUtilities sharedInstance] isValidUsername:username andEmail:email completion:^(NSDictionary *values) {
-		dispatch_async(dispatch_get_main_queue(), ^{
+    
+    if (![[MomentsAPIUtilities sharedInstance].user validateUsername:username]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [TSMessage showNotificationWithTitle:@"This username is invalid. Please use a minimum of 3 characters (letters, numbers, hyphen and underscore characters only)."
+                                            subtitle:nil
+                                                type:TSMessageNotificationTypeError];
+        });
+        
+        return;
+    }
+    
+    if (![[MomentsAPIUtilities sharedInstance].user validateEmail:email]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [TSMessage showNotificationWithTitle:@"This e-mail address is invalid."
+                                        subtitle:nil
+                                            type:TSMessageNotificationTypeError];
+        });
+        
+        return;
+    }
+
+    [[MomentsAPIUtilities sharedInstance] isValidUsername:username andEmail:email completion:^(NSDictionary *values) {
+        dispatch_async(dispatch_get_main_queue(), ^{
             NSArray *errors = values[@"errors"];
-			if (errors.count) {
+            if (errors.count) {
                 NSLog(@"%@", values[@"errors"]);
-                
+            
                 [TSMessage showNotificationWithTitle:[errors componentsJoinedByString:@"\n"]
                                             subtitle:nil
                                                 type:TSMessageNotificationTypeError];
-			} else {
-				backButtonImage.image = [UIImage backButtonClosed];
-				backButtonImage.animationImages = [UIImage transitionCancelButtonImages:NO];
-				backButtonImage.animationDuration = 0.25;
-				backButtonImage.animationRepeatCount = 1;
-				[backButtonImage startAnimating];
-				backButton.enabled = NO;
-				_leftmostLayoutConstraint.constant = -self.view.bounds.size.width;
-				[UIView animateWithDuration:0.75 delay:0 usingSpringWithDamping:10 initialSpringVelocity:5 options:0 animations:^{
-					[self.view layoutIfNeeded];
-				} completion:^(BOOL finished) {
-				}];
-				dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-					backButtonImage.image = [UIImage backButtonOpen];
-					backButtonImage.animationImages = [UIImage transitionBackButtonImages:YES];
-					backButtonImage.animationDuration = 0.25;
-					backButtonImage.animationRepeatCount = 1;
-					[backButtonImage startAnimating];
-					backButton.enabled = YES;
-					[backButton removeTarget:self action:@selector(cancelButtonPressed) forControlEvents:UIControlEventTouchDown];
-					[backButton addTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchDown];
-				});
-			}
-		});
-	}];
+            } else {
+                backButtonImage.image = [UIImage backButtonClosed];
+                backButtonImage.animationImages = [UIImage transitionCancelButtonImages:NO];
+                backButtonImage.animationDuration = 0.25;
+                backButtonImage.animationRepeatCount = 1;
+                [backButtonImage startAnimating];
+                backButton.enabled = NO;
+                _leftmostLayoutConstraint.constant = -self.view.bounds.size.width;
+                [UIView animateWithDuration:0.75 delay:0 usingSpringWithDamping:10 initialSpringVelocity:5 options:0 animations:^{
+                    [self.view layoutIfNeeded];
+                } completion:^(BOOL finished) {
+                }];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    backButtonImage.image = [UIImage backButtonOpen];
+                    backButtonImage.animationImages = [UIImage transitionBackButtonImages:YES];
+                    backButtonImage.animationDuration = 0.25;
+                    backButtonImage.animationRepeatCount = 1;
+                    [backButtonImage startAnimating];
+                    backButton.enabled = YES;
+                    [backButton removeTarget:self action:@selector(cancelButtonPressed) forControlEvents:UIControlEventTouchDown];
+                    [backButton addTarget:self action:@selector(backButton2Pressed) forControlEvents:UIControlEventTouchDown];
+                });
+            }
+        });
+    }];
 }
 
 - (void)cancelButtonPressed{

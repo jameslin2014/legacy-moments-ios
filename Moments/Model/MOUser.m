@@ -173,6 +173,22 @@
     return [self.following containsObject:username];
 }
 
+- (BOOL)validateEmail:(NSString *)email {
+    NSPredicate *emailPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @".+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*"];
+    
+    return [emailPredicate evaluateWithObject:email];
+}
+
+- (BOOL)validateUsername:(NSString *)username {
+    NSPredicate *usernamePredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"[A-Za-z0-9_-]{3,}"];
+    
+    return [usernamePredicate evaluateWithObject:username];
+}
+
+- (BOOL)validatePassword:(NSString *)password {
+    return password.length >= 6;
+}
+
 - (void)log {
     NSLog(@"Name: %@", self.name);
     NSLog(@"Email: %@", self.email);
