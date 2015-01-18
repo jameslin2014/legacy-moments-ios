@@ -137,10 +137,8 @@
 }
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVCaptureDeviceSubjectAreaDidChangeNotification object:[[self videoDeviceInput] device]];
     [[NSNotificationCenter defaultCenter] removeObserver:[self runtimeErrorHandlingObserver]];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"signOut" object:nil];
-    
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
     [self removeObserver:self forKeyPath:@"sessionRunningAndDeviceAuthorized" context:SessionRunningAndDeviceAuthorizedContext];
     [self removeObserver:self forKeyPath:@"movieFileOutput.recording" context:RecordingContext];
 }
