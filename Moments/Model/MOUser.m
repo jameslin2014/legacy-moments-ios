@@ -90,7 +90,9 @@
         } else {
             self.name = dictionary[@"name"];
             self.email = dictionary[@"email"];
-            self.password = password;
+            if ([self validatePassword:password]) {
+                self.password = password;
+            }
             
             [self saveToKeychain];
             

@@ -332,10 +332,12 @@
 	}
 	
 	[self.tableView reloadData];
+    [self.identityTableView reloadData];
 }
 
 - (void)avatarChanged {
 	[self.tableView reloadData];
+    [self.identityTableView reloadData];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle{
