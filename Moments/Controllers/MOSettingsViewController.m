@@ -162,6 +162,8 @@ static NSString *CellIdentifier = @"CellID";
 		if (section == 1) return 4;
 		if (section == 2) return 1;
 	} else if (self.control.stateBeforeTouches == StateRightSelected){
+//		if (section == 0) return 3;
+#warning about not implemented
 		if (section == 0) return 2;
 		if (section == 1) return 2;
 		if (section == 2) return 1;
@@ -309,6 +311,8 @@ static NSString *CellIdentifier = @"CellID";
 			} else if (indexPath.row == 1){
 				cell.textLabel.text = @"Review on App Store";
 				cell.imageView.image = [[UIImage imageNamed:@"heart"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+			} else if (indexPath.row == 2){
+#warning about not implemented
 			}
 		} else if (indexPath.section == 1){
 			if (indexPath.row == 0){
@@ -376,6 +380,8 @@ static NSString *CellIdentifier = @"CellID";
             } else if (indexPath.row == 1){
 				NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/app/id%d?mt=8", 953901607];
 				[[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+			} else if (indexPath.row == 2){
+#warning about not implemented
 			}
 		} else if (indexPath.section == 1){
 			if (indexPath.row == 0){

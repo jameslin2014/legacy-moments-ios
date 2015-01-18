@@ -15,6 +15,7 @@
 #import <SceneKit/SceneKit.h>
 #import "EDSpinningBoxScene.h"
 #import "TSMessage.h"
+#import "OnePasswordExtension.h"
 
 @interface MOSignInViewController ()
 
@@ -31,6 +32,9 @@
 	
 	UIButton *cancelButton;
 	UIImageView *cancelImage;
+	
+	UIButton *onePassword;
+	
 }
 
 - (BOOL)prefersStatusBarHidden{
@@ -109,19 +113,50 @@
 								 [NSLayoutConstraint constraintWithItem:passwordField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:containerView attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]
 								 ]];
 	
-	roundSignInContainer = [UIButton buttonWithType:UIButtonTypeSystem];
-	roundSignInContainer.translatesAutoresizingMaskIntoConstraints = NO;
-	roundSignInContainer.backgroundColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
-	roundSignInContainer.layer.cornerRadius = 20;
-	[roundSignInContainer addTarget:self action:@selector(signInButtonPressed) forControlEvents:UIControlEventTouchDown];
-	[containerView addSubview:roundSignInContainer];
-	[containerView addConstraints:@[
+	if ([[OnePasswordExtension sharedExtension] isAppExtensionAvailable]){
+		roundSignInContainer = [UIButton buttonWithType:UIButtonTypeSystem];
+		roundSignInContainer.translatesAutoresizingMaskIntoConstraints = NO;
+		roundSignInContainer.backgroundColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
+		roundSignInContainer.layer.cornerRadius = 20;
+		[roundSignInContainer addTarget:self action:@selector(signInButtonPressed) forControlEvents:UIControlEventTouchDown];
+		[containerView addSubview:roundSignInContainer];
+		[containerView addConstraints:@[
+							   [NSLayoutConstraint constraintWithItem:roundSignInContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant: 40],
+							   [NSLayoutConstraint constraintWithItem:roundSignInContainer attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:containerView attribute:NSLayoutAttributeRight multiplier:1.0 constant:-10],
+							   [NSLayoutConstraint constraintWithItem:roundSignInContainer attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:passwordField attribute:NSLayoutAttributeBottom multiplier:1.0 constant:20],
+							   [NSLayoutConstraint constraintWithItem:roundSignInContainer attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:containerView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-20]
+							   ]];
+		
+		onePassword = [UIButton buttonWithType:UIButtonTypeSystem];
+		onePassword.translatesAutoresizingMaskIntoConstraints = NO;
+		[onePassword addTarget:self action:@selector(findLoginFrom1Password:) forControlEvents:UIControlEventTouchUpInside];
+		[onePassword setImage:[UIImage imageNamed:@"onepassword-button"] forState:UIControlStateNormal];
+		onePassword.tintColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
+		[containerView addSubview:onePassword];
+		[containerView addConstraints:@[
+										[NSLayoutConstraint constraintWithItem:onePassword attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:containerView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:10],
+										[NSLayoutConstraint constraintWithItem:onePassword attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:roundSignInContainer attribute:NSLayoutAttributeLeft multiplier:1.0 constant:-10],
+										[NSLayoutConstraint constraintWithItem:onePassword attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:roundSignInContainer attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
+										[NSLayoutConstraint constraintWithItem:onePassword attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30],
+										[NSLayoutConstraint constraintWithItem:onePassword attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:onePassword attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0]
+										]];
+	}else{
+		roundSignInContainer = [UIButton buttonWithType:UIButtonTypeSystem];
+		roundSignInContainer.translatesAutoresizingMaskIntoConstraints = NO;
+		roundSignInContainer.backgroundColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
+		roundSignInContainer.layer.cornerRadius = 20;
+		[roundSignInContainer addTarget:self action:@selector(signInButtonPressed) forControlEvents:UIControlEventTouchDown];
+		[containerView addSubview:roundSignInContainer];
+		[containerView addConstraints:@[
 							   [NSLayoutConstraint constraintWithItem:roundSignInContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:containerView attribute:NSLayoutAttributeWidth multiplier:0.7 constant:0],
 							   [NSLayoutConstraint constraintWithItem:roundSignInContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant: 40],
 							   [NSLayoutConstraint constraintWithItem:roundSignInContainer attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:containerView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0],
 							   [NSLayoutConstraint constraintWithItem:roundSignInContainer attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:passwordField attribute:NSLayoutAttributeBottom multiplier:1.0 constant:20],
 							   [NSLayoutConstraint constraintWithItem:roundSignInContainer attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:containerView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-20]
 							   ]];
+		
+		onePassword = nil;
+	}
 	
 	carrot = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"carrot"] imageWithColor:[UIColor whiteColor]]];
 	carrot.translatesAutoresizingMaskIntoConstraints = NO;
@@ -177,9 +212,22 @@
 
 }
 
+- (void)findLoginFrom1Password:(id)sender {
+	[[OnePasswordExtension sharedExtension] findLoginForURLString:@"https://pickmoments.io" forViewController:self sender:sender completion:^(NSDictionary *loginDict, NSError *error) {
+		if (!loginDict) {
+			if (error.code != AppExtensionErrorCodeCancelledByUser) {
+				NSLog(@"Error invoking 1Password App Extension for find login: %@", error);
+			}
+			return;
+		}
+		usernameField.text = loginDict[AppExtensionUsernameKey];
+		passwordField.text = loginDict[AppExtensionPasswordKey];
+	}];
+}
+
 - (void)signInButtonPressed {
     [self resignAllResponders];
-    
+	
 	SCNView *v = [[SCNView alloc] initWithFrame:self.view.bounds];
 	v.scene = [[EDSpinningBoxScene alloc] init];
 	v.backgroundColor = [UIColor clearColor];
