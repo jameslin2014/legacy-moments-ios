@@ -81,18 +81,20 @@
 }
 
 - (void)updateUsername:(NSString *)username email:(NSString *)email password:(NSString *)password completion:(void (^)(BOOL))completion {
+    
+    NSString *oldUsername = self.name;
+    
     [[MomentsAPIUtilities sharedInstance] updateUser:username email:email password:password completion:^(NSDictionary *dictionary) {
         if (dictionary[@"errors"]) {
             completion(NO);
         } else {
-            self.name = username;
-            self.email = email;
+            self.name = dictionary[@"name"];
+            self.email = dictionary[@"email"];
             self.password = password;
             
             [self saveToKeychain];
             
-            // No longer needed, the API will do this
-//            [[[MOAvatarCache alloc] init] renameAvatarforUsername:oldUsername newUsername:self.name];
+            [[[MOAvatarCache alloc] init] renameAvatarforUsername:oldUsername newUsername:self.name];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"dataLoaded" object:nil];
             

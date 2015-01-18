@@ -58,10 +58,10 @@
     return [UIImage circleImageWithColor:[UIColor colorWithRed:0 green:0.78 blue:0.42 alpha:1]];
 }
 
-//- (void)renameAvatarforUsername:(NSString *)oldUsername newUsername:(NSString *)newUsername {
-//    [[NSFileManager defaultManager] moveItemAtPath:[self getFilePathForUserAvatar:oldUsername]
-//                         toPath:[self getFilePathForUserAvatar:newUsername]
-//                          error:nil];
-//}
+- (void)renameAvatarforUsername:(NSString *)oldUsername newUsername:(NSString *)newUsername {
+    [[NSFileManager defaultManager] moveItemAtPath:[self getFilePathForUserAvatar:oldUsername]
+                         toPath:[self getFilePathForUserAvatar:newUsername]
+                          error:nil];
+}
 
 @end

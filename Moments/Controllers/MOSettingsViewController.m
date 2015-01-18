@@ -540,19 +540,53 @@ static NSString *CellIdentifier = @"CellID";
 #pragma mark - UITextFieldDelegate
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
-    if (textField == self.emailField || textField == self.usernameField) {
-        [[MomentsAPIUtilities sharedInstance] isValidUsername:self.usernameField.text andEmail:self.emailField.text completion:^(NSDictionary *dictionary) {
-            NSArray *errors = dictionary[@"errors"];
-            NSLog(@"%@", errors);
-            if (errors.count) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [TSMessage showNotificationInViewController:self title:@"Warning" subtitle:[errors componentsJoinedByString:@"\n"] type:TSMessageNotificationTypeWarning];
-                });
-            }
-        }];
+    if (textField == self.emailField) {
+        NSPredicate *emailPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @".+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*"];
+        
+        if (textField.text.length == 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [TSMessage showNotificationInViewController:self title:@"Warning" subtitle:@"The e-mail address cannot be empty." type:TSMessageNotificationTypeWarning];
+            });
+        } else if (![emailPredicate evaluateWithObject:textField.text]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [TSMessage showNotificationInViewController:self title:@"Warning" subtitle:@"This e-mail address is invalid." type:TSMessageNotificationTypeWarning];
+            });
+        } else if (![textField.text isEqualToString:[MomentsAPIUtilities sharedInstance].user.email]) {
+            [[MomentsAPIUtilities sharedInstance] isValidUsername:self.usernameField.text andEmail:self.emailField.text completion:^(NSDictionary *dictionary) {
+                NSArray *errors = dictionary[@"errors"];
+
+                if ([errors containsObject:@"Your e-mail address is not available."]) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [TSMessage showNotificationInViewController:self title:@"Warning" subtitle:@"This e-mail address has already been registered by another user." type:TSMessageNotificationTypeWarning];
+                    });
+                }
+            }];
+        }
+    } else if (textField == self.usernameField) {
+        NSPredicate *usernamePredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"[A-Za-z0-9_-]{3,}"];
+        
+        if (textField.text.length < 3) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [TSMessage showNotificationInViewController:self title:@"Warning" subtitle:@"This username is too short. Please use at least 3 characters." type:TSMessageNotificationTypeWarning];
+            });
+        } else if (![usernamePredicate evaluateWithObject:textField.text]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [TSMessage showNotificationInViewController:self title:@"Warning" subtitle:@"This username is invalid. Please use only letters, numbers, hyphens and underscores." type:TSMessageNotificationTypeWarning];
+            });
+        } else if (![textField.text isEqualToString:[MomentsAPIUtilities sharedInstance].user.name]) {
+            [[MomentsAPIUtilities sharedInstance] isValidUsername:self.usernameField.text andEmail:self.emailField.text completion:^(NSDictionary *dictionary) {
+                NSArray *errors = dictionary[@"errors"];
+            
+                if ([errors containsObject:@"Your username is not available."]) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [TSMessage showNotificationInViewController:self title:@"Warning" subtitle:@"This username has already been registered by another user." type:TSMessageNotificationTypeWarning];
+                    });
+                }
+            }];
+        }
     } else if (textField == self.passwordField) {
         if (textField.text.length > 0 && textField.text.length < 6) {
-            [TSMessage showNotificationInViewController:self title:@"Password Too Short"                                        subtitle:@"Your password must be at least 6 characters long" type:TSMessageNotificationTypeWarning];
+            [TSMessage showNotificationInViewController:self title:@"Warning"                                        subtitle:@"This password is too short. Please use at least 6 characters." type:TSMessageNotificationTypeWarning];
         }
     }
 }
