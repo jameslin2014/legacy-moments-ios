@@ -380,7 +380,7 @@
 									 ]];
 	
 	
-	if ([[OnePasswordExtension sharedExtension] isAppExtensionAvailable]){
+	if (/* DISABLES CODE */ (NO) && [[OnePasswordExtension sharedExtension] isAppExtensionAvailable]){
 		roundWelcomeLabel3 = [UIButton buttonWithType:UIButtonTypeSystem];
 		roundWelcomeLabel3.translatesAutoresizingMaskIntoConstraints = NO;
 		roundWelcomeLabel3.backgroundColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];

@@ -113,7 +113,7 @@
 								 [NSLayoutConstraint constraintWithItem:passwordField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:containerView attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]
 								 ]];
 	
-	if ([[OnePasswordExtension sharedExtension] isAppExtensionAvailable]){
+	if (/* DISABLES CODE */ (NO) && [[OnePasswordExtension sharedExtension] isAppExtensionAvailable]){
 		roundSignInContainer = [UIButton buttonWithType:UIButtonTypeSystem];
 		roundSignInContainer.translatesAutoresizingMaskIntoConstraints = NO;
 		roundSignInContainer.backgroundColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
