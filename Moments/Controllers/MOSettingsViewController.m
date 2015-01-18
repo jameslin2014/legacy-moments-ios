@@ -163,7 +163,7 @@ static NSString *CellIdentifier = @"CellID";
 		if (section == 2) return 1;
 	} else if (self.control.stateBeforeTouches == StateRightSelected){
 //		if (section == 0) return 3;
-		if (section == 0) return 3;
+		if (section == 0) return 2;
 		if (section == 1) return 2;
 		if (section == 2) return 1;
 	}
