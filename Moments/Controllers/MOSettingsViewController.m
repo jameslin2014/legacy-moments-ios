@@ -549,8 +549,7 @@ static NSString *CellIdentifier = @"CellID";
 - (void)changeInfoOldPassword: (NSString *)oldPassword
 				  newPassword: (NSString *)newPassword{
 	
-	NSString *username = [[MomentsAPIUtilities sharedInstance]user].name;
-	
+	NSString *username = [MomentsAPIUtilities sharedInstance].user.name;
 	NSDictionary *loginDetails = @{
 								   AppExtensionTitleKey: @"Moments",
 								   AppExtensionUsernameKey: username, // 1Password will prompt the user to create a new item if no matching logins are found with this username.
