@@ -163,8 +163,7 @@ static NSString *CellIdentifier = @"CellID";
 		if (section == 2) return 1;
 	} else if (self.control.stateBeforeTouches == StateRightSelected){
 //		if (section == 0) return 3;
-#warning about not implemented
-		if (section == 0) return 2;
+		if (section == 0) return 3;
 		if (section == 1) return 2;
 		if (section == 2) return 1;
 	}
@@ -312,7 +311,8 @@ static NSString *CellIdentifier = @"CellID";
 				cell.textLabel.text = @"Review on App Store";
 				cell.imageView.image = [[UIImage imageNamed:@"heart"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			} else if (indexPath.row == 2){
-#warning about not implemented
+				cell.textLabel.text = @"Credits";
+				cell.imageView.image = [[UIImage imageNamed:@"credits"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 			}
 		} else if (indexPath.section == 1){
 			if (indexPath.row == 0){

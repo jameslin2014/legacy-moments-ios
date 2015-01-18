@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "applouse-32.png"
+      "filename" : "applouse-26.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "applouse-50.png"
+      "filename" : "applouse-32.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "applouse-64.png"
+      "filename" : "applouse-50.png"
     }
   ],
   "info" : {
