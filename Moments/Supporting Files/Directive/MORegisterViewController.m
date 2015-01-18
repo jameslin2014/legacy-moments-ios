@@ -61,7 +61,7 @@
 	
 	UIView *background4;
 	
-//	UIButton *onePassword;
+	UIButton *onePassword;
 }
 
 - (BOOL)prefersStatusBarHidden{
@@ -380,21 +380,53 @@
 									 ]];
 	
 	
-	
-	roundWelcomeLabel3 = [UIButton buttonWithType:UIButtonTypeSystem];
-	roundWelcomeLabel3.translatesAutoresizingMaskIntoConstraints = NO;
-	roundWelcomeLabel3.backgroundColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
-	roundWelcomeLabel3.layer.cornerRadius = 20;
-    [roundWelcomeLabel3 addTarget:self action:@selector(welcomeButton3Pressed) forControlEvents:UIControlEventTouchDown];
-	//	[roundSignInContainer addTarget:self action:@selector(signIn) forControlEvents:UIControlEventTouchDown];
-	[containerView3 addSubview:roundWelcomeLabel3];
-	[containerView3 addConstraints:@[
-									 [NSLayoutConstraint constraintWithItem:roundWelcomeLabel3 attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:containerView3 attribute:NSLayoutAttributeWidth multiplier:0.7 constant:0],
-									 [NSLayoutConstraint constraintWithItem:roundWelcomeLabel3 attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant: 40],
-									 [NSLayoutConstraint constraintWithItem:roundWelcomeLabel3 attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:containerView3 attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0],
-									 [NSLayoutConstraint constraintWithItem:roundWelcomeLabel3 attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:imageButton3 attribute:NSLayoutAttributeBottom multiplier:1.0 constant:30],
-									 [NSLayoutConstraint constraintWithItem:roundWelcomeLabel3 attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:containerView3 attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-20]
-									 ]];
+	if ([[OnePasswordExtension sharedExtension] isAppExtensionAvailable]){
+		roundWelcomeLabel3 = [UIButton buttonWithType:UIButtonTypeSystem];
+		roundWelcomeLabel3.translatesAutoresizingMaskIntoConstraints = NO;
+		roundWelcomeLabel3.backgroundColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
+		roundWelcomeLabel3.layer.cornerRadius = 20;
+		[roundWelcomeLabel3 addTarget:self action:@selector(welcomeButton3Pressed) forControlEvents:UIControlEventTouchDown];
+		//	[roundSignInContainer addTarget:self action:@selector(signIn) forControlEvents:UIControlEventTouchDown];
+		[containerView3 addSubview:roundWelcomeLabel3];
+		[containerView3 addConstraints:@[
+										 [NSLayoutConstraint constraintWithItem:roundWelcomeLabel3 attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant: 40],
+										 [NSLayoutConstraint constraintWithItem:roundWelcomeLabel3 attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:containerView3 attribute:NSLayoutAttributeRight multiplier:1.0 constant:-10],
+										 [NSLayoutConstraint constraintWithItem:roundWelcomeLabel3 attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:imageButton3 attribute:NSLayoutAttributeBottom multiplier:1.0 constant:20],
+										 [NSLayoutConstraint constraintWithItem:roundWelcomeLabel3 attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:containerView3 attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-20]
+										 ]];
+		
+		onePassword = [UIButton buttonWithType:UIButtonTypeSystem];
+		onePassword.translatesAutoresizingMaskIntoConstraints = NO;
+		[onePassword addTarget:self action:@selector(saveLoginTo1Password:) forControlEvents:UIControlEventTouchUpInside];
+		[onePassword setImage:[UIImage imageNamed:@"onepassword-button"] forState:UIControlStateNormal];
+		onePassword.tintColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
+		[containerView3 addSubview:onePassword];
+		[containerView3 addConstraints:@[
+										[NSLayoutConstraint constraintWithItem:onePassword attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:containerView3 attribute:NSLayoutAttributeLeft multiplier:1.0 constant:10],
+										[NSLayoutConstraint constraintWithItem:onePassword attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:roundWelcomeLabel3 attribute:NSLayoutAttributeLeft multiplier:1.0 constant:-10],
+										[NSLayoutConstraint constraintWithItem:onePassword attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:roundWelcomeLabel3 attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
+										[NSLayoutConstraint constraintWithItem:onePassword attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30],
+										[NSLayoutConstraint constraintWithItem:onePassword attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:onePassword attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0]
+										]];
+
+	}else{
+		roundWelcomeLabel3 = [UIButton buttonWithType:UIButtonTypeSystem];
+		roundWelcomeLabel3.translatesAutoresizingMaskIntoConstraints = NO;
+		roundWelcomeLabel3.backgroundColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
+		roundWelcomeLabel3.layer.cornerRadius = 20;
+		[roundWelcomeLabel3 addTarget:self action:@selector(welcomeButton3Pressed) forControlEvents:UIControlEventTouchDown];
+		//	[roundSignInContainer addTarget:self action:@selector(signIn) forControlEvents:UIControlEventTouchDown];
+		[containerView3 addSubview:roundWelcomeLabel3];
+		[containerView3 addConstraints:@[
+										 [NSLayoutConstraint constraintWithItem:roundWelcomeLabel3 attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:containerView3 attribute:NSLayoutAttributeWidth multiplier:0.7 constant:0],
+										 [NSLayoutConstraint constraintWithItem:roundWelcomeLabel3 attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant: 40],
+										 [NSLayoutConstraint constraintWithItem:roundWelcomeLabel3 attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:containerView3 attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0],
+										 [NSLayoutConstraint constraintWithItem:roundWelcomeLabel3 attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:imageButton3 attribute:NSLayoutAttributeBottom multiplier:1.0 constant:30],
+										 [NSLayoutConstraint constraintWithItem:roundWelcomeLabel3 attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:containerView3 attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-20]
+										 ]];
+
+		onePassword = nil;
+	}
 	
 	carrot3 = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"carrot"] imageWithColor:[UIColor whiteColor]]];
 	carrot3.translatesAutoresizingMaskIntoConstraints = NO;
@@ -436,6 +468,37 @@
 								]];
 	
 	[self.view bringSubviewToFront:backButton];
+}
+
+- (void)saveLoginTo1Password:(id)sender {
+	NSDictionary *newLoginDetails = @{
+									  AppExtensionTitleKey: @"ACME",
+									  AppExtensionUsernameKey: usernameField1.text ? : @"",
+									  AppExtensionPasswordKey: passwordField2.text ? : @"",
+									  AppExtensionNotesKey: @"Saved with the Moments app",
+									  AppExtensionFieldsKey: @{
+											  }
+									  };
+	
+	// Password generation options are optional, but are very handy in case you have strict rules about password lengths
+	NSDictionary *passwordGenerationOptions = @{
+												AppExtensionGeneratedPasswordMinLengthKey: @(6)
+												};
+	
+	[[OnePasswordExtension sharedExtension] storeLoginForURLString:@"https://pickmoments.io" loginDetails:newLoginDetails passwordGenerationOptions:passwordGenerationOptions forViewController:self sender:sender completion:^(NSDictionary *loginDict, NSError *error) {
+		
+		if (!loginDict) {
+			if (error.code != AppExtensionErrorCodeCancelledByUser) {
+				NSLog(@"Failed to use 1Password App Extension to save a new Login: %@", error);
+			}
+			return;
+		}
+		
+		usernameField1.text = loginDict[AppExtensionUsernameKey] ? : @"";
+		passwordField2.text = loginDict[AppExtensionPasswordKey] ? : @"";
+		confirmPasswordField2.text = loginDict[AppExtensionPasswordKey] ? : @"";
+		// retrieve any additional fields that were passed in newLoginDetails dictionary
+	}];
 }
 
 - (void)continueButton1Pressed{

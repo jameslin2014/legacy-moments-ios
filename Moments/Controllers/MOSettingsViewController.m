@@ -8,6 +8,7 @@
 
 #import "MOSettingsViewController.h"
 #import "UIImage+EDExtras.h"
+#import "OnePasswordExtension.h"
 
 static NSString *CellIdentifier = @"CellID";
 
@@ -162,8 +163,8 @@ static NSString *CellIdentifier = @"CellID";
 		if (section == 1) return 4;
 		if (section == 2) return 1;
 	} else if (self.control.stateBeforeTouches == StateRightSelected){
-//		if (section == 0) return 3;
-		if (section == 0) return 2;
+//		if (section == 0) return 2;
+		if (section == 0) return 3;
 		if (section == 1) return 2;
 		if (section == 2) return 1;
 	}
@@ -524,6 +525,7 @@ static NSString *CellIdentifier = @"CellID";
 
 - (void)save {
     MOUser *user = [MomentsAPIUtilities sharedInstance].user;
+	NSString *oldPassword = user.password;
     [user updateUsername:self.usernameField.text email:self.emailField.text password:self.passwordField.text completion:^(BOOL success) {
         if (!success) {
             NSLog(@"FAILED");
@@ -537,10 +539,40 @@ static NSString *CellIdentifier = @"CellID";
                 [TSMessage showNotificationInViewController:[[[[UIApplication sharedApplication] delegate] window] rootViewController] title:@"Profile Saved"
                                         subtitle:nil
                                             type:TSMessageNotificationTypeSuccess];
+				[self changeInfoOldPassword:oldPassword newPassword:self.passwordField.text];
             });
         }
     }];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)changeInfoOldPassword: (NSString *)oldPassword
+				  newPassword: (NSString *)newPassword{
+	
+	NSString *username = [[MomentsAPIUtilities sharedInstance]user].name;
+	
+	NSDictionary *loginDetails = @{
+								   AppExtensionTitleKey: @"Moments",
+								   AppExtensionUsernameKey: username, // 1Password will prompt the user to create a new item if no matching logins are found with this username.
+								   AppExtensionPasswordKey: newPassword,
+								   AppExtensionOldPasswordKey: oldPassword,
+								   AppExtensionNotesKey: @"Saved with the Moments app",
+								   };
+	
+	// Password generation options are optional, but are very handy in case you have strict rules about password lengths
+	NSDictionary *passwordGenerationOptions = @{
+												AppExtensionGeneratedPasswordMinLengthKey: @(6),
+												};
+	
+	[[OnePasswordExtension sharedExtension] changePasswordForLoginForURLString:@"https://pickmoments.io" loginDetails:loginDetails passwordGenerationOptions:passwordGenerationOptions forViewController:self sender:nil completion:^(NSDictionary *loginDict, NSError *error) {
+		if (!loginDict) {
+			if (error.code != AppExtensionErrorCodeCancelledByUser) {
+				NSLog(@"Error invoking 1Password App Extension for find login: %@", error);
+			}
+			return;
+		}
+	}];
+	
 }
 
 #pragma mark - UITextFieldDelegate
