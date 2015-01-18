@@ -8,6 +8,8 @@
 
 #import "MOUser.h"
 #import "MomentsAPIUtilities.h"
+#import "TSMessage.h"
+#import "MODecisionViewController.h"
 
 @implementation MOUser
 
@@ -16,13 +18,29 @@
     if (self) {
         self.loggedIn = NO;
         [self loadFromKeychain];
+        
         if (self.name && self.token) {
             self.loggedIn = YES;
             [[[MOAvatarCache alloc] init] getAvatarForUsername:self.name completion:^(UIImage *avatar) {
                 self.avatar = avatar;
             }];
         }
+        
+        [[NSNotificationCenter defaultCenter] addObserverForName:@"authenticationFailed" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+              if (self.name && self.password) {
+                  [self loginWithUsername:self.name password:self.password completion:^(BOOL success) {
+                      if (success) {
+                          [self reload];
+                      } else {
+                          [self logout];
+                      }
+                  }];
+              } else {
+                  [self logout];
+              }
+          }];
     }
+    
     return self;
 }
 
@@ -58,28 +76,25 @@
         
         [self saveToKeychain];
         
-        completion(nil != dictionary && nil == dictionary[@"error"]);
+        completion(nil != dictionary && nil == dictionary[@"errors"]);
     }];
 }
 
 - (void)updateUsername:(NSString *)username email:(NSString *)email password:(NSString *)password completion:(void (^)(BOOL))completion {
     [[MomentsAPIUtilities sharedInstance] updateUser:username email:email password:password completion:^(NSDictionary *dictionary) {
-        NSLog(@"%@", dictionary);
         if (dictionary[@"errors"]) {
-            NSLog(@"%@", dictionary[@"errors"]);
             completion(NO);
         } else {
-            NSString *oldUsername = self.name;
-            
             self.name = username;
             self.email = email;
             self.password = password;
             
             [self saveToKeychain];
             
-            [[[MOAvatarCache alloc] init] renameAvatarforUsername:oldUsername newUsername:self.name];
+            // No longer needed, the API will do this
+//            [[[MOAvatarCache alloc] init] renameAvatarforUsername:oldUsername newUsername:self.name];
             
-            [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"dataLoaded" object:nil]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"dataLoaded" object:nil];
             
             completion(YES);
         }
@@ -102,8 +117,6 @@
             }];
             
             [self saveToKeychain];
-        } else {
-            NSLog(@"Login failed");
         }
         completion(valid);
     }];
@@ -126,7 +139,7 @@
     
     [self clearCredentialsFromKeychain];
     
-    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"signOut" object:nil]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"signOut" object:nil];
 }
 
 - (void)reload {
@@ -143,9 +156,7 @@
         self.recents = dictionary [@"recents"];
         self.posted = dictionary [@"posted"];
         
-        [self log];
-        
-        [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"dataLoaded" object:nil]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"dataLoaded" object:nil];
     }];
 }
 
@@ -153,7 +164,7 @@
     _avatar = avatar;
     [[[MOAvatarCache alloc] init] putAvatar:self.avatar forUsername:self.name];
     
-    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"avatarChanged" object:nil]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"avatarChanged" object:nil];
 }
 
 - (BOOL)isFollowing:(NSString *)username {

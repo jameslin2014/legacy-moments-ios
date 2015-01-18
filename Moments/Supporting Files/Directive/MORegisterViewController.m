@@ -599,7 +599,9 @@
                     if ([self.presentingViewController isKindOfClass:[EDPagingViewController class]]) {
                         EDPagingViewController *pagingViewController = (EDPagingViewController *) self.presentingViewController;
                         [pagingViewController.player stop];
+                        pagingViewController.view.hidden = YES;
                     }
+                    self.view.hidden = YES;
                 }];
             } else {
 				AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);

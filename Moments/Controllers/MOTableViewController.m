@@ -50,6 +50,10 @@
     [[MomentsAPIUtilities sharedInstance].user reload];
 }
 
+- (IBAction)openCameraView:(UIBarButtonItem *)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"JumpToCamera" object:nil];
+}
+
 - (void)showOptionsAndAbout{
 	MOSettingsViewController *settingsViewController = [[MOSettingsViewController alloc]init];
 	settingsViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -101,7 +105,9 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	// Return the number of sections.
-	return 2;
+    self.tableView.scrollEnabled = self.recents.count > 0;
+    
+    return self.recents.count ? 2 : 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -284,6 +290,9 @@
 	[self.videoPlayer.view removeFromSuperview];
 	self.navigationController.navigationBar.alpha = 1.0f;
 	self.reloadTimer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(getDataFromServer) userInfo:nil repeats:YES];
+    if ([self.videoPlayer.videoPath containsString:@"welcome"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"WelcomeVideoPlayed"];
+    }
 }
 
 - (void)videoPlayerReady:(PBJVideoPlayerController *)player {
@@ -303,6 +312,9 @@
 	self.navigationController.navigationBar.alpha = 1.0f;
 	self.reloadTimer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(getDataFromServer) userInfo:nil repeats:YES];
 	self.tableShouldRegisterTapEvents = NO;
+    if ([player.videoPath containsString:@"welcome"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"WelcomeVideoPlayed"];
+    }
 }
 
 - (void)videoPlayerPlaybackStateDidChange:(PBJVideoPlayerController *)videoPlayer {
@@ -319,7 +331,11 @@
 }
 
 - (void)dataLoaded {
-    self.recents = [MomentsAPIUtilities sharedInstance].user.recents;
+    if (![[NSUserDefaults standardUserDefaults]boolForKey:@"WelcomeVideoPlayed"]) {
+        self.recents = @[@"welcome"];
+    } else {
+        self.recents = [MomentsAPIUtilities sharedInstance].user.recents;
+    }
     
     [self.tableView reloadData];
 }

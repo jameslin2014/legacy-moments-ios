@@ -37,6 +37,8 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableScrolling) name:@"EnableScrollView" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(disableScrolling) name:@"DisableScrollView" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToCamera) name:@"JumpToCamera" object:nil];
+    
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
         NSLog(@"app already launched");
     } else {
@@ -93,7 +95,7 @@
 	[super viewDidAppear:animated];
 	[UIView animateWithDuration:0.15 delay:1 options:UIViewAnimationOptionCurveEaseOut animations:^{
 		[self.viewControllers[1] view].alpha = 1;
-	} completion:nil];
+    } completion:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -105,6 +107,20 @@
 
 - (void)dealloc{
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)jumpToSearch {
+    [self.scrollView setContentOffset:CGPointMake(self.scrollView.frame.size.width * 2.0, 0.0) animated:NO];
+    
+    UINavigationController *navController = (UINavigationController *) self.viewControllers[2];
+    MOFollowViewController *followController = (MOFollowViewController *)navController.topViewController;
+    
+    [followController.tableView reloadData];
+    [followController showSearch];
+}
+
+- (void)jumpToCamera {
+    [self.scrollView setContentOffset:CGPointMake(self.scrollView.frame.size.width, 0.0) animated:YES];
 }
 
 @end

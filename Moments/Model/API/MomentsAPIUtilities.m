@@ -7,6 +7,7 @@
 //
 
 #import "MomentsAPIUtilities.h"
+#import "TSMessage.h"
 
 @implementation MomentsAPIUtilities
 
@@ -46,6 +47,10 @@
         if (!error) {
             NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
             completion(dictionary);
+        } else {
+            if ([error.domain isEqual:@"NSURLErrorDomain"]) {
+                [TSMessage showNotificationWithTitle:@"Network Error" type:TSMessageNotificationTypeError];
+            }
         }
     }];
 }
@@ -68,6 +73,10 @@
         if (!error) {
             NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
             completion(dictionary);
+        } else {
+            if ([error.domain isEqual:@"NSURLErrorDomain"]) {
+                [TSMessage showNotificationWithTitle:@"Network Error" type:TSMessageNotificationTypeError];
+            }
         }
     }];
 }
@@ -91,6 +100,10 @@
         if (!error) {
             NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
             completion(dictionary);
+        } else {
+            if ([error.domain isEqual:@"NSURLErrorDomain"] && NSURLErrorUserCancelledAuthentication == error.code) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"authenticationFailed" object:nil];
+            }
         }
     }];
 }
@@ -109,7 +122,9 @@
         if (!error) {
             completion([NSJSONSerialization JSONObjectWithData:data options:0 error:&error]);
         } else {
-            NSLog(@"ERROR: %@", error);
+            if ([error.domain isEqual:@"NSURLErrorDomain"] && NSURLErrorUserCancelledAuthentication == error.code) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"authenticationFailed" object:nil];
+            }
         }
     }];
 }
@@ -127,6 +142,10 @@
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (!error) {
             completion([NSJSONSerialization JSONObjectWithData:data options:0 error:&error]);
+        } else {
+            if ([error.domain isEqual:@"NSURLErrorDomain"]) {
+                [TSMessage showNotificationWithTitle:@"Network Error" type:TSMessageNotificationTypeError];
+            }
         }
     }];
 }
@@ -149,6 +168,10 @@
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (!error) {
             completion([NSJSONSerialization JSONObjectWithData:data options:0 error:&error]);
+        } else {
+            if ([error.domain isEqual:@"NSURLErrorDomain"]) {
+                [TSMessage showNotificationWithTitle:@"Network Error" type:TSMessageNotificationTypeError];
+            }
         }
     }];
 }
@@ -167,6 +190,10 @@
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (!error) {
             completion([NSJSONSerialization JSONObjectWithData:data options:0 error:&error]);
+        } else {
+            if ([error.domain isEqual:@"NSURLErrorDomain"] && NSURLErrorUserCancelledAuthentication == error.code) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"authenticationFailed" object:nil];
+            }
         }
     }];
 }
@@ -185,6 +212,10 @@
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (!error) {
             completion([NSJSONSerialization JSONObjectWithData:data options:0 error:&error]);
+        } else {
+            if ([error.domain isEqual:@"NSURLErrorDomain"] && NSURLErrorUserCancelledAuthentication == error.code) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"authenticationFailed" object:nil];
+            }
         }
     }];
 }
@@ -199,7 +230,11 @@
     
     [self addAuthHeaderWithToken:self.user.token request:urlRequest];
     
-    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:nil];
+    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if (connectionError) {
+            [TSMessage showNotificationWithTitle:@"Network Error" type:TSMessageNotificationTypeError];
+        }
+    }];
 }
 
 /**

@@ -46,7 +46,14 @@
                             <outlet property="delegate" destination="uEq-0C-VRb" id="eWP-rX-F5r"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="0jl-pH-jtO"/>
+                    <navigationItem key="navigationItem" id="0jl-pH-jtO">
+                        <barButtonItem key="leftBarButtonItem" systemItem="camera" id="eUz-eb-Nau">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="openCameraView:" destination="uEq-0C-VRb" id="6Sk-oU-h8S"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="tableView" destination="vfg-3M-eWN" id="p4a-qn-K8V"/>
@@ -54,7 +61,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xdz-fL-f3w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1167.2" y="-334.64666666666665"/>
+            <point key="canvasLocation" x="868.5" y="-373.5"/>
         </scene>
         <!--Capture View Controller-->
         <scene sceneID="X01-Ar-7l8">

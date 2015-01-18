@@ -256,6 +256,7 @@
 						EDPagingViewController *pagingViewController = (EDPagingViewController *) self.presentingViewController;
 						[pagingViewController.player stop];
 					}
+                    self.view.hidden = YES;
 				} else {
 					AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
                     [TSMessage showNotificationWithTitle:@"Signin Failed"

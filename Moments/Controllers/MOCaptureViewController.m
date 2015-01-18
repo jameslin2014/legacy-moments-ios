@@ -17,12 +17,17 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    if ([[MPMusicPlayerController systemMusicPlayer] playbackState] == MPMusicPlaybackStatePlaying) {
-        [[MPMusicPlayerController systemMusicPlayer] pause];
-        self.recordButton.enabled = YES;
-        self.cameraButton.enabled = YES;
-        self.flashButton.enabled = YES;
-    }
+    
+    self.recordButton.enabled = YES;
+    self.cameraButton.enabled = YES;
+    self.flashButton.enabled = YES;
+    
+//    if ([[MPMusicPlayerController systemMusicPlayer] playbackState] == MPMusicPlaybackStatePlaying) {
+//        [[MPMusicPlayerController systemMusicPlayer] pause];
+//        self.recordButton.enabled = YES;
+//        self.cameraButton.enabled = YES;
+//        self.flashButton.enabled = YES;
+//    }
 }
 
 - (void)viewDidLoad {
@@ -128,14 +133,16 @@
 - (void)viewWillDisappear:(BOOL)animated {
     dispatch_async([self sessionQueue], ^{
         [[self session] stopRunning];
-        
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:AVCaptureDeviceSubjectAreaDidChangeNotification object:[[self videoDeviceInput] device]];
-        [[NSNotificationCenter defaultCenter] removeObserver:[self runtimeErrorHandlingObserver]];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:@"signOut" object:nil];
-        
-        [self removeObserver:self forKeyPath:@"sessionRunningAndDeviceAuthorized" context:SessionRunningAndDeviceAuthorizedContext];
-        [self removeObserver:self forKeyPath:@"movieFileOutput.recording" context:RecordingContext];
     });
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVCaptureDeviceSubjectAreaDidChangeNotification object:[[self videoDeviceInput] device]];
+    [[NSNotificationCenter defaultCenter] removeObserver:[self runtimeErrorHandlingObserver]];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"signOut" object:nil];
+    
+    [self removeObserver:self forKeyPath:@"sessionRunningAndDeviceAuthorized" context:SessionRunningAndDeviceAuthorizedContext];
+    [self removeObserver:self forKeyPath:@"movieFileOutput.recording" context:RecordingContext];
 }
 
 - (void)signOut:(id)sender {
@@ -186,6 +193,7 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (context == RecordingContext) {
         BOOL isRecording = [change[NSKeyValueChangeNewKey] boolValue];
+//        [[MPMusicPlayerController systemMusicPlayer] pause];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (isRecording) {
@@ -202,6 +210,9 @@
         });
         
     } else if (context == SessionRunningAndDeviceAuthorizedContext) {
+        
+//        [[MPMusicPlayerController systemMusicPlayer] pause];
+        
         BOOL isRunning = [change[NSKeyValueChangeNewKey] boolValue];
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -220,6 +231,9 @@
 
 #pragma mark Actions
 - (IBAction)toggleMovieRecording:(id)sender {
+    
+    
+    
     dispatch_async([self sessionQueue], ^{
         if (![[self movieFileOutput] isRecording]) {
 			
@@ -468,7 +482,7 @@
             [apiUtilities recordPostForUser:apiUtilities.user.name];
             
             apiUtilities.user.posted = @"1970-01-01";
-            [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"dataLoaded" object:nil]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"dataLoaded" object:nil];
             
             [UIView animateWithDuration:0.2 animations:^{
                 v.alpha = 0.0;

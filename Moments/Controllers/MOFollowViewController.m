@@ -247,17 +247,26 @@
     MOUser *user = [MomentsAPIUtilities sharedInstance].user;
     
     if ([[MomentsAPIUtilities sharedInstance].user isFollowing:username]) {
-		[[MomentsAPIUtilities sharedInstance] unfollowUser:username completion:^(NSDictionary *dict) {
-            user.following = dict[@"follows"];
-            user.followers = dict[@"followers"];
-            user.recents = dict[@"recents"];
-
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [TSMessage showNotificationWithTitle:[NSString stringWithFormat:@"You are not following %@ any more.", username] type:TSMessageNotificationTypeSuccess];
-            });
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:[NSString stringWithFormat:@"Are you sure you want to unfollow %@?", username] preferredStyle:UIAlertControllerStyleActionSheet];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Unfollow" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
             
-            [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"dataLoaded" object:nil]];
-		}];
+            [self dismissViewControllerAnimated:YES completion:nil];
+            
+            [[MomentsAPIUtilities sharedInstance] unfollowUser:username completion:^(NSDictionary *dict) {
+                user.following = dict[@"follows"];
+                user.followers = dict[@"followers"];
+                user.recents = dict[@"recents"];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [TSMessage showNotificationWithTitle:[NSString stringWithFormat:@"You are not following %@ any more.", username] type:TSMessageNotificationTypeSuccess];
+                });
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"dataLoaded" object:nil];
+            }];
+        }]];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
 	} else {
 		[[MomentsAPIUtilities sharedInstance] followUser:username completion:^(NSDictionary *dict) {
             user.following = dict[@"follows"];
@@ -268,7 +277,7 @@
                 [TSMessage showNotificationWithTitle:[NSString stringWithFormat:@"You are now following %@.", username] type:TSMessageNotificationTypeSuccess];
             });
             
-            [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"dataLoaded" object:nil]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"dataLoaded" object:nil];
 		}];
 	}
 	[[[MomentsAPIUtilities sharedInstance]user] reload];
@@ -302,7 +311,7 @@
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    if (searchText.length < 3) {
+    if (searchText.length < 2) {
         return;
     }
     

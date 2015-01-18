@@ -363,11 +363,7 @@ static NSString *CellIdentifier = @"CellID";
 			[alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
 			[alertController addAction:[UIAlertAction actionWithTitle:@"Sign Out" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
                 [self dismissViewControllerAnimated:YES completion:nil];
-                [[MomentsAPIUtilities sharedInstance].user logout];
-                
-                UIViewController *destinationViewController = [[MODecisionViewController alloc] init];
-                [[[UIApplication sharedApplication] delegate] window].rootViewController = destinationViewController;
-                [[[[UIApplication sharedApplication] delegate] window] makeKeyAndVisible];                
+                [[MomentsAPIUtilities sharedInstance].user logout];                
             }]];
             
             [self presentViewController:alertController animated:YES completion:nil];
