@@ -540,7 +540,9 @@ static NSString *CellIdentifier = @"CellID";
                 [TSMessage showNotificationInViewController:[[[[UIApplication sharedApplication] delegate] window] rootViewController] title:@"Profile Saved"
                                         subtitle:nil
                                             type:TSMessageNotificationTypeSuccess];
-				[self changeInfoOldPassword:oldPassword newPassword:self.passwordField.text];
+                
+                // We also need to check if there's a new and old password before calling this
+//				[self changeInfoOldPassword:oldPassword newPassword:self.passwordField.text];
             });
         }
     }];
