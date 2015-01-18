@@ -34,11 +34,11 @@
 	self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0 green:0.63 blue:0.89 alpha:1];
 	self.tableView.backgroundColor = [UIColor colorWithRed:36/255.0 green: 36/255.0 blue:36/255.0 alpha:1.0];
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-	
+    
 	UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"gear"] style:UIBarButtonItemStylePlain target:self action:@selector(showOptionsAndAbout)];
 	button.tintColor = [UIColor whiteColor];
 	self.navigationItem.rightBarButtonItem = button;
-	
+    
 	[self getDataFromServer];
 }
 

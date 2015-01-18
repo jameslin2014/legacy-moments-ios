@@ -387,7 +387,7 @@
         <!--Table View Controller-->
         <scene sceneID="Wj1-En-ELH">
             <objects>
-                <viewController id="8jk-XU-aBk" customClass="EDTableViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="8jk-XU-aBk" customClass="EDTableViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LSf-w4-Kr7"/>
                         <viewControllerLayoutGuide type="bottom" id="Oiy-lM-ciu"/>
