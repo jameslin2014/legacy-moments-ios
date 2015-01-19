@@ -134,11 +134,9 @@
     dispatch_async([self sessionQueue], ^{
         [[self session] stopRunning];
     });
-}
-
-- (void)dealloc {
+    
     [[NSNotificationCenter defaultCenter] removeObserver:[self runtimeErrorHandlingObserver]];
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self removeObserver:self forKeyPath:@"sessionRunningAndDeviceAuthorized" context:SessionRunningAndDeviceAuthorizedContext];
     [self removeObserver:self forKeyPath:@"movieFileOutput.recording" context:RecordingContext];
 }
