@@ -216,6 +216,7 @@
 #warning FLAG USER
 	}]];
 	[alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+	[self presentViewController:alert animated:YES completion:nil];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
