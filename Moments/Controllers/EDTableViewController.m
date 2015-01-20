@@ -199,9 +199,23 @@
 		[[[MOAvatarCache alloc] init] getAvatarForUsername:self.recents[indexPath.row] completion:^(UIImage *avatar) {
 			profileImageView.image = avatar;
 		}];
+		
+		UILongPressGestureRecognizer *hold = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPress:)];
+		hold.minimumPressDuration = 1.0;
+		[cell addGestureRecognizer:hold];
 	}
 	
 	return cell;
+}
+
+- (void)longPress:(UILongPressGestureRecognizer *)gesture{
+	UITableViewCell *cell = (UITableViewCell *)gesture.view;
+	NSString *nameOfUser = cell.textLabel.text;
+	UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+	[alert addAction:[UIAlertAction actionWithTitle: [NSString stringWithFormat:@"Flag %@", nameOfUser] style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+#warning FLAG USER
+	}]];
+	[alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
