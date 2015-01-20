@@ -210,11 +210,14 @@
 
 - (void)longPress:(UILongPressGestureRecognizer *)gesture{
 	UITableViewCell *cell = (UITableViewCell *)gesture.view;
-	NSString *nameOfUser = cell.textLabel.text;
+	NSString *nameOfUser = [cell.textLabel.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
 	[alert addAction:[UIAlertAction actionWithTitle: [NSString stringWithFormat:@"Flag %@", nameOfUser] style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-#warning FLAG USER
-	}]];
+        [[MomentsAPIUtilities sharedInstance] flagUser:nameOfUser];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [TSMessage showNotificationWithTitle:[NSString stringWithFormat:@"You have flagged %@ for inappropriate content.", nameOfUser] type:TSMessageNotificationTypeSuccess];
+        });
+    }]];
 	[alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
 	[self presentViewController:alert animated:YES completion:nil];
 }

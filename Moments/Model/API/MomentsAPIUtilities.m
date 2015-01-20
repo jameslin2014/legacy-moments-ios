@@ -177,6 +177,26 @@
 }
 
 /**
+ * Sends a request to the API to flag a user for inappropriate content
+ */
+- (void)flagUser:(NSString *)username {
+    NSDictionary *dictionary = @{ @"user": username };
+    NSMutableURLRequest *urlRequest = [self URLRequestForEndpoint:@"/flag/"
+                                                   withHTTPMethod:@"POST"
+                                                    andDictionary:dictionary];
+    
+    [self addAuthHeaderWithToken:self.user.token request:urlRequest];
+    
+    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if (error) {
+            if ([error.domain isEqual:@"NSURLErrorDomain"] && NSURLErrorUserCancelledAuthentication == error.code) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"authenticationFailed" object:nil];
+            }
+        }
+    }];
+}
+
+/**
  * Sends a request to the API to subscribe to a user's video content
  */
 - (void)followUser:(NSString *)username completion:(void (^)(NSDictionary *))completion {

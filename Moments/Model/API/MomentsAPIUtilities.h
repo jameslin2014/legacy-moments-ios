@@ -46,6 +46,11 @@
 - (void)createUserWithUsername:(NSString *)username email:(NSString *)email andPassword:(NSString *)password completion:(void (^)(NSDictionary *))completion;
 
 /**
+ * Sends a request to the API to flag a user for inappropriate content
+ */
+- (void)flagUser:(NSString *)username;
+
+/**
  * Sends a request to the API to subscribe to a user's video content
  */
 - (void)followUser:(NSString *)username completion:(void (^)(NSDictionary *))completion;
