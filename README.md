@@ -8,4 +8,4 @@ Moments is an iOS application for sharing video content to friends. [@istx25](ht
 
 ### Related
 
-- [damonjones/legacy-moments-api](https://www.github.com/damonjones/legacy-moments-ios)
+- [damonjones/legacy-moments-api](https://www.github.com/damonjones/legacy-moments-api)
