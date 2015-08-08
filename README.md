@@ -1,7 +1,11 @@
-## Legacy Objective-C Project for Moments
+## Moments
 
 [![Platform](http://img.shields.io/badge/platform-ios-blue.svg?style=flat)](#)
 [![Language](http://img.shields.io/badge/language-objectivec-brightgreen.svg?style=flat)](#)
-[![License](https://img.shields.io/cocoapods/l/AFNetworking.svg)](http://mit-license.org)
+[![License](https://img.shields.io/cocoapods/l/AFNetworking.svg)](https://github.com/damonjones/legacy-moments-ios/raw/master/LICENSE.txt)
 
-Legacy Xcode project for Moments. Originally engineered by [@damonjones](http://www.github.com/damonjones), [@edekhayser](http://www.github.com/edekhayser) and [@istx25](http://www.github.com/istx25) in Objective-C. Thanks to [@colton](http://www.github.com/Colton) for contributing in the early phases of the project.
+Moments is an iOS application for sharing video content to friends. [@istx25](http://www.github.com/istx25) and I ([@damonjones](http://www.github.com/damonjones) started building this app in November, 2014 with help from [@edekhayser](http://www.github.com/edekhayser) and [@colton](http://www.github.com/Colton). We have since abandoned the project (because of recent releases of better alternatives) to move onto bigger and better projects.
+
+### Related
+
+- [damonjones/legacy-moments-api](https://www.github.com/damonjones/legacy-moments-ios)
